@@ -4,6 +4,7 @@
 
 - [concatFilter](#concat)
 - [ucfirstFilter](#ucfirst)
+- [uniqueFilter](#unique)
 
 
 ###concat
