@@ -41,6 +41,7 @@ describe('concatFilter', function() {
     expect(filter(object, array)).toEqual([{a: 2}, {a: 3}, {a: 1}]);
 
     expect(filter(object, object)).toEqual([{a: 2}, {a: 3}, {a: 2}, {a: 3}]);
+    expect(filter(array, array)).toEqual([{a: 1}, {a: 1}]);
 
   });
 
