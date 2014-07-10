@@ -12,41 +12,25 @@
 
 angular.module('concat', [])
   //TODO:unique option ? or use unique filter to filter result
-  .filter('concat', [function() {
-      return function(collection, joined) {
+  .filter('concat', [function () {
+    return function (collection, joined) {
 
-        if(angular.isUndefined(joined)) {
-          return collection;
-        }
-        if(angular.isArray(collection)) {
-          return (angular.isObject(joined)) ?
-            collection.concat(toArray(joined)) :
-            collection.concat(joined);
-        }
-
-        if(angular.isObject(collection)) {
-          var array = toArray(collection);
-          return (angular.isObject(joined)) ?
-            array.concat(toArray(joined)) :
-            array.concat(joined);
-        }
+      if (angular.isUndefined(joined)) {
         return collection;
       }
-    }
-  ]);
+      if (angular.isArray(collection)) {
+        return (angular.isObject(joined)) ?
+            collection.concat(toArray(joined)) :
+            collection.concat(joined);
+      }
 
-
-function toArray(object) {
-  var i = -1,
-    props = Object.keys(object),
-    result = new Array(props.length);
-
-  while(++i < props.length) {
-    result[i] = object[props[i]];
+      if (angular.isObject(collection)) {
+        var array = toArray(collection);
+        return (angular.isObject(joined)) ?
+            array.concat(toArray(joined)) :
+            array.concat(joined);
+      }
+      return collection;
+    };
   }
-  return result;
-}
-
-function isNull(value) {
-  return toString.call(value) === '[object Null]'
-}
+]);
