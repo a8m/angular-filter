@@ -8,5 +8,6 @@
  */
 
 angular.module('angular.filters', [
-  'ucfirst'
+  'ucfirst',
+  'concat'
 ]);
