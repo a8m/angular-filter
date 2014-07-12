@@ -19,8 +19,10 @@ angular.module('unique', [])
 
 function uniqFilter($parse) {
     return function (collection, property) {
-      if (isUndefined(property)) {
 
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if (isUndefined(property)) {
         return collection.filter(function (elm, pos, self) {
           return self.indexOf(elm) === pos;
         })
@@ -38,6 +40,7 @@ function uniqFilter($parse) {
         return true;
       });
 
+      //checked if the unique identifier is already exist
       function some(array, member) {
         if(isUndefined(member)) {
           return false;
