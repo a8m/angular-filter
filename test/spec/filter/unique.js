@@ -69,6 +69,32 @@ describe('uniqFilter', function() {
 
   });
 
+  it('should get object as collection and return filtered collection', function() {
 
+    var dataObject = {
+      0: { id: 1, data: {} },
+      1: { id: 1, data: {} },
+      2: { id: 2, data: {} },
+      3: { id: 2, data: {} }
+    };
+    var dataArray = [
+      { id: 1, data: {} },
+      { id: 2, data: {}}
+    ];
+
+    expect(filter(dataObject, 'id')).toEqual(dataArray);
+
+  });
+
+  it('should support advance nested properties', function() {
+
+    var orders = [
+      { order: { person: { credit: { information: { num: 99999 } } } } },
+      { order: { person: { credit: { information: { num: 99999 } } } } },
+      { order: { person: { credit: { information: { num: 99999 } } } } }
+    ];
+    expect(filter(orders, 'order.person.credit.information.num')).toEqual([orders[0]]);
+
+  });
 
 });
