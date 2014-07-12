@@ -1,12 +1,12 @@
 'use strict';
 
-describe('ucfirstFilter', function() {
+describe('ucfirstFilter', function () {
 
   var filter;
 
   beforeEach(module('ucfirst'));
 
-  beforeEach(inject(function($filter) {
+  beforeEach(inject(function ($filter) {
     filter = $filter('ucfirst');
   }));
 
