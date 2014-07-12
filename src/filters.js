@@ -9,5 +9,6 @@
 
 angular.module('angular.filters', [
   'ucfirst',
-  'concat'
+  'concat',
+  'unique'
 ]);
