@@ -29,11 +29,8 @@ describe('uriEncodeFilter', function() {
     spyOn($window, 'encodeURI');
 
     expect(filter([])).toEqual([]);
-
     expect(filter({})).toEqual({});
-
     expect(filter(777)).toEqual(777);
-
     expect($window.encodeURI).not.toHaveBeenCalled();
 
 
