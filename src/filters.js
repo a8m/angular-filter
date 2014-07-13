@@ -12,5 +12,6 @@ angular.module('angular.filters', [
   'uri-encode',
   'remove-spaces',
   'concat',
-  'unique'
+  'unique',
+  'is-empty'
 ]);
