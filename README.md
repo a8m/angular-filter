@@ -4,11 +4,11 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
-  - [isEmpty](#isEmpty)
+  - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
-  - [uriEncode](#uriEncode)
-  - [removeSpaces](#removeSpaces)
+  - [uriEncode](#uriencode)
+  - [removeSpaces](#removespaces)
 
 
 
@@ -79,7 +79,7 @@ baz 30
 
 ```
 
-###isEmpty
+###isempty
 get collection or string and return if it empty
 
 ```html
@@ -107,14 +107,14 @@ Foo Bar Baz
 -->
 ```
 
-###uriEncode
+###uriencode
 get string as parameter and return encoded uri
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
 ```
 
-###removeSpaces
+###removespaces
 remove spaces from string, replace with "-" or given argument
 
 ```html
