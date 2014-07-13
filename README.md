@@ -4,6 +4,7 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
+  - [isEmpty](#isEmpty)
 - [String](#string)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriEncode)
@@ -48,7 +49,7 @@ result:
 -->
 ```
 
-#unique
+###unique
 get collection and filter duplicate members.
 if filter get a property(nested to) as argument it's filter by this property as unique identifier
 
@@ -76,6 +77,19 @@ foo 10
 bar 20
 baz 30
 
+```
+
+###isEmpty
+get collection or string and return if it empty
+
+```html
+<tr ng-repeat="order in orders" ng-hide="orders | isEmpty">
+<!-- ..... -->
+</tr>
+
+<tr ng-show="orders | isEmpty">
+some replacer msg
+</tr>
 ```
 
 #String
