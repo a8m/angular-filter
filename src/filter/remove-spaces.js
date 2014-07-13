@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @ngdoc filter
  * @name removeSpaces
