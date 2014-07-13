@@ -15,18 +15,18 @@ angular.module('concat', [])
   .filter('concat', [function () {
     return function (collection, joined) {
 
-      if (angular.isUndefined(joined)) {
+      if (isUndefined(joined)) {
         return collection;
       }
-      if (angular.isArray(collection)) {
-        return (angular.isObject(joined)) ?
+      if (isArray(collection)) {
+        return (isObject(joined)) ?
             collection.concat(toArray(joined)) :
             collection.concat(joined);
       }
 
-      if (angular.isObject(collection)) {
+      if (isObject(collection)) {
         var array = toArray(collection);
-        return (angular.isObject(joined)) ?
+        return (isObject(joined)) ?
             array.concat(toArray(joined)) :
             array.concat(joined);
       }
