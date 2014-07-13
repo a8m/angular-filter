@@ -18,7 +18,7 @@ concat filter, get two mixed(array/object) parameters and return merged collecti
 
 
 ```js
-function MainController($scope) {
+function MainController ($scope) {
   $scope.array = [ {a: 1}, {a: 2} ];
   $scope.object = {
     0: {a: 3},
@@ -47,7 +47,35 @@ result:
 -->
 ```
 
+#unique
+get collection and filter duplicate members.
+if filter get a property(nested to) as argument it's filter by this property as unique identifier
 
+```js
+function MainController ($scope) {
+  $scope.orders = [
+    { id:1, customer: { name: 'foo', id: 10 } },
+    { id:2, customer: { name: 'bar', id: 20 } },
+    { id:3, customer: { name: 'foo', id: 10 } },
+    { id:4, customer: { name: 'bar', id: 20 } },
+    { id:5, customer: { name: 'baz', id: 30 } },
+  ];
+}
+```
+html : it's filters by customer id, i.e remove duplicate customers
+```html
+<th>All customers list: </th>
+<tr ng-repeat="order in orders | unique: 'customer.id'" >
+   <td> {{ order.customer.name }} , {{ order.customer.id }} </td>
+</tr>
+
+<!-- result:
+All customers list:
+foo 10
+bar 20
+baz 30
+
+```
 
 #String
 
