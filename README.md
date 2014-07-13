@@ -7,6 +7,7 @@
 - [String](#string)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriEncode)
+  - [removeSpaces](#removeSpaces)
 
 
 
@@ -97,4 +98,19 @@ get string as parameter and return encoded uri
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
+```
+
+###removeSpaces
+remove spaces from string, replace with "-" or given argument
+
+```html
+<a ng-href="http://domain.com/fetch/{{ 'some string with spaces' | removeSpaces }}">Link</a>
+<!--replace with given argument-->
+<a ng-href="http://domain.com/fetch/{{ 'some string with spaces' | removeSpaces:'=' }}">Link</a>
+<!--
+result:
+<a ng-href="http://domain.com/fetch/some-string-with-spaces">Link</a>
+
+<a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
+-->
 ```
