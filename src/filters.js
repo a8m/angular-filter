@@ -9,6 +9,8 @@
 
 angular.module('angular.filters', [
   'ucfirst',
+  'uri-encode',
+  'remove-spaces',
   'concat',
   'unique'
 ]);
