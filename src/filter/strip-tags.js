@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @ngdoc filter
  * @name stripTags
@@ -10,7 +11,7 @@
 angular.module('strip-tags', [])
   .filter('stripTags', function () {
     return function(input) {
-      if(isString) {
+      if(isString(input)) {
         return input.replace(/<\S[^><]*>/g, '');
       }
       return input;
