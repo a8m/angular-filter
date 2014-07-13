@@ -9,6 +9,7 @@
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
   - [removeSpaces](#removespaces)
+  - [stripTags](#striptags)
 
 
 
@@ -126,5 +127,18 @@ result:
 <a ng-href="http://domain.com/fetch/some-string-with-spaces">Link</a>
 
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
+-->
+```
+###striptags
+strip out html tags from string
+**Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
+
+```js
+$scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting</p>';
+```
+```html
+<p>{{ text | stripTags }}</p>
+<!--
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
 -->
 ```
