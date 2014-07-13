@@ -2,10 +2,11 @@
 
 ##Table of contents:
 - [Collection](#collection)
-  - [concatFilter](#concat)
-  - [uniqueFilter](#unique)
+  - [concat](#concat)
+  - [unique](#unique)
 - [String](#string)
-  - [ucfirstFilter](#ucfirst)
+  - [ucfirst](#ucfirst)
+  - [uriEncode](#uriEncode)
 
 
 
