@@ -130,15 +130,15 @@ result:
 -->
 ```
 ###striptags
-strip out html tags from string
+strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
 
 ```js
-$scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting</p>';
+$scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the printing...</p>';
 ```
 ```html
 <p>{{ text | stripTags }}</p>
 <!--
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+<p>Lorem Ipsum is simply dummy text of the printing...</p>
 -->
 ```
