@@ -13,5 +13,6 @@ angular.module('angular.filters', [
   'remove-spaces',
   'concat',
   'unique',
-  'is-empty'
+  'is-empty',
+  'strip-tags'
 ]);
