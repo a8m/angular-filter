@@ -1,10 +1,10 @@
 /**
  * @ngdoc filter
- * @name removeSpaces
+ * @name isEmpty
  * @kind function
  *
  * @description
- * remove spaces from string, replace with "-" or given argument
+ * get collection or string and return if it empty
  */
 
 angular.module('is-empty', [])
