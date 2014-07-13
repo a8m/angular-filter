@@ -1,11 +1,15 @@
-#Angular-filters
----
+#Angular-filter
+
 ##Table of contents:
+- [Collection](#collection)
+  - [concatFilter](#concat)
+  - [uniqueFilter](#unique)
+- [String](#string)
+  - [ucfirstFilter](#ucfirst)
 
-- [concatFilter](#concat)
-- [ucfirstFilter](#ucfirst)
-- [uniqueFilter](#unique)
 
+
+#Collection
 
 ###concat
 
@@ -29,10 +33,7 @@ function MainController($scope) {
 
 <!--
 result:
-1
-2
-3
-4
+1 2 3 4
 -->
 
 <li ng-repeat="elm in object | concat:array">
@@ -41,12 +42,13 @@ result:
 
 <!--
 result:
-3
-4
-1
-2
+3 4 1 2
 -->
 ```
+
+
+
+#String
 
 ###ucfirst
 
@@ -59,4 +61,11 @@ ucfirstFilter get string as parameter and return it capitalized
 result:
 Foo Bar Baz
 -->
+```
+
+###uriEncode
+get string as parameter and return encoded uri
+
+```html
+<a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
 ```
