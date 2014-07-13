@@ -86,9 +86,9 @@ get collection or string and return if it empty
 <tr ng-repeat="order in orders" ng-hide="orders | isEmpty">
 <!-- ..... -->
 </tr>
-
+<!--some replacer msg-->
 <tr ng-show="orders | isEmpty">
-some replacer msg
+  no content to show
 </tr>
 ```
 
