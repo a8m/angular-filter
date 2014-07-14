@@ -11,8 +11,8 @@
   - [removeSpaces](#removespaces)
   - [stripTags](#striptags)
 - [Math](#math)
-  -[min](#min)
-  -[max](#max)
+  - [min](#min)
+  - [max](#max)
 
 
 #Collection
