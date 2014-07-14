@@ -3,7 +3,7 @@
 describe('uniqFilter', function() {
   var filter;
 
-  beforeEach(module('unique'));
+  beforeEach(module('a8m.unique'));
   beforeEach(inject(function ($filter) {
     filter = $filter('unique');
   }));

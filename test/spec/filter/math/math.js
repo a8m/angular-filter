@@ -5,7 +5,7 @@ describe('$mathFactory', function () {
   var $math,
     $window;
 
-  beforeEach(module('math'));
+  beforeEach(module('a8m.math'));
 
   beforeEach(inject(function (_$math_, _$window_) {
     $math = _$math_;

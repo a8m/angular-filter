@@ -8,11 +8,11 @@
  */
 
 angular.module('angular.filters', [
-  'ucfirst',
-  'uri-encode',
-  'remove-spaces',
-  'concat',
-  'unique',
-  'is-empty',
-  'strip-tags'
+  'a8m.ucfirst',
+  'a8m.uri-encode',
+  'a8m.remove-spaces',
+  'a8m.concat',
+  'a8m.unique',
+  'a8m.is-empty',
+  'a8m.strip-tags'
 ]);

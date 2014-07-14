@@ -4,7 +4,7 @@ describe('concatFilter', function() {
 
   var filter;
 
-  beforeEach(module('concat'));
+  beforeEach(module('a8m.concat'));
 
   beforeEach(inject(function($filter) {
     filter = $filter('concat');

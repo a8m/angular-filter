@@ -4,7 +4,7 @@ describe('maxFilter', function () {
 
   var filter;
 
-  beforeEach(module('math.max'));
+  beforeEach(module('a8m.math.max'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('max');

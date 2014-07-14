@@ -10,7 +10,7 @@
  *
  */
 
-angular.module('math.max', ['math'])
+angular.module('a8m.math.max', ['a8m.math'])
 
   .filter('max', ['$math', function ($math) {
     return function (input) {

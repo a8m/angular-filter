@@ -8,7 +8,7 @@
  * strip html tags from string
  */
 
-angular.module('strip-tags', [])
+angular.module('a8m.strip-tags', [])
   .filter('stripTags', function () {
     return function(input) {
       if(isString(input)) {

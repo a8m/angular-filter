@@ -11,7 +11,7 @@
  * filter by this property as unique identifier
  */
 
-angular.module('unique', [])
+angular.module('a8m.unique', [])
   .filter({
     unique: ['$parse', uniqFilter],
     uniq: ['$parse', uniqFilter]
