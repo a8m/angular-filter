@@ -5,6 +5,7 @@
   - [concat](#concat)
   - [unique](#unique)
   - [where](#where)
+  - [after](#after)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -107,6 +108,28 @@ returning an array of all elements that have equivalent property values.
 <!-- result:
   foo
   -->
+```
+
+###after
+get a collection and specified count, and returns all of the items
+in the collection after the specified count.
+```js
+  $scope.collection = [
+    { name: 'foo' },
+    { name: 'bar' },
+    { name: 'baz' },
+    { name: 'zap' },
+  ];
+```
+```html
+<tr ng-repeat="col in collection | after:2">
+  {{ col.name }}
+</tr>
+<!--result:
+  baz
+  zap
+-->
+
 ```
 
 ###isempty
