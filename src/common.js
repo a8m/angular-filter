@@ -37,3 +37,18 @@ function toArray(object) {
 function isNull(value) {
     return toString.call(value) === '[object Null]'
 }
+
+/**
+ * return if object contains partial object
+ * @param partial{object}
+ * @param object{object}
+ * @returns {boolean}
+ */
+function objectContains(partial, object) {
+  var keys = Object.keys(partial);
+
+  return keys.map(function(el) {
+    return !(!object[el] || (object[el] != partial[el]));
+  }).indexOf(false) == -1;
+
+}
