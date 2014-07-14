@@ -3,7 +3,7 @@
 describe('isEmptyFilter', function() {
   var filter;
 
-  beforeEach(module('is-empty'));
+  beforeEach(module('a8m.is-empty'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('isEmpty');

@@ -5,7 +5,7 @@ describe('uriEncodeFilter', function() {
   var filter,
       $window;
 
-  beforeEach(module('uri-encode'));
+  beforeEach(module('a8m.uri-encode'));
 
   beforeEach(inject(function($filter, _$window_) {
     filter = $filter('uriEncode');

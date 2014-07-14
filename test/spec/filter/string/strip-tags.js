@@ -4,7 +4,7 @@ describe('stripTagsFilter', function () {
 
   var filter;
 
-  beforeEach(module('strip-tags'));
+  beforeEach(module('a8m.strip-tags'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('stripTags');

@@ -3,7 +3,7 @@
 describe('whereFilter', function() {
   var filter;
 
-  beforeEach(module('where'));
+  beforeEach(module('a8m.where'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('where');

@@ -10,7 +10,7 @@
  *
  */
 
-angular.module('math.min', ['math'])
+angular.module('a8m.math.min', ['a8m.math'])
 
   .filter('min', ['$math', function ($math) {
     return function (input) {

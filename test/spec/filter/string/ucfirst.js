@@ -4,7 +4,7 @@ describe('ucfirstFilter', function () {
 
   var filter;
 
-  beforeEach(module('ucfirst'));
+  beforeEach(module('a8m.ucfirst'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('ucfirst');

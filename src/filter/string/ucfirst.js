@@ -10,7 +10,7 @@
  *
  */
 
-angular.module('ucfirst', [])
+angular.module('a8m.ucfirst', [])
 
   .filter('ucfirst', [function() {
     return function(input) {

@@ -4,7 +4,7 @@ describe('minFilter', function () {
 
   var filter;
 
-  beforeEach(module('math.min'));
+  beforeEach(module('a8m.math.min'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('min');

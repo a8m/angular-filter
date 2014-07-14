@@ -4,7 +4,7 @@ describe('removeSpacesFilter', function () {
 
   var filter;
 
-  beforeEach(module('remove-spaces'));
+  beforeEach(module('a8m.remove-spaces'));
 
   beforeEach(inject(function ($filter) {
     filter = $filter('removeSpaces');

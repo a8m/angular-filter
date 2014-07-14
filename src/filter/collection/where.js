@@ -11,7 +11,7 @@
  *
  */
 
-angular.module('where', [])
+angular.module('a8m.where', [])
   .filter('where', function() {
     return function (collection, object) {
 

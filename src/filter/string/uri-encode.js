@@ -9,7 +9,7 @@
  * get string as parameter and return encoded string
  */
 
-angular.module('uri-encode', [])
+angular.module('a8m.uri-encode', [])
 
   .filter('uriEncode',['$window', function ($window) {
       return function (input) {

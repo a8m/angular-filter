@@ -10,7 +10,7 @@
  *
  */
 
-angular.module('concat', [])
+angular.module('a8m.concat', [])
   //TODO:unique option ? or use unique filter to filter result
   .filter('concat', [function () {
     return function (collection, joined) {

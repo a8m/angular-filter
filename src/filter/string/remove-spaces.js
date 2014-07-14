@@ -9,7 +9,7 @@
  * remove spaces from string, replace with "-" or given argument
  */
 
-angular.module('remove-spaces', [])
+angular.module('a8m.remove-spaces', [])
 
   .filter('removeSpaces',[ function () {
     return function (input, sub) {
