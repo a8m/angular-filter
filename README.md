@@ -111,10 +111,10 @@ returning an array of all elements that have equivalent property values.
 ```
 
 ###after
-get a collection and specified count, and returns all of the items
+get a collection(array or object) and specified count, and returns all of the items
 in the collection after the specified count.
 ```js
-  $scope.collection = [
+$scope.collection = [
     { name: 'foo' },
     { name: 'bar' },
     { name: 'baz' },
