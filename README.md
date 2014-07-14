@@ -6,6 +6,7 @@
   - [unique](#unique)
   - [where](#where)
   - [after](#after)
+  - [before](#before)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -131,9 +132,30 @@ $scope.collection = [
 -->
 
 ```
+###before
+get a collection(array or object) and specified count, and returns all of the items
+in the collection before the specified count.
+```js
+$scope.collection = [
+    { name: 'foo' },
+    { name: 'bar' },
+    { name: 'baz' },
+    { name: 'zap' },
+  ];
+```
+```html
+<tr ng-repeat="col in collection | before:3">
+  {{ col.name }}
+</tr>
+<!--result:
+  foo
+  bar
+-->
+
+```
 
 ###isempty
-get collection or string and return if it empty
+get collection or string and return if it empty[Bollean]
 
 ```html
 <tr ng-repeat="order in orders" ng-hide="orders | isEmpty">
