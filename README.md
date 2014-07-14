@@ -4,6 +4,7 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
+  - [where](#where)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -80,6 +81,32 @@ foo 10
 bar 20
 baz 30
 
+```
+###where
+comparison for each element in a collection to the given properties object,<br/>
+returning an array of all elements that have equivalent property values.
+```js
+  $scope.collection = [
+    { id: 1, name: 'foo' },
+    { id: 1, name: 'bar' },
+    { id: 2, name: 'baz' }
+  ]
+```
+```html
+<tr ng-repeat="obj in collection | where:{id: 1}">
+  {{ obj.name }}
+</tr>
+<!-- result: 
+  foo
+  bar
+-->
+
+<tr ng-repeat="obj in collection | where:{id: 1, name: 'foo'}">
+  {{ obj.name }}
+</tr>
+<!-- result:
+  foo
+  -->
 ```
 
 ###isempty
