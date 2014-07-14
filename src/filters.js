@@ -22,6 +22,6 @@ angular.module('angular.filters', [
 
 
   'a8m.math',
-  'a8m.max',
-  'a8m.min'
+  'a8m.math.max',
+  'a8m.math.min'
 ]);
