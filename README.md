@@ -10,7 +10,9 @@
   - [uriEncode](#uriencode)
   - [removeSpaces](#removespaces)
   - [stripTags](#striptags)
-
+- [Math](#math)
+  -[min](#min)
+  -[max](#max)
 
 
 #Collection
@@ -140,5 +142,33 @@ $scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the prin
 <p>{{ text | stripTags }}</p>
 <!--
 <p>Lorem Ipsum is simply dummy text of the printing...</p>
+-->
+```
+
+#Math
+
+###max
+
+maxFilter find and return the largest number in a given array
+
+```html
+<p> {{ [1,2,3,4,7,8,9] | max }}</p>
+
+<!--
+result:
+9
+-->
+```
+
+###min
+
+minFilter find and return the lowest number in a given array
+
+```html
+<p> {{ [1,2,3,4,7,8,9] | min }}</p>
+
+<!--
+result:
+1
 -->
 ```
