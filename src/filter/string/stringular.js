@@ -5,7 +5,7 @@
  * @kind function
  *
  * @description
- * get string with {\d+} and replace match with enumeration values
+ * get string with {n} and replace match with enumeration values
  */
 
 angular.module('a8m.stringular', [])
