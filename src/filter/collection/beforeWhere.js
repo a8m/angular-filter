@@ -11,8 +11,8 @@
  *
  */
 
-angular.module('a8m.after-where', [])
-  .filter('afterWhere', function() {
+angular.module('a8m.before-where', [])
+  .filter('beforeWhere', function() {
     return function (collection, object) {
 
       collection = (isObject(collection)) ?
