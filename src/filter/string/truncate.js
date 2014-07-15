@@ -10,22 +10,15 @@
 
 angular.module('a8m.truncate', [])
   .filter('truncate', function () {
-    return function(text, length, preserve, suffix) {
-      text = text || '';
-      length = length || 30;
+    return function(input, length, preserve, suffix) {
+
+      if(!isString(input)) return input;
+
+      length = isUndefined(length) ? input.length : length;
       preserve = preserve || false;
       suffix = suffix || '';
 
-      if(text.length > length) {
-        text = text.substring(0, length);
+      return input.substring(0, (preserve) ? (input.indexOf(' ', length)) : length) + suffix;
 
-        if (preserve) {
-          text = text.substring(0, Math.min(text.length, text.lastIndexOf(' ')));
-        }
-
-        text = text + suffix;
-      }
-
-      return text;
     };
   });
