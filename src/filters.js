@@ -13,11 +13,15 @@ angular.module('angular.filters', [
   'a8m.uri-encode',
   'a8m.remove-spaces',
   'a8m.strip-tags',
+  'a8m.stringular',
 
   'a8m.concat',
   'a8m.unique',
   'a8m.is-empty',
   'a8m.after',
+  'a8m.after-where',
+  'a8m.before',
+  'a8m.beforeWhere',
   'a8m.where',
 
 
