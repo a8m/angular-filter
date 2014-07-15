@@ -8,6 +8,7 @@
   - [after](#after)
   - [afterWhere](#afterwhere)
   - [before](#before)
+  - [beforeWhere](#beforewhere)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -176,6 +177,29 @@ $scope.collection = [
   bar
 -->
 
+```
+
+###beforeWhere
+get a collection and properties object, and returns all of the items, 
+in the collection before the first that found with the given properties, including it.
+```js
+$scope.orders = [
+  { id: 1, customer: { name: 'foo' }, date: 'Tue Jul 15 2014' },
+  { id: 2, customer: { name: 'foo' }, date: 'Tue Jul 16 2014' },
+  { id: 3, customer: { name: 'foo' }, date: 'Tue Jul 17 2014' },
+  { id: 4, customer: { name: 'foo' }, date: 'Tue Jul 18 2014' },
+  { id: 5, customer: { name: 'foo' }, date: 'Tue Jul 19 2014' }
+];
+```
+```html
+<tr ng-repeat="order in orders | beforeWhere:{ date: 'Tue Jul 17 2014' }">
+  order: {{ order.id }}, {{ order.date }}
+</tr>
+<!--result:
+  order: 1, Tue Jul 15 2014
+  order: 2, Tue Jul 16 2014
+  order: 3, Tue Jul 17 2014
+-->
 ```
 
 ###isempty
