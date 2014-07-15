@@ -15,6 +15,7 @@
   - [uriEncode](#uriencode)
   - [removeSpaces](#removespaces)
   - [stripTags](#striptags)
+  - [stringular](#stringular)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -260,9 +261,25 @@ $scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the prin
 ```
 ```html
 <p>{{ text | stripTags }}</p>
-<!--
+<!--result: 
 <p>Lorem Ipsum is simply dummy text of the printing...</p>
 -->
+```
+###stringular
+get string with {n} and replace match with enumeration values
+
+```html
+<p>{{ 'lorem {0} dolor {1} amet' | stringular:'ipsum':'sit' }}</p>
+<p>{{ '{3} {0} dolor {1} amet' | stringular:'ipsum':'sit':null:'lorem' }}</p>
+
+<!-- result: 
+<p>lorem ipsum dolor sit amet</p>
+<p>lorem ipsum dolor sit amet</p>
+-->
+
+<p>{{ 'lorem {0} dolor sit amet' | stringular }}<p>
+<!--result:
+<p>lorem {0} dolor sit amet</p>
 ```
 
 #Math
