@@ -1,4 +1,4 @@
-#Angular-filter
+#Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)
 
 ##Table of contents:
 - [Collection](#collection)
