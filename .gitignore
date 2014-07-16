@@ -4,3 +4,6 @@ node_modules
 bower_components
 app
 .idea*
+.jshintrc
+.editorconfig
+.gitattributes

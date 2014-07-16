@@ -14,8 +14,15 @@
     "angular-mocks": "1.2.16"
   },
   "ignore": [
+    "**/*",
     "node_modules",
     "bower_components",
-    "components"
+    "bower_components",
+    "package.json",
+    "lib",
+    "test",
+    "src",
+    "Gruntfile.js",
+    ".gitignore"
   ]
 }
