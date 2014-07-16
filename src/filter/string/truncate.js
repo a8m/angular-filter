@@ -10,7 +10,7 @@
 
 angular.module('a8m.truncate', [])
   .filter('truncate', function () {
-    return function(input, length, preserve, suffix) {
+    return function(input, length, suffix, preserve) {
 
       if(!isString(input)) return input;
 
@@ -18,7 +18,9 @@ angular.module('a8m.truncate', [])
       preserve = preserve || false;
       suffix = suffix || '';
 
-      return input.substring(0, (preserve) ? (input.indexOf(' ', length)) : length) + suffix;
+      return input.substring(0, (preserve) ?
+          ((input.indexOf(' ', length) === -1) ? length : input.indexOf(' ', length)) :
+          length) + suffix;
 
     };
   });
