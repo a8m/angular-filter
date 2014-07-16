@@ -13,36 +13,41 @@ angular.module('a8m.angular', [])
 
     .filter('isUndefined', function () {
       return function (input) {
-        return isUndefined(input);
+        return angular.isUndefined(input);
       }
     })
     .filter('isDefined', function() {
       return function (input) {
-        return isDefined(input);
+        return angular.isDefined(input);
       }
     })
     .filter('isFunction', function() {
       return function (input) {
-        return isFunction(input);
+        return angular.isFunction(input);
       }
     })
     .filter('isString', function() {
       return function (input) {
-        return isString(input)
+        return angular.isString(input)
+      }
+    })
+    .filter('isNumber', function() {
+      return function (input) {
+        return angular.isNumber(input);
       }
     })
     .filter('isArray', function() {
       return function (input) {
-        return isArray(input);
+        return angular.isArray(input);
       }
     })
     .filter('isObject', function() {
       return function (input) {
-        return isObject(input);
+        return angular.isObject(input);
       }
     })
     .filter('isEqual', function() {
       return function (o1, o2) {
-        return equals(o1, o2);
+        return angular.equals(o1, o2);
       }
     });
