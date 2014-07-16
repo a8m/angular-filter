@@ -20,7 +20,15 @@
 - [Math](#math)
   - [min](#min)
   - [max](#max)
-
+- [Boolean](#boolean)
+  - [isDefined](#isdefined)
+  - [isUndefined](#isundefined)
+  - [isString](#isstring)
+  - [isNumber](#isnumber)
+  - [isObject](#isobject)
+  - [isArray](#isarray)
+  - [isFunction](#isfunction)
+  - [isEqual](#isequal)
 
 #Collection
 
