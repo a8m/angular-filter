@@ -37,7 +37,7 @@ describe('truncateFilter', function () {
     expect(filter({})).toEqual({});
     expect(filter(1)).toEqual(1);
     expect(filter(!1)).toBeFalsy();
-  
+
   });
 
 });

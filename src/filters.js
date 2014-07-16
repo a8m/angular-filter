@@ -14,6 +14,7 @@ angular.module('angular.filters', [
   'a8m.remove-spaces',
   'a8m.strip-tags',
   'a8m.stringular',
+  'a8m.truncate',
 
   'a8m.concat',
   'a8m.unique',
