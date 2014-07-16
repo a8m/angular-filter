@@ -29,6 +29,7 @@ angular.module('angular.filters', [
   'a8m.math.max',
   'a8m.math.min',
 
-  'a8m.angular'
+  'a8m.angular',
+  'a8m.is-null'
 
 ]);
