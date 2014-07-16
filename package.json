@@ -1,6 +1,6 @@
 {
   "name": "angular-filter",
-  "description": "Bbunch of useful filters for angularJS",
+  "description": "Bunch of useful filters for angularJS",
   "version": "0.0.1",
   "filename": "angular-filter.min.js",
   "main": "./dist/angular-filter.min.js",
