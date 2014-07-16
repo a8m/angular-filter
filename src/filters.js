@@ -25,8 +25,10 @@ angular.module('angular.filters', [
   'a8m.beforeWhere',
   'a8m.where',
 
-
   'a8m.math',
   'a8m.math.max',
-  'a8m.math.min'
+  'a8m.math.min',
+
+  'a8m.angular'
+
 ]);
