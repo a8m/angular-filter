@@ -35,7 +35,7 @@ function toArray(object) {
  * @returns {boolean}
  */
 function isNull(value) {
-    return toString.call(value) === '[object Null]'
+    return value === null;
 }
 
 /**
