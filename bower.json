@@ -1,7 +1,7 @@
 {
   "name": "angular-filter",
-  "version": "0.0.23",
-  "main": "./dist/angular-filter.js",
+  "version": "0.0.24",
+  "main": "dist/angular-filter.js",
   "description": "Bunch of useful filters for angularJS",
   "repository": {
     "type": "git",
