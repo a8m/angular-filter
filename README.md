@@ -16,6 +16,7 @@
   - [removeSpaces](#removespaces)
   - [stripTags](#striptags)
   - [stringular](#stringular)
+  - [truncate](#truncate)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -281,7 +282,23 @@ get string with {n} and replace match with enumeration values
 <!--result:
 <p>lorem {0} dolor sit amet</p>
 ```
+###truncate
+truncates a string given a specified length, providing a custom string to denote an omission.<br/>
+usage: | filter: [length]: [suffix-optional]: [preserve-optinal]<br/>
+```js
+$scope.text = 'lorem ipsum dolor sit amet';
+```
+```html
+<!--should not cut words in the middle if preserve is true-->
+<p>{{ text | truncate: 7: '...': true }}</p>
 
+<p>{{ text | truncate: 13: '...' }}</p>
+
+<!--result:
+lorem ipsum...
+lorem ipsum d...
+-->
+```
 #Math
 
 ###max
