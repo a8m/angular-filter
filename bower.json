@@ -22,6 +22,8 @@
     "src",
     "Gruntfile.js",
     ".gitignore",
-    "README.md"
+    "README.md",
+    "travis.yml",
+    ".bowercc"
   ]
 }
