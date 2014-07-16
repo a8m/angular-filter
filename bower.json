@@ -1,6 +1,6 @@
 {
   "name": "angular-filter",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "main": "./dist/angular-filter.js",
   "description": "Bunch of useful filters for angularJS",
   "repository": {
@@ -14,15 +14,14 @@
     "angular-mocks": "1.2.16"
   },
   "ignore": [
-    "**/*",
     "node_modules",
-    "bower_components",
     "bower_components",
     "package.json",
     "lib",
     "test",
     "src",
     "Gruntfile.js",
-    ".gitignore"
+    ".gitignore",
+    "README.md"
   ]
 }
