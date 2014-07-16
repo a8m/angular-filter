@@ -284,7 +284,7 @@ get string with {n} and replace match with enumeration values
 ```
 ###truncate
 truncates a string given a specified length, providing a custom string to denote an omission.<br/>
-usage: | filter: [length]: [suffix-optional]: [preserve-optinal]<br/>
+usage: ``` | filter: [length]: [suffix-optional]: [preserve-optinal]```<br/>
 ```js
 $scope.text = 'lorem ipsum dolor sit amet';
 ```
