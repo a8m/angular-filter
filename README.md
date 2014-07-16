@@ -21,6 +21,7 @@
   - [min](#min)
   - [max](#max)
 - [Boolean](#boolean)
+  - [isNull](#isnull)
   - [isDefined](#isdefined)
   - [isUndefined](#isundefined)
   - [isString](#isstring)
