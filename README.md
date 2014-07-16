@@ -69,7 +69,7 @@ result:
 
 ###unique
 get collection and filter duplicate members.<br/>
-if filter get a property object(nested to) as argument it's filter by this property as unique identifier
+if a property name is provided(nested to) it's filter by this property as unique identifier
 
 ```js
 function MainController ($scope) {
