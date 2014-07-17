@@ -7,7 +7,7 @@
  *  bunch of useful filters for angularJS
  */
 
-angular.module('angular.filters', [
+angular.module('angular.filter', [
 
   'a8m.ucfirst',
   'a8m.uri-encode',
