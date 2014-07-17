@@ -32,7 +32,7 @@
   - [isFunction](#isfunction)
   - [isEqual](#isequal)
 
-#Get Strated
+# Get Started
 **(1)** Get angular-filter in one of 2 ways:
   - clone & [build](#developing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
