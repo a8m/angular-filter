@@ -22,7 +22,7 @@ angular.module('angular.filters', [
   'a8m.after',
   'a8m.after-where',
   'a8m.before',
-  'a8m.beforeWhere',
+  'a8m.before-where',
   'a8m.where',
 
   'a8m.math',
