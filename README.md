@@ -1,7 +1,7 @@
 #Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)
 
 ##Table of contents:
-- [Get Started](#getstrated)
+- [Get Started](#get-started)
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
@@ -32,7 +32,7 @@
   - [isFunction](#isfunction)
   - [isEqual](#isequal)
 
-# Get Started
+#Get Started
 **(1)** Get angular-filter in one of 2 ways:
   - clone & [build](#developing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
