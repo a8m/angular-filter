@@ -36,12 +36,13 @@
 **(1)** Get angular-filter in one of 2 ways:
   - clone & [build](#developing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
+
 **(2)** Include `angular-filter.js` (or `angular-filter.min.js`) in your `index.html`, after including Angular itself.
+
 **(3)** Add `'angular.filter'` to your main module's list of dependencies.
 
 When you're done, your setup should look similar to the following:
 
->
 ```html
 <!doctype html>
 <html ng-app="myApp">
