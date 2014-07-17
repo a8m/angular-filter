@@ -60,8 +60,6 @@ function objectContains(partial, object) {
 
 }
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -114,7 +112,6 @@ angular.module('a8m.angular', [])
       }
     });
 
-'use strict';
 /**
  * @ngdoc filter
  * @name isNull
@@ -132,8 +129,6 @@ angular.module('a8m.is-null', [])
         return isNull(input);
       }
     });
-
-'use strict';
 
 /**
  * @ngdoc filter
@@ -165,8 +160,6 @@ angular.module('a8m.after-where', [])
       }
     });
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name after
@@ -193,8 +186,6 @@ angular.module('a8m.after', [])
       }
     });
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name before
@@ -220,8 +211,6 @@ angular.module('a8m.before', [])
 
       }
     });
-
-'use strict';
 
 /**
  * @ngdoc filter
@@ -252,8 +241,6 @@ angular.module('a8m.before-where', [])
       return collection.slice(0, (index === -1) ? collection.length : ++index);
     }
   });
-
-'use strict';
 
 /**
  * @ngdoc filter
@@ -308,8 +295,6 @@ angular.module('a8m.is-empty', [])
     }
   });
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name unique/uniq
@@ -363,8 +348,6 @@ function uniqFilter($parse) {
     }
 }
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name where
@@ -392,8 +375,6 @@ angular.module('a8m.where', [])
     }
   });
 
-'use strict';
-
 /**
  * @ngdoc module
  * @name math
@@ -407,8 +388,6 @@ angular.module('a8m.math', [])
     return $window.Math;
 
   }]);
-
-'use strict';
 
 /**
  * @ngdoc filter
@@ -432,8 +411,6 @@ angular.module('a8m.math.max', ['a8m.math'])
 
   }]);
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name min
@@ -455,8 +432,6 @@ angular.module('a8m.math.min', ['a8m.math'])
     }
 
   }]);
-
-'use strict';
 
 /**
  * @ngdoc filter
@@ -482,7 +457,6 @@ angular.module('a8m.remove-spaces', [])
     }
   }]);
 
-'use strict';
 /**
  * @ngdoc filter
  * @name stringular
@@ -505,7 +479,6 @@ angular.module('a8m.stringular', [])
     }
   });
 
-'use strict';
 /**
  * @ngdoc filter
  * @name stripTags
@@ -525,7 +498,6 @@ angular.module('a8m.strip-tags', [])
     }
   });
 
-'use strict';
 /**
  * @ngdoc filter
  * @name truncate
@@ -552,8 +524,6 @@ angular.module('a8m.truncate', [])
     };
   });
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name ucfirst
@@ -576,8 +546,6 @@ angular.module('a8m.ucfirst', [])
 
   }]);
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name uriEncode
@@ -599,8 +567,6 @@ angular.module('a8m.uri-encode', [])
         return input;
       }
     }]);
-
-'use strict';
 
 /**
  * @ngdoc module
