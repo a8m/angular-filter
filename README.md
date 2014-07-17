@@ -1,6 +1,7 @@
 #Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)
 
 ##Table of contents:
+- [Get Started](#getstrated)
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
@@ -30,6 +31,34 @@
   - [isArray](#isarray)
   - [isFunction](#isfunction)
   - [isEqual](#isequal)
+
+#Get Strated
+**(1)** Get angular-filter in one of 2 ways:
+  - clone & [build](#developing) this repository
+  - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
+**(2)** Include `angular-filter.js` (or `angular-filter.min.js`) in your `index.html`, after including Angular itself.
+**(3)** Add `'angular.filter'` to your main module's list of dependencies.
+
+When you're done, your setup should look similar to the following:
+
+>
+```html
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="js/angular-filter.min.js"></script>
+    <script>
+        var myApp = angular.module('myApp', ['angular.filter']);
+
+    </script>
+    ...
+</head>
+<body>
+    ...
+</body>
+</html>
+```
 
 #Collection
 
