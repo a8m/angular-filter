@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc filter
  * @name before-where

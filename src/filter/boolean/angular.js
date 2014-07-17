@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc filter
  * @name a8m.angular

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc module
  * @name angular.filters

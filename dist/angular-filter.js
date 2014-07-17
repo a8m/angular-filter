@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.0.1 - 2014-07-16 * @link https://github.com/a8m/angular-filter
+ * @version v0.0.24 - 2014-07-17 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -609,7 +609,7 @@ angular.module('a8m.uri-encode', [])
  *  bunch of useful filters for angularJS
  */
 
-angular.module('angular.filters', [
+angular.module('angular.filter', [
 
   'a8m.ucfirst',
   'a8m.uri-encode',
@@ -624,7 +624,7 @@ angular.module('angular.filters', [
   'a8m.after',
   'a8m.after-where',
   'a8m.before',
-  'a8m.beforeWhere',
+  'a8m.before-where',
   'a8m.where',
 
   'a8m.math',

@@ -1,4 +1,3 @@
-'use strict';
 /**
  * @ngdoc filter
  * @name stringular
