@@ -10,6 +10,7 @@
   - [afterWhere](#afterwhere)
   - [before](#before)
   - [beforeWhere](#beforewhere)
+  - [reverse](#reverse-collection)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -240,6 +241,27 @@ $scope.orders = [
   order: 1, Tue Jul 15 2014
   order: 2, Tue Jul 16 2014
   order: 3, Tue Jul 17 2014
+-->
+```
+
+###reverse collection
+Reverse the order of the elements in a collection
+
+```js
+$scope.users = [
+  { id: 1, name: 'bazzy' },
+  { id: 2, name: 'dazzy' },
+  { id: 3, name: 'lazzy' }
+];
+```
+```html
+<tr ng-repeat="user in users | reverse">
+  user: {{ user.id }}, {{ user.name }}
+</tr>
+<!--result:
+  user: 3, lazzy
+  user: 2, dazzy,
+  user: 1, bazzy
 -->
 ```
 
