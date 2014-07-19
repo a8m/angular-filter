@@ -22,6 +22,7 @@ angular.module('angular.filter', [
   'a8m.before',
   'a8m.before-where',
   'a8m.where',
+  'a8m.reverse',
 
   'a8m.math',
   'a8m.math.max',
