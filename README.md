@@ -19,6 +19,7 @@
   - [stripTags](#striptags)
   - [stringular](#stringular)
   - [truncate](#truncate)
+  - [reverse](#reverse-string)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -358,8 +359,18 @@ $scope.text = 'lorem ipsum dolor sit amet';
 <!--result:
 lorem ipsum...
 lorem ipsum d...
--->
 ```
+###reverse string
+Reverses a string
+```js
+$scope.text = 'lorem ipsum dolor sit amet';
+```
+```html
+<p>{{ text | reverse }}
+<!--result:
+tema tis rolod muspi merol
+```
+
 #Math
 
 ###max
