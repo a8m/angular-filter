@@ -11,6 +11,7 @@
   - [before](#before)
   - [beforeWhere](#beforewhere)
   - [reverse](#reverse-collection)
+  - [remove](#remove)
   - [removeWith](#remove-with)
   - [isEmpty](#isempty)
 - [String](#string)
@@ -155,6 +156,23 @@ returning an array of all elements that have equivalent property values.
 <!-- result:
   foo
   -->
+```
+###remove
+Returns a new collection of removed elements.
+```js
+$scope.foo = { name: 'foo' };
+$scope.collection = [
+  { name: 'bar' },
+  $scope.foo,
+  null, 1
+];
+```
+```html
+<tr ng-repeat="obj in collection | remove: foo: null: 1">
+  {{ obj }}
+</tr>
+<!-- result:
+  { "name": "bar" }
 ```
 ###remove-with
 comparison for each element in a collection to the given properties object,<br/>
