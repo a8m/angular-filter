@@ -11,6 +11,7 @@
   - [before](#before)
   - [beforeWhere](#beforewhere)
   - [reverse](#reverse-collection)
+  - [removeWith](#remove-with)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
@@ -154,6 +155,31 @@ returning an array of all elements that have equivalent property values.
 <!-- result:
   foo
   -->
+```
+###remove-with
+comparison for each element in a collection to the given properties object,<br/>
+returning an array without all elements that have equivalent property values.
+```js
+  $scope.collection = [
+    { id: 1, name: 'foo' },
+    { id: 1, name: 'bar' },
+    { id: 2, name: 'baz' }
+  ]
+```
+```html
+<tr ng-repeat="obj in collection | removeWith:{ id: 1 }">
+  {{ obj.name }}
+</tr>
+<!-- result: 
+  baz
+-->
+
+<tr ng-repeat="obj in collection | removeWith:{ id: 1, name: 'foo' }">
+  {{ obj.name }}
+</tr>
+<!-- result:
+  bar
+  baz
 ```
 
 ###after
