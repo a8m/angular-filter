@@ -23,6 +23,7 @@ angular.module('angular.filter', [
   'a8m.before-where',
   'a8m.where',
   'a8m.reverse',
+  'a8m.remove',
   'a8m.remove-with',
 
   'a8m.math',
