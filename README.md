@@ -401,7 +401,7 @@ $scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the prin
 ```html
 <p>{{ text | stripTags }}</p>
 <!--result: 
-<p>Lorem Ipsum is simply dummy text of the printing...</p>
+Lorem Ipsum is simply dummy text of the printing...
 -->
 ```
 ###stringular
