@@ -132,7 +132,7 @@ bar 20
 baz 30
 
 ```
-###unique
+###groupby
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.
 
