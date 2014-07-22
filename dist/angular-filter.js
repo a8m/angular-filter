@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.0.3 - 2014-07-17 * @link https://github.com/a8m/angular-filter
+ * @version v0.1.0 - 2014-07-22 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -188,32 +188,6 @@ angular.module('a8m.after', [])
 
 /**
  * @ngdoc filter
- * @name before
- * @kind function
- *
- * @description
- * get a collection and specified count, and returns all of the items
- * in the collection before the specified count.
- *
- */
-
-angular.module('a8m.before', [])
-    .filter('before', function() {
-      return function (collection, count) {
-
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
-
-        return (isArray(collection)) ?
-            collection.slice(0, (!count) ? count : --count) :
-            collection;
-
-      }
-    });
-
-/**
- * @ngdoc filter
  * @name before-where
  * @kind function
  *
@@ -241,6 +215,32 @@ angular.module('a8m.before-where', [])
       return collection.slice(0, (index === -1) ? collection.length : ++index);
     }
   });
+
+/**
+ * @ngdoc filter
+ * @name before
+ * @kind function
+ *
+ * @description
+ * get a collection and specified count, and returns all of the items
+ * in the collection before the specified count.
+ *
+ */
+
+angular.module('a8m.before', [])
+    .filter('before', function() {
+      return function (collection, count) {
+
+        collection = (isObject(collection)) ?
+            toArray(collection) :
+            collection;
+
+        return (isArray(collection)) ?
+            collection.slice(0, (!count) ? count : --count) :
+            collection;
+
+      }
+    });
 
 /**
  * @ngdoc filter
@@ -279,6 +279,45 @@ angular.module('a8m.concat', [])
 
 /**
  * @ngdoc filter
+ * @name groupBy
+ * @kind function
+ *
+ * @description
+ * Create an object composed of keys generated from the result of running each element of a collection,
+ * each key is an array of the elements.
+ */
+
+angular.module('a8m.group-by', [])
+
+  .filter('groupBy', [ '$parse', function ( $parse ) {
+    return function (collection, property) {
+
+      var result = {},
+        get = $parse(property),
+        prop;
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(property)) {
+        return collection;
+      }
+
+      collection.forEach( function( elm ) {
+        prop = get(elm);
+
+        if(!result[prop]) {
+          result[prop] = [];
+        }
+
+        result[prop].push(elm);
+      });
+
+      return result;
+    }
+ }]);
+
+/**
+ * @ngdoc filter
  * @name isEmpty
  * @kind function
  *
@@ -294,6 +333,88 @@ angular.module('a8m.is-empty', [])
         !collection.length;
     }
   });
+
+/**
+ * @ngdoc filter
+ * @name removeWith
+ * @kind function
+ *
+ * @description
+ * get collection and properties object, and removed elements
+ * with this properties
+ */
+
+angular.module('a8m.remove-with', [])
+  .filter('removeWith', function() {
+    return function (collection, object) {
+
+      if(isUndefined(object)) {
+        return collection;
+      }
+      collection = (isObject(collection)) ?
+        toArray(collection) : collection;
+
+      return collection.filter(function (elm) {
+        return !objectContains(object, elm);
+      });
+    }
+  });
+
+
+/**
+ * @ngdoc filter
+ * @name remove
+ * @kind function
+ *
+ * @description
+ * remove specific members from collection
+ */
+
+angular.module('a8m.remove', [])
+
+  .filter('remove', function () {
+    return function (collection) {
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      if(!isArray(collection)) {
+        return collection;
+      }
+
+      return collection.filter( function( member ) {
+        return !args.some(function(nest) {
+          return equals(nest, member);
+        })
+      });
+
+    }
+  });
+
+/**
+ * @ngdoc filter
+ * @name reverse
+ * @kind function
+ *
+ * @description
+ * Reverses a string or collection
+ */
+
+angular.module('a8m.reverse', [])
+
+    .filter('reverse',[ function () {
+      return function (input) {
+
+        input = (isObject(input)) ? toArray(input) : input;
+
+        if(isString(input)) {
+          return input.split('').reverse().join('');
+        }
+
+        return (isArray(input)) ? input.reverse() : input;
+      }
+    }]);
 
 /**
  * @ngdoc filter
@@ -592,6 +713,10 @@ angular.module('angular.filter', [
   'a8m.before',
   'a8m.before-where',
   'a8m.where',
+  'a8m.reverse',
+  'a8m.remove',
+  'a8m.remove-with',
+  'a8m.group-by',
 
   'a8m.math',
   'a8m.math.max',
