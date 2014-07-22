@@ -5,6 +5,7 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
+  - [groupBy](#groupby)
   - [where](#where)
   - [after](#after)
   - [afterWhere](#afterwhere)
@@ -131,6 +132,37 @@ bar 20
 baz 30
 
 ```
+###unique
+Create an object composed of keys generated from the result of running each element of a collection,<br/>
+each key is an array of the elements.
+
+```js
+$scope.players = [
+  {name: 'Gene', team: 'alpha'},
+  {name: 'George', team: 'beta'},
+  {name: 'Steve', team: 'gamma'},
+  {name: 'Paula', team: 'beta'},
+  {name: 'Scruath', team: 'gamma'}
+];
+```
+```html
+<ul ng-repeat="(key, value) in players | groupBy: 'team'" >
+  Group name: {{ key }}
+  <li ng-repeat="player in value">
+    player: {{ player.name }} 
+  </li>
+</ul>
+<!-- result:
+  Group name: alpha
+    * player: Gene
+  Group name: beta
+    * player: George
+    * player: Paula
+  Group name: gamma
+    * player: Steve
+    * player: Scruath
+```
+
 ###where
 comparison for each element in a collection to the given properties object,<br/>
 returning an array of all elements that have equivalent property values.
