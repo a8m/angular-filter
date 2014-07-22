@@ -4,7 +4,8 @@
  * @kind function
  *
  * @description
- * Reverses a string or collection
+ * Create an object composed of keys generated from the result of running each element of a collection,
+ * each key is an array of the elements.
  */
 
 angular.module('a8m.group-by', [])
