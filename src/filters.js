@@ -25,6 +25,7 @@ angular.module('angular.filter', [
   'a8m.reverse',
   'a8m.remove',
   'a8m.remove-with',
+  'a8m.group-by',
 
   'a8m.math',
   'a8m.math.max',
