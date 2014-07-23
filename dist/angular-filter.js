@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.1.0 - 2014-07-22 * @link https://github.com/a8m/angular-filter
+ * @version v0.1.0 - 2014-07-23 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -416,6 +416,45 @@ angular.module('a8m.reverse', [])
       }
     }]);
 
+
+/**
+ * @ngdoc filter
+ * @name searchField
+ * @kind function
+ *
+ * @description
+ * for each member, join several strings field and add them to
+ * new field called 'searchField' (use for search filtering)
+ */
+
+angular.module('a8m.search-field', [])
+
+  .filter('searchField', ['$parse', function ($parse) {
+    return function (collection) {
+
+      var get, field;
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      if(!isArray(collection) || !args.length) {
+        return collection;
+      }
+
+      return collection.map(function(member) {
+
+        field = args.map(function(field) {
+          get = $parse(field);
+          return get(member);
+        }).join(' ');
+
+        //TODO(ariel):we don't wanna change the source, but I'm not sure about the performance.
+        return extend({ searchField: field }, member);
+      });
+    }
+  }]);
+
 /**
  * @ngdoc filter
  * @name unique/uniq
@@ -717,6 +756,7 @@ angular.module('angular.filter', [
   'a8m.remove',
   'a8m.remove-with',
   'a8m.group-by',
+  'a8m.search-field',
 
   'a8m.math',
   'a8m.math.max',
