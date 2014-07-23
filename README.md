@@ -232,7 +232,24 @@ returning an array without all elements that have equivalent property values.
   bar
   baz
 ```
-
+###searchfield
+if you want to use the filter in angular and want to filter for multiple values<br/>
+so searchField filter return new collection with property called searchField<br/> 
+**support nested properties with dot notation i.e( ```| searchFiled: 'prop': 'nested.prop' ```)
+```js
+$scope.users = [
+  { first_name: 'Sharon', last_name: 'Melendez' },
+  { first_name: 'Edmundo', last_name: 'Hepler' },
+  { first_name: 'Marsha', last_name: 'Letourneau' }
+];
+```
+```html
+<input ng-model="search" placeholder="search by full name"/> 
+<th ng-repeat="user in users | searchField: 'first_name': 'last_name' | filter: search">
+  {{ user.first_name }} {{ user.last_name }}
+</th>
+<!-- so now you can search by full name -->
+```
 ###after
 get a collection(array or object) and specified count, and returns all of the items
 in the collection after the specified count.
