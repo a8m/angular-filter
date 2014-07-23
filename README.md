@@ -14,6 +14,7 @@
   - [reverse](#reverse-collection)
   - [remove](#remove)
   - [removeWith](#remove-with)
+  - [searchField](#searchfield)
   - [isEmpty](#isempty)
 - [String](#string)
   - [ucfirst](#ucfirst)
