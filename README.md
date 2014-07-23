@@ -235,7 +235,7 @@ returning an array without all elements that have equivalent property values.
 ###searchfield
 if you want to use the filter in angular and want to filter for multiple values<br/>
 so searchField filter return new collection with property called searchField<br/> 
-**support nested properties with dot notation i.e ```| searchFiled: 'prop': 'nested.prop' ```
+**support nested properties with dot notation i.e:** ``` collection | searchFiled: 'prop': 'nested.prop' ```
 ```js
 $scope.users = [
   { first_name: 'Sharon', last_name: 'Melendez' },
