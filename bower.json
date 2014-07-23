@@ -8,7 +8,7 @@
     "url": "https://github.com/a8m/angular-filter.git"
   },
   "dependencies": {
-    "angular": "1.2.16"
+    "angular": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16"
