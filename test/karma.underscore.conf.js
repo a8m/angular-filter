@@ -30,8 +30,17 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
+    //files to coverage
+    preprocessors: {
+      "src/**/*js": "coverage"
+    },
+
+    coverageReporter: {
+      type: "lcov",
+      dir: "test/coverage/"
+    },
 
     // web server port
     port: 9877,
@@ -64,6 +73,9 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: ['PhantomJS'],
 
+    plugins: [
+      'karma-coverage'
+    ],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,
