@@ -40,7 +40,8 @@
     "karma-jasmine": "~0.1.5",
     "karma-phantomjs-launcher": "~0.1.4",
     "coveralls": "~2.11.1",
-    "grunt-karma-coveralls": "2.5.1"
+    "grunt-karma-coveralls": "~2.5.1",
+    "karma-coverage": "~0.2.4"
   },
   "scripts": {
     "test": "grunt test --verbose"
