@@ -86,6 +86,15 @@ module.exports = function(grunt) {
         singleRun: true,
         autoWatch: false
       },
+      coveralls: {
+        options: {
+          debug: true,
+          coverage_dir: 'test/coverage/',
+          dryRun: true,
+          force: true,
+          recursive: true
+        }
+      },
       dev: {
         autoWatch: true
       }
