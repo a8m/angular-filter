@@ -97,10 +97,10 @@ module.exports = function(grunt) {
     },
     coveralls: {
       options: {
-        src: 'test/coverage/**/lcov.info',
-        force: true
+        force: true,
+        recursive: true
       },
-      karma: {
+      all: {
         src: 'test/coverage/**/lcov.info'
       }
     }
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['build']);
 
   // Build task.
-  grunt.registerTask('build', ['bowerInstall', 'karma:build', 'karma:buildUnderscore', 'concat', 'uglify', 'zip', 'coveralls:karma']);
+  grunt.registerTask('build', ['bowerInstall', 'karma:build', 'karma:buildUnderscore', 'concat', 'uglify', 'zip', 'coveralls']);
 
   grunt.registerTask('test', ['karma:build', 'karma:buildUnderscore']);
 
