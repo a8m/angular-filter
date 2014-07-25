@@ -88,11 +88,8 @@ module.exports = function(grunt) {
       },
       coveralls: {
         options: {
-          debug: true,
-          coverage_dir: 'test/coverage/',
-          dryRun: true,
           force: true,
-          recursive: true
+          src: 'test/coverage/**/lcov.info'
         }
       },
       dev: {
@@ -137,7 +134,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test-debug', ['karma:debug']);
 
-  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore']);
+  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore', 'karma:coveralls']);
 
   // Provides the "bump" task.
   grunt.registerTask('bump', 'Increment version number', function() {
