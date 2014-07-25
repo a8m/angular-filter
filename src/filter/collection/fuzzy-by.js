@@ -8,7 +8,7 @@
  */
 
 angular.module('a8m.fuzzy-by', [])
-  .filter('fuzzyByKey', ['$parse', function ( $parse ) {
+  .filter('fuzzyBy', ['$parse', function ( $parse ) {
     return function (collection, property, search, csensitive) {
 
       var sensitive = csensitive || false,
