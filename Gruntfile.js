@@ -125,6 +125,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-zip');
 
+  grunt.loadNpmTasks('grunt-coveralls');
 
   // Default task.
   grunt.registerTask('default', ['build']);
