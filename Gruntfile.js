@@ -86,12 +86,6 @@ module.exports = function(grunt) {
         singleRun: true,
         autoWatch: false
       },
-      coveralls: {
-        options: {
-          force: true,
-          src: 'test/coverage/**/lcov.info'
-        }
-      },
       dev: {
         autoWatch: true
       }
@@ -99,6 +93,15 @@ module.exports = function(grunt) {
     changelog: {
       options: {
         dest: 'CHANGELOG.md'
+      }
+    },
+    coveralls: {
+      options: {
+        src: 'test/coverage/**/lcov.info',
+        force: true
+      },
+      karma: {
+        src: 'test/coverage/**/lcov.info'
       }
     }
   });
@@ -128,13 +131,13 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['build']);
 
   // Build task.
-  grunt.registerTask('build', ['bowerInstall', 'karma:build', 'karma:buildUnderscore', 'concat', 'uglify', 'zip', 'karma:coveralls']);
+  grunt.registerTask('build', ['bowerInstall', 'karma:build', 'karma:buildUnderscore', 'concat', 'uglify', 'zip', 'coveralls:karma']);
 
   grunt.registerTask('test', ['karma:build', 'karma:buildUnderscore']);
 
   grunt.registerTask('test-debug', ['karma:debug']);
 
-  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore', 'karma:coveralls']);
+  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore']);
 
   // Provides the "bump" task.
   grunt.registerTask('bump', 'Increment version number', function() {
