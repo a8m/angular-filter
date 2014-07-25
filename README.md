@@ -1,4 +1,4 @@
-#Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://img.shields.io/coveralls/a8m/angular-filter.svg)](https://coveralls.io/r/a8m/angular-filter)
+#Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://img.shields.io/coveralls/a8m/angular-filter.svg)](https://coveralls.io/r/a8m/angular-filter?branch=master)
 
 ##Table of contents:
 - [Get Started](#get-started)
