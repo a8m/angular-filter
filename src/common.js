@@ -52,3 +52,21 @@ function objectContains(partial, object) {
   }).indexOf(false) == -1;
 
 }
+
+/**
+ * search for approximate pattern in string
+ * @param word
+ * @param pattern
+ * @returns {*}
+ */
+function hasApproxPattern(word, pattern) {
+  if(pattern === '')
+    return word;
+
+  var index = word.indexOf(pattern.charAt(0));
+
+  if(index === -1)
+    return false;
+
+  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+}
