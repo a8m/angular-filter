@@ -133,11 +133,11 @@ module.exports = function(grunt) {
   // Build task.
   grunt.registerTask('build', ['bowerInstall', 'karma:build', 'karma:buildUnderscore', 'concat', 'uglify', 'zip', 'karma:coveralls']);
 
-  grunt.registerTask('test', ['karma:build', 'karma:buildUnderscore', 'karma:coveralls']);
+  grunt.registerTask('test', ['karma:build', 'karma:buildUnderscore']);
 
   grunt.registerTask('test-debug', ['karma:debug']);
 
-  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore', 'karma:coveralls']);
+  grunt.registerTask('travis', ['karma:travis', 'karma:travisUnderscore']);
 
   // Provides the "bump" task.
   grunt.registerTask('bump', 'Increment version number', function() {
