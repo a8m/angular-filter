@@ -7,3 +7,4 @@ app
 .jshintrc
 .editorconfig
 .gitattributes
+test/coverage
