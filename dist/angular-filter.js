@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.1.1 - 2014-07-24 * @link https://github.com/a8m/angular-filter
+ * @version v0.2.0 - 2014-07-26 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -60,6 +60,23 @@ function objectContains(partial, object) {
 
 }
 
+/**
+ * search for approximate pattern in string
+ * @param word
+ * @param pattern
+ * @returns {*}
+ */
+function hasApproxPattern(word, pattern) {
+  if(pattern === '')
+    return word;
+
+  var index = word.indexOf(pattern.charAt(0));
+
+  if(index === -1)
+    return false;
+
+  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+}
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -277,6 +294,46 @@ angular.module('a8m.concat', [])
   }
 ]);
 
+/**
+ * @ngdoc filter
+ * @name fuzzyByKey
+ * @kind function
+ *
+ * @description
+ * fuzzy string searching by key
+ */
+
+angular.module('a8m.fuzzy-by', [])
+  .filter('fuzzyBy', ['$parse', function ( $parse ) {
+    return function (collection, property, search, csensitive) {
+
+      var sensitive = csensitive || false,
+        prop, getter;
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(property)
+        || isUndefined(search)) {
+        return collection;
+      }
+
+      getter = $parse(property);
+
+      return collection.filter(function(elm) {
+
+        prop = getter(elm);
+        if(!isString(prop)) {
+          return false;
+        }
+
+        prop = (sensitive) ? prop : prop.toLowerCase();
+        search = (sensitive) ? search : search.toLowerCase();
+
+        return hasApproxPattern(prop, search) !== false
+      })
+    }
+
+ }]);
 /**
  * @ngdoc filter
  * @name groupBy
