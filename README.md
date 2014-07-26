@@ -5,6 +5,7 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
+  - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [where](#where)
   - [after](#after)
@@ -133,6 +134,28 @@ foo 10
 bar 20
 baz 30
 
+```
+###fuzzyby
+fuzzy string searching(approximate string matching) by propperty(nested to). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+usage: ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
+```js
+$scope.books = [
+  { title: 'The DaVinci Code' },
+  { title: 'The Great Gatsby' },
+  { title: 'Angels & Demons'  },
+  { title: 'The Lost Symbol'  },
+  { title: 'Old Man\'s War'   }
+];
+```
+```html
+<input type="text" ng-model="search" placeholder="search by title" />
+<li ng-repeat="book in books | fuzzyBy: 'title': search">
+  {{ book.title }}
+</li>
+<!--case sensitive-->
+<li ng-repeat="book in books | fuzzyBy: 'title': search: true">
+  {{ book.title }}
+</li>
 ```
 ###groupby
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
