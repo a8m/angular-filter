@@ -16,7 +16,8 @@ angular.module('a8m.fuzzy-by', [])
 
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
-      if(!isArray(collection) || isUndefined(property)) {
+      if(!isArray(collection) || isUndefined(property)
+        || isUndefined(search)) {
         return collection;
       }
 
