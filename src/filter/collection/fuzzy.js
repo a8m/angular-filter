@@ -46,9 +46,12 @@ angular.module('a8m.fuzzy', [])
         return 0 < properties.filter(function (elm) {
           prop = object[elm];
 
+          //avoid iteration if we found some key that equal[performance]
+          if(flag) return true;
+
           if (isString(prop)) {
             prop = (sensitive) ? prop : prop.toLowerCase();
-            return hasApproxPattern(prop, search) !== false;
+            return flag = (hasApproxPattern(prop, search) !== false);
           }
 
           return false;
