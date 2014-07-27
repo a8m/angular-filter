@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.2.2 - 2014-07-27 * @link https://github.com/a8m/angular-filter
+ * @version v0.2.3 - 2014-07-27 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -879,6 +879,7 @@ angular.module('angular.filter', [
   'a8m.group-by',
   'a8m.search-field',
   'a8m.fuzzy-by',
+  'a8m.fuzzy',
 
   'a8m.math',
   'a8m.math.max',
