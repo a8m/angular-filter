@@ -5,6 +5,7 @@
 - [Collection](#collection)
   - [concat](#concat)
   - [unique](#unique)
+  - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [where](#where)
@@ -134,6 +135,29 @@ foo 10
 bar 20
 baz 30
 
+```
+###fuzzy
+fuzzy string searching(approximate string matching).[Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+**note:** use fuzzyBy to filter by one property to improve performance<br/>
+usage: ```collection | fuzzy: search: caseSensitive[optional]```
+```js
+$scope.books = [
+  { title: 'The DaVinci Code', author: 'F. Scott Fitzgerald' },
+  { title: 'The Great Gatsby', author: 'Dan Browns' },
+  { title: 'Angels & Demons',  author: 'Dan Louis' },
+  { title: 'The Lost Symbol',  author: 'David Maine' },
+  { title: 'Old Man\'s War',   author: 'Rob Grant' }
+];
+```
+```html
+<input type="text" ng-model="search" placeholder="search book" />
+<li ng-repeat="book in books | fuzzy: search">
+  {{ book.title }}
+</li>
+<!--case sensitive-->
+<li ng-repeat="book in books | fuzzy: search: true">
+  {{ book.title }}
+</li>
 ```
 ###fuzzyby
 fuzzy string searching(approximate string matching) by property(nested to). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
