@@ -28,6 +28,7 @@ angular.module('angular.filter', [
   'a8m.group-by',
   'a8m.search-field',
   'a8m.fuzzy-by',
+  'a8m.fuzzy',
 
   'a8m.math',
   'a8m.math.max',
