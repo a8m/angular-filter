@@ -137,7 +137,7 @@ baz 30
 
 ```
 ###fuzzy
-fuzzy string searching(approximate string matching).[Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+fuzzy string searching(approximate string matching). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
 usage: ```collection | fuzzy: search: caseSensitive[optional]```
 ```js
