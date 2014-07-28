@@ -240,8 +240,9 @@ returning an array of all elements that have equivalent property values.
   -->
 ```
 ###omit
-filter collection by expression.</br>
+filter collection by expression.<br/>
 usage: ```collection | omit: expression```
+example 1:
 ```js
 $scope.mod2 = function(elm) {
   return !(elm % 2);
@@ -254,6 +255,7 @@ $scope.mod2 = function(elm) {
 <!--result
 2, 4, 6
 ```
+example 2:
 ```js
 $scope.collection = [
   { id: 1, user: { name: 'foo' } },
