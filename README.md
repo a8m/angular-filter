@@ -20,13 +20,14 @@
   - [unique](#unique)
   - [where](#where)
 - [String](#string)
-  - [ucfirst](#ucfirst)
-  - [uriEncode](#uriencode)
   - [removeSpaces](#removespaces)
+  - [reverse](#reverse-string)
+  - [startWith](#startwith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
   - [truncate](#truncate)
-  - [reverse](#reverse-string)
+  - [ucfirst](#ucfirst)
+  - [uriEncode](#uriencode)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -490,6 +491,17 @@ result:
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
 -->
 ```
+###startwith
+return whether string starts with the starts parameter.<br/>
+usage: ```string | startWith: 'start': case-sensitive[optional]```<br/>
+```html
+ {{ 'Lorem ipsum' | startWith: 'lorem' }}
+ {{ 'Lorem Ipsum' | startWith: 'lorem': true }}
+ <!--result:
+  true
+  false
+```
+
 ###striptags
 strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
