@@ -7,7 +7,7 @@
  * checks whether string starts with the starts parameter.
  */
 
-angular.module('a8m.uri-encode', [])
+angular.module('a8m.start-with', [])
 
   .filter('startWith', function () {
     return function (input, start, csensitive) {
