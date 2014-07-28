@@ -506,8 +506,8 @@ usage: ```string | startWith: 'start': case-sensitive[optional]```<br/>
 return whether string ends with the ends parameter.<br/>
 usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
 ```html
- {{ 'image.JPG' | endstWith: '.jpg' }}
- {{ 'image.JPG' | startWith: '.jpg': true }}
+ {{ 'image.JPG' | endsWith: '.jpg' }}
+ {{ 'image.JPG' | endsWith: '.jpg': true }}
  <!--result:
   true
   false
