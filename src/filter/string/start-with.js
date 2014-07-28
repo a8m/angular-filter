@@ -7,9 +7,9 @@
  * checks whether string starts with the starts parameter.
  */
 
-angular.module('a8m.start-with', [])
+angular.module('a8m.starts-with', [])
 
-  .filter('startWith', function () {
+  .filter('starstWith', function () {
     return function (input, start, csensitive) {
 
       var sensitive = csensitive || false;

@@ -1,13 +1,13 @@
 'use strict';
 
-describe('startWithFilter', function () {
+describe('startsWithFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.start-with'));
+  beforeEach(module('a8m.starts-with'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('startWith');
+    filter = $filter('startsWith');
   }));
 
   it('should return whether string starts with the starts parameter', function() {

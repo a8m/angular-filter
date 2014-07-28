@@ -13,7 +13,7 @@ angular.module('angular.filter', [
   'a8m.strip-tags',
   'a8m.stringular',
   'a8m.truncate',
-  'a8m.start-with',
+  'a8m.starts-with',
 
   'a8m.concat',
   'a8m.unique',
