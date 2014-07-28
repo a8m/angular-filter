@@ -22,7 +22,7 @@
 - [String](#string)
   - [removeSpaces](#removespaces)
   - [reverse](#reverse-string)
-  - [startWith](#startwith)
+  - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
   - [truncate](#truncate)
@@ -491,7 +491,7 @@ result:
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
 -->
 ```
-###startwith
+###startswith
 return whether string starts with the starts parameter.<br/>
 usage: ```string | startWith: 'start': case-sensitive[optional]```<br/>
 ```html
