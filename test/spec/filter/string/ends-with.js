@@ -16,6 +16,7 @@ describe('endsWithFilter', function () {
     expect(filter('string', 'ing')).toBeTruthy();
     expect(filter('foo bar', 'BAR')).toBeTruthy();
 
+    expect(filter('.JPG', '.jpg')).toBeTruthy();
     expect(filter('string', 'str')).toBeFalsy();
     expect(filter('string', 'fing')).toBeFalsy();
     expect(filter('foo bar', 'baz')).toBeFalsy();
@@ -24,6 +25,7 @@ describe('endsWithFilter', function () {
 
   it('should be case sensitive', function() {
 
+    expect(filter('.JPG', '.jpg', true)).toBeFalsy();
     expect(filter('string', 'ING', true)).toBeFalsy();
     expect(filter('string', 'ING', false)).toBeTruthy();
     expect(filter('foo bar', 'Foo B', true)).toBeFalsy();
