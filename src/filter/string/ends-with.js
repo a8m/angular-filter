@@ -4,7 +4,7 @@
  * @kind function
  *
  * @description
- * checks whether string ends with the starts parameter.
+ * checks whether string ends with the ends parameter.
  */
 
 angular.module('a8m.ends-with', [])
