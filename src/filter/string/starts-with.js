@@ -9,7 +9,7 @@
 
 angular.module('a8m.starts-with', [])
 
-  .filter('starstWith', function () {
+  .filter('startsWith', function () {
     return function (input, start, csensitive) {
 
       var sensitive = csensitive || false;
