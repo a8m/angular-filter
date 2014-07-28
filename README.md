@@ -20,6 +20,7 @@
   - [unique](#unique)
   - [where](#where)
 - [String](#string)
+  - [endsWith](#endswith)
   - [removeSpaces](#removespaces)
   - [reverse](#reverse-string)
   - [startsWith](#startswith)
@@ -501,7 +502,16 @@ usage: ```string | startWith: 'start': case-sensitive[optional]```<br/>
   true
   false
 ```
-
+###endswith
+return whether string ends with the ends parameter.<br/>
+usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
+```html
+ {{ 'image.JPG' | endstWith: '.jpg' }}
+ {{ 'image.JPG' | startWith: '.jpg': true }}
+ <!--result:
+  true
+  false
+```
 ###striptags
 strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
