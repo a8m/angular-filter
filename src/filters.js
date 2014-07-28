@@ -29,6 +29,7 @@ angular.module('angular.filter', [
   'a8m.search-field',
   'a8m.fuzzy-by',
   'a8m.fuzzy',
+  'a8m.omit',
 
   'a8m.math',
   'a8m.math.max',
