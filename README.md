@@ -241,7 +241,7 @@ returning an array of all elements that have equivalent property values.
 ```
 ###omit
 filter collection by expression.<br/>
-usage: ```collection | omit: expression```
+usage: ```collection | omit: expression```<br/>
 example 1:
 ```js
 $scope.mod2 = function(elm) {
