@@ -12,6 +12,7 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
+  - [omit](#omit)
   - [reverse](#reverse-collection)
   - [remove](#remove)
   - [removeWith](#remove-with)
@@ -237,6 +238,36 @@ returning an array of all elements that have equivalent property values.
 <!-- result:
   foo
   -->
+```
+###omit
+filter collection by expression.</br>
+usage: ```collection | omit: expression```
+```js
+$scope.mod2 = function(elm) {
+  return !(elm % 2);
+}
+```
+```html
+<tr ng-repeat="num in [1,2,3,4,5,6] | omit: mod2">
+  {{ num }},
+</tr>
+<!--result
+2, 4, 6
+```
+```js
+$scope.collection = [
+  { id: 1, user: { name: 'foo' } },
+  { id: 2, user: { name: 'bar' } },
+  { id: 3, user: { name: 'baz' } }
+]
+```
+```html
+<tr ng-repeat="obj in collection | omit:'id > 1 && user.name.indexOf(\'b\') !== -1'">
+  id: {{ obj.id }}, name: {{ obj.user.name }}
+</tr>
+<!--result:
+id: 2, name: bar 
+id: 3, name: baz
 ```
 ###remove
 Returns a new collection of removed elements.
