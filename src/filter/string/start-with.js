@@ -9,7 +9,7 @@
 
 angular.module('a8m.uri-encode', [])
 
-  .filter('uriEncode', function () {
+  .filter('startWith', function () {
     return function (input, start, csensitive) {
 
       var sensitive = csensitive || false;
