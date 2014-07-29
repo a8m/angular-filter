@@ -258,7 +258,7 @@ $scope.mod2 = function(elm) {
   {{ num }},
 </tr>
 <!--result
-2, 4, 6
+1, 3, 5
 ```
 **example 2:**
 ```js
@@ -273,8 +273,7 @@ $scope.collection = [
   id: {{ obj.id }}, name: {{ obj.user.name }}
 </tr>
 <!--result:
-id: 2, name: bar 
-id: 3, name: baz
+id: 1, name: foo 
 ```
 ###remove
 Returns a new collection of removed elements.
