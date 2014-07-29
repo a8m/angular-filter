@@ -15,6 +15,7 @@ angular.module('angular.filter', [
   'a8m.truncate',
   'a8m.starts-with',
   'a8m.ends-with',
+  'a8m.wrap',
 
   'a8m.concat',
   'a8m.unique',
