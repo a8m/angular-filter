@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.2.5 - 2014-07-28 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.0 - 2014-07-29 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -744,27 +744,82 @@ angular.module('a8m.math.min', ['a8m.math'])
 
 /**
  * @ngdoc filter
- * @name removeSpaces
+ * @name endsWith
+ * @kind function
+ *
+ * @description
+ * checks whether string ends with the ends parameter.
+ */
+
+angular.module('a8m.ends-with', [])
+
+  .filter('endsWith', function () {
+    return function (input, ends, csensitive) {
+
+      var sensitive = csensitive || false,
+        position;
+
+      if(!isString(input) || isUndefined(ends)) {
+        return input;
+      }
+
+      input = (sensitive) ? input : input.toLowerCase();
+      position = input.length - ends.length;
+
+      return input.indexOf((sensitive) ? ends : ends.toLowerCase(), position) !== -1;
+    }
+  });
+
+/**
+ * @ngdoc filter
+ * @name slugify
  * @kind function
  *
  * @description
  * remove spaces from string, replace with "-" or given argument
  */
 
-angular.module('a8m.remove-spaces', [])
+angular.module('a8m.slugify', [])
 
-  .filter('removeSpaces',[ function () {
+  .filter('slugify',[ function () {
     return function (input, sub) {
 
       var replace = sub || '-';
 
       if(isString(input)) {
-        return input.replace(/\s+/g, replace);
+        return input.toLowerCase()
+          .replace(/\s+/g, replace);
       }
 
       return input;
     }
   }]);
+
+/**
+ * @ngdoc filter
+ * @name startWith
+ * @kind function
+ *
+ * @description
+ * checks whether string starts with the starts parameter.
+ */
+
+angular.module('a8m.starts-with', [])
+
+  .filter('startsWith', function () {
+    return function (input, start, csensitive) {
+
+      var sensitive = csensitive || false;
+
+      if(!isString(input) || isUndefined(start)) {
+        return input;
+      }
+
+      input = (sensitive) ? input : input.toLowerCase();
+
+      return !input.indexOf((sensitive) ? start : start.toLowerCase());
+    }
+  });
 
 /**
  * @ngdoc filter
@@ -804,6 +859,30 @@ angular.module('a8m.strip-tags', [])
         return input.replace(/<\S[^><]*>/g, '');
       }
       return input;
+    }
+  });
+
+/**
+ * @ngdoc filter
+ * @name trim
+ * @kind function
+ *
+ * @description
+ *  Strip whitespace (or other characters) from the beginning and end of a string
+ */
+
+angular.module('a8m.trim', [])
+
+  .filter('trim', function () {
+    return function(input, chars) {
+
+      var trim = chars || '\\s';
+
+      if(!isString(input)) {
+        return input;
+      }
+
+      return input.replace(new RegExp('^' + trim + '+|' + trim + '+$', 'g'), '');
     }
   });
 
@@ -878,6 +957,29 @@ angular.module('a8m.uri-encode', [])
     }]);
 
 /**
+ * @ngdoc filter
+ * @name wrap
+ * @kind function
+ *
+ * @description
+ * Wrap a string with another string
+ */
+
+angular.module('a8m.wrap', [])
+
+  .filter('wrap', function () {
+    return function(input, wrap, ends) {
+
+      if(!isString(input) || isUndefined(wrap)) {
+        return input;
+      }
+
+      return [wrap, input, ends || wrap].join('');
+
+    }
+  });
+
+/**
  * @ngdoc module
  * @name angular.filters
  * @description
@@ -888,10 +990,14 @@ angular.module('angular.filter', [
 
   'a8m.ucfirst',
   'a8m.uri-encode',
-  'a8m.remove-spaces',
+  'a8m.slugify',
   'a8m.strip-tags',
   'a8m.stringular',
   'a8m.truncate',
+  'a8m.starts-with',
+  'a8m.ends-with',
+  'a8m.wrap',
+  'a8m.trim',
 
   'a8m.concat',
   'a8m.unique',
