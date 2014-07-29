@@ -277,7 +277,7 @@ $scope.collection = [
 id: 1, name: foo 
 ```
 ###pick
-return collection composed of the picked(by expression).<br/>
+return collection composed of the picked objects(by expression).<br/>
 usage: ```collection | pick: expression```<br/>
 **example 1:**
 ```js
