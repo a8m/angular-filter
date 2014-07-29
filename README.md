@@ -27,6 +27,7 @@
   - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
+  - [trim](#trim)
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
@@ -579,7 +580,16 @@ usage: ```string | wrap: string: string[optional]```
 /foo/
 {{foo}}
 ```
-
+###trim
+Strip whitespace (or other characters) from the beginning and end of a string<br/>
+usage: ```string | trim: chars[optional]```
+```html
+<p>{{ '    foo   ' | trim }}</p>
+<p>{{ 'foobarfoo' | trim: 'foo' }}
+<!--result:
+foo
+bar
+```
 #Math
 
 ###max
