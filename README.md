@@ -22,8 +22,8 @@
   - [where](#where)
 - [String](#string)
   - [endsWith](#endswith)
-  - [removeSpaces](#removespaces)
   - [reverse](#reverse-string)
+  - [slugify](#slugify)
   - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
@@ -479,13 +479,13 @@ get string as parameter and return encoded uri
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
 ```
 
-###removespaces
-remove spaces from string, replace with "-" or given argument
+###slugify
+Transform text into a URL slug. Replaces whitespaces, with dash("-"), or given argument
 
 ```html
-<a ng-href="http://domain.com/fetch/{{ 'some string with spaces' | removeSpaces }}">Link</a>
+<a ng-href="http://domain.com/fetch/{{ 'Some string with spaces' | slugify }}">Link</a>
 <!--replace with given argument-->
-<a ng-href="http://domain.com/fetch/{{ 'some string with spaces' | removeSpaces:'=' }}">Link</a>
+<a ng-href="http://domain.com/fetch/{{ 'Some string with spaces' | slugify:'=' }}">Link</a>
 <!--
 result:
 <a ng-href="http://domain.com/fetch/some-string-with-spaces">Link</a>
