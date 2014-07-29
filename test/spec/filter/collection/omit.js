@@ -18,8 +18,8 @@ describe('omitFilter', function() {
       { id: 1, name: 'bar' }
     ];
 
-    expect(filter(array, 'id === 2')).toEqual([array[1]]);
-    expect(filter(array, 'id === 1 && name === "foo"')).toEqual([array[0]]);
+    expect(filter(array, 'id === 1')).toEqual([array[1]]);
+    expect(filter(array, 'id === 1 && name === "foo"')).toEqual([array[1], array[2], array[3]]);
     expect(filter(array)).toEqual(array);
 
   });
@@ -33,9 +33,9 @@ describe('omitFilter', function() {
       3: { id: 1, name: 'bar' }
     };
 
-    expect(filter(object, 'id === 2')).toEqual([object[1]]);
-    expect(filter(object, 'id === 1 && name === "foo"')).toEqual([object[0]]);
-    expect(filter(object, 'name === german')).toEqual([]);
+    expect(filter(object, 'id === 1')).toEqual([object[1]]);
+    expect(filter(object, 'id === 1 && name === "foo"')).toEqual([object[1], object[2], object[3]]);
+    expect(filter(object, 'name === german')).toEqual([object[0], object[1], object[2], object[3]]);
 
   });
 
@@ -44,10 +44,10 @@ describe('omitFilter', function() {
     var array = [1, 2, 3, 4, 5];
 
     function mod2(elm) {
-      return !(elm % 2)
+      return !(elm % 2);
     }
 
-    expect(filter(array, mod2)).toEqual([2, 4]);
+    expect(filter(array, mod2)).toEqual([1, 3, 5]);
 
   });
 
