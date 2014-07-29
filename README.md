@@ -30,6 +30,7 @@
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
+  - [wrap](#wrap)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -564,9 +565,19 @@ Reverses a string
 $scope.text = 'lorem ipsum dolor sit amet';
 ```
 ```html
-<p>{{ text | reverse }}
+<p>{{ text | reverse }}</p>
 <!--result:
 tema tis rolod muspi merol
+```
+###wrap
+Wrap a string with another string<br/>
+usage: ```string | wrap: string: string[optional]``` 
+```html
+<p>{{ 'foo' | wrap: '/' }}</p>
+<p>{{ 'foo' | wrap: '{{': '}}' }}</p>
+<!--result:
+/foo/
+{{foo}}
 ```
 
 #Math
