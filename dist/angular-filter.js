@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.0 - 2014-07-29 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.1 - 2014-07-29 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -467,6 +467,34 @@ angular.module('a8m.is-empty', [])
 angular.module('a8m.omit', [])
 
   .filter('omit', ['$parse', function($parse) {
+    return function (collection, expression) {
+
+      collection = (isObject(collection)) ?
+        toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(expression)) {
+        return collection;
+      }
+
+      return collection.filter(function (elm) {
+
+        return !($parse(expression)(elm));
+      });
+    }
+  }]);
+
+/**
+ * @ngdoc filter
+ * @name omit
+ * @kind function
+ *
+ * @description
+ * filter collection by expression
+ */
+
+angular.module('a8m.pick', [])
+
+  .filter('pick', ['$parse', function($parse) {
     return function (collection, expression) {
 
       collection = (isObject(collection)) ?
@@ -1015,6 +1043,7 @@ angular.module('angular.filter', [
   'a8m.fuzzy-by',
   'a8m.fuzzy',
   'a8m.omit',
+  'a8m.pick',
 
   'a8m.math',
   'a8m.math.max',
