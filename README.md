@@ -23,6 +23,7 @@
   - [where](#where)
 - [String](#string)
   - [endsWith](#endswith)
+  - [repeat](#repeat)
   - [reverse](#reverse-string)
   - [slugify](#slugify)
   - [startsWith](#startswith)
@@ -622,6 +623,14 @@ usage: ```string | trim: chars[optional]```
 <!--result:
 foo
 bar
+```
+###repeat
+Repeats a string n times<br/>
+usage: ```string | repeat: n: separator[optional]```
+```html
+<p>{{ 'foo' | repeat: 3: '-' }}</p>
+<!--repeat:
+foo-foo-foo
 ```
 #Math
 
