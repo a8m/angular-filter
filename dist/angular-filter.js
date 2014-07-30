@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.1 - 2014-07-29 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.3 - 2014-07-30 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -293,6 +293,44 @@ angular.module('a8m.concat', [])
     };
   }
 ]);
+
+/**
+ * @ngdoc filter
+ * @name countBy
+ * @kind function
+ *
+ * @description
+ * Sorts a list into groups and returns a count for the number of objects in each group.
+ */
+
+angular.module('a8m.count-by', [])
+
+  .filter('countBy', [ '$parse', function ( $parse ) {
+    return function (collection, property) {
+
+      var result = {},
+        get = $parse(property),
+        prop;
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(property)) {
+        return collection;
+      }
+
+      collection.forEach( function( elm ) {
+        prop = get(elm);
+
+        if(!result[prop]) {
+          result[prop] = 0;
+        }
+
+        result[prop]++;
+      });
+
+      return result;
+    }
+  }]);
 
 /**
  * @ngdoc filter
@@ -800,6 +838,43 @@ angular.module('a8m.ends-with', [])
 
 /**
  * @ngdoc filter
+ * @name repeat
+ * @kind function
+ *
+ * @description
+ * Repeats a string n times
+ */
+
+angular.module('a8m.repeat', [])
+
+  .filter('repeat',[ function () {
+    return function (input, n, separator) {
+
+      var times = ~~n;
+
+      if(!isString(input)) {
+        return input;
+      }
+
+      return (!times) ? input : strRepeat(input, --n, separator || '');
+    }
+  }]);
+
+/**
+ * Repeats a string n times with given separator
+ * @param str string to repeat
+ * @param n number of times
+ * @param sep separator
+ * @returns {*}
+ */
+function strRepeat(str, n, sep) {
+  if(!n) {
+    return str;
+  }
+  return str + sep + strRepeat(str, --n, sep);
+}
+/**
+ * @ngdoc filter
  * @name slugify
  * @kind function
  *
@@ -1026,6 +1101,7 @@ angular.module('angular.filter', [
   'a8m.ends-with',
   'a8m.wrap',
   'a8m.trim',
+  'a8m.repeat',
 
   'a8m.concat',
   'a8m.unique',
@@ -1039,6 +1115,7 @@ angular.module('angular.filter', [
   'a8m.remove',
   'a8m.remove-with',
   'a8m.group-by',
+  'a8m.count-by',
   'a8m.search-field',
   'a8m.fuzzy-by',
   'a8m.fuzzy',
