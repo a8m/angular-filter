@@ -9,6 +9,7 @@
   - [before](#before)
   - [beforeWhere](#beforewhere)
   - [concat](#concat)
+  - [countBy](#countby)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
@@ -192,7 +193,7 @@ $scope.books = [
 ###groupby
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.
-
+usage: ```(key, value) in collection | groupBy: 'property'```, or ```... | groupBy: 'nested.property'```
 ```js
 $scope.players = [
   {name: 'Gene', team: 'alpha'},
@@ -219,7 +220,28 @@ $scope.players = [
     * player: Steve
     * player: Scruath
 ```
-
+###countby
+Create an object composed of keys generated from the result of running each element of a collection,<br/>
+each key is the count of objects in each group<br/>
+usage: ```(key, value) in collection | countBy: 'property'```, or ```... | countBy: 'nested.property'```
+```js
+$scope.players = [
+  {name: 'Gene', team: 'alpha'},
+  {name: 'George', team: 'beta'},
+  {name: 'Steve', team: 'gamma'},
+  {name: 'Paula', team: 'beta'},
+  {name: 'Scruath', team: 'gamma'}
+];
+```
+```html
+<ul ng-repeat="(key, value) in players | countBy: 'team'" >
+  Group name: {{ key }}, length: {{ value }}
+</ul>
+<!-- result:
+  Group name: alpha, length: 1
+  Group name: beta, length: 2
+  Group name: gamma, length: 2
+```
 ###where
 comparison for each element in a collection to the given properties object,<br/>
 returning an array of all elements that have equivalent property values.
