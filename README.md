@@ -192,7 +192,7 @@ $scope.books = [
 ```
 ###groupby
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
-each key is an array of the elements.
+each key is an array of the elements.<br/>
 **usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
 ```js
 $scope.players = [
