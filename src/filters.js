@@ -31,6 +31,7 @@ angular.module('angular.filter', [
   'a8m.remove',
   'a8m.remove-with',
   'a8m.group-by',
+  'a8m.count-by',
   'a8m.search-field',
   'a8m.fuzzy-by',
   'a8m.fuzzy',
