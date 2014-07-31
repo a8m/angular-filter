@@ -11,6 +11,7 @@
   - [concat](#concat)
   - [contains](#contains)
   - [countBy](#countby)
+  - [every](#every)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
@@ -539,7 +540,29 @@ $scope.collection = [
 <th ng-show="{{ collection | some: '!(user.id % 2) && user.name.indexOf(\'b\') === 0' }}">...</th>
 <!--result: true
 ```
-
+###every
+Checks if given expression(or value) return truthy value for all members of a collection<br/>
+**Usage:** ```collection | every: 'expression'```<br/>
+example 1:
+```js
+$scope.array = [1,1,1,1];
+```
+```html
+<th ng-show="{{ array | every: 1 }}">...</th>
+<!--resule: true
+```
+example 2:
+```js
+$scope.collection = [
+  { user: { id: 4, name: 'foo' } },
+  { user: { id: 6, name: 'bar' } },
+  { user: { id: 8, name: 'baz' } }
+];
+```
+```html
+<th ng-show="{{ collection | every: !(user.id % 2) }}">...</th>
+<!--result: true
+```
 #String
 
 ###ucfirst
