@@ -20,6 +20,7 @@ angular.module('angular.filter', [
   'a8m.repeat',
 
   'a8m.concat',
+  'a8m.contains',
   'a8m.unique',
   'a8m.is-empty',
   'a8m.after',
