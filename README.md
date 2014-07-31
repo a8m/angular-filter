@@ -549,7 +549,7 @@ $scope.array = [1,1,1,1];
 ```
 ```html
 <th ng-show="{{ array | every: 1 }}">...</th>
-<!--resule: true
+<!--result: true
 ```
 example 2:
 ```js
