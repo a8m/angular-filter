@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.3 - 2014-07-30 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.4 - 2014-07-31 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -296,6 +296,41 @@ angular.module('a8m.concat', [])
 
 /**
  * @ngdoc filter
+ * @name contains
+ * @kind function
+ *
+ * @description
+ * Checks if given expression is present in one or more object in the collection
+ */
+
+angular.module('a8m.contains', [])
+  .filter({
+    contains: ['$parse', containsFilter],
+    some: ['$parse', containsFilter]
+  });
+
+function containsFilter( $parse ) {
+    return function (collection, expression) {
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(expression)) {
+        return true;
+      }
+
+      return collection.some( function(elm) {
+
+        return (isObject(elm) || isFunction(expression)) ?
+          $parse(expression)(elm) :
+          elm === expression;
+
+      });
+
+    }
+ }
+
+/**
+ * @ngdoc filter
  * @name countBy
  * @kind function
  *
@@ -329,6 +364,36 @@ angular.module('a8m.count-by', [])
       });
 
       return result;
+    }
+  }]);
+
+/**
+ * @ngdoc filter
+ * @name every
+ * @kind function
+ *
+ * @description
+ * Checks if given expression is present in all members in the collection
+ *
+ */
+
+angular.module('a8m.every', [])
+  .filter('every', ['$parse', function($parse) {
+    return function (collection, expression) {
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(expression)) {
+        return true;
+      }
+
+      return collection.every( function(elm) {
+
+        return (isObject(elm) || isFunction(expression)) ?
+          $parse(expression)(elm) :
+          elm === expression;
+      });
+
     }
   }]);
 
@@ -1104,6 +1169,7 @@ angular.module('angular.filter', [
   'a8m.repeat',
 
   'a8m.concat',
+  'a8m.contains',
   'a8m.unique',
   'a8m.is-empty',
   'a8m.after',
@@ -1121,6 +1187,7 @@ angular.module('angular.filter', [
   'a8m.fuzzy',
   'a8m.omit',
   'a8m.pick',
+  'a8m.every',
 
   'a8m.math',
   'a8m.math.max',
