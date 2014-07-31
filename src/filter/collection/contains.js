@@ -22,11 +22,11 @@ function containsFilter( $parse ) {
         return true;
       }
 
-      return collection.some( function(elm, index, self) {
+      return collection.some( function(elm) {
 
         return (isObject(elm) || isFunction(expression)) ?
           $parse(expression)(elm) :
-          self.indexOf(expression) !== -1;
+          elm === expression;
 
       });
 
