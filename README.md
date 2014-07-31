@@ -9,6 +9,7 @@
   - [before](#before)
   - [beforeWhere](#beforewhere)
   - [concat](#concat)
+  - [contains](#contains)
   - [countBy](#countby)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
@@ -513,6 +514,29 @@ get collection or string and return if it empty[Bollean]
 <tr ng-show="orders | isEmpty">
   no content to show
 </tr>
+```
+###contains
+Checks if given expression(or value) is present in one or more object in the collection<br/>
+**usage:** ```collection | contains: 'expression'```<br/>
+**Aliases:** some
+example 1:
+```js
+$scope.array = [1,2,3,4];
+```
+```html
+<th ng-show="{{ array | contains: 2 }}">...</th>
+```
+example 2:
+```js
+$scope.collection = [
+  { user: { id: 1, name: 'foo' } },
+  { user: { id: 2, name: 'bar' } },
+  { user: { id: 3, name: 'baz' } }
+];
+```
+```html
+<th ng-show="{{ collection | some: '!(user.id % 2) && user.name.indexOf(\'b\') === 0' }}">...</th>
+<!--result: true
 ```
 
 #String
