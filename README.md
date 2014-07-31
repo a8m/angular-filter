@@ -21,6 +21,7 @@
   - [remove](#remove)
   - [removeWith](#remove-with)
   - [searchField](#searchfield)
+  - [some](#contains)
   - [unique](#unique)
   - [where](#where)
 - [String](#string)
@@ -517,8 +518,8 @@ get collection or string and return if it empty[Bollean]
 ```
 ###contains
 Checks if given expression(or value) is present in one or more object in the collection<br/>
-**usage:** ```collection | contains: 'expression'```<br/>
-**Aliases:** some
+**Usage:** ```collection | contains: 'expression'```<br/>
+**Aliases:** some<br/>
 example 1:
 ```js
 $scope.array = [1,2,3,4];
