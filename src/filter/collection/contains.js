@@ -24,8 +24,9 @@ function containsFilter( $parse ) {
 
       return collection.some( function(elm, index, self) {
 
-        return (isObject(elm)) ? $parse(expression)(elm) :
-          self.indexOf(expression);
+        return (isObject(elm) || isFunction(expression)) ?
+          $parse(expression)(elm) :
+          self.indexOf(expression) !== -1;
 
       });
 
