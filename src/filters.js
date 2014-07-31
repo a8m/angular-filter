@@ -38,6 +38,7 @@ angular.module('angular.filter', [
   'a8m.fuzzy',
   'a8m.omit',
   'a8m.pick',
+  'a8m.every',
 
   'a8m.math',
   'a8m.math.max',
