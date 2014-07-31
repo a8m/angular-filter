@@ -9,7 +9,7 @@ describe('containsFilter', function() {
     filter = $filter('contains');
   }));
 
-  it('should get collection of primitives and use indexOf', function() {
+  it('should get collection of primitives and use strict comparison(===)', function() {
 
     expect(filter(['foo', 'bar'], 'bar')).toBeTruthy();
     expect(filter([1,2,3,4], 4)).toBeTruthy();
