@@ -19,7 +19,7 @@ function containsFilter( $parse ) {
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
-        return collection;
+        return true;
       }
 
       return collection.some( function(elm, index, self) {
