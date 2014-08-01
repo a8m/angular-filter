@@ -18,6 +18,6 @@ angular.module('a8m.ltrim', [])
         return input;
       }
 
-      return input.replace(new RegExp('^' + trim + '+', 'g'), '');
+      return input.replace(new RegExp('^' + trim + '+'), '');
     }
   });
