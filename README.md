@@ -34,6 +34,8 @@
   - [stripTags](#striptags)
   - [stringular](#stringular)
   - [trim](#trim)
+  - [ltrim](#ltrim)
+  - [rtrim](#rtrim)
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
@@ -693,6 +695,22 @@ usage: ```string | trim: chars[optional]```
 <!--result:
 foo
 bar
+```
+###ltrim
+Strip whitespace (or other characters) from the beginning of a string<br/>
+usage: ```string | ltrim: chars[optional]```
+```html
+<p>{{ 'barfoobar' | ltrim: 'bar' }}
+<!--result:
+foobar
+```
+###rtrim
+Strip whitespace (or other characters) from the end of a string<br/>
+usage: ```string | rtrim: chars[optional]```
+```html
+<p>{{ 'barfoobar' | rtrim: 'bar' }}
+<!--result:
+barfoo
 ```
 ###repeat
 Repeats a string n times<br/>
