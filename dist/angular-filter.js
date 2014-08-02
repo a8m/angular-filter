@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.4 - 2014-07-31 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.5 - 2014-08-02 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -903,6 +903,30 @@ angular.module('a8m.ends-with', [])
 
 /**
  * @ngdoc filter
+ * @name ltrim
+ * @kind function
+ *
+ * @description
+ * Left trim. Similar to trimFilter, but only for left side.
+ */
+
+angular.module('a8m.ltrim', [])
+
+  .filter('ltrim', function () {
+    return function(input, chars) {
+
+      var trim = chars || '\\s';
+
+      if(!isString(input)) {
+        return input;
+      }
+
+      return input.replace(new RegExp('^' + trim + '+'), '');
+    }
+  });
+
+/**
+ * @ngdoc filter
  * @name repeat
  * @kind function
  *
@@ -938,6 +962,30 @@ function strRepeat(str, n, sep) {
   }
   return str + sep + strRepeat(str, --n, sep);
 }
+/**
+* @ngdoc filter
+* @name rtrim
+* @kind function
+*
+* @description
+* Right trim. Similar to trimFilter, but only for right side.
+*/
+
+angular.module('a8m.rtrim', [])
+
+  .filter('rtrim', function () {
+    return function(input, chars) {
+
+      var trim = chars || '\\s';
+
+      if(!isString(input)) {
+        return input;
+      }
+
+      return input.replace(new RegExp(trim + '+$'), '');
+    }
+  });
+
 /**
  * @ngdoc filter
  * @name slugify
@@ -1166,6 +1214,8 @@ angular.module('angular.filter', [
   'a8m.ends-with',
   'a8m.wrap',
   'a8m.trim',
+  'a8m.ltrim',
+  'a8m.rtrim',
   'a8m.repeat',
 
   'a8m.concat',
