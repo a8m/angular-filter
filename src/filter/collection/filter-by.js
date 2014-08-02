@@ -6,7 +6,7 @@
  * @description
  * filter by specific properties, avoid the rest
  */
-angular.module('a8m.filter-by')
+angular.module('a8m.filter-by', [])
 
   .filter('filterBy', ['$parse', function( $parse ) {
     return function(collection, properties, search) {
@@ -33,7 +33,7 @@ angular.module('a8m.filter-by')
            */
           if(!~prop.indexOf('+')) {
             comparator = $parse(prop)(elm)
-          }else {
+          } else {
             var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
             comparator = propList.reduce(function(prev, cur, index) {
               return (index === 1) ? $parse(prev)(elm) + ' ' + $parse(cur)(elm) :
