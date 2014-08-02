@@ -18,6 +18,7 @@ angular.module('angular.filter', [
   'a8m.wrap',
   'a8m.trim',
   'a8m.ltrim',
+  'a8m.rtrim',
   'a8m.repeat',
 
   'a8m.concat',
