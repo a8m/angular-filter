@@ -182,7 +182,7 @@ $scope.users = [
 ```
 ```html
 <!--search by full name -->
-<th ng-repeat="user in users: filterBy: ['user.first_name', 'user.last_name']: 'foo ba'">
+<th ng-repeat="user in users: filterBy: ['user.first_name + user.last_name']: 'foo ba'">
   {{ user.id }}: {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
