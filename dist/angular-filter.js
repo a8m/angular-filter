@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.5 - 2014-08-02 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.6 - 2014-08-03 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -12,6 +12,7 @@ var isDefined = angular.isDefined,
     isUndefined = angular.isUndefined,
     isFunction = angular.isFunction,
     isString = angular.isString,
+    isNumber = angular.isNumber,
     isObject = angular.isObject,
     isArray = angular.isArray,
     forEach = angular.forEach,
@@ -77,6 +78,7 @@ function hasApproxPattern(word, pattern) {
 
   return hasApproxPattern(word.substr(index+1), pattern.substr(1))
 }
+
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -392,6 +394,60 @@ angular.module('a8m.every', [])
         return (isObject(elm) || isFunction(expression)) ?
           $parse(expression)(elm) :
           elm === expression;
+      });
+
+    }
+  }]);
+
+/**
+ * @ngdoc filter
+ * @name filterBy
+ * @kind function
+ *
+ * @description
+ * filter by specific properties, avoid the rest
+ */
+angular.module('a8m.filter-by', [])
+
+  .filter('filterBy', ['$parse', function( $parse ) {
+    return function(collection, properties, search) {
+
+      var comparator;
+
+      search = (isString(search) || isNumber(search)) ?
+        String(search).toLowerCase() : undefined;
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(search)) {
+        return collection;
+      }
+
+      return collection.filter(function(elm) {
+
+        return properties.some(function(prop) {
+
+          /**
+           * check if there is concatenate properties
+           * example:
+           * object: { first: 'foo', last:'bar' }
+           * filterBy: ['first + last'] => search by full name(i.e 'foo bar')
+           */
+          if(!~prop.indexOf('+')) {
+            comparator = $parse(prop)(elm)
+          } else {
+            var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
+            comparator = propList.reduce(function(prev, cur, index) {
+              return (index === 1) ? $parse(prev)(elm) + ' ' + $parse(cur)(elm) :
+                prev + ' ' + $parse(cur)(elm);
+            });
+          }
+
+          return (isString(comparator) || isNumber(comparator)) ?
+            !String(comparator).toLowerCase().indexOf(search) :
+            false;
+        })
+
       });
 
     }
@@ -1238,6 +1294,7 @@ angular.module('angular.filter', [
   'a8m.omit',
   'a8m.pick',
   'a8m.every',
+  'a8m.filter-by',
 
   'a8m.math',
   'a8m.math.max',
