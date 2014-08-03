@@ -1,0 +1,74 @@
+'use strict';
+
+describe('filterByFilter', function() {
+
+  var filter;
+
+  beforeEach(module('a8m.filter-by'));
+
+  beforeEach(inject(function($filter) {
+    filter = $filter('filterBy');
+  }));
+
+  it('should filter by specific properties and avoid the rest', function() {
+
+    var users = [
+      { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
+      { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
+      { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
+      { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+    ];
+
+    expect(filter(users, ['user.first_name', 'user.last_name'], 'foo')).toEqual(users);
+    expect(filter(users, ['user.first_name'], 'foo')).toEqual([users[0], users[2]]);
+    expect(filter(users, ['user.last_name'], 'bar')).toEqual([users[0]]);
+
+    expect(filter(users, ['id', 'user.mobile'], '1')).toEqual([users[0], users[3]]);
+    expect(filter(users, ['id'], '1')).toEqual([users[0]]);
+    expect(filter(users, ['id', 'user.mobile'], '11')).toEqual([users[3]]);
+
+  });
+
+  it('should support to get object as collection', function() {
+
+    var users = {
+      0: { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
+      1: { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
+      2: { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
+      3: { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+    };
+
+    expect(filter(users, ['user.first_name', 'user.last_name'], 'foo')).toEqual(users);
+    expect(filter(users, ['user.first_name'], 'foo')).toEqual([users[0], users[2]]);
+    expect(filter(users, ['user.last_name'], 'bar')).toEqual([users[0]]);
+
+  });
+
+  it('should take care on extreme conditions', function() {
+
+    var users = [
+      { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
+      { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
+      { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
+      { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+    ];
+
+    expect(filter(users, ['id'], 1)).toEqual([users[0]]);
+    expect(filter(users, ['id'])).toEqual(users);
+    expect(filter(users, ['id', 'phone'], 4)).toEqual([users[3]]);
+    expect(filter(users, ['id', 'phone'], null)).toEqual(users);
+    expect(filter(users, null, null)).toEqual(users);
+    expect(filter(users, [], [])).toEqual(users);
+
+  });
+
+  it('should get a !collection and return it as-is', function() {
+
+    expect(filter(!1)).toBeFalsy();
+    expect(filter(1)).toEqual(1);
+    expect(filter('string')).toEqual('string');
+    expect(filter(undefined)).toEqual(undefined);
+
+  });
+
+});
