@@ -44,6 +44,23 @@ describe('filterByFilter', function() {
 
   });
 
+  it('should parse concatenate properties, and search them by one field', function() {
+
+    var users = [
+      { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
+      { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
+      { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
+      { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+    ];
+
+    expect(filter(users, ['user.first_name + user.last_name'], 'foo bar')).toEqual([users[0]]);
+    expect(filter(users, ['user.first_name+user.last_name'], 'foo bar')).toEqual([users[0]]);
+    expect(filter(users, ['user.first_name + user.mobile'], 'foo 4444')).toEqual([users[0]]);
+
+    expect(filter(users, ['user.first_name + user.undefined'], 'foo')).toEqual([users[0], users[2]]);
+
+  });
+
   it('should take care on extreme conditions', function() {
 
     var users = [
