@@ -12,6 +12,7 @@
   - [contains](#contains)
   - [countBy](#countby)
   - [every](#every)
+  - [filterBy](#filterby)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
@@ -150,6 +151,45 @@ bar 20
 baz 30
 
 ```
+###filterby
+Filter by specific properties and avoid the rest<br/>
+**Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```
+**Note:** can create custom field to search(e.g: ```|filterBy: [property + property]: model```)<br/>
+```js
+$scope.users = [
+  { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
+  { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
+  { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
+  { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+];
+```
+```html
+<!--search only by id -->
+<th ng-repeat="user in users: filterBy: ['id']: 1">
+  {{ user.id }} : {{ user.first_name }} {{ user.last_name }}
+</th>
+<!--result:
+  1: foo bar
+```
+```html
+<!--search by first_name and last_name -->
+<th ng-repeat="user in users: filterBy: ['user.first_name', 'user.last_name']: 'bar'">
+  {{ user.first_name }} {{ user.last_name }}
+</th>
+<!--result:
+  1: foo bar
+  2: bar foo
+```
+```html
+<!--search by full name -->
+<th ng-repeat="user in users: filterBy: ['user.first_name', 'user.last_name']: 'foo ba'">
+  {{ user.id }}: {{ user.first_name }} {{ user.last_name }}
+</th>
+<!--result:
+  1: foo bar
+  3: foo baz
+```
+
 ###fuzzy
 fuzzy string searching(approximate string matching). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
