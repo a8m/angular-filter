@@ -153,7 +153,7 @@ baz 30
 ```
 ###filterby
 Filter by specific properties and avoid the rest<br/>
-**Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```
+**Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```<br/>
 **Note:** can create custom field to search(e.g: ```|filterBy: [property + property]: model```)<br/>
 ```js
 $scope.users = [
