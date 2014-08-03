@@ -13,7 +13,8 @@ angular.module('a8m.filter-by', [])
 
       var comparator;
 
-      search = (isString(search)) ? search.toLowerCase() : undefined;
+      search = (isString(search) || isNumber(search)) ?
+        String(search).toLowerCase() : undefined;
 
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
@@ -41,8 +42,8 @@ angular.module('a8m.filter-by', [])
             });
           }
 
-          return (isString(comparator)) ?
-            !comparator.toLowerCase().indexOf(search) :
+          return (isString(comparator) || isNumber(comparator)) ?
+            !String(comparator).toLowerCase().indexOf(search) :
             false;
         })
 
