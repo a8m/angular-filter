@@ -165,7 +165,7 @@ $scope.users = [
 ```
 ```html
 <!--search only by id -->
-<th ng-repeat="user in users: filterBy: ['id']: 1">
+<th ng-repeat="user in users | filterBy: ['id']: 1">
   {{ user.id }} : {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
@@ -173,7 +173,7 @@ $scope.users = [
 ```
 ```html
 <!--search by first_name and last_name -->
-<th ng-repeat="user in users: filterBy: ['user.first_name', 'user.last_name']: 'bar'">
+<th ng-repeat="user in users | filterBy: ['user.first_name', 'user.last_name']: 'bar'">
   {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
@@ -182,7 +182,7 @@ $scope.users = [
 ```
 ```html
 <!--search by full name -->
-<th ng-repeat="user in users: filterBy: ['user.first_name + user.last_name']: 'foo ba'">
+<th ng-repeat="user in users | filterBy: ['user.first_name + user.last_name']: 'foo ba'">
   {{ user.id }}: {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
