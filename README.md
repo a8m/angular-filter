@@ -59,7 +59,7 @@
 **(1)** Get angular-filter in one of 3 ways:
   - clone & [build](#developing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
-  - via cdnjs http://www.cdnjs.com/libraries/angular-filter 
+  - via cdnjs http://www.cdnjs.com/libraries/angular-filter
 
 **(2)** Include `angular-filter.js` (or `angular-filter.min.js`) in your `index.html`, after including Angular itself.
 
@@ -191,7 +191,7 @@ $scope.users = [
 ```
 
 ###fuzzy
-fuzzy string searching(approximate string matching). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
 usage: ```collection | fuzzy: search: caseSensitive[optional]```
 ```js
@@ -252,7 +252,7 @@ $scope.players = [
 <ul ng-repeat="(key, value) in players | groupBy: 'team'" >
   Group name: {{ key }}
   <li ng-repeat="player in value">
-    player: {{ player.name }} 
+    player: {{ player.name }}
   </li>
 </ul>
 <!-- result:
@@ -301,7 +301,7 @@ returning an array of all elements that have equivalent property values.
 <tr ng-repeat="obj in collection | where:{id: 1}">
   {{ obj.name }}
 </tr>
-<!-- result: 
+<!-- result:
   foo
   bar
 -->
@@ -342,7 +342,7 @@ $scope.collection = [
   id: {{ obj.id }}, name: {{ obj.user.name }}
 </tr>
 <!--result:
-id: 1, name: foo 
+id: 1, name: foo
 ```
 ###pick
 return collection composed of the picked objects(by expression).<br/>
@@ -408,7 +408,7 @@ returning an array without all elements that have equivalent property values.
 <tr ng-repeat="obj in collection | removeWith:{ id: 1 }">
   {{ obj.name }}
 </tr>
-<!-- result: 
+<!-- result:
   baz
 -->
 
@@ -421,7 +421,7 @@ returning an array without all elements that have equivalent property values.
 ```
 ###searchfield
 if you want to use the filter in angular and want to filter for multiple values<br/>
-so searchField filter return new collection with property called searchField<br/> 
+so searchField filter return new collection with property called searchField<br/>
 **support nested properties with dot notation i.e:** ``` collection | searchFiled: 'prop': 'nested.prop' ```
 ```js
 $scope.users = [
@@ -431,7 +431,7 @@ $scope.users = [
 ];
 ```
 ```html
-<input ng-model="search" placeholder="search by full name"/> 
+<input ng-model="search" placeholder="search by full name"/>
 <th ng-repeat="user in users | searchField: 'first_name': 'last_name' | filter: search">
   {{ user.first_name }} {{ user.last_name }}
 </th>
@@ -459,7 +459,7 @@ $scope.collection = [
 
 ```
 ###afterWhere
-get a collection and properties object, and returns all of the items, 
+get a collection and properties object, and returns all of the items,
 in the collection after the first that found with the given properties, including it.
 ```js
 $scope.orders = [
@@ -504,7 +504,7 @@ $scope.collection = [
 ```
 
 ###beforeWhere
-get a collection and properties object, and returns all of the items, 
+get a collection and properties object, and returns all of the items,
 in the collection before the first that found with the given properties, including it.
 ```js
 $scope.orders = [
@@ -670,7 +670,7 @@ $scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the prin
 ```
 ```html
 <p>{{ text | stripTags }}</p>
-<!--result: 
+<!--result:
 Lorem Ipsum is simply dummy text of the printing...
 -->
 ```
@@ -681,7 +681,7 @@ get string with {n} and replace match with enumeration values
 <p>{{ 'lorem {0} dolor {1} amet' | stringular:'ipsum':'sit' }}</p>
 <p>{{ '{3} {0} dolor {1} amet' | stringular:'ipsum':'sit':null:'lorem' }}</p>
 
-<!-- result: 
+<!-- result:
 <p>lorem ipsum dolor sit amet</p>
 <p>lorem ipsum dolor sit amet</p>
 -->
@@ -718,7 +718,7 @@ tema tis rolod muspi merol
 ```
 ###wrap
 Wrap a string with another string<br/>
-usage: ```string | wrap: string: string[optional]``` 
+usage: ```string | wrap: string: string[optional]```
 ```html
 <p>{{ 'foo' | wrap: '/' }}</p>
 <p>{{ 'foo' | wrap: '{{': '}}' }}</p>
