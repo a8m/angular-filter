@@ -703,9 +703,12 @@ $scope.text = 'lorem ipsum dolor sit amet';
 
 <p>{{ text | truncate: 13: '...' }}</p>
 
+<!--should not cut a string if it is shorter than the provided length -->
+<p>{{ text | truncate: 50: '...' }}</p>
 <!--result:
 lorem ipsum...
 lorem ipsum d...
+lorem ipsum dolor sit amet
 ```
 ###reverse string
 Reverses a string
