@@ -46,6 +46,7 @@ angular.module('angular.filter', [
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
+  'a8m.math.percent',
 
   'a8m.angular',
   'a8m.is-null'
