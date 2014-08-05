@@ -14,12 +14,12 @@ angular.module('a8m.math.percent', ['a8m.math'])
 
     return function (input, divided) {
 
-      input = (isString(input)) ? $window.Number(input) : input;
+      var divider = (isString(input)) ? $window.Number(input) : input;
       divided = divided || 100;
 
-      return (!isNumber(input) || $window.isNaN(input)) ?
+      return (!isNumber(divider) || $window.isNaN(divider)) ?
         input :
-        $math.floor((input/divided) * 100);
+        $math.floor((divider / divided) * 100);
     }
 
   }]);
