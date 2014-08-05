@@ -705,6 +705,7 @@ $scope.text = 'lorem ipsum dolor sit amet';
 
 <!--should not cut a string if it is shorter than the provided length -->
 <p>{{ text | truncate: 50: '...' }}</p>
+
 <!--result:
 lorem ipsum...
 lorem ipsum d...
