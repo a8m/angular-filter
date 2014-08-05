@@ -703,7 +703,7 @@ $scope.text = 'lorem ipsum dolor sit amet';
 
 <p>{{ text | truncate: 13: '...' }}</p>
 
-<!--should not cut a string if it is shorter than the provided length -->
+<!--should not touch string that shorter than the provided length -->
 <p>{{ text | truncate: 50: '...' }}</p>
 
 <!--result:
