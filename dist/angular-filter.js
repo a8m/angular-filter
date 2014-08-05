@@ -1199,14 +1199,14 @@ angular.module('a8m.truncate', [])
   .filter('truncate', function () {
     return function(input, length, suffix, preserve) {
 
-      if(!isString(input)) return input;
-
       length = isUndefined(length) ? input.length : length;
       preserve = preserve || false;
       suffix = suffix || '';
 
+      if(!isString(input) || (input.length <= length)) return input;
+
       return input.substring(0, (preserve) ?
-          ((input.indexOf(' ', length) === -1) ? length : input.indexOf(' ', length)) :
+          ((input.indexOf(' ', length) === -1) ? input.length : input.indexOf(' ', length)) :
           length) + suffix;
 
     };
