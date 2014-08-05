@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.6 - 2014-08-03 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.7 - 2014-08-05 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -931,6 +931,34 @@ angular.module('a8m.math.min', ['a8m.math'])
 
 /**
  * @ngdoc filter
+ * @name Percent
+ * @kind function
+ *
+ * @description
+ * percentage between two numbers
+ *
+ */
+
+angular.module('a8m.math.percent', ['a8m.math'])
+
+  .filter('percent', ['$math', '$window', function ($math, $window) {
+
+    return function (input, divided, round) {
+
+      var divider = (isString(input)) ? $window.Number(input) : input;
+      divided = divided || 100;
+      round = round || false;
+
+      if (!isNumber(divider) || $window.isNaN(divider)) return input;
+
+      return (round) ? $math.round((divider / divided) * 100) :
+        ((divider / divided) * 100);
+    }
+
+  }]);
+
+/**
+ * @ngdoc filter
  * @name endsWith
  * @kind function
  *
@@ -1299,6 +1327,7 @@ angular.module('angular.filter', [
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
+  'a8m.math.percent',
 
   'a8m.angular',
   'a8m.is-null'
