@@ -14,7 +14,7 @@ describe('percentFilter', function () {
 
     expect(filter(10, 100)).toEqual(10);
     expect(filter(1, 100)).toEqual(1);
-    expect(filter(50, 500)).toEqual(10);
+    expect(filter(23, 500)).toEqual(4.6);
 
   });
 
@@ -25,11 +25,11 @@ describe('percentFilter', function () {
 
   });
 
-  it('should return a floor number', function() {
+  it('should return a round number if set to true', function() {
 
-    expect(filter('20.2', 400)).toEqual(5);
-    expect(filter('100.3', 100)).toEqual(100);
-    expect(filter(23.4, 100)).toEqual(23);
+    expect(filter('20.2', 400, true)).toEqual(5);
+    expect(filter('100.3', 100, true)).toEqual(100);
+    expect(filter(23.4, 100, true)).toEqual(23);
 
   });
 
