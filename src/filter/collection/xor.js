@@ -19,17 +19,18 @@ angular.module('a8m.xor', [])
 
       if(!isArray(col1) || !isArray(col2)) return col1;
 
-      return col1.filter(function(sElm) {
+      return col1.concat(col2)
+        .filter(function(elm) {
+          return !(some(elm, col1) && some(elm, col2));
+        });
 
-        return !col2.some(function(dElm) {
-
-          var getter = $parse(expression);
-
-          return (expression) ?
-            equals(getter(sElm), getter(dElm)) :
-            equals(sElm, dElm);
+      function some(el, col) {
+        var getter = $parse(expression);
+        return col.some(function(dElm) {
+          return expression ?
+            equals(getter(dElm), getter(el)) :
+            equals(dElm, el);
         })
-      });
-
+      }
     }
   }]);
