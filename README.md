@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://coveralls.io/repos/a8m/angular-filter/badge.png?branch=master)](https://coveralls.io/r/a8m/angular-filter?branch=master)
->Bunch of useful filters for angularJS, **v0.3.7**
+>Bunch of useful filters for angularJS, **v0.3.8**
 
 ##Table of contents:
 - [Get Started](#get-started)
@@ -26,6 +26,7 @@
   - [some](#contains)
   - [unique](#unique)
   - [where](#where)
+  - [xor](#xor)
 - [String](#string)
   - [endsWith](#endswith)
   - [repeat](#repeat)
@@ -606,6 +607,44 @@ $scope.collection = [
 <th ng-show="{{ collection | every: !(user.id % 2) }}">...</th>
 <!--result: true
 ```
+
+###xor
+Exclusive or between two collection
+**Usage:** ```collection1 | xor: collection2: expression[optional]```
+Example1:
+```html
+<p ng-repeat="elm in [1,2,3,4] | xor: [2,3,5]">
+{{ elm }}
+</p>
+<!--result:
+1 4 5
+```
+Example2:
+```js
+$scope.users1 = [
+  { id: 0, details: { first_name: 'foo', last_name: 'bar' } },
+  { id: 1, details: { first_name: 'foo', last_name: 'baz' } },
+  { id: 2, details: { first_name: 'foo', last_name: 'bag' } }
+];
+$scope.users2 = [
+  { id: 3, details: { first_name: 'foo', last_name: 'bar' } },
+  { id: 4, details: { first_name: 'foo', last_name: 'baz' } }
+];
+```
+```html
+<th ng-repeat="user in users1 | xor: users2">
+  {{ user.id }}
+</th>
+<!--result: 
+1 2 3 4 5
+-->
+<th ng-repeat="user in users1 | xor: users2: 'details.last_name'">
+  {{ user.id }}, {{ user.details.first_name }} {{ user.details.last_name }}
+</th>
+<!--result: 
+2, foo bag
+```
+
 #String
 
 ###ucfirst
