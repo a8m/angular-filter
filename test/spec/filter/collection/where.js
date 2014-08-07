@@ -50,4 +50,10 @@ describe('whereFilter', function() {
 
   });
 
+  it('should get !collection and return it as-is', function() {
+    expect(filter(999)).toEqual(999);
+    expect(filter(!1)).toBeFalsy();
+    expect(null).toEqual(null);
+  });
+
 });
