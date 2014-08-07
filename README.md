@@ -610,7 +610,8 @@ $scope.collection = [
 
 ###xor
 Exclusive or between two collection<br/>
-**Usage:** ```collection1 | xor: collection2: expression[optional]```
+**Usage:** ```collection1 | xor: collection2: expression[optional]```<br/>
+
 Example1:
 ```html
 <p ng-repeat="elm in [1,2,3,4] | xor: [2,3,5]">
