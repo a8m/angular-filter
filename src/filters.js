@@ -42,6 +42,7 @@ angular.module('angular.filter', [
   'a8m.pick',
   'a8m.every',
   'a8m.filter-by',
+  'a8m.xor',
 
   'a8m.math',
   'a8m.math.max',
