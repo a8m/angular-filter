@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://coveralls.io/repos/a8m/angular-filter/badge.png?branch=master)](https://coveralls.io/r/a8m/angular-filter?branch=master)
->Bunch of useful filters for angularJS, **v0.3.8**
+>Bunch of useful filters for angularJS, **v0.3.9**
 
 ##Table of contents:
 - [Get Started](#get-started)
@@ -24,6 +24,7 @@
   - [removeWith](#remove-with)
   - [searchField](#searchfield)
   - [some](#contains)
+  - [toArray](#toarray)
   - [unique](#unique)
   - [where](#where)
   - [xor](#xor)
@@ -645,7 +646,15 @@ $scope.users2 = [
 <!--result: 
 2, foo bag
 ```
-
+###toarray 
+Convert objects into stable arrays. <br/>
+***Usage:*** ```object | toArray: addKey[optional]```<br/>
+if addKey set to true,the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
+```html
+<th ng-repeat="elm in object | toArray | orderBy: 'property'">
+  {{ elm.name }}
+</th>
+```
 #String
 
 ###ucfirst
