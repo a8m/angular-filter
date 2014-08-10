@@ -843,10 +843,10 @@ result:
 ```
 ###percent
 Percentage between two numbers<br/>
-**Usage:** ``` number | precent: devided: round[optional]```, round by default false.
+**Usage:** ``` number | percent: total: round[optional]```, round by default false.
 ```html
-<p>{{ 23 | precent: 500 }}</p>
-<p>{{ 23 | precent: 500: true }}</p>
+<p>{{ 23 | percent: 500 }}</p>
+<p>{{ 23 | percent: 500: true }}</p>
 <!--result:
 4.6
 4
