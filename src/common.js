@@ -20,14 +20,9 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-    var i = -1,
-        props = Object.keys(object),
-        result = new Array(props.length);
-
-    while(++i < props.length) {
-        result[i] = object[props[i]];
-    }
-    return result;
+  return Object.keys(object).map(function(key) {
+      return object[key];
+    });
 }
 
 /**
