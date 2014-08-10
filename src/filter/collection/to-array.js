@@ -21,9 +21,8 @@ angular.module('a8m.to-array', [])
 
       return (!addKey) ? toArray(collection) :
 
-        Object.keys(collection).map(function(key) {
-          return Object.defineProperty(collection[key], '$key', { enumerable: false, value: key });
+        Object.keys(collection).map(function (key) {
+          return extend(collection[key], { $key: key });
         });
-
     }
   });
