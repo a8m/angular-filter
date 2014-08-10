@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.8 - 2014-08-07 * @link https://github.com/a8m/angular-filter
+ * @version v0.3.9 - 2014-08-10 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -27,14 +27,9 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-    var i = -1,
-        props = Object.keys(object),
-        result = new Array(props.length);
-
-    while(++i < props.length) {
-        result[i] = object[props[i]];
-    }
-    return result;
+  return Object.keys(object).map(function(key) {
+      return object[key];
+    });
 }
 
 /**
@@ -793,6 +788,35 @@ angular.module('a8m.search-field', [])
 
 /**
  * @ngdoc filter
+ * @name toArray
+ * @kind function
+ *
+ * @description
+ * Convert objects into stable arrays.
+ * if addKey set to true,the filter also attaches a new property
+ * $key to the value containing the original key that was used in
+ * the object we are iterating over to reference the property
+ */
+
+angular.module('a8m.to-array', [])
+
+  .filter('toArray', function() {
+    return function (collection, addKey) {
+
+      if(!isObject(collection)) {
+        return collection;
+      }
+
+      return (!addKey) ? toArray(collection) :
+
+        Object.keys(collection).map(function (key) {
+          return extend(collection[key], { $key: key });
+        });
+    }
+  });
+
+/**
+ * @ngdoc filter
  * @name unique/uniq
  * @kind function
  *
@@ -1339,6 +1363,7 @@ angular.module('angular.filter', [
   'a8m.rtrim',
   'a8m.repeat',
 
+  'a8m.to-array',
   'a8m.concat',
   'a8m.contains',
   'a8m.unique',
