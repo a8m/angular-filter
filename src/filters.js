@@ -21,6 +21,7 @@ angular.module('angular.filter', [
   'a8m.rtrim',
   'a8m.repeat',
 
+  'a8m.to-array',
   'a8m.concat',
   'a8m.contains',
   'a8m.unique',
