@@ -17,6 +17,7 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
+  - [map](#map)
   - [omit](#omit)
   - [pick](#pick)
   - [reverse](#reverse-collection)
@@ -648,13 +649,31 @@ $scope.users2 = [
 ```
 ###toarray 
 Convert objects into stable arrays. <br/>
-***Usage:*** ```object | toArray: addKey[optional]```<br/>
+**Usage:** ```object | toArray: addKey[optional]```<br/>
 if addKey set to true,the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
 ```html
 <th ng-repeat="elm in object | toArray | orderBy: 'property'">
   {{ elm.name }}
 </th>
 ```
+###map
+Returns a new collection of the results of each expression execution. <br/>
+**Usage:** ```collection | map: expression``` <br/>
+Example:
+```js
+$scope.divide(elm) {
+  return elm/2
+}
+```
+```html
+<th ng-repeat="i in [1, 2, 3, 4, 5] | map: divide">
+  {{ i }}
+</th>
+<!--result: 
+0.5, 1, 1.5, 2, 2.5
+```
+
+
 #String
 
 ###ucfirst
