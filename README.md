@@ -673,7 +673,8 @@ $scope.divide = function(elm) {
 <!--result: 
 0.5, 1, 1.5, 2, 2.5
 ```
-###pluck(used map)
+###pluck
+Used map
 ```js
 $scope.users = [
   { id:1, user: { name: 'Foo' } },
