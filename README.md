@@ -659,9 +659,9 @@ if addKey set to true,the filter also attaches a new property $key to the value 
 ###map
 Returns a new collection of the results of each expression execution. <br/>
 **Usage:** ```collection | map: expression``` <br/>
-Example:
+Example1:
 ```js
-$scope.divide(elm) {
+$scope.divide = function(elm) {
   return elm/2
 }
 ```
@@ -672,7 +672,24 @@ $scope.divide(elm) {
 <!--result: 
 0.5, 1, 1.5, 2, 2.5
 ```
-
+Example2(#pluck)
+###pluck(used map)
+```js
+$scope.users = [
+  { id:1, user: { name: 'Foo' } },
+  { id:1, user: { name: 'Bar' } },
+  { id:1, user: { name: 'Baz' } }
+];
+```
+```html
+<th ng-repeat="name in users | map: 'user.name' ">
+  {{ name }}
+</th>
+<!--result:
+Foo
+Bar
+Baz
+```
 
 #String
 
