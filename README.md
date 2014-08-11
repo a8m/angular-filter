@@ -20,6 +20,7 @@
   - [map](#map)
   - [omit](#omit)
   - [pick](#pick)
+  - [pluck](#pluck)
   - [reverse](#reverse-collection)
   - [remove](#remove)
   - [removeWith](#remove-with)
@@ -672,7 +673,6 @@ $scope.divide = function(elm) {
 <!--result: 
 0.5, 1, 1.5, 2, 2.5
 ```
-Example2(#pluck)
 ###pluck(used map)
 ```js
 $scope.users = [
