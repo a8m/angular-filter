@@ -3,6 +3,7 @@
 
 ##Table of contents:
 - [Get Started](#get-started)
+- [Development](#development)
 - [Collection](#collection)
   - [after](#after)
   - [afterWhere](#afterwhere)
@@ -888,4 +889,21 @@ Percentage between two numbers<br/>
 4.6
 4
 ```
-
+#Development
+Clone the project: <br/>
+```
+$ git clone 
+$ npm install
+$ bower install
+```
+Run the tests:
+```
+$ grunt test
+```
+**Deploy:**<br/>
+Run the build task, update version before(bower,package)
+```
+$ grunt build
+$ git tag v0.*.*
+$ git push origin master --tags
+```
