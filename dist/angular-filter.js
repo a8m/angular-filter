@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.3.9 - 2014-08-10 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.0 - 2014-08-11 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -608,6 +608,34 @@ angular.module('a8m.is-empty', [])
         !collection.length;
     }
   });
+
+/**
+ * @ngdoc filter
+ * @name map
+ * @kind function
+ *
+ * @description
+ * Returns a new collection of the results of each expression execution.
+ */
+
+angular.module('a8m.map', [])
+
+  .filter('map', ['$parse', function($parse) {
+    return function (collection, expression) {
+
+      collection = (isObject(collection)) ?
+        toArray(collection) : collection;
+
+      if(!isArray(collection) || isUndefined(expression)) {
+        return collection;
+      }
+
+      return collection.map(function (elm) {
+
+        return $parse(expression)(elm);
+      });
+    }
+  }]);
 
 /**
  * @ngdoc filter
@@ -1386,6 +1414,7 @@ angular.module('angular.filter', [
   'a8m.every',
   'a8m.filter-by',
   'a8m.xor',
+  'a8m.map',
 
   'a8m.math',
   'a8m.math.max',
