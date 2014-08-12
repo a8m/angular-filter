@@ -856,7 +856,7 @@ foo-foo-foo
 
 ###max
 
-maxFilter find and return the largest number in a given array
+max find and return the largest number in a given array
 
 ```html
 <p> {{ [1,2,3,4,7,8,9] | max }}</p>
@@ -869,7 +869,7 @@ result:
 
 ###min
 
-minFilter find and return the lowest number in a given array
+min find and return the lowest number in a given array
 
 ```html
 <p> {{ [1,2,3,4,7,8,9] | min }}</p>
