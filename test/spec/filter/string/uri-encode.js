@@ -2,17 +2,19 @@
 
 describe('uriEncodeFilter', function() {
 
-  var filter,
-      $window;
+  var filter;
 
-  beforeEach(module('a8m.uri-encode'));
-
-  beforeEach(inject(function($filter, _$window_) {
-    filter = $filter('uriEncode');
-    $window = _$window_;
+  beforeEach(module('a8m.uri-encode', function($provide) {
+    $provide.value('$window', {
+      encodeURI: function(){}
+    });
   }));
 
-  it('it should get string as parameter and called encodeURI', function() {
+  beforeEach(inject(function($filter) {
+    filter = $filter('uriEncode');
+  }));
+
+  it('it should get string as parameter and called encodeURI', inject(function($window) {
 
     var string = 'foo bar baz';
 
@@ -21,10 +23,9 @@ describe('uriEncodeFilter', function() {
     filter(string);
 
     expect($window.encodeURI).toHaveBeenCalledWith(string)
+  }));
 
-  });
-
-  it('should get !string as parameter and return it as is', function() {
+  it('should get !string as parameter and return it as is', inject(function($window) {
 
     spyOn($window, 'encodeURI');
 
@@ -32,8 +33,6 @@ describe('uriEncodeFilter', function() {
     expect(filter({})).toEqual({});
     expect(filter(777)).toEqual(777);
     expect($window.encodeURI).not.toHaveBeenCalled();
-
-
-  })
+  }));
 
 });
