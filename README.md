@@ -877,7 +877,6 @@ min find and return the lowest number in a given array
 <!--
 result:
 1
--->
 ```
 ###percent
 Percentage between two numbers<br/>
