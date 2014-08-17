@@ -32,10 +32,11 @@ angular.module('a8m.first', [])
       result =  collection.filter(function(elm) {
         var get = (getter) ? $parse(getter)(elm) : getter,
           rest = isDefined(getter) ? (count < n && get) : count < n;
-          count = rest ? count+1 : count;
+        count = rest ? count+1 : count;
+
         return rest;
       });
 
-      return (n === 1) ? result[0] : result;
+      return (count < 2) ? result[0] : result;
     }
   }]);
