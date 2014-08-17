@@ -9,7 +9,7 @@
  */
 angular.module('a8m.first', [])
 
-  .filter('filterBy', ['$parse', function( $parse ) {
+  .filter('first', ['$parse', function( $parse ) {
     return function(collection) {
 
       var n,
@@ -27,12 +27,15 @@ angular.module('a8m.first', [])
 
       args = Array.prototype.slice.call(arguments, 1);
       n = (isNumber(args[0])) ? args[0] : 1;
-      getter = (isString(args[0]))  ? args[0] : (isString(args[1])) ? (isString(args[1])) : false;
+      getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      //in progress(length == 1) ? object : array;
-      return collection.filter(function(elm) {
-        return (count >= n)
+      result =  collection.filter(function(elm) {
+        var get = (getter) ? $parse(getter)(elm) : getter,
+          rest = isDefined(getter) ? (count < n && get) : count < n;
+          count = rest ? count+1 : count;
+        return rest;
       });
 
+      return (n === 1) ? result[0] : result;
     }
   }]);
