@@ -19,6 +19,7 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
+  - [last](#last)
   - [map](#map)
   - [omit](#omit)
   - [pick](#pick)
@@ -215,14 +216,14 @@ $scope.users = [
 ```
 
 ```html
-<!-- collection: first: expression -->
+<!-- collection | first: expression -->
 {{ users | first: 'name.first === \'lol\' && name.last === \'bar\'' }}
 <!--result:
 { id: 4, name: { first: 'lol', last: 'bar' } }
 ```
 
 ```html
-<!-- collection: first: n -->
+<!-- collection | first: n -->
 <th ng-repeat="user in users | first: 2">
   {{ user.name }}
 </th>
@@ -231,8 +232,51 @@ foo
 baz
 ```
 ```html
-<!-- collection: first: n: expression -->
+<!-- collection | first: n: expression -->
 <th ng-repeat="user in users | first: 2: '!(id%2)'">
+  {{ user.name }}
+</th>
+<!--result:
+baz
+lol
+```
+###last
+Gets the last element or last n elements of a collection,<br/>
+if expression is provided, is returns as long the expression return truthy<br/>
+***Usage:*** See below <br/>
+```js
+$scope.users = [
+  { id: 1, name: { first: 'foo', last: 'bar' } },
+  { id: 2, name: { first: 'baz', last: 'bar' } },
+  { id: 3, name: { first: 'bar', last: 'bar' } },
+  { id: 4, name: { first: 'lol', last: 'bar' } }
+];
+```
+```html
+{{ users | last }}
+<!--result:
+{ id: 4, name: { first: 'lol', last: 'bar' } }
+```
+
+```html
+<!-- collection | last: expression -->
+{{ users | last: 'name.last === \'bar\'' }}
+<!--result:
+{ id: 4, name: { first: 'lol', last: 'bar' } }
+```
+
+```html
+<!-- collection | last: n -->
+<th ng-repeat="user in users | last: 2">
+  {{ user.name }}
+</th>
+<!--result:
+bar
+lol
+```
+```html
+<!-- collection | last: n: expression -->
+<th ng-repeat="user in users | last: 2: '!(id%2)'">
   {{ user.name }}
 </th>
 <!--result:
