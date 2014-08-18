@@ -14,6 +14,7 @@
   - [countBy](#countby)
   - [every](#every)
   - [filterBy](#filterby)
+  - [first](#first)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
@@ -194,6 +195,49 @@ $scope.users = [
 <!--result:
   1: foo bar
   3: foo baz
+```
+###first
+Gets the first element or first n elements of a collection,<br/>
+if expression is provided, is returns as long the expression return truthy<br/>
+***Usage:*** See below <br/>
+```js
+$scope.users = [
+  { id: 1, name: { first: 'foo', last: 'bar' } },
+  { id: 2, name: { first: 'baz', last: 'bar' } },
+  { id: 3, name: { first: 'bar', last: 'bar' } },
+  { id: 4, name: { first: 'lol', last: 'bar' } }
+];
+```
+```html
+{{ users | first }}
+<!--result:
+{ id: 1, name: { first: 'foo', last: 'bar' } }
+```
+
+```html
+<!-- collection: first: expression -->
+{{ users | first: 'name.first === \'lol\' && name.last === \'bar\'' }}
+<!--result:
+{ id: 4, name: { first: 'lol', last: 'bar' } }
+```
+
+```html
+<!-- collection: first: n -->
+<th ng-repeat="user in users | first: 2">
+  {{ user.name }}
+</th>
+<!--result:
+foo
+baz
+```
+```html
+<!-- collection: first: n: expression -->
+<th ng-repeat="user in users | first: 2: '!(id%2)'">
+  {{ user.name }}
+</th>
+<!--result:
+baz
+lol
 ```
 
 ###fuzzy
