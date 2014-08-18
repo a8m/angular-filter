@@ -66,3 +66,25 @@ function hasApproxPattern(word, pattern) {
 
   return hasApproxPattern(word.substr(index+1), pattern.substr(1))
 }
+
+/**
+ * return the first n element of an array,
+ * if expression provided, is returns as long the expression return truthy
+ * @param array
+ * @param n {number}
+ * @param expression {$parse}
+ * @return array or single object
+ */
+function getFirstMatches(array, n, expression) {
+  var result,
+    count = ~~result;
+
+  result =  array.filter(function(elm) {
+    var rest = isDefined(expression) ? (count < n && expression(elm)) : count < n;
+    count = rest ? count+1 : count;
+
+    return rest;
+  });
+
+  return (count < 2) ? result[0] : result;
+}

@@ -13,9 +13,7 @@ angular.module('a8m.first', [])
     return function(collection) {
 
       var n,
-        count = ~~n,
         getter,
-        result,
         args;
 
       collection = (isObject(collection)) ? toArray(collection) :
@@ -29,14 +27,22 @@ angular.module('a8m.first', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      result =  collection.filter(function(elm) {
-        var get = (getter) ? $parse(getter)(elm) : getter,
-          rest = isDefined(getter) ? (count < n && get) : count < n;
-        count = rest ? count+1 : count;
-
-        return rest;
-      });
-
-      return (count < 2) ? result[0] : result;
+      return getFirstMatches(collection, n,(getter) ? $parse(getter) : getter);
     }
   }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
