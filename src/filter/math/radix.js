@@ -13,7 +13,7 @@ angular.module('a8m.math.radix', [])
 
     return function (input, radix) {
 
-      var RANGE = /^[1-9]$|^[1-2]\d$|^3[0-6]$/;
+      var RANGE = /^[2-9]$|^[1-2]\d$|^3[0-6]$/;
 
       if(!isNumber(input) || !RANGE.test(radix)) {
         return input;
