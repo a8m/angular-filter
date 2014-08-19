@@ -52,6 +52,7 @@
   - [min](#min)
   - [max](#max)
   - [percent](#percent)
+  - [radix](#radix)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -976,6 +977,17 @@ Percentage between two numbers<br/>
 4.6
 4
 ```
+###radix
+Converting decimal numbers to different bases(radix)<br/>
+**Usage:** ```number | radix: base```
+```html
+<p>{{ 8 | radix: 2 }}</p>
+<p>{{ 32586 | radix: 16 }}</p>
+<!--result:
+1000
+7F4A
+```
+
 #Development
 Clone the project: <br/>
 ```
