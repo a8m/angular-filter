@@ -13,7 +13,7 @@ describe('radixFilter', function () {
   it('should converting decimal numbers to different bases(radix)', function() {
     expect(filter(8, 2)).toEqual('1000');
     expect(filter(15, 16)).toEqual('F');
-    expect(filter(32, 16)).toEqual('20');
+    expect(filter(32586, 16)).toEqual('7F4A');
     expect(filter(32, 8)).toEqual('40');
   });
 
