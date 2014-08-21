@@ -47,6 +47,7 @@ angular.module('angular.filter', [
   'a8m.map',
   'a8m.first',
   'a8m.last',
+  'a8m.flatten',
 
   'a8m.math',
   'a8m.math.max',
