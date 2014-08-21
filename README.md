@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://coveralls.io/repos/a8m/angular-filter/badge.png?branch=master)](https://coveralls.io/r/a8m/angular-filter?branch=master)
->Bunch of useful filters for angularJS, **v0.4.0**
+>Bunch of useful filters for angularJS, **v0.4.1**
 
 ##Table of contents:
 - [Get Started](#get-started)
@@ -15,6 +15,7 @@
   - [every](#every)
   - [filterBy](#filterby)
   - [first](#first)
+  - [flatten](#flatten)
   - [fuzzy](#fuzzy)
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
@@ -283,6 +284,20 @@ lol
 <!--result:
 baz
 lol
+```
+###flatten
+Flattens a nested array (the nesting can be to any depth).<br/>
+If you pass shallow, the array will only be flattened a single level
+**Usage:** ```collection | flatten: shallow[optional]```
+```js
+$scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[[[14, 15]]]]]]]]]]]]];
+```
+```html
+<th ng-repeat="elm in wierdArray | flatten"> 
+ {{ elm }},
+</th>
+<!--result:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 ```
 
 ###fuzzy
