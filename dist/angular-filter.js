@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.0 - 2014-08-11 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.1 - 2014-08-21 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -72,6 +72,28 @@ function hasApproxPattern(word, pattern) {
     return false;
 
   return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+}
+
+/**
+ * return the first n element of an array,
+ * if expression provided, is returns as long the expression return truthy
+ * @param array
+ * @param n {number}
+ * @param expression {$parse}
+ * @return array or single object
+ */
+function getFirstMatches(array, n, expression) {
+  var result,
+    count = ~~result;
+
+  result =  array.filter(function(elm) {
+    var rest = isDefined(expression) ? (count < n && expression(elm)) : count < n;
+    count = rest ? count+1 : count;
+
+    return rest;
+  });
+
+  return (count < 2) ? result[0] : result;
 }
 
 /**
@@ -450,6 +472,102 @@ angular.module('a8m.filter-by', [])
 
 /**
  * @ngdoc filter
+ * @name first
+ * @kind function
+ *
+ * @description
+ * Gets the first element or first n elements of an array
+ * if callback is provided, is returns as long the callback return truthy
+ */
+angular.module('a8m.first', [])
+
+  .filter('first', ['$parse', function( $parse ) {
+    return function(collection) {
+
+      var n,
+        getter,
+        args;
+
+      collection = (isObject(collection)) ? toArray(collection) :
+        collection;
+
+      if(!isArray(collection)) {
+        return collection;
+      }
+
+      args = Array.prototype.slice.call(arguments, 1);
+      n = (isNumber(args[0])) ? args[0] : 1;
+      getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
+
+      return getFirstMatches(collection, n,(getter) ? $parse(getter) : getter);
+    }
+  }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @ngdoc filter
+ * @name flatten
+ * @kind function
+ *
+ * @description
+ * Flattens a nested array (the nesting can be to any depth).
+ * If you pass shallow, the array will only be flattened a single level
+ */
+
+angular.module('a8m.flatten', [])
+  .filter('flatten', function () {
+    return function(collection, shallow) {
+
+      shallow = shallow || false;
+      collection = (isObject(collection)) ? toArray(collection)
+        : collection;
+
+      if(!isArray(collection)) {
+        return collection;
+      }
+
+      return (!shallow) ? flatten(collection, 0) :
+        [].concat.apply([], collection);
+    }
+  });
+
+/**
+ * flatten nested array (the nesting can be to any depth).
+ * @param array {Array}
+ * @param i {int}
+ * @returns {Array}
+ * @private
+ */
+function flatten(array, i) {
+  i = i || 0;
+
+  if(i >= array.length)
+    return array;
+
+  if(isArray(array[i])) {
+    return flatten(array.slice(0,i)
+      .concat(array[i], array.slice(i+1)), i);
+  }
+  return flatten(array, i+1);
+}
+
+/**
+ * @ngdoc filter
  * @name fuzzyByKey
  * @kind function
  *
@@ -608,6 +726,58 @@ angular.module('a8m.is-empty', [])
         !collection.length;
     }
   });
+
+/**
+ * @ngdoc filter
+ * @name last
+ * @kind function
+ *
+ * @description
+ * Gets the last element or last n elements of an array
+ * if callback is provided, is returns as long the callback return truthy
+ */
+angular.module('a8m.last', [])
+
+  .filter('last', ['$parse', function( $parse ) {
+    return function(collection) {
+
+      var n,
+        getter,
+        args,
+        result;
+
+      collection = (isObject(collection)) ? toArray(collection) :
+        collection;
+
+      if(!isArray(collection)) {
+        return collection;
+      }
+
+      args = Array.prototype.slice.call(arguments, 1);
+      n = (isNumber(args[0])) ? args[0] : 1;
+      getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
+
+      return isArray(result = getFirstMatches(collection.reverse(), n,(getter) ? $parse(getter) : getter)) ?
+        result.reverse() :
+        result;
+    }
+  }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @ngdoc filter
@@ -856,8 +1026,8 @@ angular.module('a8m.to-array', [])
 
 angular.module('a8m.unique', [])
   .filter({
-    unique: ['$parse', uniqFilter],
-    uniq: ['$parse', uniqFilter]
+      unique: ['$parse', uniqFilter],
+      uniq: ['$parse', uniqFilter]
     });
 
 function uniqFilter($parse) {
@@ -1045,6 +1215,33 @@ angular.module('a8m.math.percent', ['a8m.math'])
     }
 
   }]);
+
+/**
+ * @ngdoc filter
+ * @name Radix
+ * @kind function
+ *
+ * @description
+ * converting decimal numbers to different bases(radix)
+ */
+
+angular.module('a8m.math.radix', [])
+
+  .filter('radix', function () {
+
+    return function (input, radix) {
+
+      var RANGE = /^[2-9]$|^[1-2]\d$|^3[0-6]$/;
+
+      if(!isNumber(input) || !RANGE.test(radix)) {
+        return input;
+      }
+
+      return input.toString(radix).toUpperCase();
+
+    }
+
+  });
 
 /**
  * @ngdoc filter
@@ -1415,11 +1612,15 @@ angular.module('angular.filter', [
   'a8m.filter-by',
   'a8m.xor',
   'a8m.map',
+  'a8m.first',
+  'a8m.last',
+  'a8m.flatten',
 
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
   'a8m.math.percent',
+  'a8m.math.radix',
 
   'a8m.angular',
   'a8m.is-null'
