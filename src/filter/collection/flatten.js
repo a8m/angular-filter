@@ -38,7 +38,7 @@ function flatten(array, i) {
   if(i >= array.length)
     return array;
 
-  if(Array.isArray(array[i])) {
+  if(isArray(array[i])) {
     return flatten(array.slice(0,i)
       .concat(array[i], array.slice(i+1)), i);
   }

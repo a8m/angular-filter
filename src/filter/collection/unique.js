@@ -11,8 +11,8 @@
 
 angular.module('a8m.unique', [])
   .filter({
-    unique: ['$parse', uniqFilter],
-    uniq: ['$parse', uniqFilter]
+      unique: ['$parse', uniqFilter],
+      uniq: ['$parse', uniqFilter]
     });
 
 function uniqFilter($parse) {

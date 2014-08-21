@@ -87,14 +87,12 @@ describe('uniqFilter', function() {
   });
 
   it('should support advance nested properties', function() {
-
     var orders = [
       { order: { person: { credit: { information: { num: 99999 } } } } },
       { order: { person: { credit: { information: { num: 99999 } } } } },
       { order: { person: { credit: { information: { num: 99999 } } } } }
     ];
     expect(filter(orders, 'order.person.credit.information.num')).toEqual([orders[0]]);
-
   });
 
 });
