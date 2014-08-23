@@ -81,7 +81,7 @@ angular.module('a8m.filter-watcher', [])
        * @private
        */
       function _destroy(name, object) {
-        $$timeout(function() {
+        return $$timeout(function() {
           delete object[_getFullName(name)];
         });
       }
