@@ -91,7 +91,6 @@ angular.module('a8m.filter-watcher', [])
         $destroy: _destroy
       }
 
-
     }];
 
   });
