@@ -56,6 +56,7 @@ angular.module('angular.filter', [
   'a8m.math.radix',
 
   'a8m.angular',
-  'a8m.is-null'
+  'a8m.is-null',
 
+  'a8m.filter-watcher'
 ]);
