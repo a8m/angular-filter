@@ -2,7 +2,7 @@
  * @ngdoc module
  * @name angular.filters
  * @description
- *  bunch of useful filters for angularJS
+ * Bunch of useful filters for angularJS
  */
 
 angular.module('angular.filter', [

@@ -5,7 +5,7 @@
  *
  * @description
  * filterWatchers is a _privateProvider
- * It's create to solve the problem of $rootScope:infdig(Infinite $digest loop) when using
+ * It's created to solve the problem of $rootScope:infdig(Infinite $digest loop) when using
  * some filters on the view.
  */
 
@@ -65,7 +65,7 @@ angular.module('a8m.filter-watcher', [])
         if(!_isWatched(fName, object)) {
           //Create new instance
           Object.defineProperty(object, fName, {
-            enumerable: true,
+            enumerable: false,
             configurable: true,
             value: {}
           });

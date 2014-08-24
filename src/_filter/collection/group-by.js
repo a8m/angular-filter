@@ -17,14 +17,14 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         get = $parse(property),
         prop;
 
-      if(!isArray(collection) || isUndefined(property)) {
+      if(!isObject(collection) || isUndefined(property)) {
         return collection;
       }
 
       //Add collection instance to watch list
       result = filterWatcher.$watch('groupBy', collection);
 
-      collection.forEach( function( elm ) {
+      forEach( collection, function( elm ) {
         prop = get(elm);
 
         if(!result[prop]) {
