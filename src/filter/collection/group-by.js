@@ -8,12 +8,12 @@
  * each key is an array of the elements.
  */
 
-angular.module('a8m.group-by', [])
+angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
 
-  .filter('groupBy', [ '$parse', function ( $parse ) {
+  .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
-      var result = {},
+      var result,
         get = $parse(property),
         prop;
 
@@ -23,6 +23,9 @@ angular.module('a8m.group-by', [])
         return collection;
       }
 
+      //Add collection instance to watch list
+      result = filterWatcher.$watch('groupBy', collection);
+
       collection.forEach( function( elm ) {
         prop = get(elm);
 
@@ -30,8 +33,14 @@ angular.module('a8m.group-by', [])
           result[prop] = [];
         }
 
-        result[prop].push(elm);
+        if(result[prop].indexOf( elm ) === -1) {
+          result[prop].push(elm);
+        }
+
       });
+
+      //kill instance
+      filterWatcher.$destroy('groupBy', collection);
 
       return result;
     }
