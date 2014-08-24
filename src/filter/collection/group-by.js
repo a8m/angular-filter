@@ -17,8 +17,6 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         get = $parse(property),
         prop;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
-
       if(!isArray(collection) || isUndefined(property)) {
         return collection;
       }

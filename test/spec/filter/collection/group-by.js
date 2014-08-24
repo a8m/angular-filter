@@ -46,24 +46,6 @@ describe('groupByFilter', function() {
 
   });
 
-
-  it('should get object as collection, property(nested to) as identifier and ' +
-    'returns the composed aggregate object.', function() {
-
-    var dataObject = {
-      0: { id: 1, data: {} },
-      1: { id: 1, data: {} },
-      2: { id: 2, data: {} },
-      3: { id: 2, data: {} }
-    };
-
-    expect(filter(dataObject, 'id')).toEqual({
-      1: [dataObject[0], dataObject[1]],
-      2: [dataObject[2], dataObject[3]]
-    });
-
-  });
-
   it('should get !collection and return it as-is ', function() {
 
     expect(filter('string')).toEqual('string');
