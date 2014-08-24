@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.1 - 2014-08-21 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.2 - 2014-08-25 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -27,7 +27,8 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return Object.keys(object).map(function(key) {
+  return isArray(object) ? object :
+    Object.keys(object).map(function(key) {
       return object[key];
     });
 }
@@ -680,30 +681,37 @@ angular.module('a8m.fuzzy', [])
  * each key is an array of the elements.
  */
 
-angular.module('a8m.group-by', [])
+angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
 
-  .filter('groupBy', [ '$parse', function ( $parse ) {
+  .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
-      var result = {},
+      var result,
         get = $parse(property),
         prop;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
-
-      if(!isArray(collection) || isUndefined(property)) {
+      if(!isObject(collection) || isUndefined(property)) {
         return collection;
       }
 
-      collection.forEach( function( elm ) {
+      //Add collection instance to watch list
+      result = filterWatcher.$watch('groupBy', collection);
+
+      forEach( collection, function( elm ) {
         prop = get(elm);
 
         if(!result[prop]) {
           result[prop] = [];
         }
 
-        result[prop].push(elm);
+        if(result[prop].indexOf( elm ) === -1) {
+          result[prop].push(elm);
+        }
+
       });
+
+      //kill instance
+      filterWatcher.$destroy('groupBy', collection);
 
       return result;
     }
@@ -744,20 +752,23 @@ angular.module('a8m.last', [])
       var n,
         getter,
         args,
-        result;
+        result,
+        //cuz reverse change our src collection
+        //and we don't want side effects
+        reversed = copy(collection);
 
-      collection = (isObject(collection)) ? toArray(collection) :
-        collection;
+      reversed = (isObject(reversed)) ? toArray(reversed) :
+        reversed;
 
-      if(!isArray(collection)) {
-        return collection;
+      if(!isArray(reversed)) {
+        return reversed;
       }
 
       args = Array.prototype.slice.call(arguments, 1);
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return isArray(result = getFirstMatches(collection.reverse(), n,(getter) ? $parse(getter) : getter)) ?
+      return isArray(result = getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter)) ?
         result.reverse() :
         result;
     }
@@ -1566,10 +1577,106 @@ angular.module('a8m.wrap', [])
   });
 
 /**
+ * @ngdoc provider
+ * @name filterWatcher
+ * @kind function
+ *
+ * @description
+ * filterWatchers is a _privateProvider
+ * It's created to solve the problem of $rootScope:infdig(Infinite $digest loop) when using
+ * some filters on the view.
+ */
+
+angular.module('a8m.filter-watcher', [])
+  .provider('filterWatcher', function() {
+
+    var filterPrefix = '_$$';
+
+    /**
+     * @description
+     * change the prefix name for filters on watch phase
+     * @param prefix
+     * @returns {filterWatcher}
+     */
+    this.setPrefix = function(prefix) {
+      filterPrefix = prefix;
+      return this;
+    };
+
+    this.$get = ['$window', function($window) {
+
+      var $$timeout = $window.setTimeout;
+
+      /**
+       * @description
+       * return the filter full name
+       * @param name
+       * @returns {string}
+       * @private
+       */
+      function _getFullName(name) {
+        return filterPrefix + name;
+      }
+
+      /**
+       * @description
+       * return whether or not this object is watched in current phase
+       * @param fName
+       * @param object
+       * @returns {boolean}
+       * @private
+       */
+      function _isWatched(fName, object) {
+        return isDefined(object[fName]);
+      }
+
+      /**
+       * @description
+       * return the object.$$filterName instance in current phase
+       * @param name
+       * @param object
+       * @private
+       */
+      function _watch(name, object) {
+        var fName = _getFullName(name);
+
+        if(!_isWatched(fName, object)) {
+          //Create new instance
+          Object.defineProperty(object, fName, {
+            enumerable: false,
+            configurable: true,
+            value: {}
+          });
+        }
+        return object[fName];
+      }
+
+      /**
+       * @description
+       * destroy/delete current watch instance
+       * @param name
+       * @param object
+       * @private
+       */
+      function _destroy(name, object) {
+        return $$timeout(function() {
+          delete object[_getFullName(name)];
+        });
+      }
+
+      return {
+        $watch: _watch,
+        $destroy: _destroy
+      }
+
+    }];
+
+  });
+/**
  * @ngdoc module
  * @name angular.filters
  * @description
- *  bunch of useful filters for angularJS
+ * Bunch of useful filters for angularJS
  */
 
 angular.module('angular.filter', [
@@ -1623,7 +1730,8 @@ angular.module('angular.filter', [
   'a8m.math.radix',
 
   'a8m.angular',
-  'a8m.is-null'
+  'a8m.is-null',
 
+  'a8m.filter-watcher'
 ]);
 })( window, window.angular );
