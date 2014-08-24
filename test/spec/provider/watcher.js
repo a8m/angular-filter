@@ -24,9 +24,7 @@ describe('filterWatcherProvider', function() {
       flag = filterWatcher.$watch('foo', watched);
 
     expect(flag).toEqual({});
-    expect(watched).toEqual(jasmine.objectContaining({
-      _$$foo : {}
-    }));
+    expect(watched).toEqual({ _$$foo : {} });
   }));
 
   it('should return the same watcher instance if already exist', inject(function(filterWatcher) {
@@ -50,9 +48,7 @@ describe('filterWatcherProvider', function() {
         flag = filterWatcher.$watch('foo', watched);
 
       expect(flag).toEqual({});
-      expect(watched).toEqual(jasmine.objectContaining({
-        a8m_foo : {}
-      }));
+      expect(watched).toEqual({ a8m_foo : {} });
     });
   });
 
