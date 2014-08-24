@@ -48,6 +48,7 @@ describe('filterWatcherProvider', function() {
         flag = filterWatcher.$watch('foo', watched);
 
       expect(flag).toEqual({});
+      //TODO:(Ariel) this expectation broke travis build, check why
 //      expect(watched).toEqual({ a8m_foo : {} });
     });
   });
