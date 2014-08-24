@@ -34,22 +34,22 @@ describe('filterWatcherProvider', function() {
     expect(flag).toEqual([ 1, 2, 3]);
   }));
 
-//  it('should be able to remove specific watcher instance', inject(function(filterWatcher) {
-//    var watched = { _$$bar: [ 1, 2, 3] };
-//    filterWatcher.$destroy('bar', watched);
+  it('should be able to remove specific watcher instance', inject(function(filterWatcher) {
+    var watched = { _$$bar: [ 1, 2, 3] };
+    filterWatcher.$destroy('bar', watched);
+
+    expect(watched).toEqual({});
+  }));
+
+//  it('should be able to change the watcherPrefix', function() {
+//    module(setPrefix('a8m_'));
+//    inject(function(filterWatcher) {
+//      var watched = {},
+//        flag = filterWatcher.$watch('foo', watched);
 //
-//    expect(watched).toEqual({});
-//  }));
-
-  it('should be able to change the watcherPrefix', function() {
-    module(setPrefix('a8m_'));
-    inject(function(filterWatcher) {
-      var watched = {},
-        flag = filterWatcher.$watch('foo', watched);
-
-      expect(flag).toEqual({});
-      expect(watched).toEqual({ a8m_foo : {} });
-    });
-  });
+//      expect(flag).toEqual({});
+//      expect(watched).toEqual({ a8m_foo : {} });
+//    });
+//  });
 
 });
