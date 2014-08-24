@@ -20,7 +20,9 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return Object.keys(object).map(function(key) {
+
+  return (isArray(object)) ? object :
+    Object.keys(object).map(function(key) {
       return object[key];
     });
 }
