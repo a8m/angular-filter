@@ -1,24 +1,24 @@
-//'use strict';
-//
-//describe('filterWatcherProvider', function() {
-//
-//  //Provider
-//  function setPrefix(name) {
-//    return function(filterWatcherProvider) {
-//      filterWatcherProvider.setPrefix(name);
-//    }
-//  }
-//
-//  beforeEach(module('a8m.filter-watcher', function ($provide) {
-//    //mock setTimeout
-//    $provide.value('$window', {
-//      setTimeout: function(fn, mill) {
-//        fn.apply(null, [].slice.call(arguments, 2));
-//        return +new Date();
-//      }
-//    });
-//  }));
-//
+'use strict';
+
+describe('filterWatcherProvider', function() {
+
+  //Provider
+  function setPrefix(name) {
+    return function(filterWatcherProvider) {
+      filterWatcherProvider.setPrefix(name);
+    }
+  }
+
+  beforeEach(module('a8m.filter-watcher', function ($provide) {
+    //mock setTimeout
+    $provide.value('$window', {
+      setTimeout: function(fn, mill) {
+        fn.apply(null, [].slice.call(arguments, 2));
+        return +new Date();
+      }
+    });
+  }));
+
 //  it('should register watcher and return new object', inject(function(filterWatcher) {
 //    var watched = {},
 //      flag = filterWatcher.$watch('foo', watched);
@@ -55,5 +55,5 @@
 //      }));
 //    });
 //  });
-//
-//});
+
+});
