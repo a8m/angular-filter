@@ -54,6 +54,7 @@
   - [max](#max)
   - [percent](#percent)
   - [radix](#radix)
+  - [sum](#sum)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1001,6 +1002,16 @@ Converting decimal numbers to different bases(radix)<br/>
 <!--result:
 1000
 7F4A
+```
+###sum
+Sum up all values within an array
+**Usage:** ```array | sum: initial-value[optional]```
+```html
+{{ [2,3,5] | sum }}
+{{ [2,3,5] | sum: 10 }}
+<!--result
+10
+20
 ```
 
 #Development
