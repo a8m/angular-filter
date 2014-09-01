@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.2 - 2014-08-25 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.3 - 2014-09-01 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1256,6 +1256,30 @@ angular.module('a8m.math.radix', [])
 
 /**
  * @ngdoc filter
+ * @name sum
+ * @kind function
+ *
+ * @description
+ * Sum up all values within an array
+ *
+ */
+
+angular.module('a8m.math.sum', [])
+
+  .filter('sum', function () {
+    return function (input, initial) {
+
+      return (!isArray(input)) ? input :
+        input.reduce(function(prev, curr) {
+          return prev + curr;
+        }, initial || 0);
+
+    }
+
+  });
+
+/**
+ * @ngdoc filter
  * @name endsWith
  * @kind function
  *
@@ -1728,6 +1752,7 @@ angular.module('angular.filter', [
   'a8m.math.min',
   'a8m.math.percent',
   'a8m.math.radix',
+  'a8m.math.sum',
 
   'a8m.angular',
   'a8m.is-null',
