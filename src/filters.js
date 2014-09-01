@@ -54,6 +54,7 @@ angular.module('angular.filter', [
   'a8m.math.min',
   'a8m.math.percent',
   'a8m.math.radix',
+  'a8m.math.sum',
 
   'a8m.angular',
   'a8m.is-null',
