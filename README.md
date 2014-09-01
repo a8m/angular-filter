@@ -1004,7 +1004,7 @@ Converting decimal numbers to different bases(radix)<br/>
 7F4A
 ```
 ###sum
-Sum up all values within an array
+Sum up all values within an array<br/>
 **Usage:** ```array | sum: initial-value[optional]```
 ```html
 {{ [2,3,5] | sum }}
