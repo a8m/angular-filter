@@ -43,7 +43,7 @@ angular.module('a8m.filter-by', [])
           }
 
           return (isString(comparator) || isNumber(comparator)) ?
-            !String(comparator).toLowerCase().indexOf(search) :
+            String(comparator).toLowerCase().contains(search) :
             false;
         })
 

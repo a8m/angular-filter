@@ -89,3 +89,11 @@ function getFirstMatches(array, n, expression) {
 
   return (count < 2) ? result[0] : result;
 }
+/**
+ * Polyfill to ECMA6 String.prototype.contains
+ */
+if (!String.prototype.contains) {
+  String.prototype.contains = function() {
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
