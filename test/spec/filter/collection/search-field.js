@@ -53,12 +53,12 @@ describe('searchFieldFilter', function() {
 
   });
 
-  it('should not change the original/source collection', function() {
+  it('should change the original/source collection', function() {
 
-    var immutable = [{a: 'a', b: 'b'}];
-    filter(immutable, 'a', 'b');
+    var mutable = [{a: 'a', b: 'b'}];
+    filter(mutable, 'a', 'b');
 
-    expect(immutable).toEqual([{a: 'a', b: 'b'}]);
+    expect(mutable).toEqual([{a: 'a', b: 'b', searchField: 'a b'}]);
 
   });
 
