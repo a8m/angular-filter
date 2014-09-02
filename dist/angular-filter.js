@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.3 - 2014-09-01 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.4 - 2014-09-02 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -96,7 +96,14 @@ function getFirstMatches(array, n, expression) {
 
   return (count < 2) ? result[0] : result;
 }
-
+/**
+ * Polyfill to ECMA6 String.prototype.contains
+ */
+if (!String.prototype.contains) {
+  String.prototype.contains = function() {
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -462,7 +469,7 @@ angular.module('a8m.filter-by', [])
           }
 
           return (isString(comparator) || isNumber(comparator)) ?
-            !String(comparator).toLowerCase().indexOf(search) :
+            String(comparator).toLowerCase().contains(search) :
             false;
         })
 
