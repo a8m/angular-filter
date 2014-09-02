@@ -39,7 +39,7 @@ describe('filterByFilter', function() {
     };
 
     expect(filter(users, ['user.first_name', 'user.last_name'], 'foo')).toEqual(users);
-    expect(filter(users, ['user.first_name'], 'foo')).toEqual([users[0], users[2]]);
+    expect(filter(users, ['user.first_name'], 'oo')).toEqual([users[0], users[2]]);
     expect(filter(users, ['user.last_name'], 'bar')).toEqual([users[0]]);
 
   });
@@ -58,6 +58,10 @@ describe('filterByFilter', function() {
     expect(filter(users, ['user.first_name + user.mobile'], 'foo 4444')).toEqual([users[0]]);
 
     expect(filter(users, ['user.first_name + user.undefined'], 'foo')).toEqual([users[0], users[2]]);
+
+    expect(filter(users, ['user.first_name + user.last_name'], 'a')).toEqual(users);
+    expect(filter(users, ['user.first_name + user.last_name'], 'ba')).toEqual(users);
+    expect(filter(users, ['user.first_name + user.last_name'], 'foo')).toEqual(users);
 
   });
 
