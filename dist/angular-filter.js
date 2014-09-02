@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.4 - 2014-09-02 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.5 - 2014-09-02 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -996,8 +996,7 @@ angular.module('a8m.search-field', [])
           return get(member);
         }).join(' ');
 
-        //TODO(ariel):we don't wanna change the source, but I'm not sure about the performance.
-        return extend({ searchField: field }, member);
+        return extend(member, { searchField: field });
       });
     }
   }]);
