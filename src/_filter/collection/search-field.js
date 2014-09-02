@@ -31,8 +31,7 @@ angular.module('a8m.search-field', [])
           return get(member);
         }).join(' ');
 
-        //TODO(ariel):we don't wanna change the source, but I'm not sure about the performance.
-        return extend({ searchField: field }, member);
+        return extend(member, { searchField: field });
       });
     }
   }]);
