@@ -1058,11 +1058,10 @@ function uniqFilter($parse) {
         })
       }
       //store all unique members
-      var uniqueItems = [],
-          get = $parse(property);
+      var uniqueItems = [];
 
       return collection.filter(function (elm) {
-        var prop = get(elm);
+        var prop = elm[property];
         if(some(uniqueItems, prop)) {
           return false;
         }
