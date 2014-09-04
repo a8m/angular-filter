@@ -95,4 +95,11 @@ describe('uniqFilter', function() {
     expect(filter(orders, 'order.person.credit.information.num')).toEqual([orders[0]]);
   });
 
+  it('should get a !collection and return as-is', function() {
+    expect(filter(undefined)).toEqual(undefined);
+    expect(filter('foo')).toEqual('foo');
+    expect(filter(1)).toEqual(1);
+    expect(filter(!1)).toBeFalsy();
+  });
+
 });
