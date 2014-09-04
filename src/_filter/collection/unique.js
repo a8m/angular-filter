@@ -18,28 +18,29 @@ angular.module('a8m.unique', [])
 function uniqFilter($parse) {
     return function (collection, property) {
 
-      if (isUndefined(collection)) {
-        return false;
-      }
-
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
-      if (isUndefined(property)) {
-        return collection.filter(function (elm, pos, self) {
-          return self.indexOf(elm) === pos;
-        })
+      if (!isArray(collection)) {
+        return collection;
       }
-      //store all unique members
+
+      //store all unique identifiers
       var uniqueItems = [],
           get = $parse(property);
 
-      return collection.filter(function (elm) {
-        var prop = get(elm);
-        if(some(uniqueItems, prop)) {
-          return false;
-        }
-        uniqueItems.push(prop);
-        return true;
+      return (isUndefined(property)) ?
+        //if it's kind of primitive array
+        collection.filter(function (elm, pos, self) {
+          return self.indexOf(elm) === pos;
+        }) :
+        //else compare with equals
+        collection.filter(function (elm) {
+          var prop = get(elm);
+          if(some(uniqueItems, prop)) {
+            return false;
+          }
+          uniqueItems.push(prop);
+          return true;
       });
 
       //checked if the unique identifier is already exist
