@@ -18,6 +18,10 @@ angular.module('a8m.unique', [])
 function uniqFilter($parse) {
     return function (collection, property) {
 
+      if (isUndefined(collection)) {
+        return false;
+      }
+
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if (isUndefined(property)) {
