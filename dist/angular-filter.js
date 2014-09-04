@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.5 - 2014-09-02 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.5 - 2014-09-04 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1049,6 +1049,10 @@ angular.module('a8m.unique', [])
 
 function uniqFilter($parse) {
     return function (collection, property) {
+
+      if (isUndefined(collection)) {
+        return false;
+      }
 
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
