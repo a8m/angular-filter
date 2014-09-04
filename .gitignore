@@ -9,3 +9,4 @@ app
 .gitattributes
 .coveralls.yml
 test/coverage
+*.iml
