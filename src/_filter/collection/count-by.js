@@ -9,11 +9,10 @@
 
 angular.module('a8m.count-by', [])
 
-  .filter('countBy', [ '$parse', function ( $parse ) {
+  .filter('countBy', function () {
     return function (collection, property) {
 
       var result = {},
-        get = $parse(property),
         prop;
 
       collection = (isObject(collection)) ? toArray(collection) : collection;
@@ -23,7 +22,7 @@ angular.module('a8m.count-by', [])
       }
 
       collection.forEach( function( elm ) {
-        prop = get(elm);
+        prop = elm[property];
 
         if(!result[prop]) {
           result[prop] = 0;
@@ -34,4 +33,4 @@ angular.module('a8m.count-by', [])
 
       return result;
     }
-  }]);
+  });
