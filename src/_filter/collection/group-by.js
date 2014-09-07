@@ -10,11 +10,10 @@
 
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
 
-  .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
+  .filter('groupBy', [ 'filterWatcher', function ( filterWatcher ) {
     return function (collection, property) {
 
       var result,
-        get = $parse(property),
         prop;
 
       if(!isObject(collection) || isUndefined(property)) {
@@ -25,7 +24,7 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
       result = filterWatcher.$watch('groupBy', collection);
 
       forEach( collection, function( elm ) {
-        prop = get(elm);
+        prop = elm[property];
 
         if(!result[prop]) {
           result[prop] = [];
