@@ -11,11 +11,11 @@
 
 angular.module('a8m.unique', [])
   .filter({
-      unique: ['$parse', uniqFilter],
-      uniq: ['$parse', uniqFilter]
+      unique: uniqFilter,
+      uniq: uniqFilter
     });
 
-function uniqFilter($parse) {
+function uniqFilter() {
     return function (collection, property) {
 
       collection = (isObject(collection)) ? toArray(collection) : collection;
@@ -25,8 +25,7 @@ function uniqFilter($parse) {
       }
 
       //store all unique identifiers
-      var uniqueItems = [],
-          get = $parse(property);
+      var uniqueItems = [];
 
       return (isUndefined(property)) ?
         //if it's kind of primitive array
@@ -35,7 +34,7 @@ function uniqFilter($parse) {
         }) :
         //else compare with equals
         collection.filter(function (elm) {
-          var prop = get(elm);
+          var prop = elm[property];
           if(some(uniqueItems, prop)) {
             return false;
           }
