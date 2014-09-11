@@ -222,7 +222,7 @@ $scope.users = [
 <!-- collection | first: expression -->
 {{ users | first: 'name.first === \'lol\' && name.last === \'bar\'' }}
 <!--result:
-{ id: 4, name: { first: 'lol', last: 'bar' } }
+[ { id: 4, name: { first: 'lol', last: 'bar' } } ]
 ```
 
 ```html
@@ -265,7 +265,7 @@ $scope.users = [
 <!-- collection | last: expression -->
 {{ users | last: 'name.last === \'bar\'' }}
 <!--result:
-{ id: 4, name: { first: 'lol', last: 'bar' } }
+[ { id: 4, name: { first: 'lol', last: 'bar' } } ]
 ```
 
 ```html
