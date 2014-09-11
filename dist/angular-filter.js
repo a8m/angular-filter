@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.5 - 2014-09-04 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.6 - 2014-09-11 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -84,17 +84,14 @@ function hasApproxPattern(word, pattern) {
  * @return array or single object
  */
 function getFirstMatches(array, n, expression) {
-  var result,
-    count = ~~result;
+  var count = 0;
 
-  result =  array.filter(function(elm) {
+  return array.filter(function(elm) {
     var rest = isDefined(expression) ? (count < n && expression(elm)) : count < n;
     count = rest ? count+1 : count;
 
     return rest;
   });
-
-  return (count < 2) ? result[0] : result;
 }
 /**
  * Polyfill to ECMA6 String.prototype.contains
@@ -104,6 +101,7 @@ if (!String.prototype.contains) {
     return String.prototype.indexOf.apply(this, arguments) !== -1;
   };
 }
+
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -507,25 +505,10 @@ angular.module('a8m.first', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return getFirstMatches(collection, n,(getter) ? $parse(getter) : getter);
+      return (args.length) ? getFirstMatches(collection, n,(getter) ? $parse(getter) : getter) :
+        collection[0];
     }
   }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * @ngdoc filter
@@ -759,9 +742,8 @@ angular.module('a8m.last', [])
       var n,
         getter,
         args,
-        result,
-        //cuz reverse change our src collection
-        //and we don't want side effects
+      //cuz reverse change our src collection
+      //and we don't want side effects
         reversed = copy(collection);
 
       reversed = (isObject(reversed)) ? toArray(reversed) :
@@ -775,27 +757,13 @@ angular.module('a8m.last', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return isArray(result = getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter)) ?
-        result.reverse() :
-        result;
+      return (args.length) ?
+        //send reversed collection as arguments, and reverse it back as result
+        getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse() :
+        //get the last element
+        reversed[reversed.length-1];
     }
   }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * @ngdoc filter
@@ -1050,28 +1018,29 @@ angular.module('a8m.unique', [])
 function uniqFilter($parse) {
     return function (collection, property) {
 
-      if (isUndefined(collection)) {
-        return false;
-      }
-
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
-      if (isUndefined(property)) {
-        return collection.filter(function (elm, pos, self) {
-          return self.indexOf(elm) === pos;
-        })
+      if (!isArray(collection)) {
+        return collection;
       }
-      //store all unique members
+
+      //store all unique identifiers
       var uniqueItems = [],
           get = $parse(property);
 
-      return collection.filter(function (elm) {
-        var prop = get(elm);
-        if(some(uniqueItems, prop)) {
-          return false;
-        }
-        uniqueItems.push(prop);
-        return true;
+      return (isUndefined(property)) ?
+        //if it's kind of primitive array
+        collection.filter(function (elm, pos, self) {
+          return self.indexOf(elm) === pos;
+        }) :
+        //else compare with equals
+        collection.filter(function (elm) {
+          var prop = get(elm);
+          if(some(uniqueItems, prop)) {
+            return false;
+          }
+          uniqueItems.push(prop);
+          return true;
       });
 
       //checked if the unique identifier is already exist
