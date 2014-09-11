@@ -77,17 +77,14 @@ function hasApproxPattern(word, pattern) {
  * @return array or single object
  */
 function getFirstMatches(array, n, expression) {
-  var result,
-    count = ~~result;
+  var count = 0;
 
-  result =  array.filter(function(elm) {
+  return array.filter(function(elm) {
     var rest = isDefined(expression) ? (count < n && expression(elm)) : count < n;
     count = rest ? count+1 : count;
 
     return rest;
   });
-
-  return (count < 2) ? result[0] : result;
 }
 /**
  * Polyfill to ECMA6 String.prototype.contains

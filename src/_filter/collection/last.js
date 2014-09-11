@@ -15,9 +15,8 @@ angular.module('a8m.last', [])
       var n,
         getter,
         args,
-        result,
-        //cuz reverse change our src collection
-        //and we don't want side effects
+      //cuz reverse change our src collection
+      //and we don't want side effects
         reversed = copy(collection);
 
       reversed = (isObject(reversed)) ? toArray(reversed) :
@@ -31,24 +30,10 @@ angular.module('a8m.last', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return isArray(result = getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter)) ?
-        result.reverse() :
-        result;
+      return (args.length) ?
+        //send reversed collection as arguments, and reverse it back as result
+        getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse() :
+        //get the last element
+        reversed[reversed.length-1];
     }
   }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

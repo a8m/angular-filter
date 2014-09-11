@@ -27,22 +27,7 @@ angular.module('a8m.first', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return getFirstMatches(collection, n,(getter) ? $parse(getter) : getter);
+      return (args.length) ? getFirstMatches(collection, n,(getter) ? $parse(getter) : getter) :
+        collection[0];
     }
   }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
