@@ -837,10 +837,10 @@ result:
 ```
 ###startswith
 return whether string starts with the starts parameter.<br/>
-usage: ```string | startWith: 'start': case-sensitive[optional]```<br/>
+usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
 ```html
- {{ 'Lorem ipsum' | startWith: 'lorem' }}
- {{ 'Lorem Ipsum' | startWith: 'lorem': true }}
+ {{ 'Lorem ipsum' | startsWith: 'lorem' }}
+ {{ 'Lorem Ipsum' | startsWith: 'lorem': true }}
  <!--result:
   true
   false
