@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.6 - 2014-09-11 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.6 - 2014-09-16 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -153,6 +153,58 @@ angular.module('a8m.angular', [])
         return angular.equals(o1, o2);
       }
     });
+
+/**
+ * @ngdoc filter
+ * @name a8m.conditions
+ * @kind function
+ *
+ * @description
+ * reference to math conditions
+ */
+
+angular.module('a8m.conditions', [])
+
+  .filter('isGreaterThan', function () {
+    return function (input, check) {
+      return input > check;
+    };
+  })
+  .filter('isGreaterThanOrEqualTo', function () {
+    return function (input, check) {
+      return input >= check;
+    };
+  })
+  .filter('isLessThan', function () {
+    return function (input, check) {
+      return input < check;
+    };
+  })
+  .filter('isLessThanOrEqualTo', function () {
+    return function (input, check) {
+      return input <= check;
+    };
+  })
+  .filter('isEqualTo', function () {
+    return function (input, check) {
+      return input == check;
+    };
+  })
+  .filter('isNotEqualTo', function () {
+    return function (input, check) {
+      return input != check;
+    };
+  })
+  .filter('isIdenticalTo', function () {
+    return function (input, check) {
+      return input === check;
+    };
+  })
+  .filter('isNotIdenticalTo', function () {
+    return function (input, check) {
+      return input !== check;
+    };
+  });
 
 /**
  * @ngdoc filter
@@ -1734,6 +1786,7 @@ angular.module('angular.filter', [
   'a8m.math.sum',
 
   'a8m.angular',
+  'a8m.conditions',
   'a8m.is-null',
 
   'a8m.filter-watcher'
