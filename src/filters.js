@@ -57,6 +57,7 @@ angular.module('angular.filter', [
   'a8m.math.sum',
 
   'a8m.angular',
+  'a8m.conditions',
   'a8m.is-null',
 
   'a8m.filter-watcher'
