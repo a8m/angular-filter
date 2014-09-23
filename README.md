@@ -66,6 +66,14 @@
   - [isArray](#isarray)
   - [isFunction](#isfunction)
   - [isEqual](#isequal)
+  - [isGreaterThan](#isgreaterthen)
+  - [isGreaterThanOrEqualTo](#isgreaterthanorequalto)
+  - [isLessThan](#islessthan)
+  - [isLessThanOrEqualTo](#islessthanorequalto)
+  - [isEqualTo](#isequalto)
+  - [isNotEqualTo](#isnotequalto)
+  - [isIdenticalTo](#isidenticalto)
+  - [isNotIdenticalTo](#isnotidenticalto)
 
 #Get Started
 **(1)** Get angular-filter in one of 3 ways:
