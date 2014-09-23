@@ -75,10 +75,10 @@
   - [isIdenticalTo](#isidenticalto) `===`
   - [isNotIdenticalTo](#isnotidenticalto) `!==`
 
-#Get Started
-**(1)** Get angular-filter in one of 3 ways:
+#Getting Started
+**(1)** You can install angular-filter using 3 different methods:
   - clone & [build](#developing) this repository
-  - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your console
+  - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your terminal
   - via cdnjs http://www.cdnjs.com/libraries/angular-filter
 
 **(2)** Include `angular-filter.js` (or `angular-filter.min.js`) in your `index.html`, after including Angular itself.
@@ -91,15 +91,17 @@ When you're done, your setup should look similar to the following:
 <!doctype html>
 <html ng-app="myApp">
 <head>
+   
+</head>
+<body>
+    ...
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="js/angular-filter.min.js"></script>
+    <script src="bower_components/js/angular-filter.min.js"></script>
+    ...
     <script>
         var myApp = angular.module('myApp', ['angular.filter']);
 
     </script>
-    ...
-</head>
-<body>
     ...
 </body>
 </html>
@@ -109,7 +111,7 @@ When you're done, your setup should look similar to the following:
 
 ###concat
 
-concat filter, get two mixed(array/object) parameters and return merged collection
+Concatenates an array/object into another one.
 
 
 ```js
@@ -143,105 +145,122 @@ result:
 ```
 
 ###unique
-get collection and filter duplicate members.<br/>
-if a property name is provided(nested to) it's filter by this property as unique identifier<br/>
+Remove duplicates from an array/object.<br/>
+If a string is provided, it will filter out duplicates using the provided expression.<br/>
 aliases: uniq
 ```js
 function MainController ($scope) {
   $scope.orders = [
-    { id:1, customer: { name: 'foo', id: 10 } },
-    { id:2, customer: { name: 'bar', id: 20 } },
-    { id:3, customer: { name: 'foo', id: 10 } },
-    { id:4, customer: { name: 'bar', id: 20 } },
-    { id:5, customer: { name: 'baz', id: 30 } },
+    { id:1, customer: { name: 'John', id: 10 } },
+    { id:2, customer: { name: 'William', id: 20 } },
+    { id:3, customer: { name: 'Mike', id: 10 } },
+    { id:4, customer: { name: 'Rob', id: 20 } },
+    { id:5, customer: { name: 'Clive', id: 30 } },
   ];
 }
 ```
-html : it's filters by customer id, i.e remove duplicate customers
+Ex: Filter by customer.id
 ```html
-<th>All customers list: </th>
+<th>Customer list:</th>
 <tr ng-repeat="order in orders | unique: 'customer.id'" >
    <td> {{ order.customer.name }} , {{ order.customer.id }} </td>
 </tr>
 
 <!-- result:
 All customers list:
-foo 10
-bar 20
-baz 30
+John 10
+William 20
+Clive 30
 
 ```
 ###filterby
-Filter by specific properties and avoid the rest<br/>
+Filter a collection by a specific property.<br/>
 **Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```<br/>
-**Note:** can create custom field to search(e.g: ```|filterBy: [property + property]: model```)<br/>
+**Note:** You can even use compound properties (e.g: ```|filterBy: [property + property]: model```)<br/>
+
 ```js
 $scope.users = [
-  { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } },
-  { id: 2, user: { first_name: 'bar', last_name: 'foo',  mobile: 3333 } },
-  { id: 3, user: { first_name: 'foo', last_name: 'baz',  mobile: 2222 } },
-  { id: 4, user: { first_name: 'baz', last_name: 'foo',  mobile: 1111 } }
+  { id: 1, user: { first_name: 'Rob', last_name: 'John',  mobile: 4444 } },
+  { id: 2, user: { first_name: 'John', last_name: 'Wayne',  mobile: 3333 } },
+  { id: 3, user: { first_name: 'Rob', last_name: 'Johansson',  mobile: 2222 } },
+  { id: 4, user: { first_name: 'Mike', last_name: 'Terry',  mobile: 1111 } }
 ];
 ```
+Return users whose id is 1
 ```html
 <!--search only by id -->
 <th ng-repeat="user in users | filterBy: ['id']: 1">
   {{ user.id }} : {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
-  1: foo bar
+  1: Rob John
+-->
+
 ```
+Return users whose first name or last name is 'John' (uses nested properties).
 ```html
 <!--search by first_name and last_name -->
-<th ng-repeat="user in users | filterBy: ['user.first_name', 'user.last_name']: 'bar'">
+<th ng-repeat="user in users | filterBy: ['user.first_name', 'user.last_name']: 'John'">
   {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
-  1: foo bar
-  2: bar foo
+  1: Rob John
+  2: John Wayne
+-->
+
 ```
+Return users whose full name is 
 ```html
 <!--search by full name -->
-<th ng-repeat="user in users | filterBy: ['user.first_name + user.last_name']: 'foo ba'">
+<th ng-repeat="user in users | filterBy: ['user.first_name + user.last_name']: 'Rob Joh'">
   {{ user.id }}: {{ user.first_name }} {{ user.last_name }}
 </th>
 <!--result:
-  1: foo bar
-  3: foo baz
+  1: Rob John
+  3: Rob Johannson
+-->
 ```
 ###first
-Gets the first element or first n elements of a collection,<br/>
-if expression is provided, is returns as long the expression return truthy<br/>
+Gets the first element(s) of a collection.<br/>
+If an expression is provided, it will only return elements whose expression is truthy.<br/>
 ***Usage:*** See below <br/>
+
 ```js
 $scope.users = [
-  { id: 1, name: { first: 'foo', last: 'bar' } },
-  { id: 2, name: { first: 'baz', last: 'bar' } },
-  { id: 3, name: { first: 'bar', last: 'bar' } },
-  { id: 4, name: { first: 'lol', last: 'bar' } }
+  { id: 1, name: { first: 'John', last: 'Wayne' } },
+  { id: 2, name: { first: 'Mike', last: 'Johannson' } },
+  { id: 3, name: { first: 'William', last: 'Kyle' } },
+  { id: 4, name: { first: 'Rob', last: 'Thomas' } }
 ];
 ```
+Returns the first user.
 ```html
 {{ users | first }}
 <!--result:
-{ id: 1, name: { first: 'foo', last: 'bar' } }
-```
+{ id: 1, name: { first: 'John', last: 'Wayne' } }
+-->
 
+```
+Returns the first user whose first name is 'Rob' and last name is 'Thomas'
 ```html
 <!-- collection | first: expression -->
-{{ users | first: 'name.first === \'lol\' && name.last === \'bar\'' }}
+{{ users | first: 'name.first === \'Rob\' && name.last === \'Thomas\'' }}
 <!--result:
-[ { id: 4, name: { first: 'lol', last: 'bar' } } ]
-```
+[ { id: 4, name: { first: 'Rob', last: 'Thomas' } } ]
+-->
 
+```
+Return the first two users
 ```html
 <!-- collection | first: n -->
 <th ng-repeat="user in users | first: 2">
-  {{ user.name }}
+  {{ user.name.first }}
 </th>
 <!--result:
-foo
-baz
+John
+Mike
+-->
+
 ```
 ```html
 <!-- collection | first: n: expression -->
