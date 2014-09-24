@@ -1042,7 +1042,7 @@ Sum up all values within an array<br/>
 20
 ```
 #TODO
-- Project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
+- Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
 #Development
 Clone the project: <br/>
