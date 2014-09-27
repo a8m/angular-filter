@@ -29,7 +29,7 @@
 
     isIdenticalTo  : isIdenticalToFilter,
     '==='          : isIdenticalToFilter,
-     
+
     isNotIdenticalTo  : isNotIdenticalToFilter,
     '!=='             : isNotIdenticalToFilter
   });

@@ -38,4 +38,22 @@ describe('conditionsFilter', function () {
     expect(isNotIdenticalTo(3, 3)).toBe(false);
   });
 
+  it('should be aliases for each condition filter', inject(
+    function($filter){
+      var filters = {
+        isGreaterThan: '>',
+        isGreaterThanOrEqualTo: '>=',
+        isLessThan: '<',
+        isLessThanOrEqualTo: '<=',
+        isEqualTo: '==',
+        isNotEqualTo: '!=',
+        isIdenticalTo: '===',
+        isNotIdenticalTo: '!=='
+      };
+      //expectations
+      angular.forEach(filters, function(val, key) {
+        expect($filter(val).toString()).toEqual($filter(key).toString());
+      });
+    }));
+
 });
