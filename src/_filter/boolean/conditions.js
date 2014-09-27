@@ -10,33 +10,26 @@
 
   .filter({
     isGreaterThan  : isGreaterThanFilter,
-    '>'            : isGreaterThanFilter
-  })
-  .filter({
+    '>'            : isGreaterThanFilter,
+
     isGreaterThanOrEqualTo  : isGreaterThanOrEqualToFilter,
-    '>='                    : isGreaterThanOrEqualToFilter
-  })
-  .filter({
+    '>='                    : isGreaterThanOrEqualToFilter,
+
     isLessThan  : isLessThanFilter,
-    '<'         : isLessThanFilter
-  })
-  .filter({
+    '<'         : isLessThanFilter,
+
     isLessThanOrEqualTo  : isLessThanOrEqualToFilter,
-    '<='                 : isLessThanOrEqualToFilter
-  })
-  .filter({
+    '<='                 : isLessThanOrEqualToFilter,
+
     isEqualTo  : isEqualToFilter,
-    '=='       : isEqualToFilter
-  })
-  .filter({
+    '=='       : isEqualToFilter,
+
     isNotEqualTo  : isNotEqualToFilter,
-    '!='          : isNotEqualToFilter
-  })
-  .filter({
+    '!='          : isNotEqualToFilter,
+
     isIdenticalTo  : isIdenticalToFilter,
-    '==='          : isIdenticalToFilter
-  })
-  .filter({
+    '==='          : isIdenticalToFilter,
+     
     isNotIdenticalTo  : isNotIdenticalToFilter,
     '!=='             : isNotIdenticalToFilter
   });
