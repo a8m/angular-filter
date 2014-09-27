@@ -6,46 +6,85 @@
  * @description
  * reference to math conditions
  */
+ angular.module('a8m.conditions', [])
 
-angular.module('a8m.conditions', [])
+  .filter({
+    isGreaterThan  : isGreaterThanFilter,
+    '>'            : isGreaterThanFilter
+  })
+  .filter({
+    isGreaterThanOrEqualTo  : isGreaterThanOrEqualToFilter,
+    '>='                    : isGreaterThanOrEqualToFilter
+  })
+  .filter({
+    isLessThan  : isLessThanFilter,
+    '<'         : isLessThanFilter
+  })
+  .filter({
+    isLessThanOrEqualTo  : isLessThanOrEqualToFilter,
+    '<='                 : isLessThanOrEqualToFilter
+  })
+  .filter({
+    isEqualTo  : isEqualToFilter,
+    '=='       : isEqualToFilter
+  })
+  .filter({
+    isNotEqualTo  : isNotEqualToFilter,
+    '!='          : isNotEqualToFilter
+  })
+  .filter({
+    isIdenticalTo  : isIdenticalToFilter,
+    '==='          : isIdenticalToFilter
+  })
+  .filter({
+    isNotIdenticalTo  : isNotIdenticalToFilter,
+    '!=='             : isNotIdenticalToFilter
+  });
 
-  .filter('isGreaterThan', function () {
+  function isGreaterThanFilter() {
     return function (input, check) {
       return input > check;
     };
-  })
-  .filter('isGreaterThanOrEqualTo', function () {
+  }
+
+  function isGreaterThanOrEqualToFilter() {
     return function (input, check) {
       return input >= check;
     };
-  })
-  .filter('isLessThan', function () {
+  }
+
+  function isLessThanFilter() {
     return function (input, check) {
       return input < check;
     };
-  })
-  .filter('isLessThanOrEqualTo', function () {
+  }
+
+  function isLessThanOrEqualToFilter() {
     return function (input, check) {
       return input <= check;
     };
-  })
-  .filter('isEqualTo', function () {
+  }
+
+  function isEqualToFilter() {
     return function (input, check) {
       return input == check;
     };
-  })
-  .filter('isNotEqualTo', function () {
+  }
+
+  function isNotEqualToFilter() {
     return function (input, check) {
       return input != check;
     };
-  })
-  .filter('isIdenticalTo', function () {
+  }
+
+  function isIdenticalToFilter() {
     return function (input, check) {
       return input === check;
     };
-  })
-  .filter('isNotIdenticalTo', function () {
+  }
+
+  function isNotIdenticalToFilter() {
     return function (input, check) {
       return input !== check;
     };
-  });
+  }
