@@ -55,6 +55,11 @@ angular.module('angular.filter', [
   'a8m.math.percent',
   'a8m.math.radix',
   'a8m.math.sum',
+  'a8m.math.degrees',
+  'a8m.math.radians',
+  'a8m.math.byteFmt',
+  'a8m.math.kbFmt',
+  'a8m.math.shortFmt',
 
   'a8m.angular',
   'a8m.conditions',

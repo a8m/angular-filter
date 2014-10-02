@@ -1,13 +1,13 @@
 'use strict';
 
-describe('formatKBFilter', function () {
+describe('kbFmtFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.math.formatKB'));
+  beforeEach(module('a8m.math.kbFmt'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('formatKB');
+    filter = $filter('kbFmt');
   }));
 
   it('should return the correct display from number of kilobytes', function() {

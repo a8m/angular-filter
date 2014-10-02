@@ -1,26 +1,26 @@
 'use strict';
 
-describe('coolNumberFilter', function () {
+describe('degreesFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.math.coolNumber'));
+  beforeEach(module('a8m.math.degrees'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('coolNumber');
+    filter = $filter('degrees');
   }));
 
-  it('should return the correct display from the number', function() {
-    expect(filter(0,2)).toEqual(0);
-    expect(filter(5,2)).toEqual(5);
-    expect(filter(1024,0)).toEqual("1 K");
-    expect(filter(1993,2)).toEqual("1.99 K");
-    expect(filter(1049901,5)).toEqual("1.0499 M"); 
-    expect(filter(1909234901,2)).toEqual("1.91 B"); 
+  it('should return the correct degrees from radians', function() {
+    expect(filter(1.5,2)).toEqual(85.94);
+    expect(filter(0,0)).toEqual(0);
+    expect(filter(0.3235,0)).toEqual(19);
+    expect(filter(0.8222235,5)).toEqual(47.10994);
+	expect(filter(-0.8222235,5)).toEqual(-47.10994);
+	expect(filter(45,2)).toEqual(2578.31);
     
   });
   
-  it('should return NaN if bytes is not a number', function(){
+  it('should return NaN if radians is not a number', function(){
 	expect(filter("0",2)).toEqual("NaN");
 	expect(filter([0],2)).toEqual("NaN");
 	expect(filter({number:0},0)).toEqual("NaN");

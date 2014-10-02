@@ -94,3 +94,14 @@ if (!String.prototype.contains) {
     return String.prototype.indexOf.apply(this, arguments) !== -1;
   };
 }
+
+/**
+ *
+ * @param num {Number}
+ * @param decimal {Number}
+ * @param $math
+ * @returns {Number}
+ */
+function convertToDecimal(num, decimal, $math){
+  return $math.round(num * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+}

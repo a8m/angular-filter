@@ -1,13 +1,13 @@
 'use strict';
 
-describe('formatBytesFilter', function () {
+describe('byteFmtFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.math.formatBytes'));
+  beforeEach(module('a8m.math.byteFmt'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('formatBytes');
+    filter = $filter('byteFmt');
   }));
 
   it('should return the correct display from number of bytes', function() {

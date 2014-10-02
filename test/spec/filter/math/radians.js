@@ -1,13 +1,13 @@
 'use strict';
 
-describe('toRadiansFilter', function () {
+describe('radiansFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.math.toRadians'));
+  beforeEach(module('a8m.math.radians'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('toRadians');
+    filter = $filter('radians');
   }));
 
   it('should return the correct radians from degrees', function() {
