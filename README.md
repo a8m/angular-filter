@@ -1098,6 +1098,31 @@ Converts kilobytes into formatted display<br/>
 1.00126 GB
 
 ```
+#Boolean
+###isGreaterThan
+**aliases:** `>`
+
+###isGreaterThanOrEqualTo
+**aliases:** `>=`
+
+###isLessThan
+**aliases:** `<`
+
+###isLessThanOrEqualTo
+**aliases:** `<=`
+
+###isEqualTo
+**aliases:** `==`
+
+###isNotEqualTo
+**aliases:** `!=`
+
+###isIdenticalTo
+**aliases:** `===`
+
+###isNotIdenticalTo
+**aliases:** `!==`
+
 #TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
