@@ -1170,18 +1170,18 @@ Converts kilobytes into formatted display<br/>
 
 #Development
 Clone the project: <br/>
-```
+```bash
 $ git clone 
 $ npm install
 $ bower install
 ```
 Run the tests:
-```
+```bash
 $ grunt test
 ```
 **Deploy:**<br/>
 Run the build task, update version before(bower,package)
-```
+```bash
 $ grunt build
 $ git tag v0.*.*
 $ git push origin master --tags
