@@ -56,6 +56,11 @@
   - [percent](#percent)
   - [radix](#radix)
   - [sum](#sum)
+  - [degrees] (#degrees)
+  - [radians] (#radians)
+  - [shortFmt] (#shortfmt)
+  - [byteFmt] (#bytefmt)
+  - [kbFmt] (#kbfmt)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1040,6 +1045,57 @@ Sum up all values within an array<br/>
 <!--result
 10
 20
+```
+###degrees
+Converts radians into degrees<br/>
+**Usage:** ```radians | degrees: round-to-decimal```,
+```html
+{{ 0.785398 | degrees: 0 }}
+{{ -1.57 | degrees: 3 }}
+<!--result
+45
+-89.954
+```
+###radians
+Converts degrees into radians<br/>
+**Usage:** ```degrees | radians: round-to-decimal```,
+```html
+{{ 45 | radians: 2 }}
+{{ 180 | radians: 5 }}
+<!--result
+0.79
+3.14159
+```
+###shortfmt
+Converts numbers into formatted display<br/>
+**Usage:** ```number | shortFmt: round-to-decimal```,
+```html
+{{ 45000 | shortFmt: 0 }}
+{{ 18234822 | shortFmt: 1 }}
+<!--result
+45 k
+18.2 m
+```
+###bytefmt
+Converts bytes into formatted display<br/>
+**Usage:** ```number | byteFmt: round-to-decimal```,
+```html
+{{ 45000 | byteFmt: 0 }}
+{{ 18234822 | byteFmt: 1 }}
+<!--result
+45 k
+18.2 m
+```
+###kbfmt
+Converts kilobytes into formatted display<br/>
+**Usage:** ```number | kbFmt: round-to-decimal```,
+```html
+{{ 45000 | kbFmt: 0 }}
+{{ 18234822 | kbFmt: 1 }}
+<!--result
+45 k
+18.2 m
+
 ```
 #TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
