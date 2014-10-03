@@ -71,7 +71,7 @@
   - [isArray](#isarray)
   - [isFunction](#isfunction)
   - [isEqual](#isequal)
-  - [isGreaterThan](#isgreaterthen) `>`
+  - [isGreaterThan](#isgreaterthan) `>`
   - [isGreaterThanOrEqualTo](#isgreaterthanorequalto) `>=`
   - [isLessThan](#islessthan) `<`
   - [isLessThanOrEqualTo](#islessthanorequalto) `<=`
