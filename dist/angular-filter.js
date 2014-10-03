@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS
- * @version v0.4.6 - 2014-09-16 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.7 - 2014-10-03 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -103,6 +103,16 @@ if (!String.prototype.contains) {
 }
 
 /**
+ *
+ * @param num {Number}
+ * @param decimal {Number}
+ * @param $math
+ * @returns {Number}
+ */
+function convertToDecimal(num, decimal, $math){
+  return $math.round(num * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+}
+/**
  * @ngdoc filter
  * @name a8m.angular
  * @kind function
@@ -162,50 +172,81 @@ angular.module('a8m.angular', [])
  * @description
  * reference to math conditions
  */
+ angular.module('a8m.conditions', [])
 
-angular.module('a8m.conditions', [])
+  .filter({
+    isGreaterThan  : isGreaterThanFilter,
+    '>'            : isGreaterThanFilter,
 
-  .filter('isGreaterThan', function () {
+    isGreaterThanOrEqualTo  : isGreaterThanOrEqualToFilter,
+    '>='                    : isGreaterThanOrEqualToFilter,
+
+    isLessThan  : isLessThanFilter,
+    '<'         : isLessThanFilter,
+
+    isLessThanOrEqualTo  : isLessThanOrEqualToFilter,
+    '<='                 : isLessThanOrEqualToFilter,
+
+    isEqualTo  : isEqualToFilter,
+    '=='       : isEqualToFilter,
+
+    isNotEqualTo  : isNotEqualToFilter,
+    '!='          : isNotEqualToFilter,
+
+    isIdenticalTo  : isIdenticalToFilter,
+    '==='          : isIdenticalToFilter,
+
+    isNotIdenticalTo  : isNotIdenticalToFilter,
+    '!=='             : isNotIdenticalToFilter
+  });
+
+  function isGreaterThanFilter() {
     return function (input, check) {
       return input > check;
     };
-  })
-  .filter('isGreaterThanOrEqualTo', function () {
+  }
+
+  function isGreaterThanOrEqualToFilter() {
     return function (input, check) {
       return input >= check;
     };
-  })
-  .filter('isLessThan', function () {
+  }
+
+  function isLessThanFilter() {
     return function (input, check) {
       return input < check;
     };
-  })
-  .filter('isLessThanOrEqualTo', function () {
+  }
+
+  function isLessThanOrEqualToFilter() {
     return function (input, check) {
       return input <= check;
     };
-  })
-  .filter('isEqualTo', function () {
+  }
+
+  function isEqualToFilter() {
     return function (input, check) {
       return input == check;
     };
-  })
-  .filter('isNotEqualTo', function () {
+  }
+
+  function isNotEqualToFilter() {
     return function (input, check) {
       return input != check;
     };
-  })
-  .filter('isIdenticalTo', function () {
+  }
+
+  function isIdenticalToFilter() {
     return function (input, check) {
       return input === check;
     };
-  })
-  .filter('isNotIdenticalTo', function () {
+  }
+
+  function isNotIdenticalToFilter() {
     return function (input, check) {
       return input !== check;
     };
-  });
-
+  }
 /**
  * @ngdoc filter
  * @name isNull
@@ -1173,6 +1214,98 @@ angular.module('a8m.xor', [])
   }]);
 
 /**
+ * @ngdoc filter
+ * @name formatBytes
+ * @kind function
+ *
+ * @description
+ * Convert bytes into appropriate display 
+ * 1024 bytes => 1 KB
+ */
+
+angular.module('a8m.math.byteFmt', ['a8m.math'])
+
+  .filter('byteFmt', ['$math', function ($math) {
+    return function (bytes, decimal) {
+
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+        isNumber(bytes) && isFinite(bytes)) {
+
+        if(bytes < 1024) { // within 1 KB so B
+            return convertToDecimal(bytes, decimal, $math) + ' B';
+        } else if(bytes < 1048576) { // within 1 MB so KB
+            return convertToDecimal((bytes / 1024), decimal, $math) + ' KB';
+        } else if(bytes < 1073741824){ // within 1 GB so MB
+            return convertToDecimal((bytes / 1048576), decimal, $math) + ' MB';
+        } else { // GB or more
+            return convertToDecimal((bytes / 1073741824), decimal, $math) + ' GB';
+        }
+
+	  } else {
+		return "NaN";
+	  }
+    }
+  }]);
+/**
+ * @ngdoc filter
+ * @name degrees
+ * @kind function
+ *
+ * @description
+ * Convert angle from radians to degrees
+ *
+ */
+
+angular.module('a8m.math.degrees', ['a8m.math'])
+
+  .filter('degrees', ['$math', function ($math) {
+    return function (radians, decimal) {
+	    // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+		// if degrees is not a real number, we cannot do also. quit with error "NaN"
+		if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+          isNumber(radians) && isFinite(radians)) {
+		    var degrees = (radians * 180) / $math.PI;
+		    return $math.round(degrees * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+	    } else {
+          return "NaN";
+		}
+	}
+}]);
+
+ 
+ 
+/**
+ * @ngdoc filter
+ * @name formatBytes
+ * @kind function
+ *
+ * @description
+ * Convert bytes into appropriate display 
+ * 1024 kilobytes => 1 MB
+ */
+
+angular.module('a8m.math.kbFmt', ['a8m.math'])
+
+  .filter('kbFmt', ['$math', function ($math) {
+    return function (bytes, decimal) {
+
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+        isNumber(bytes) && isFinite(bytes)) {
+
+        if(bytes < 1024) { // within 1 MB so KB
+            return convertToDecimal(bytes, decimal, $math) + ' KB';
+        } else if(bytes < 1048576) { // within 1 GB so MB
+            return convertToDecimal((bytes / 1024), decimal, $math) + ' MB';
+        } else {
+            return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
+        }
+
+		} else {
+			return "NaN";
+		}
+    }
+}]);
+/**
  * @ngdoc module
  * @name math
  * @description
@@ -1260,6 +1393,34 @@ angular.module('a8m.math.percent', ['a8m.math'])
 
 /**
  * @ngdoc filter
+ * @name toRadians
+ * @kind function
+ *
+ * @description
+ * Convert angle from degrees to radians
+ *
+ */
+
+angular.module('a8m.math.radians', ['a8m.math'])
+
+  .filter('radians', ['$math', function ($math) {
+    return function (degrees, decimal) {
+	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+	  // if degrees is not a real number, we cannot do also. quit with error "NaN"
+        if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+          isNumber(degrees) && isFinite(degrees)) {
+          var radians = (degrees * 3.14159265359) / 180;
+          return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+		} else {
+		    return "NaN";
+		}
+	}
+}]);
+
+ 
+ 
+/**
+ * @ngdoc filter
  * @name Radix
  * @kind function
  *
@@ -1285,6 +1446,39 @@ angular.module('a8m.math.radix', [])
 
   });
 
+/**
+ * @ngdoc filter
+ * @name formatBytes
+ * @kind function
+ *
+ * @description
+ * Convert number into abbreviations.
+ * i.e: K for one thousand, M for Million, B for billion
+ * e.g: number of users:235,221, decimal:1 => 235.2 K
+ */
+
+angular.module('a8m.math.shortFmt', ['a8m.math'])
+
+  .filter('shortFmt', ['$math', function ($math) {
+    return function (number, decimal) {
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+        isNumber(number) && isFinite(number)){
+                    
+          if(number < 1e3) {
+              return number;
+          } else if(number < 1e6) {
+              return convertToDecimal((number / 1e3), decimal, $math) + ' K';
+          } else if(number < 1e9){
+              return convertToDecimal((number / 1e6), decimal, $math) + ' M';
+          } else {
+            return convertToDecimal((number / 1e9), decimal, $math) + ' B';
+          }
+
+	  }else{
+        return "NaN";
+	  }
+	}
+}]);
 /**
  * @ngdoc filter
  * @name sum
@@ -1784,6 +1978,11 @@ angular.module('angular.filter', [
   'a8m.math.percent',
   'a8m.math.radix',
   'a8m.math.sum',
+  'a8m.math.degrees',
+  'a8m.math.radians',
+  'a8m.math.byteFmt',
+  'a8m.math.kbFmt',
+  'a8m.math.shortFmt',
 
   'a8m.angular',
   'a8m.conditions',
