@@ -1080,21 +1080,21 @@ Converts numbers into formatted display<br/>
 Converts bytes into formatted display<br/>
 **Usage:** ```number | byteFmt: round-to-decimal```,
 ```html
-{{ 45000 | byteFmt: 0 }}
-{{ 18234822 | byteFmt: 1 }}
+{{ 1998 | byteFmt: 2 }}
+{{ 1339234901 | byteFmt: 5 }}
 <!--result
-45 k
-18.2 m
+1.95 KB
+1.24726 GB
 ```
 ###kbfmt
 Converts kilobytes into formatted display<br/>
 **Usage:** ```number | kbFmt: round-to-decimal```,
 ```html
-{{ 45000 | kbFmt: 0 }}
-{{ 18234822 | kbFmt: 1 }}
+{{ 1024 | kbFmt: 0 }}
+{{ 1049901 | kbFmt: 5 }}
 <!--result
-45 k
-18.2 m
+1 MB
+1.00126 GB
 
 ```
 #TODO
