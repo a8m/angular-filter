@@ -152,14 +152,15 @@ result:
 ###unique
 Remove duplicates from an array/object.<br/>
 If a string is provided, it will filter out duplicates using the provided expression.<br/>
-aliases: uniq
+**Usage:** ```collection | unique: 'property' ```<br/>
+**aliases:** uniq
 ```js
 function MainController ($scope) {
   $scope.orders = [
     { id:1, customer: { name: 'John', id: 10 } },
     { id:2, customer: { name: 'William', id: 20 } },
-    { id:3, customer: { name: 'Mike', id: 10 } },
-    { id:4, customer: { name: 'Rob', id: 20 } },
+    { id:3, customer: { name: 'John', id: 10 } },
+    { id:4, customer: { name: 'William', id: 20 } },
     { id:5, customer: { name: 'Clive', id: 30 } },
   ];
 }
@@ -1050,8 +1051,8 @@ Sum up all values within an array<br/>
 Converts radians into degrees<br/>
 **Usage:** ```radians | degrees: round-to-decimal```,
 ```html
-{{ 0.785398 | degrees: 0 }}
-{{ -1.57 | degrees: 3 }}
+<p>{{ 0.785398 | degrees: 0 }}</p>
+<p>{{ -1.57 | degrees: 3 }}</p>
 <!--result
 45
 -89.954
@@ -1060,8 +1061,8 @@ Converts radians into degrees<br/>
 Converts degrees into radians<br/>
 **Usage:** ```degrees | radians: round-to-decimal```,
 ```html
-{{ 45 | radians: 2 }}
-{{ 180 | radians: 5 }}
+<p>{{ 45 | radians: 2 }}</p>
+<p>{{ 180 | radians: 5 }}</p>
 <!--result
 0.79
 3.14159
@@ -1070,8 +1071,8 @@ Converts degrees into radians<br/>
 Converts numbers into formatted display<br/>
 **Usage:** ```number | shortFmt: round-to-decimal```,
 ```html
-{{ 45000 | shortFmt: 0 }}
-{{ 18234822 | shortFmt: 1 }}
+<p>{{ 45000 | shortFmt: 0 }}</p>
+<p>{{ 18234822 | shortFmt: 1 }}</p>
 <!--result
 45 k
 18.2 m
@@ -1080,8 +1081,8 @@ Converts numbers into formatted display<br/>
 Converts bytes into formatted display<br/>
 **Usage:** ```number | byteFmt: round-to-decimal```,
 ```html
-{{ 1998 | byteFmt: 2 }}
-{{ 1339234901 | byteFmt: 5 }}
+<p>{{ 1998 | byteFmt: 2 }}</p>
+<p>{{ 1339234901 | byteFmt: 5 }}</p>
 <!--result
 1.95 KB
 1.24726 GB
@@ -1090,8 +1091,8 @@ Converts bytes into formatted display<br/>
 Converts kilobytes into formatted display<br/>
 **Usage:** ```number | kbFmt: round-to-decimal```,
 ```html
-{{ 1024 | kbFmt: 0 }}
-{{ 1049901 | kbFmt: 5 }}
+<p>{{ 1024 | kbFmt: 0 }}</p>
+<p>{{ 1049901 | kbFmt: 5 }}</p>
 <!--result
 1 MB
 1.00126 GB
