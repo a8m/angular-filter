@@ -13,7 +13,7 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
   .filter('byteFmt', ['$math', function ($math) {
     return function (bytes, decimal) {
 
-      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal > -1 &&
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(bytes) && isFinite(bytes)) {
 
         if(bytes < 1024) { // within 1 KB so B

@@ -13,10 +13,10 @@ angular.module('a8m.math.shortFmt', ['a8m.math'])
 
   .filter('shortFmt', ['$math', function ($math) {
     return function (number, decimal) {
-      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal > -1 &&
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(number) && isFinite(number)){
                     
-          if(number < 1e3){
+          if(number < 1e3) {
               return number;
           } else if(number < 1e6) {
               return convertToDecimal((number / 1e3), decimal, $math) + ' K';
