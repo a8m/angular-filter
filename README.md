@@ -1100,6 +1100,7 @@ Converts kilobytes into formatted display<br/>
 ```
 #Boolean
 >Used for boolean expression in chaining filters
+
 ###isGreaterThan
 **aliases:** `>`
 ```html
