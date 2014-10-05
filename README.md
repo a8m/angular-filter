@@ -61,6 +61,7 @@
   - [shortFmt] (#shortfmt)
   - [byteFmt] (#bytefmt)
   - [kbFmt] (#kbfmt)
+  - [timeFmt] (#timefmt)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1096,7 +1097,22 @@ Converts kilobytes into formatted display<br/>
 <!--result
 1 MB
 1.00126 GB
-
+```
+###timefmt
+Converts time difference into format<br/>
+**Usage:** ```seconds | timeFmt```,
+```html
+<p>{{ 4 | timeFmt }}</p>
+<p>{{ 59 | timeFmt }}</p>
+<p>{{ 7234 | timeFmt }}</p>
+<p>{{ 691200 | timeFmt }}</p>
+<p>{{ 8640000 | timeFmt }}</p>
+<!--result
+just now
+59 seconds ago
+2 hours ago
+1 week ago
+3 months ago
 ```
 #Boolean
 >Used for boolean expression in chaining filters
