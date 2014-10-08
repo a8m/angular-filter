@@ -3,6 +3,7 @@
 
 ##Table of contents:
 - [Get Started](#get-started)
+- [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
 - [Development](#development)
 - [TODO](#todo)
 - [Collection](#collection)
