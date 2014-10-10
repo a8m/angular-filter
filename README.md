@@ -181,7 +181,7 @@ William 20
 Clive 30
 
 ```
-###filterby
+###filterBy
 Filter a collection by a specific property.<br/>
 **Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```<br/>
 **Note:** You can even use compound properties (e.g: ```|filterBy: [property + property]: model```)<br/>
@@ -360,7 +360,7 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###fuzzyby
+###fuzzyBy
 fuzzy string searching(approximate string matching) by property(nested to). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 usage: ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
 ```js
@@ -382,7 +382,7 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###groupby
+###groupBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.<br/>
 **usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
@@ -412,7 +412,7 @@ $scope.players = [
     * player: Steve
     * player: Scruath
 ```
-###countby
+###countBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is the count of objects in each group<br/>
 **usage:** ```(key, value) in collection | countBy: 'property'``` or ```... | countBy: 'nested.property'```
@@ -541,7 +541,7 @@ $scope.collection = [
 <!-- result:
   { "name": "bar" }
 ```
-###remove-with
+###removeWith
 comparison for each element in a collection to the given properties object,<br/>
 returning an array without all elements that have equivalent property values.
 ```js
@@ -566,7 +566,7 @@ returning an array without all elements that have equivalent property values.
   bar
   baz
 ```
-###searchfield
+###searchField
 if you want to use the filter in angular and want to filter for multiple values<br/>
 so searchField filter return new collection with property called searchField<br/>
 **support nested properties with dot notation i.e:** ``` collection | searchFiled: 'prop': 'nested.prop' ```
@@ -673,7 +673,7 @@ $scope.orders = [
 -->
 ```
 
-###reverse collection
+###reverse
 Reverse the order of the elements in a collection
 
 ```js
@@ -694,7 +694,7 @@ $scope.users = [
 -->
 ```
 
-###isempty
+###isEmpty
 get collection or string and return if it empty[Bollean]
 
 ```html
@@ -790,7 +790,7 @@ $scope.users2 = [
 <!--result: 
 2, foo bag
 ```
-###toarray 
+###toArray 
 Convert objects into stable arrays. <br/>
 **Usage:** ```object | toArray: addKey[optional]```<br/>
 if addKey set to true,the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
@@ -849,7 +849,7 @@ Foo Bar Baz
 -->
 ```
 
-###uriencode
+###uriEncode
 get string as parameter and return encoded uri
 
 ```html
@@ -870,7 +870,7 @@ result:
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
 -->
 ```
-###startswith
+###startsWith
 return whether string starts with the starts parameter.<br/>
 usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
 ```html
@@ -880,7 +880,7 @@ usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
   true
   false
 ```
-###endswith
+###endsWith
 return whether string ends with the ends parameter.<br/>
 usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
 ```html
@@ -890,7 +890,7 @@ usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
   true
   false
 ```
-###striptags
+###stripTags
 strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
 
@@ -939,7 +939,7 @@ lorem ipsum...
 lorem ipsum d...
 lorem ipsum dolor sit amet
 ```
-###reverse string
+###reverse
 Reverses a string
 ```js
 $scope.text = 'lorem ipsum dolor sit amet';
@@ -1069,7 +1069,7 @@ Converts degrees into radians<br/>
 0.79
 3.14159
 ```
-###shortfmt
+###shortFmt
 Converts numbers into formatted display<br/>
 **Usage:** ```number | shortFmt: round-to-decimal```,
 ```html
@@ -1079,7 +1079,7 @@ Converts numbers into formatted display<br/>
 45 k
 18.2 m
 ```
-###bytefmt
+###byteFmt
 Converts bytes into formatted display<br/>
 **Usage:** ```number | byteFmt: round-to-decimal```,
 ```html
@@ -1089,7 +1089,7 @@ Converts bytes into formatted display<br/>
 1.95 KB
 1.24726 GB
 ```
-###kbfmt
+###kbFmt
 Converts kilobytes into formatted display<br/>
 **Usage:** ```number | kbFmt: round-to-decimal```,
 ```html
