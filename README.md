@@ -324,7 +324,7 @@ lol
 ```
 ###flatten
 Flattens a nested array (the nesting can be to any depth).<br/>
-If you pass shallow, the array will only be flattened a single level
+If you pass shallow, the array will only be flattened a single level<br/>
 **Usage:** ```collection | flatten: shallow[optional]```
 ```js
 $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[[[14, 15]]]]]]]]]]]]];
@@ -340,7 +340,7 @@ $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[
 ###fuzzy
 fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
-usage: ```collection | fuzzy: search: caseSensitive[optional]```
+**Usage:** ```collection | fuzzy: search: caseSensitive[optional]```
 ```js
 $scope.books = [
   { title: 'The DaVinci Code', author: 'F. Scott Fitzgerald' },
