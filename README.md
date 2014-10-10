@@ -1170,9 +1170,12 @@ Converts kilobytes into formatted display<br/>
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
 #Development
+* Don't forget about tests.
+* If you planning add some feature please create issue before.
+
 Clone the project: <br/>
 ```bash
-$ git clone 
+$ git clone
 $ npm install
 $ bower install
 ```
