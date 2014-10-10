@@ -270,14 +270,15 @@ Mike
 -->
 
 ```
+Return the first two users with even id
 ```html
 <!-- collection | first: n: expression -->
 <th ng-repeat="user in users | first: 2: '!(id%2)'">
   {{ user.name }}
 </th>
 <!--result:
-baz
-lol
+Mike
+Rob
 ```
 ###last
 Gets the last element or last n elements of a collection,<br/>
@@ -296,14 +297,12 @@ $scope.users = [
 <!--result:
 { id: 4, name: { first: 'lol', last: 'bar' } }
 ```
-
 ```html
 <!-- collection | last: expression -->
 {{ users | last: 'name.last === \'bar\'' }}
 <!--result:
 [ { id: 4, name: { first: 'lol', last: 'bar' } } ]
 ```
-
 ```html
 <!-- collection | last: n -->
 <th ng-repeat="user in users | last: 2">
