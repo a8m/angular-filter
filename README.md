@@ -500,7 +500,7 @@ $scope.mod2 = function(elm) {
 }
 ```
 ```html
-<tr ng-repeat="num in [1,2,3,4,5,6] | omit: mod2">
+<tr ng-repeat="num in [1,2,3,4,5,6] | pick: mod2">
   {{ num }},
 </tr>
 <!--result
