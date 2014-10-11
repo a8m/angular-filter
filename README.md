@@ -1023,7 +1023,7 @@ result:
 
 ###average
 
-Average number ofgiven array
+Average number of given array
 
 ```html
 <p> {{ [1,2,3,4,5] | average }}</p>
