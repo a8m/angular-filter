@@ -1017,6 +1017,21 @@ min find and return the lowest number in a given array
 <!--
 result:
 1
+-->
+
+###average
+
+Average number ofgiven array
+
+```html
+<p> {{ [1,2,3,4,5] | average }}</p>
+
+<!--
+result:
+3
+-->
+```
+
 ```
 ###percent
 Percentage between two numbers<br/>
