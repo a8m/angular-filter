@@ -117,10 +117,10 @@ When you're done, your setup should look similar to the following:
 ---
 
 # Available filters
-* [Collection Filters](https://github.com/a8m/blob/master/docs/collection-filters.md)
-* [String Filters](https://github.com/a8m/blob/master/docs/string-filters.md)
-* [Math Filters](https://github.com/a8m/blob/master/docs/math-filters.md)
-* [Boolean Filters](https://github.com/a8m/blob/master/docs/boolean-filters.md)
+* [Collection Filters](docs/collection-filters.md)
+* [String Filters](docs/string-filters.md)
+* [Math Filters](docs/math-filters.md)
+* [Boolean Filters](docs/boolean-filters.md)
 
 ---
 
