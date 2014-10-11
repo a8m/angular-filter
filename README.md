@@ -54,6 +54,7 @@
 - [Math](#math)
   - [min](#min)
   - [max](#max)
+  - [average](#average)
   - [percent](#percent)
   - [radix](#radix)
   - [sum](#sum)
@@ -1018,6 +1019,7 @@ min find and return the lowest number in a given array
 result:
 1
 -->
+```
 
 ###average
 
@@ -1030,7 +1032,6 @@ Average number ofgiven array
 result:
 3
 -->
-```
 
 ```
 ###percent
