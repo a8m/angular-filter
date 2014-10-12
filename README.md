@@ -14,6 +14,7 @@
   - [concat](#concat)
   - [contains](#contains)
   - [countBy](#countby)
+  - [defaults](#defaults)
   - [every](#every)
   - [filterBy](#filterby)
   - [first](#first)
@@ -432,6 +433,41 @@ $scope.players = [
   Group name: alpha, length: 1
   Group name: beta, length: 2
   Group name: gamma, length: 2
+```
+###defaults
+`defaultsFilter` allows to specify a default fallback value for properties that resolve to undefined.<br/>
+**Usage:** `col in collection | defaults: fallback`
+```js
+$scope.orders = [
+      { id:1, destination: { zip: 21908 }, name: 'Ariel M' },
+      { id:2, name: 'John F' },
+      { id:3, destination: { zip: 45841 } },
+      { id:4, destination: { zip: 78612 }, name: 'Danno L' },
+  ];
+$scope.fallback = {
+      name: 'Customer name not available',
+      destination: { zip: 'Pickup' }
+  };
+```
+```html
+<li ng-repeat="order in orders | defaults: defaultValue">
+    <b>id:</b> {{ order.id }},
+    <b>name:</b> {{ order.name }}, 
+    <b>shipping address:</b> {{ order.destination.zip }}
+</li>
+<!--Results:
+* id: 1, name: Ariel M, shipping address: 21908
+* id: 2, name: John F, shipping address: Pickup
+* id: 3, name: Customer name not available, shipping address: 45841
+* id: 4, name: Danno L, shipping address: 78612
+```
+**Note:** `defaultsFilter` change the source object.<br/>
+**Why?** if we not change the source object, it's actually means we gonna return **new** boject(copy operation)  **each digest cycle**.<br/> 
+And it will cause adverse memory and performance implications.<br/>
+**How to avoid it?** see below
+```js
+//We copy it once, and it's really cheaper
+$scope.ordersWithFallback = angular.copy($scope.orders);
 ```
 ###where
 comparison for each element in a collection to the given properties object,<br/>
