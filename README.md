@@ -361,7 +361,7 @@ $scope.books = [
 </li>
 ```
 ###fuzzyBy
-fuzzy string searching(approximate string matching) by property(nested to). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+fuzzy string searching(approximate string matching) by property(nested to). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 usage: ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
 ```js
 $scope.books = [
