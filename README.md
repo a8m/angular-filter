@@ -4,6 +4,7 @@
 ##Table of contents:
 - [Get Started](#get-started)
 - [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
+- [Changelog](#changelog)
 - [Development](#development)
 - [TODO](#todo)
 - [Collection](#collection)
@@ -1206,6 +1207,14 @@ Converts kilobytes into formatted display<br/>
 <!--or: -->
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
+#Changelog
+###0.4.8
+* add [defaultsFilter](#defaults)
+* improve docs, tests
+###0.4.7
+* add [condition filters](#Boolean) set.
+<br/>
+<br/>
 
 #TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
