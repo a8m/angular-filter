@@ -450,7 +450,7 @@ $scope.fallback = {
   };
 ```
 ```html
-<li ng-repeat="order in orders | defaults: defaultValue">
+<li ng-repeat="order in orders | defaults: fallback">
     <b>id:</b> {{ order.id }},
     <b>name:</b> {{ order.name }}, 
     <b>shipping address:</b> {{ order.destination.zip }}
@@ -468,6 +468,11 @@ And it will cause adverse memory and performance implications.<br/>
 ```js
 //We copy it once, and it's really cheaper
 $scope.ordersWithFallback = angular.copy($scope.orders);
+```
+```html
+<li ng-repeat="order in ordersWithFallback | defaults: fallback">
+    <!-- ..... -->
+</li>
 ```
 ###where
 comparison for each element in a collection to the given properties object,<br/>
