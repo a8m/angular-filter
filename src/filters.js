@@ -30,6 +30,7 @@ angular.module('angular.filter', [
   'a8m.after-where',
   'a8m.before',
   'a8m.before-where',
+  'a8m.defaults',
   'a8m.where',
   'a8m.reverse',
   'a8m.remove',
