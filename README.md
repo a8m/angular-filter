@@ -1211,6 +1211,7 @@ Converts kilobytes into formatted display<br/>
 ###0.4.8
 * add [defaultsFilter](#defaults)
 * improve docs, tests
+
 ###0.4.7
 * add [condition filters](#Boolean) set.
 <br/>
