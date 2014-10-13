@@ -1,6 +1,6 @@
 /**
- * Bunch of useful filters for angularJS
- * @version v0.4.7 - 2014-10-03 * @link https://github.com/a8m/angular-filter
+ * Bunch of useful filters for angularJS(with no external dependencies!)
+ * @version v0.4.8 - 2014-10-13 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -22,6 +22,7 @@ var isDefined = angular.isDefined,
 
 
 /**
+ * @description
  * get an object and return array of values
  * @param object
  * @returns {Array}
@@ -34,7 +35,6 @@ function toArray(object) {
 }
 
 /**
- *
  * @param value
  * @returns {boolean}
  */
@@ -43,6 +43,7 @@ function isNull(value) {
 }
 
 /**
+ * @description
  * return if object contains partial object
  * @param partial{object}
  * @param object{object}
@@ -58,6 +59,7 @@ function objectContains(partial, object) {
 }
 
 /**
+ * @description
  * search for approximate pattern in string
  * @param word
  * @param pattern
@@ -76,6 +78,7 @@ function hasApproxPattern(word, pattern) {
 }
 
 /**
+ * @description
  * return the first n element of an array,
  * if expression provided, is returns as long the expression return truthy
  * @param array
@@ -103,7 +106,6 @@ if (!String.prototype.contains) {
 }
 
 /**
- *
  * @param num {Number}
  * @param decimal {Number}
  * @param $math
@@ -111,6 +113,35 @@ if (!String.prototype.contains) {
  */
 function convertToDecimal(num, decimal, $math){
   return $math.round(num * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+}
+
+/**
+ * @description
+ * Get an object, and return an array composed of it's properties names(nested too).
+ * @param obj {Object}
+ * @param stack {Array}
+ * @param parent {String}
+ * @returns {Array}
+ * @example
+ * parseKeys({ a:1, b: { c:2, d: { e: 3 } } }) ==> ["a", "b.c", "b.d.e"]
+ */
+function deepKeys(obj, stack, parent) {
+  stack = stack || [];
+  var keys = Object.keys(obj);
+
+  keys.forEach(function(el) {
+    //if it's a nested object
+    if(isObject(obj[el]) && !isArray(obj[el])) {
+      //concatenate the new parent if exist
+      var p = parent ? parent + '.' + el : parent;
+      deepKeys(obj[el], stack, p || el);
+    } else {
+      //create and save the key
+      var key = parent ? parent + '.' + el : el;
+      stack.push(key)
+    }
+  });
+  return stack
 }
 /**
  * @ngdoc filter
@@ -485,6 +516,43 @@ angular.module('a8m.count-by', [])
     }
   }]);
 
+/**
+ * @ngdoc filter
+ * @name defaults
+ * @kind function
+ *
+ * @description
+ * defaultsFilter allows to specify a default fallback value for properties that resolve to undefined.
+ */
+
+angular.module('a8m.defaults', [])
+  .filter('defaults', ['$parse', function( $parse ) {
+    return function(collection, defaults) {
+
+      collection = (isObject(collection)) ? toArray(collection) : collection;
+
+      if(!isArray(collection) || !isObject(defaults)) {
+        return collection;
+      }
+
+      var keys = deepKeys(defaults);
+
+      collection.forEach(function(elm) {
+        //loop through all the keys
+        keys.forEach(function(key) {
+          var getter = $parse(key);
+          var setter = getter.assign;
+          //if it's not exist
+          if(isUndefined(getter(elm))) {
+            //get from defaults, and set to the returned object
+            setter(elm, getter(defaults))
+          }
+        });
+      });
+
+      return collection;
+    }
+  }]);
 /**
  * @ngdoc filter
  * @name every
@@ -1953,6 +2021,7 @@ angular.module('angular.filter', [
   'a8m.after-where',
   'a8m.before',
   'a8m.before-where',
+  'a8m.defaults',
   'a8m.where',
   'a8m.reverse',
   'a8m.remove',
