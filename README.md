@@ -1208,6 +1208,9 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 #Changelog
+###0.4.9
+* fix issue #38 with [reverseFilter](#reverse)
+
 ###0.4.8
 * add [defaultsFilter](#defaults)
 * improve docs, tests
