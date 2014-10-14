@@ -1023,14 +1023,23 @@ result:
 
 ###average
 
-Average number of given array
+Average number of some property in given array
 
+```js
+$scope.scores = [
+    { name: 'Dan', score: 10 },
+    { name: 'Edd', score: 20 },
+    { name: 'Edi', score: 30 },
+    { name: 'Ari', score: 40 },
+    { name: 'Tod', score: 50 }
+  ];
+```
 ```html
-<p> {{ [1,2,3,4,5] | average }}</p>
+<p> {{ scores | average: 'score' }}</p>
 
 <!--
 result:
-3
+30
 -->
 
 ```
