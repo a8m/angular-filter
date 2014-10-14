@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.4.8 - 2014-10-13 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.9 - 2014-10-14 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1088,10 +1088,23 @@ angular.module('a8m.reverse', [])
           return input.split('').reverse().join('');
         }
 
-        return (isArray(input)) ? input.reverse() : input;
+        return (isArray(input)) ? reverseArray(input) : input;
       }
     }]);
 
+/**
+ * @description
+ * Get an array, reverse it manually.
+ * @param arr
+ * @returns {Array}
+ */
+function reverseArray(arr) {
+  var res = [];
+  arr.forEach(function(e, i) {
+    res.push(arr[arr.length - i -1]);
+  });
+  return res;
+}
 
 /**
  * @ngdoc filter
