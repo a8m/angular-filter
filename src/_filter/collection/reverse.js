@@ -18,6 +18,20 @@ angular.module('a8m.reverse', [])
           return input.split('').reverse().join('');
         }
 
-        return (isArray(input)) ? input.reverse() : input;
+        return (isArray(input)) ? reverseArray(input) : input;
       }
     }]);
+
+/**
+ * @description
+ * Get an array, reverse it manually.
+ * @param arr
+ * @returns {Array}
+ */
+function reverseArray(arr) {
+  var res = [];
+  arr.forEach(function(e, i) {
+    res.push(arr[arr.length - i -1]);
+  });
+  return res;
+}
