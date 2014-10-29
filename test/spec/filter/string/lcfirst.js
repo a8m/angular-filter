@@ -1,19 +1,19 @@
 'use strict';
 
-describe('ucfirstFilter', function () {
+describe('lcfirstFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.ucfirst'));
+  beforeEach(module('a8m.lcfirst'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('ucfirst');
+    filter = $filter('lcfirst');
   }));
 
   it('should get a string and return it uppercase only for the first letter', function() {
-    expect(filter('a')).toEqual('A');
-    expect(filter('foo bar baz')).toEqual('Foo bar baz');
-    expect(filter('lorem ipsum is simply dummy.... industry.')).toEqual('Lorem ipsum is simply dummy.... industry.');
+    expect(filter('a')).toEqual('a');
+    expect(filter('Foo bar baz')).toEqual('foo bar baz');
+    expect(filter('Lorem Ipsum is simply dummy.... industry.')).toEqual('lorem Ipsum is simply dummy.... industry.');
   });
 
   it('should get a !string and not touch it', function() {
