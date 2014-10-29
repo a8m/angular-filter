@@ -882,7 +882,7 @@ Baz
 
 ###ucfirst
 
-ucfirstFilter get string as parameter and return it capitalized
+ucfirstFilter get string as parameter and return the first word capitalized
 
 ```html
 <p> {{ 'foo bar baz' | ucfirst }}</p>
@@ -895,7 +895,7 @@ Foo bar baz
 
 ###lcfirst
 
-lcfirstFilter get string as parameter and return it capitalized
+lcfirstFilter get string as parameter and return the first word decapitalized
 
 ```html
 <p> {{ 'Foo bar baz' | lcfirst }}</p>
@@ -921,7 +921,7 @@ Foo Bar Baz
 
 ###lcwords
 
-lcwordsFilter get string as parameter and return it capitalized
+lcwordsFilter get string as parameter and return it decapitalized
 
 ```html
 <p> {{ 'Foo Bar Baz' | lcwords }}</p>
