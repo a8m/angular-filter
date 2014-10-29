@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.4.9 - 2014-10-14 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.9 - 2014-10-29 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1088,23 +1088,10 @@ angular.module('a8m.reverse', [])
           return input.split('').reverse().join('');
         }
 
-        return (isArray(input)) ? reverseArray(input) : input;
+        return (isArray(input)) ? input.slice().reverse() : input;
       }
     }]);
 
-/**
- * @description
- * Get an array, reverse it manually.
- * @param arr
- * @returns {Array}
- */
-function reverseArray(arr) {
-  var res = [];
-  arr.forEach(function(e, i) {
-    res.push(arr[arr.length - i -1]);
-  });
-  return res;
-}
 
 /**
  * @ngdoc filter
@@ -1863,6 +1850,28 @@ angular.module('a8m.ucfirst', [])
 
 /**
  * @ngdoc filter
+ * @name uriComponentEncode
+ * @kind function
+ *
+ * @description
+ * get string as parameter and return encoded string
+ */
+
+angular.module('a8m.uri-component-encode', [])
+
+  .filter('uriComponentEncode',['$window', function ($window) {
+      return function (input) {
+
+        if(isString(input)) {
+          return $window.encodeURIComponent(input);
+        }
+
+        return input;
+      }
+    }]);
+
+/**
+ * @ngdoc filter
  * @name uriEncode
  * @kind function
  *
@@ -2013,6 +2022,7 @@ angular.module('angular.filter', [
 
   'a8m.ucfirst',
   'a8m.uri-encode',
+  'a8m.uri-component-encode',
   'a8m.slugify',
   'a8m.strip-tags',
   'a8m.stringular',

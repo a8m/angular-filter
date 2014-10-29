@@ -52,6 +52,7 @@
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
+  - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
 - [Math](#math)
   - [min](#min)
@@ -895,6 +896,13 @@ get string as parameter and return encoded uri
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
+```
+
+###uriComponentEncode
+get string as parameter and return encoded uri component
+
+```html
+<a ng-href="http://domain.com/fetch/{{ 'Some&strange=chars' | uriComponentEncode }}">Link</a>
 ```
 
 ###slugify
