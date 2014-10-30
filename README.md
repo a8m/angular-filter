@@ -5,7 +5,7 @@
 - [Get Started](#get-started)
 - [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
 - [Changelog](#changelog)
-- [Development](#development)
+- [Contributing](#contributing)
 - [TODO](#todo)
 - [Collection](#collection)
   - [after](#after)
@@ -1231,9 +1231,9 @@ Converts kilobytes into formatted display<br/>
 #TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
-#Development
+#Contributing
+* If you planning add some feature please **create issue before**.
 * Don't forget about tests.
-* If you planning add some feature please create issue before.
 
 Clone the project: <br/>
 ```bash
