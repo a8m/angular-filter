@@ -57,6 +57,7 @@
 - [Math](#math)
   - [min](#min)
   - [max](#max)
+  - [average](#average)
   - [percent](#percent)
   - [radix](#radix)
   - [sum](#sum)
@@ -1067,6 +1068,30 @@ min find and return the lowest number in a given array
 <!--
 result:
 1
+-->
+```
+
+###average
+
+Average number of some property in given array
+
+```js
+$scope.scores = [
+    { name: 'Dan', score: 10 },
+    { name: 'Edd', score: 20 },
+    { name: 'Edi', score: 30 },
+    { name: 'Ari', score: 40 },
+    { name: 'Tod', score: 50 }
+  ];
+```
+```html
+<p> {{ scores | average: 'score' }}</p>
+
+<!--
+result:
+30
+-->
+
 ```
 ###percent
 Percentage between two numbers<br/>
