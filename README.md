@@ -1036,7 +1036,7 @@ barfoo
 ```
 ###repeat
 Repeats a string n times<br/>
-usage: ```string | repeat: n: separator[optional]```
+**Usage:** ```string | repeat: n: separator[optional]```
 ```html
 <p>{{ 'foo' | repeat: 3: '-' }}</p>
 <!--repeat:
@@ -1045,28 +1045,44 @@ foo-foo-foo
 #Math
 
 ###max
-
-max find and return the largest number in a given array
-
+max find and return the largest number in a given array.  
+if an `expression` is provided, will return max value by expression.  
+**Usage:** ```array | max: expression[optional]```
+```js
+$scope.users = [
+  { user: { score: 988790 } },
+  { user: { score: 123414 } },
+  { user: { rank : 988999 } },
+  { user: { score: 987621 } }
+];
+```
 ```html
 <p> {{ [1,2,3,4,7,8,9] | max }}</p>
-
+<p> {{ users | max: 'user.score || user.rank' }}</p>
 <!--
 result:
-9
--->
+* 9
+* { user: { rank : 988999 } }
 ```
 
 ###min
-
-min find and return the lowest number in a given array
-
+min find and return the lowest number in a given array.  
+if an `expression` is provided, will return min value by expression.  
+**Usage:** ```array | min: expression[optional]```
+```js
+$scope.users = [
+  { user: { score: 988790 } },
+  { user: { score: 123414 } },
+  { user: { score: 987621 } }
+];
+```
 ```html
 <p> {{ [1,2,3,4,7,8,9] | min }}</p>
-
+<p> {{ users | min: 'user.score' }}</p>
 <!--
 result:
-1
+* 1
+* { user: { score: 123414 } }
 ```
 ###percent
 Percentage between two numbers<br/>
