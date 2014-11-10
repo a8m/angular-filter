@@ -21,6 +21,7 @@ describe('slugifyFilter', function () {
     expect(filter('foo bar baz', '!')).toEqual('foo!bar!baz');
     expect(filter('lorem ipsum dolor sit amet', ' ')).toEqual('lorem ipsum dolor sit amet');
     expect(filter('Lorem ipsum dolor sit amet', '-')).toEqual('lorem-ipsum-dolor-sit-amet');
+    expect(filter('Lorem ipsum dolor sit amet', '')).toEqual('loremipsumdolorsitamet');
   });
 
   it('should get a !string and not touch it', function() {
