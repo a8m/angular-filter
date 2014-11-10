@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.4.9 - 2014-10-29 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.9 - 2014-11-10 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1698,7 +1698,7 @@ angular.module('a8m.slugify', [])
   .filter('slugify',[ function () {
     return function (input, sub) {
 
-      var replace = sub || '-';
+      var replace = (typeof sub === 'undefined') ? '-' : sub;
 
       if(isString(input)) {
         return input.toLowerCase()
