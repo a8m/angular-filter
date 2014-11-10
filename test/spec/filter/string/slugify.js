@@ -16,7 +16,7 @@ describe('slugifyFilter', function () {
     expect(filter('Lorem ipsum dolor sit amet')).toEqual('lorem-ipsum-dolor-sit-amet');
   });
 
-  it('should get a string with replacer and replace spaces withit', function() {
+  it('should get a string with replacer and replace spaces with it', function() {
     expect(filter('a a', 1)).toEqual('a1a');
     expect(filter('foo bar baz', '!')).toEqual('foo!bar!baz');
     expect(filter('lorem ipsum dolor sit amet', ' ')).toEqual('lorem ipsum dolor sit amet');
