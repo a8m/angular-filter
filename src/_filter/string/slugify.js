@@ -12,7 +12,7 @@ angular.module('a8m.slugify', [])
   .filter('slugify',[ function () {
     return function (input, sub) {
 
-      var replace = (typeof sub === 'undefined') ? '-' : sub;
+      var replace = (isUndefined(sub)) ? '-' : sub;
 
       if(isString(input)) {
         return input.toLowerCase()
