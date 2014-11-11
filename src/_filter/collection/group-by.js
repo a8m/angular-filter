@@ -13,33 +13,40 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
-      var result,
-        get = $parse(property),
-        prop;
-
       if(!isObject(collection) || isUndefined(property)) {
         return collection;
       }
 
-      //Add collection instance to watch list
-      result = filterWatcher.$watch('groupBy', collection);
+      var getterFn = $parse(property);
 
-      forEach( collection, function( elm ) {
-        prop = get(elm);
+      // If it's called outside the DOM
+      if(!isScope(this)) {
+        return _groupBy(collection, getterFn);
+      }
+      // Return the memoized|| memozie the result
+      return filterWatcher.isMemoized('groupBy', arguments) ||
+        filterWatcher.memoize('groupBy', arguments, this,
+          _groupBy(collection, getterFn));
 
-        if(!result[prop]) {
-          result[prop] = [];
-        }
+      /**
+       * groupBy function
+       * @param collection
+       * @param getter
+       * @returns {{}}
+       */
+      function _groupBy(collection, getter) {
+        var result = {};
+        var prop;
 
-        if(result[prop].indexOf( elm ) === -1) {
+        forEach( collection, function( elm ) {
+          prop = getter(elm);
+
+          if(!result[prop]) {
+            result[prop] = [];
+          }
           result[prop].push(elm);
-        }
-
-      });
-
-      //kill instance
-      filterWatcher.$destroy('groupBy', collection);
-
-      return result;
+        });
+        return result;
+      }
     }
  }]);
