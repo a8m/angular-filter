@@ -107,8 +107,8 @@ When you're done, your setup should look similar to the following:
 </head>
 <body>
     ...
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="bower_components/js/angular-filter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
     ...
     <script>
         var myApp = angular.module('myApp', ['angular.filter']);
