@@ -1238,7 +1238,7 @@ Converts kilobytes into formatted display<br/>
 * `min` and `max` can get a property as an argument.
 * improve `slugify` filter.
 * refactor `filterWatcher`(memoize), now it works like a charm.
-* refactor `groupBy` now it can get ben chain with other filters
+* refactor `groupBy` now it can get be chain with other filters
 
 ###0.4.9
 * fix issue #38 with [reverseFilter](#reverse)
