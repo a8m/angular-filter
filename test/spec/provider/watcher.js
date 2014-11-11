@@ -2,55 +2,58 @@
 
 describe('filterWatcherProvider', function() {
 
-  //Provider
-  function setPrefix(name) {
-    return function(filterWatcherProvider) {
-      filterWatcherProvider.setPrefix(name);
-    }
-  }
+  //helpers
+  function n(n) { return n; }
+  var stub = { fn: function(x) { return n(x) } };
 
-  beforeEach(module('a8m.filter-watcher', function ($provide) {
-    //mock setTimeout
-    $provide.value('$window', {
-      setTimeout: function(fn, mill) {
-        fn.apply(null, [].slice.call(arguments, 2));
-        return +new Date();
-      }
-    });
+  beforeEach(module('a8m.filter-watcher'));
+
+  it('should have 2 main functions `isMemoized` and `memozie`', inject(function(filterWatcher) {
+    expect(filterWatcher.isMemoized).toEqual(jasmine.any(Function));
+    expect(filterWatcher.memoize).toEqual(jasmine.any(Function));
   }));
 
-  it('should register watcher and return new object', inject(function(filterWatcher) {
-    var watched = {},
-      flag = filterWatcher.$watch('foo', watched);
-
-    expect(flag).toEqual({});
-    expect(watched).toEqual({ _$$foo : {} });
-  }));
-
-  it('should return the same watcher instance if already exist', inject(function(filterWatcher) {
-    var watched = { _$$bar: [ 1, 2, 3] },
-      flag = filterWatcher.$watch('bar', watched);
-
-    expect(flag).toEqual([ 1, 2, 3]);
-  }));
-
-  it('should be able to remove specific watcher instance', inject(function(filterWatcher) {
-    var watched = { _$$bar: [ 1, 2, 3] };
-    filterWatcher.$destroy('bar', watched);
-
-    expect(watched).toEqual({});
-  }));
-
-  it('should be able to change the watcherPrefix', function() {
-    module(setPrefix('a8m_'));
+  it('should called the function if it\'s not cached',
     inject(function(filterWatcher) {
-      var watched = {},
-        flag = filterWatcher.$watch('foo', watched);
+      var spy = spyOn(stub, 'fn');
+      (function memoizedOnly(n) {
+        return filterWatcher.isMemoized('fName',n) || stub.fn(n);
+      })();
+      expect(spy).toHaveBeenCalled();
+      expect(spy.callCount).toEqual(1);
+  }));
 
-      expect(flag).toEqual({});
-      //TODO:(Ariel) this expectation broke travis build, check why
-//      expect(watched).toEqual({ a8m_foo : {} });
-    });
-  });
+  it('should get the result from cache if it\'s memoize',
+    inject(function(filterWatcher, $rootScope) {
+      var scope = $rootScope.$new();
+      var spy = spyOn(stub, 'fn').andCallFake(function() {
+        return 1;
+      });
+      function memoize(n) {
+        return filterWatcher.isMemoized('fName', n) ||
+          filterWatcher.memoize('fName', n, scope, stub.fn(n));
+      }
+      [1,1,1,1,4,4,4,4,4].forEach(function(el) {
+        memoize(el);
+      });
+      expect(spy).toHaveBeenCalled();
+      expect(spy.callCount).toEqual(2);
+  }));
 
+  it('should clear cache from scope listeners on `$destroy`',
+    inject(function(filterWatcher, $rootScope) {
+      var scope;
+      var spy = spyOn(stub, 'fn').andCallFake(function() {
+        return 1;
+      });
+      function memoize(n) {
+        return filterWatcher.isMemoized('fName', n) ||
+          filterWatcher.memoize('fName', n, scope = $rootScope.$new(), stub.fn(n));
+      }
+      [1,1,1,1,1,1,1,1,1,1].forEach(function(el) {
+        memoize(el);
+        scope.$destroy();
+      });
+      expect(spy.callCount).toEqual(10);
+    }));
 });
