@@ -136,3 +136,13 @@ function deepKeys(obj, stack, parent) {
   });
   return stack
 }
+
+/**
+ * @description
+ * Test if given object is a Scope instance
+ * @param obj
+ * @returns {Boolean}
+ */
+function isScope(obj) {
+  return obj && obj.$evalAsync && obj.$watch;
+}
