@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.4.9 - 2014-11-10 * @link https://github.com/a8m/angular-filter
+ * @version v0.4.9 - 2014-11-12 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -142,6 +142,16 @@ function deepKeys(obj, stack, parent) {
     }
   });
   return stack
+}
+
+/**
+ * @description
+ * Test if given object is a Scope instance
+ * @param obj
+ * @returns {Boolean}
+ */
+function isScope(obj) {
+  return obj && obj.$evalAsync && obj.$watch;
 }
 /**
  * @ngdoc filter
@@ -837,34 +847,41 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
-      var result,
-        get = $parse(property),
-        prop;
-
       if(!isObject(collection) || isUndefined(property)) {
         return collection;
       }
 
-      //Add collection instance to watch list
-      result = filterWatcher.$watch('groupBy', collection);
+      var getterFn = $parse(property);
 
-      forEach( collection, function( elm ) {
-        prop = get(elm);
+      // If it's called outside the DOM
+      if(!isScope(this)) {
+        return _groupBy(collection, getterFn);
+      }
+      // Return the memoized|| memozie the result
+      return filterWatcher.isMemoized('groupBy', arguments) ||
+        filterWatcher.memoize('groupBy', arguments, this,
+          _groupBy(collection, getterFn));
 
-        if(!result[prop]) {
-          result[prop] = [];
-        }
+      /**
+       * groupBy function
+       * @param collection
+       * @param getter
+       * @returns {{}}
+       */
+      function _groupBy(collection, getter) {
+        var result = {};
+        var prop;
 
-        if(result[prop].indexOf( elm ) === -1) {
+        forEach( collection, function( elm ) {
+          prop = getter(elm);
+
+          if(!result[prop]) {
+            result[prop] = [];
+          }
           result[prop].push(elm);
-        }
-
-      });
-
-      //kill instance
-      filterWatcher.$destroy('groupBy', collection);
-
-      return result;
+        });
+        return result;
+      }
     }
  }]);
 
@@ -1393,44 +1410,74 @@ angular.module('a8m.math', [])
  * @kind function
  *
  * @description
- * Math.max
- *
+ * Math.max will get an array and return the max value. if an expression
+ * is provided, will return max value by expression.
  */
 
 angular.module('a8m.math.max', ['a8m.math'])
 
-  .filter('max', ['$math', function ($math) {
-    return function (input) {
+  .filter('max', ['$math', '$parse', function ($math, $parse) {
+    return function (input, expression) {
 
-      return (isArray(input)) ?
-        $math.max.apply($math, input) :
-        input;
+      if(!isArray(input)) {
+        return input;
+      }
+      return isUndefined(expression)
+        ? $math.max.apply($math, input)
+        : input[indexByMax(input, expression)];
+    };
+
+    /**
+     * @private
+     * @param array
+     * @param exp
+     * @returns {number|*|Number}
+     */
+    function indexByMax(array, exp) {
+      var mappedArray = array.map(function(elm){
+        return $parse(exp)(elm);
+      });
+      return mappedArray.indexOf($math.max.apply($math, mappedArray));
     }
 
   }]);
-
 /**
  * @ngdoc filter
  * @name min
  * @kind function
  *
  * @description
- * Math.min
- *
+ * Math.min will get an array and return the min value. if an expression
+ * is provided, will return min value by expression.
  */
 
 angular.module('a8m.math.min', ['a8m.math'])
 
-  .filter('min', ['$math', function ($math) {
-    return function (input) {
+  .filter('min', ['$math', '$parse', function ($math, $parse) {
+    return function (input, expression) {
 
-      return (isArray(input)) ?
-        $math.min.apply($math, input) :
-        input;
+      if(!isArray(input)) {
+        return input;
+      }
+      return isUndefined(expression)
+        ? $math.min.apply($math, input)
+        : input[indexByMin(input, expression)];
+    };
+
+    /**
+     * @private
+     * @param array
+     * @param exp
+     * @returns {number|*|Number}
+     */
+    function indexByMin(array, exp) {
+      var mappedArray = array.map(function(elm){
+        return $parse(exp)(elm);
+      });
+      return mappedArray.indexOf($math.min.apply($math, mappedArray));
     }
 
   }]);
-
 /**
  * @ngdoc filter
  * @name Percent
@@ -1698,7 +1745,7 @@ angular.module('a8m.slugify', [])
   .filter('slugify',[ function () {
     return function (input, sub) {
 
-      var replace = (typeof sub === 'undefined') ? '-' : sub;
+      var replace = (isUndefined(sub)) ? '-' : sub;
 
       if(isString(input)) {
         return input.toLowerCase()
@@ -1921,96 +1968,132 @@ angular.module('a8m.wrap', [])
  * @kind function
  *
  * @description
- * filterWatchers is a _privateProvider
- * It's created to solve the problem of $rootScope:infdig(Infinite $digest loop) when using
- * some filters on the view.
+ * store specific filters result in $$cache, based on scope life time(avoid memory leak).
+ * on scope.$destroy remove it's cache from $$cache container
  */
 
 angular.module('a8m.filter-watcher', [])
   .provider('filterWatcher', function() {
 
-    var filterPrefix = '_$$';
-
-    /**
-     * @description
-     * change the prefix name for filters on watch phase
-     * @param prefix
-     * @returns {filterWatcher}
-     */
-    this.setPrefix = function(prefix) {
-      filterPrefix = prefix;
-      return this;
-    };
-
-    this.$get = ['$window', function($window) {
-
-      var $$timeout = $window.setTimeout;
+    this.$get = [function() {
 
       /**
-       * @description
-       * return the filter full name
-       * @param name
-       * @returns {string}
-       * @private
+       * Cache storing
+       * @type {Object}
        */
-      function _getFullName(name) {
-        return filterPrefix + name;
-      }
+      var $$cache = {};
+
+      /**
+       * Scope listeners container
+       * scope.$destroy => remove all cache keys
+       * bind to current scope.
+       * @type {Object}
+       */
+      var $$listeners = {};
 
       /**
        * @description
-       * return whether or not this object is watched in current phase
+       * get `HashKey` string based on the given arguments.
        * @param fName
-       * @param object
-       * @returns {boolean}
-       * @private
+       * @param args
+       * @returns {string}
        */
-      function _isWatched(fName, object) {
-        return isDefined(object[fName]);
+      function getHashKey(fName, args) {
+        return [fName, JSON.stringify(args)]
+          .join('#')
+          .replace(/"/g,'');
       }
 
       /**
        * @description
-       * return the object.$$filterName instance in current phase
-       * @param name
-       * @param object
-       * @private
+       * fir on $scope.$destroy,
+       * remove cache based scope from `$$cache`,
+       * and remove itself from `$$listeners`
+       * @param event
        */
-      function _watch(name, object) {
-        var fName = _getFullName(name);
-
-        if(!_isWatched(fName, object)) {
-          //Create new instance
-          Object.defineProperty(object, fName, {
-            enumerable: false,
-            configurable: true,
-            value: {}
-          });
-        }
-        return object[fName];
-      }
-
-      /**
-       * @description
-       * destroy/delete current watch instance
-       * @param name
-       * @param object
-       * @private
-       */
-      function _destroy(name, object) {
-        return $$timeout(function() {
-          delete object[_getFullName(name)];
+      function removeCache(event) {
+        var id = event.targetScope.$id;
+        forEach($$listeners[id], function(key) {
+          delete $$cache[key];
         });
+        delete $$listeners[id];
+      }
+
+      /**
+       * @description
+       * Store hashKeys in $$listeners container
+       * on scope.$destroy, remove them all(bind an event).
+       * @param scope
+       * @param hashKey
+       * @returns {*}
+       */
+      function addListener(scope, hashKey) {
+        var id = scope.$id;
+        if(isUndefined($$listeners[id])) {
+          scope.$on('$destroy', removeCache);
+          $$listeners[id] = [];
+        }
+        return $$listeners[id].push(hashKey);
+      }
+
+      /**
+       * @description
+       * return the `cacheKey` or undefined.
+       * @param filterName
+       * @param args
+       * @returns {*}
+       */
+      function $$isMemoized(filterName, args) {
+        var hashKey = getHashKey(filterName, args);
+        return $$cache[hashKey];
+      }
+
+      /**
+       * @description
+       * store `result` in `$$cache` container, based on the hashKey.
+       * add $destroy listener and return result
+       * @param filterName
+       * @param args
+       * @param scope
+       * @param result
+       * @returns {*}
+       */
+      function $$memoize(filterName, args, scope, result) {
+        var hashKey = getHashKey(filterName, args);
+        //store result in `$$cache` container
+        $$cache[hashKey] = result;
+        //add `$destroy` listener
+        addListener(scope, hashKey);
+        return result;
       }
 
       return {
-        $watch: _watch,
-        $destroy: _destroy
+        isMemoized: $$isMemoized,
+        memoize: $$memoize
       }
 
     }];
-
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * @ngdoc module
  * @name angular.filters
