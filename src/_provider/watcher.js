@@ -11,7 +11,7 @@
 angular.module('a8m.filter-watcher', [])
   .provider('filterWatcher', function() {
 
-    this.$get = [function() {
+    this.$get = ['$window', '$rootScope', function($window, $rootScope) {
 
       /**
        * Cache storing
@@ -26,6 +26,12 @@ angular.module('a8m.filter-watcher', [])
        * @type {Object}
        */
       var $$listeners = {};
+
+      /**
+       * $timeout without triggering the digest cycle
+       * @type {function}
+       */
+      var $$timeout = $window.setTimeout;
 
       /**
        * @description
@@ -53,6 +59,18 @@ angular.module('a8m.filter-watcher', [])
           delete $$cache[key];
         });
         delete $$listeners[id];
+      }
+
+      /**
+       * @description
+       * for angular version that greater than v.1.3.0
+       * if clear cache when the digest cycle end.
+       */
+      function cleanStateless() {
+        $$timeout(function() {
+          if(!$rootScope.$$phase)
+            $$cache = {};
+        });
       }
 
       /**
@@ -98,8 +116,13 @@ angular.module('a8m.filter-watcher', [])
         var hashKey = getHashKey(filterName, args);
         //store result in `$$cache` container
         $$cache[hashKey] = result;
-        //add `$destroy` listener
-        addListener(scope, hashKey);
+        // for angular versions that less than 1.3
+        // add to `$destroy` listener, a cleaner callback
+        if(isScope(scope)) {
+          addListener(scope, hashKey);
+        } else {
+          cleanStateless();
+        }
         return result;
       }
 

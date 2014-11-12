@@ -19,11 +19,6 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
 
       var getterFn = $parse(property);
 
-      // If it's called outside the DOM
-      if(!isScope(this)) {
-        return _groupBy(collection, getterFn);
-      }
-      // Return the memoized|| memozie the result
       return filterWatcher.isMemoized('groupBy', arguments) ||
         filterWatcher.memoize('groupBy', arguments, this,
           _groupBy(collection, getterFn));
