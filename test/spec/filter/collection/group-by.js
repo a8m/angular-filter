@@ -66,29 +66,29 @@ describe('groupByFilter', function() {
     expect(filter(null)).toBeNull();
   });
 
-//  describe('inside the DOM', function() {
-//    it('should not throw and not trigger the infinite digest exception',
-//      inject(function($rootScope, $compile) {
-//        var scope = $rootScope.$new();
-//        scope.players = [
-//          { name: 'foo', team: 'a' },
-//          { name: 'lol', team: 'b' },
-//          { name: 'bar', team: 'b' },
-//          { name: 'baz', team: 'a' }
-//        ];
-//        scope.search = '';
-//        var elm = angular.element(
-//          '<ul>' +
-//            '<li ng-repeat="(key, val) in players | filter: search | groupBy: \'team\'">' +
-//              '{{ key }}' +
-//              '<p ng-repeat="v in val"> {{ v }}</p>' +
-//            '</li>' +
-//          '</ul>'
-//        );
-//        var temp = $compile(elm)(scope);
-//        expect(function() { scope.$digest() }).not.toThrow();
-//        expect(temp.children().length).toEqual(2);
-//      }));
-//  });
+  describe('inside the DOM', function() {
+    it('should not throw and not trigger the infinite digest exception',
+      inject(function($rootScope, $compile) {
+        var scope = $rootScope.$new();
+        scope.players = [
+          { name: 'foo', team: 'a' },
+          { name: 'lol', team: 'b' },
+          { name: 'bar', team: 'b' },
+          { name: 'baz', team: 'a' }
+        ];
+        scope.search = '';
+        var elm = angular.element(
+          '<ul>' +
+            '<li ng-repeat="(key, val) in players | filter: search | groupBy: \'team\'">' +
+              '{{ key }}' +
+              '<p ng-repeat="v in val"> {{ v }}</p>' +
+            '</li>' +
+          '</ul>'
+        );
+        var temp = $compile(elm)(scope);
+        expect(function() { scope.$digest() }).not.toThrow();
+        expect(temp.children().length).toEqual(2);
+      }));
+  });
 
 });
