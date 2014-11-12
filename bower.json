@@ -11,7 +11,7 @@
     "angular": "*"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.16"
+    "angular-mocks": "*"
   },
   "ignore": [
     "node_modules",
