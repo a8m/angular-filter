@@ -1234,7 +1234,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 #Changelog
-###0.5.0
+###0.5.1
 * `min` and `max` can get a property as an argument.
 * improve `slugify` filter.
 * refactor `filterWatcher`(memoize), now it works like a charm.
