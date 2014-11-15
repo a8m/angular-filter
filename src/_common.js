@@ -46,7 +46,7 @@ function objectContains(partial, object) {
   var keys = Object.keys(partial);
 
   return keys.map(function(el) {
-    return !(!object[el] || (object[el] != partial[el]));
+    return (object[el] !== undefined) && (object[el] == partial[el]);
   }).indexOf(false) == -1;
 
 }
