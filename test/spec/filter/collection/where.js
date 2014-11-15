@@ -13,14 +13,14 @@ describe('whereFilter', function() {
     'array of all elements that have equivalent property values.', function() {
 
     var array = [
-      { id: 1, name: 'ariel' },
-      { id: 2, name: 'baz' },
-      { id: 1, name: 'ariel' },
-      { id: 1, name: 'bar' }
+      { id: 0, name: 'ariel' },
+      { id: 1, name: 'baz' },
+      { id: 0, name: 'ariel' },
+      { id: 0, name: 'bar' }
     ];
 
-    expect(filter(array, { id: 1, name: 'ariel' })).toEqual([array[0], array[2]]);
-    expect(filter(array, { id: 1 })).not.toContain(array[1]);
+    expect(filter(array, { id: 0, name: 'ariel' })).toEqual([array[0], array[2]]);
+    expect(filter(array, { id: 0 })).not.toContain(array[1]);
 
     expect(filter(array, {})).toEqual(array);
 
