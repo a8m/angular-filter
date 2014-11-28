@@ -400,10 +400,14 @@ $scope.players = [
 ];
 ```
 ```html
-<ul ng-repeat="(key, value) in players | groupBy: 'team'" >
-  Group name: {{ key }}
-  <li ng-repeat="player in value">
-    player: {{ player.name }}
+<ul>
+  <li ng-repeat="(key, value) in players | groupBy: 'team'">
+    Group name: {{ key }}
+    <ul>
+      <li ng-repeat="player in value">
+        player: {{ player.name }}
+      </li>
+    </ul>
   </li>
 </ul>
 <!-- result:
@@ -430,9 +434,9 @@ $scope.players = [
 ];
 ```
 ```html
-<ul ng-repeat="(key, value) in players | countBy: 'team'" >
+<li ng-repeat="(key, value) in players | countBy: 'team'" >
   Group name: {{ key }}, length: {{ value }}
-</ul>
+</li>
 <!-- result:
   Group name: alpha, length: 1
   Group name: beta, length: 2
