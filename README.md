@@ -1,4 +1,4 @@
-#Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://coveralls.io/repos/a8m/angular-filter/badge.png?branch=master)](https://coveralls.io/r/a8m/angular-filter?branch=master)
+#Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
 >Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.1**
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
@@ -1280,3 +1280,11 @@ $ grunt build
 $ git tag v0.*.*
 $ git push origin master --tags
 ```
+[npm-image]: https://img.shields.io/npm/v/angular-filter.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/angular-filter
+[travis-image]: https://img.shields.io/travis/a8m/angular-filter.svg?style=flat-square
+[travis-url]: https://travis-ci.org/a8m/angular-filter
+[coveralls-image]: https://img.shields.io/coveralls/a8m/angular-filter.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/a8m/angular-filter
+[license-image]: http://img.shields.io/npm/l/angular-filter.svg?style=flat-square
+[license-url]: LICENSE
