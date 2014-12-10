@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.1 - 2014-11-12 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.1 - 2014-12-10 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -53,7 +53,7 @@ function objectContains(partial, object) {
   var keys = Object.keys(partial);
 
   return keys.map(function(el) {
-    return !(!object[el] || (object[el] != partial[el]));
+    return (object[el] !== undefined) && (object[el] == partial[el]);
   }).indexOf(false) == -1;
 
 }
@@ -153,6 +153,7 @@ function deepKeys(obj, stack, parent) {
 function isScope(obj) {
   return obj && obj.$evalAsync && obj.$watch;
 }
+
 /**
  * @ngdoc filter
  * @name a8m.angular
@@ -2000,7 +2001,7 @@ angular.module('a8m.filter-watcher', [])
        * @returns {string}
        */
       function getHashKey(fName, args) {
-        return [fName, JSON.stringify(args)]
+        return [fName, angular.toJson(args)]
           .join('#')
           .replace(/"/g,'');
       }
