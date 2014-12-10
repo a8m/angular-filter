@@ -41,7 +41,7 @@ angular.module('a8m.filter-watcher', [])
        * @returns {string}
        */
       function getHashKey(fName, args) {
-        return [fName, JSON.stringify(args)]
+        return [fName, angular.toJson(args)]
           .join('#')
           .replace(/"/g,'');
       }
