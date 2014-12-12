@@ -470,7 +470,7 @@ $scope.fallback = {
 * id: 4, name: Danno L, shipping address: 78612
 ```
 **Note:** `defaultsFilter` change the source object.<br/>
-**Why?** if we not change the source object, it's actually means we gonna return **new** boject(copy operation)  **each digest cycle**.<br/> 
+**Why?** if we not change the source object, it's actually means we gonna return **new** object(copy operation)  **each digest cycle**.<br/>
 And it will cause adverse memory and performance implications.<br/>
 **How to avoid it?** see below
 ```js
@@ -743,7 +743,7 @@ $scope.users = [
 ```
 
 ###isEmpty
-get collection or string and return if it empty[Bollean]
+get collection or string and return if it empty[Boolean]
 
 ```html
 <tr ng-repeat="order in orders" ng-hide="orders | isEmpty">
@@ -841,7 +841,7 @@ $scope.users2 = [
 ###toArray 
 Convert objects into stable arrays. <br/>
 **Usage:** ```object | toArray: addKey[optional]```<br/>
-if addKey set to true,the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
+if addKey set to true, the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
 ```html
 <th ng-repeat="elm in object | toArray | orderBy: 'property'">
   {{ elm.name }}
