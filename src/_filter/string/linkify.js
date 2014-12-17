@@ -16,9 +16,9 @@ angular.module('a8m.linkify', [])
             var stringToBeReturn = '';
 
             // replace for url links and ftp links
-            stringToBeReturn = input.replace(/((?:mailto|(?:ht|f)tps?):\/?\/?([^\s|^\<]+))/g, "<a target='_blank' href='$1'>$2</a>");
+            stringToBeReturn = input.replace(/((?:ht|f)tps?:\/?\/?([^\s|^\<]+))/g, "<a target='_blank' href='$1'>$2</a>");
 
             // replace for email links
-            return stringToBeReturn.replace(/(?:([^\s|^\>]+\@[^\s|^\<]+))/g, "<a href='mailto:$1'>$1</a>");
+            return stringToBeReturn.replace(/(?:([^\s|^\>]+\@[0-9a-zA-Z\_]+\.[^\s|^\<]+))/g, "<a href='mailto:$1'>$1</a>");
         }
     }]);
