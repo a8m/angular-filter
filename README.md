@@ -53,6 +53,9 @@
   - [rtrim](#rtrim)
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
+  - [lcfirst](#lcfirst)
+  - [lcwords](#lcwords)
+  - [ucwords](#ucwords)
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
@@ -886,10 +889,36 @@ Baz
 
 ###ucfirst
 
-ucfirstFilter get string as parameter and return it capitalized
+ucfirstFilter get string as parameter and return the first word capitalized
 
 ```html
 <p> {{ 'foo bar baz' | ucfirst }}</p>
+
+<!--
+result:
+Foo bar baz
+-->
+```
+
+###lcfirst
+
+lcfirstFilter get string as parameter and return the first word decapitalized
+
+```html
+<p> {{ 'Foo bar baz' | lcfirst }}</p>
+
+<!--
+result:
+foo bar baz
+-->
+```
+
+###ucwords
+
+ucwordsFilter get string as parameter and return it capitalized
+
+```html
+<p> {{ 'foo bar baz' | ucwords }}</p>
 
 <!--
 result:
@@ -897,6 +926,18 @@ Foo Bar Baz
 -->
 ```
 
+###lcwords
+
+lcwordsFilter get string as parameter and return it decapitalized
+
+```html
+<p> {{ 'Foo Bar Baz' | lcwords }}</p>
+
+<!--
+result:
+foo bar baz
+-->
+```
 ###uriEncode
 get string as parameter and return encoded uri
 
