@@ -19,15 +19,13 @@ function containsFilter( $parse ) {
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
-        return true;
+        return false;
       }
 
-      return collection.some( function(elm) {
-
-        return (isObject(elm) || isFunction(expression)) ?
-          $parse(expression)(elm) :
-          elm === expression;
-
+      return collection.some(function(elm) {
+        return (isObject(elm) || isFunction(expression))
+          ? $parse(expression)(elm)
+          : elm === expression;
       });
 
     }
