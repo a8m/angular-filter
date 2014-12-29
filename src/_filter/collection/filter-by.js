@@ -7,7 +7,6 @@
  * filter by specific properties, avoid the rest
  */
 angular.module('a8m.filter-by', [])
-
   .filter('filterBy', ['$parse', function( $parse ) {
     return function(collection, properties, search) {
 
@@ -23,7 +22,6 @@ angular.module('a8m.filter-by', [])
       }
 
       return collection.filter(function(elm) {
-
         return properties.some(function(prop) {
 
           /**
@@ -42,12 +40,10 @@ angular.module('a8m.filter-by', [])
             });
           }
 
-          return (isString(comparator) || isNumber(comparator)) ?
-            String(comparator).toLowerCase().contains(search) :
-            false;
-        })
-
+          return (isString(comparator) || isNumber(comparator))
+            ? String(comparator).toLowerCase().contains(search)
+            : false;
+        });
       });
-
     }
   }]);

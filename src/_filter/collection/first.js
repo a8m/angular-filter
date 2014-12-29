@@ -8,7 +8,6 @@
  * if callback is provided, is returns as long the callback return truthy
  */
 angular.module('a8m.first', [])
-
   .filter('first', ['$parse', function( $parse ) {
     return function(collection) {
 
@@ -16,8 +15,9 @@ angular.module('a8m.first', [])
         getter,
         args;
 
-      collection = (isObject(collection)) ? toArray(collection) :
-        collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection)) {
         return collection;

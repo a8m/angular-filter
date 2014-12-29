@@ -8,14 +8,13 @@
  * in the collection before the first that found with the given properties.
  *
  */
-
 angular.module('a8m.before-where', [])
   .filter('beforeWhere', function() {
     return function (collection, object) {
 
-      collection = (isObject(collection)) ?
-        toArray(collection) :
-        collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection) || isUndefined(object))
         return collection;

@@ -9,7 +9,7 @@
  */
 
 angular.module('a8m.concat', [])
-  //TODO:unique option ? or use unique filter to filter result
+  //TODO(Ariel):unique option ? or use unique filter to filter result
   .filter('concat', [function () {
     return function (collection, joined) {
 
@@ -17,16 +17,16 @@ angular.module('a8m.concat', [])
         return collection;
       }
       if (isArray(collection)) {
-        return (isObject(joined)) ?
-            collection.concat(toArray(joined)) :
-            collection.concat(joined);
+        return (isObject(joined))
+          ? collection.concat(toArray(joined))
+          : collection.concat(joined);
       }
 
       if (isObject(collection)) {
         var array = toArray(collection);
-        return (isObject(joined)) ?
-            array.concat(toArray(joined)) :
-            array.concat(joined);
+        return (isObject(joined))
+          ? array.concat(toArray(joined))
+          : array.concat(joined);
       }
       return collection;
     };

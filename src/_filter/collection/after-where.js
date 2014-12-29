@@ -8,14 +8,13 @@
  * in the collection after the first that found with the given properties.
  *
  */
-
 angular.module('a8m.after-where', [])
     .filter('afterWhere', function() {
       return function (collection, object) {
 
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
+        collection = (isObject(collection))
+          ? toArray(collection)
+          : collection;
 
         if(!isArray(collection) || isUndefined(object))
           return collection;
