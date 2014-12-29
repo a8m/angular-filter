@@ -8,19 +8,19 @@
  * if callback is provided, is returns as long the callback return truthy
  */
 angular.module('a8m.last', [])
-
   .filter('last', ['$parse', function( $parse ) {
     return function(collection) {
 
-      var n,
-        getter,
-        args,
-      //cuz reverse change our src collection
-      //and we don't want side effects
-        reversed = copy(collection);
+      var n
+        , getter
+        , args
+        //cuz reverse change our src collection
+        //and we don't want side effects
+        , reversed = copy(collection);
 
-      reversed = (isObject(reversed)) ? toArray(reversed) :
-        reversed;
+      reversed = (isObject(reversed))
+        ? toArray(reversed)
+        : reversed;
 
       if(!isArray(reversed)) {
         return reversed;
