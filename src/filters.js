@@ -50,6 +50,7 @@ angular.module('angular.filter', [
   'a8m.first',
   'a8m.last',
   'a8m.flatten',
+  'a8m.join',
 
   'a8m.math',
   'a8m.math.max',

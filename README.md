@@ -26,6 +26,7 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
+  - [join] (#join)
   - [last](#last)
   - [map](#map)
   - [omit](#omit)
@@ -340,6 +341,25 @@ $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[
 <!--result:
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 ```
+
+### join
+Joins the contents of a collection into a string.<br/>
+By default, it will join elements with a *single space*, but you can provide your own delimiter.
+
+**Usage:** ```collection | join:', '```
+
+Example:
+
+```js
+$scope.names = ['John', 'Sebastian', 'Will', 'James'];
+```
+
+```html
+<p>{{ names | join:', ' }}</p>
+<!-- Will print "John, Sebastian, Will, James" -->
+
+```
+
 
 ###fuzzy
 fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
