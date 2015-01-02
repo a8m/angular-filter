@@ -8,12 +8,11 @@
  */
 angular.module('a8m.join', [])
   .filter('join', function () {
-    'use strict';
     return function (input, delimiter) {
       if (isUndefined(input) || !isArray(input)) {
         return input;
       }
-      if (!delimiter) {
+      if (isUndefined(delimiter)) {
         delimiter = ' ';
       }
 
