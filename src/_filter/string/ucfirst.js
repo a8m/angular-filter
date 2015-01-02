@@ -7,15 +7,14 @@
  * ucfirst
  *
  */
-
 angular.module('a8m.ucfirst', [])
-
   .filter('ucfirst', [function() {
     return function(input) {
-      return angular.isString(input) ? input.split(' ')
-        .map(function (char) {
-          return char.charAt(0).toUpperCase() + char.substring(1);
-        }).join(' ') : input;
+      if(!isString(input)) {
+        return input;
+      }
+      return input.split(' ').map(function (ch) {
+          return ch.charAt(0).toUpperCase() + ch.substring(1);
+        }).join(' ');
     }
-
   }]);
