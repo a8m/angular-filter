@@ -24,11 +24,9 @@ describe('groupByFilter', function() {
       beta: [players[1], players[3]],
       gamma: [players[2], players[4]]
     });
-
   });
 
   it('should support nested properties to', function() {
-
     var orders = [
       { id:10, customer: { name: 'foo', id: 1 } },
       { id:11, customer: { name: 'bar', id: 2 } },
@@ -43,13 +41,11 @@ describe('groupByFilter', function() {
       bar: [orders[1], orders[3], orders[4]],
       undefined: [2, null, true]
     });
-
   });
 
 
   it('should get object as collection, property(nested to) as identifier and ' +
     'returns the composed aggregate object.', function() {
-
     var dataObject = {
       0: { id: 1, data: {} },
       1: { id: 1, data: {} },
@@ -61,16 +57,38 @@ describe('groupByFilter', function() {
       1: [dataObject[0], dataObject[1]],
       2: [dataObject[2], dataObject[3]]
     });
-
   });
 
   it('should get !collection and return it as-is ', function() {
-
     expect(filter('string')).toEqual('string');
     expect(filter(1)).toEqual(1);
     expect(filter(!1)).toBeFalsy();
     expect(filter(null)).toBeNull();
+  });
 
+  describe('inside the DOM', function() {
+    it('should not throw and not trigger the infinite digest exception',
+      inject(function($rootScope, $compile) {
+        var scope = $rootScope.$new();
+        scope.players = [
+          { name: 'foo', team: 'a' },
+          { name: 'lol', team: 'b' },
+          { name: 'bar', team: 'b' },
+          { name: 'baz', team: 'a' }
+        ];
+        scope.search = '';
+        var elm = angular.element(
+          '<ul>' +
+            '<li ng-repeat="(key, val) in players | filter: search | groupBy: \'team\'">' +
+              '{{ key }}' +
+              '<p ng-repeat="v in val"> {{ v }}</p>' +
+            '</li>' +
+          '</ul>'
+        );
+        var temp = $compile(elm)(scope);
+        expect(function() { scope.$digest() }).not.toThrow();
+        expect(temp.children().length).toEqual(2);
+      }));
   });
 
 });

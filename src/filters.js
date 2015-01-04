@@ -9,6 +9,7 @@ angular.module('angular.filter', [
 
   'a8m.ucfirst',
   'a8m.uri-encode',
+  'a8m.uri-component-encode',
   'a8m.slugify',
   'a8m.strip-tags',
   'a8m.stringular',
@@ -30,6 +31,7 @@ angular.module('angular.filter', [
   'a8m.after-where',
   'a8m.before',
   'a8m.before-where',
+  'a8m.defaults',
   'a8m.where',
   'a8m.reverse',
   'a8m.remove',
@@ -48,6 +50,7 @@ angular.module('angular.filter', [
   'a8m.first',
   'a8m.last',
   'a8m.flatten',
+  'a8m.join',
 
   'a8m.math',
   'a8m.math.max',

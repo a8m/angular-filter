@@ -8,7 +8,6 @@
  * returning an array of all elements that have equivalent property values.
  *
  */
-
 angular.module('a8m.where', [])
   .filter('where', function() {
     return function (collection, object) {
@@ -16,8 +15,9 @@ angular.module('a8m.where', [])
       if(isUndefined(object)) {
         return collection;
       }
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       return collection.filter(function (elm) {
         return objectContains(object, elm);

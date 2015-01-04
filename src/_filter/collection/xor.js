@@ -27,10 +27,10 @@ angular.module('a8m.xor', [])
       function some(el, col) {
         var getter = $parse(expression);
         return col.some(function(dElm) {
-          return expression ?
-            equals(getter(dElm), getter(el)) :
-            equals(dElm, el);
-        })
+          return expression
+            ? equals(getter(dElm), getter(el))
+            : equals(dElm, el);
+        });
       }
     }
   }]);

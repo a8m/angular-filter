@@ -1,4 +1,3 @@
-
 /**
  * @ngdoc filter
  * @name searchField
@@ -8,9 +7,7 @@
  * for each member, join several strings field and add them to
  * new field called 'searchField' (use for search filtering)
  */
-
 angular.module('a8m.search-field', [])
-
   .filter('searchField', ['$parse', function ($parse) {
     return function (collection) {
 

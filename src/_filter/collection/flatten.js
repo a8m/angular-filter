@@ -7,21 +7,22 @@
  * Flattens a nested array (the nesting can be to any depth).
  * If you pass shallow, the array will only be flattened a single level
  */
-
 angular.module('a8m.flatten', [])
   .filter('flatten', function () {
     return function(collection, shallow) {
 
       shallow = shallow || false;
-      collection = (isObject(collection)) ? toArray(collection)
+      collection = (isObject(collection))
+        ? toArray(collection)
         : collection;
 
       if(!isArray(collection)) {
         return collection;
       }
 
-      return (!shallow) ? flatten(collection, 0) :
-        [].concat.apply([], collection);
+      return !shallow
+        ? flatten(collection, 0)
+        : [].concat.apply([], collection);
     }
   });
 

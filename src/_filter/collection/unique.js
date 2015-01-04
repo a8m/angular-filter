@@ -28,13 +28,13 @@ function uniqFilter($parse) {
       var uniqueItems = [],
           get = $parse(property);
 
-      return (isUndefined(property)) ?
+      return (isUndefined(property))
         //if it's kind of primitive array
-        collection.filter(function (elm, pos, self) {
+        ? collection.filter(function (elm, pos, self) {
           return self.indexOf(elm) === pos;
-        }) :
+        })
         //else compare with equals
-        collection.filter(function (elm) {
+        : collection.filter(function (elm) {
           var prop = get(elm);
           if(some(uniqueItems, prop)) {
             return false;
@@ -52,6 +52,5 @@ function uniqFilter($parse) {
           return equals(el, member);
         });
       }
-
     }
 }

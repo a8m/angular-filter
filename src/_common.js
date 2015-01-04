@@ -15,6 +15,7 @@ var isDefined = angular.isDefined,
 
 
 /**
+ * @description
  * get an object and return array of values
  * @param object
  * @returns {Array}
@@ -27,7 +28,6 @@ function toArray(object) {
 }
 
 /**
- *
  * @param value
  * @returns {boolean}
  */
@@ -36,6 +36,7 @@ function isNull(value) {
 }
 
 /**
+ * @description
  * return if object contains partial object
  * @param partial{object}
  * @param object{object}
@@ -45,12 +46,13 @@ function objectContains(partial, object) {
   var keys = Object.keys(partial);
 
   return keys.map(function(el) {
-    return !(!object[el] || (object[el] != partial[el]));
+    return (object[el] !== undefined) && (object[el] == partial[el]);
   }).indexOf(false) == -1;
 
 }
 
 /**
+ * @description
  * search for approximate pattern in string
  * @param word
  * @param pattern
@@ -69,6 +71,7 @@ function hasApproxPattern(word, pattern) {
 }
 
 /**
+ * @description
  * return the first n element of an array,
  * if expression provided, is returns as long the expression return truthy
  * @param array
@@ -96,7 +99,6 @@ if (!String.prototype.contains) {
 }
 
 /**
- *
  * @param num {Number}
  * @param decimal {Number}
  * @param $math
@@ -104,4 +106,43 @@ if (!String.prototype.contains) {
  */
 function convertToDecimal(num, decimal, $math){
   return $math.round(num * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+}
+
+/**
+ * @description
+ * Get an object, and return an array composed of it's properties names(nested too).
+ * @param obj {Object}
+ * @param stack {Array}
+ * @param parent {String}
+ * @returns {Array}
+ * @example
+ * parseKeys({ a:1, b: { c:2, d: { e: 3 } } }) ==> ["a", "b.c", "b.d.e"]
+ */
+function deepKeys(obj, stack, parent) {
+  stack = stack || [];
+  var keys = Object.keys(obj);
+
+  keys.forEach(function(el) {
+    //if it's a nested object
+    if(isObject(obj[el]) && !isArray(obj[el])) {
+      //concatenate the new parent if exist
+      var p = parent ? parent + '.' + el : parent;
+      deepKeys(obj[el], stack, p || el);
+    } else {
+      //create and save the key
+      var key = parent ? parent + '.' + el : el;
+      stack.push(key)
+    }
+  });
+  return stack
+}
+
+/**
+ * @description
+ * Test if given object is a Scope instance
+ * @param obj
+ * @returns {Boolean}
+ */
+function isScope(obj) {
+  return obj && obj.$evalAsync && obj.$watch;
 }

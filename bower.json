@@ -1,8 +1,8 @@
 {
   "name": "angular-filter",
-  "version": "0.4.7",
+  "version": "0.5.2",
   "main": "dist/angular-filter.js",
-  "description": "Bunch of useful filters for angularJS",
+  "description": "Bunch of useful filters for angularJS(with no external dependencies!)",
   "repository": {
     "type": "git",
     "url": "https://github.com/a8m/angular-filter.git"
@@ -11,7 +11,7 @@
     "angular": "*"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.16"
+    "angular-mocks": "*"
   },
   "ignore": [
     "node_modules",

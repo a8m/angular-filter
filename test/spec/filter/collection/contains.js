@@ -10,18 +10,15 @@ describe('containsFilter', function() {
   }));
 
   it('should get collection of primitives and use strict comparison(===)', function() {
-
     expect(filter(['foo', 'bar'], 'bar')).toBeTruthy();
     expect(filter([1,2,3,4], 4)).toBeTruthy();
 
     expect(filter(['foo', 'bar'], 'baz')).toBeFalsy();
     expect(filter([1,2,3,4], -1)).toBeFalsy();
-
   });
 
   it('should get array as collection and return if given expression is ' +
     'present in one or more object in the collection', function() {
-
     var array = [
       { id: 1, name: 'foo' },
       { id: 2, name: 'baz' },
@@ -31,16 +28,14 @@ describe('containsFilter', function() {
 
     expect(filter(array, 'id === 2')).toBeTruthy();
     expect(filter(array, 'id >= 1 && name === \'foo\'')).toBeTruthy();
-    expect(filter(array)).toBeTruthy();
+    expect(filter(array)).toBeFalsy();
 
     expect(filter(array, 'id > 77')).toBeFalsy();
     expect(filter(array, 'name.indexOf(\'u\') !== -1')).toBeFalsy();
-
   });
 
   it('should get object as collection and return if given expression is ' +
     'present in one or more object in the collection', function() {
-
     var object = {
       0: { id: 1, name: 'foo' },
       1: { id: 2, name: 'baz' },
@@ -48,18 +43,15 @@ describe('containsFilter', function() {
       3: { id: 1, name: 'bar' }
     };
 
-
     expect(filter(object, 'id === 2')).toBeTruthy();
     expect(filter(object, 'id >= 1 && name === "foo"')).toBeTruthy();
-    expect(filter(object)).toBeTruthy();
+    expect(filter(object)).toBeFalsy();
 
     expect(filter(object, 'id > 77')).toBeFalsy();
     expect(filter(object, 'name.indexOf(\'u\') !== -1')).toBeFalsy();
-
   });
 
   it('should get function as expression', function() {
-
     var array = [1, 2, 3, 4, 5];
 
     function mod2(elm) {
@@ -67,15 +59,12 @@ describe('containsFilter', function() {
     }
 
     expect(filter(array, mod2)).toBeTruthy();
-
   });
 
   it('should get !collection and return always true', function() {
-
-    expect(filter('lorem ipsum')).toBeTruthy();
-    expect(filter(1, null)).toBeTruthy();
-    expect(filter(!1)).toBeTruthy();
-
+    expect(filter('lorem ipsum')).toBeFalsy();
+    expect(filter(1, null)).toBeFalsy();
+    expect(filter(!1)).toBeFalsy();
   });
 
 });

@@ -1,9 +1,13 @@
-#Angular-filter &nbsp; [![Build Status](https://travis-ci.org/a8m/angular-filter.svg?branch=master)](https://travis-ci.org/a8m/angular-filter)  [![Coverage Status](https://coveralls.io/repos/a8m/angular-filter/badge.png?branch=master)](https://coveralls.io/r/a8m/angular-filter?branch=master)
->Bunch of useful filters for angularJS (with no external dependencies!), **v0.4.7**
+#Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
+>Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.1**
+
+**Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
 ##Table of contents:
 - [Get Started](#get-started)
-- [Development](#development)
+- [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
 - [TODO](#todo)
 - [Collection](#collection)
   - [after](#after)
@@ -13,6 +17,7 @@
   - [concat](#concat)
   - [contains](#contains)
   - [countBy](#countby)
+  - [defaults](#defaults)
   - [every](#every)
   - [filterBy](#filterby)
   - [first](#first)
@@ -21,14 +26,15 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
+  - [join] (#join)
   - [last](#last)
   - [map](#map)
   - [omit](#omit)
   - [pick](#pick)
   - [pluck](#pluck)
-  - [reverse](#reverse-collection)
+  - [reverse](#reverse)
   - [remove](#remove)
-  - [removeWith](#remove-with)
+  - [removeWith](#removewith)
   - [searchField](#searchfield)
   - [some](#contains)
   - [toArray](#toarray)
@@ -38,7 +44,7 @@
 - [String](#string)
   - [endsWith](#endswith)
   - [repeat](#repeat)
-  - [reverse](#reverse-string)
+  - [reverse](#reverse-1)
   - [slugify](#slugify)
   - [startsWith](#startswith)
   - [stripTags](#striptags)
@@ -49,6 +55,7 @@
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
+  - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
 - [Math](#math)
   - [min](#min)
@@ -56,12 +63,11 @@
   - [percent](#percent)
   - [radix](#radix)
   - [sum](#sum)
-  - [degrees] (#degrees)
-  - [radians] (#radians)
-  - [shortFmt] (#shortfmt)
-  - [byteFmt] (#bytefmt)
-  - [kbFmt] (#kbfmt)
-  - [timeFmt] (#timefmt)
+  - [degrees](#degrees)
+  - [radians](#radians)
+  - [shortFmt](#shortfmt)
+  - [byteFmt](#bytefmt)
+  - [kbFmt](#kbfmt)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -81,10 +87,11 @@
   - [isIdenticalTo](#isidenticalto) `===`
   - [isNotIdenticalTo](#isnotidenticalto) `!==`
 
-#Getting Started
-**(1)** You can install angular-filter using 3 different methods:
+#Get Started
+**(1)** You can install angular-filter using 4 different methods:
   - clone & [build](#developing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your terminal
+  - via **[npm](https://www.npmjs.org/)**: by running `$ npm install angular-filter` from your terminal
   - via cdnjs http://www.cdnjs.com/libraries/angular-filter
 
 **(2)** Include `angular-filter.js` (or `angular-filter.min.js`) in your `index.html`, after including Angular itself.
@@ -101,8 +108,8 @@ When you're done, your setup should look similar to the following:
 </head>
 <body>
     ...
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-    <script src="bower_components/js/angular-filter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
     ...
     <script>
         var myApp = angular.module('myApp', ['angular.filter']);
@@ -162,7 +169,7 @@ function MainController ($scope) {
     { id:2, customer: { name: 'William', id: 20 } },
     { id:3, customer: { name: 'John', id: 10 } },
     { id:4, customer: { name: 'William', id: 20 } },
-    { id:5, customer: { name: 'Clive', id: 30 } },
+    { id:5, customer: { name: 'Clive', id: 30 } }
   ];
 }
 ```
@@ -180,7 +187,7 @@ William 20
 Clive 30
 
 ```
-###filterby
+###filterBy
 Filter a collection by a specific property.<br/>
 **Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```<br/>
 **Note:** You can even use compound properties (e.g: ```|filterBy: [property + property]: model```)<br/>
@@ -269,14 +276,15 @@ Mike
 -->
 
 ```
+Return the first two users with even id
 ```html
 <!-- collection | first: n: expression -->
 <th ng-repeat="user in users | first: 2: '!(id%2)'">
   {{ user.name }}
 </th>
 <!--result:
-baz
-lol
+Mike
+Rob
 ```
 ###last
 Gets the last element or last n elements of a collection,<br/>
@@ -295,14 +303,12 @@ $scope.users = [
 <!--result:
 { id: 4, name: { first: 'lol', last: 'bar' } }
 ```
-
 ```html
 <!-- collection | last: expression -->
 {{ users | last: 'name.last === \'bar\'' }}
 <!--result:
 [ { id: 4, name: { first: 'lol', last: 'bar' } } ]
 ```
-
 ```html
 <!-- collection | last: n -->
 <th ng-repeat="user in users | last: 2">
@@ -323,7 +329,7 @@ lol
 ```
 ###flatten
 Flattens a nested array (the nesting can be to any depth).<br/>
-If you pass shallow, the array will only be flattened a single level
+If you pass shallow, the array will only be flattened a single level<br/>
 **Usage:** ```collection | flatten: shallow[optional]```
 ```js
 $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[[[14, 15]]]]]]]]]]]]];
@@ -336,10 +342,29 @@ $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 ```
 
+### join
+Joins the contents of a collection into a string.<br/>
+By default, it will join elements with a *single space*, but you can provide your own delimiter.
+
+**Usage:** ```collection | join:', '```
+
+Example:
+
+```js
+$scope.names = ['John', 'Sebastian', 'Will', 'James'];
+```
+
+```html
+<p>{{ names | join:', ' }}</p>
+<!-- Will print "John, Sebastian, Will, James" -->
+
+```
+
+
 ###fuzzy
 fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
-usage: ```collection | fuzzy: search: caseSensitive[optional]```
+**Usage:** ```collection | fuzzy: search: caseSensitive[optional]```
 ```js
 $scope.books = [
   { title: 'The DaVinci Code', author: 'F. Scott Fitzgerald' },
@@ -359,8 +384,8 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###fuzzyby
-fuzzy string searching(approximate string matching) by property(nested to). [Ream more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
+###fuzzyBy
+fuzzy string searching(approximate string matching) by property(nested to). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 usage: ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
 ```js
 $scope.books = [
@@ -381,7 +406,7 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###groupby
+###groupBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.<br/>
 **usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
@@ -395,10 +420,14 @@ $scope.players = [
 ];
 ```
 ```html
-<ul ng-repeat="(key, value) in players | groupBy: 'team'" >
-  Group name: {{ key }}
-  <li ng-repeat="player in value">
-    player: {{ player.name }}
+<ul>
+  <li ng-repeat="(key, value) in players | groupBy: 'team'">
+    Group name: {{ key }}
+    <ul>
+      <li ng-repeat="player in value">
+        player: {{ player.name }}
+      </li>
+    </ul>
   </li>
 </ul>
 <!-- result:
@@ -411,7 +440,7 @@ $scope.players = [
     * player: Steve
     * player: Scruath
 ```
-###countby
+###countBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is the count of objects in each group<br/>
 **usage:** ```(key, value) in collection | countBy: 'property'``` or ```... | countBy: 'nested.property'```
@@ -425,13 +454,53 @@ $scope.players = [
 ];
 ```
 ```html
-<ul ng-repeat="(key, value) in players | countBy: 'team'" >
+<li ng-repeat="(key, value) in players | countBy: 'team'" >
   Group name: {{ key }}, length: {{ value }}
-</ul>
+</li>
 <!-- result:
   Group name: alpha, length: 1
   Group name: beta, length: 2
   Group name: gamma, length: 2
+```
+###defaults
+`defaultsFilter` allows to specify a default fallback value for properties that resolve to undefined.<br/>
+**Usage:** `col in collection | defaults: fallback`
+```js
+$scope.orders = [
+      { id:1, destination: { zip: 21908 }, name: 'Ariel M' },
+      { id:2, name: 'John F' },
+      { id:3, destination: { zip: 45841 } },
+      { id:4, destination: { zip: 78612 }, name: 'Danno L' },
+  ];
+$scope.fallback = {
+      name: 'Customer name not available',
+      destination: { zip: 'Pickup' }
+  };
+```
+```html
+<li ng-repeat="order in orders | defaults: fallback">
+    <b>id:</b> {{ order.id }},
+    <b>name:</b> {{ order.name }}, 
+    <b>shipping address:</b> {{ order.destination.zip }}
+</li>
+<!--Results:
+* id: 1, name: Ariel M, shipping address: 21908
+* id: 2, name: John F, shipping address: Pickup
+* id: 3, name: Customer name not available, shipping address: 45841
+* id: 4, name: Danno L, shipping address: 78612
+```
+**Note:** `defaultsFilter` change the source object.<br/>
+**Why?** if we not change the source object, it's actually means we gonna return **new** object(copy operation)  **each digest cycle**.<br/>
+And it will cause adverse memory and performance implications.<br/>
+**How to avoid it?** see below
+```js
+//We copy it once, and it's really cheaper
+$scope.ordersWithFallback = angular.copy($scope.orders);
+```
+```html
+<li ng-repeat="order in ordersWithFallback | defaults: fallback">
+    <!-- ..... -->
+</li>
 ```
 ###where
 comparison for each element in a collection to the given properties object,<br/>
@@ -500,7 +569,7 @@ $scope.mod2 = function(elm) {
 }
 ```
 ```html
-<tr ng-repeat="num in [1,2,3,4,5,6] | omit: mod2">
+<tr ng-repeat="num in [1,2,3,4,5,6] | pick: mod2">
   {{ num }},
 </tr>
 <!--result
@@ -540,7 +609,7 @@ $scope.collection = [
 <!-- result:
   { "name": "bar" }
 ```
-###remove-with
+###removeWith
 comparison for each element in a collection to the given properties object,<br/>
 returning an array without all elements that have equivalent property values.
 ```js
@@ -565,7 +634,7 @@ returning an array without all elements that have equivalent property values.
   bar
   baz
 ```
-###searchfield
+###searchField
 if you want to use the filter in angular and want to filter for multiple values<br/>
 so searchField filter return new collection with property called searchField<br/>
 **support nested properties with dot notation i.e:** ``` collection | searchFiled: 'prop': 'nested.prop' ```
@@ -672,7 +741,7 @@ $scope.orders = [
 -->
 ```
 
-###reverse collection
+###reverse
 Reverse the order of the elements in a collection
 
 ```js
@@ -693,8 +762,8 @@ $scope.users = [
 -->
 ```
 
-###isempty
-get collection or string and return if it empty[Bollean]
+###isEmpty
+get collection or string and return if it empty[Boolean]
 
 ```html
 <tr ng-repeat="order in orders" ng-hide="orders | isEmpty">
@@ -789,10 +858,10 @@ $scope.users2 = [
 <!--result: 
 2, foo bag
 ```
-###toarray 
+###toArray 
 Convert objects into stable arrays. <br/>
 **Usage:** ```object | toArray: addKey[optional]```<br/>
-if addKey set to true,the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
+if addKey set to true, the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
 ```html
 <th ng-repeat="elm in object | toArray | orderBy: 'property'">
   {{ elm.name }}
@@ -848,11 +917,18 @@ Foo Bar Baz
 -->
 ```
 
-###uriencode
+###uriEncode
 get string as parameter and return encoded uri
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
+```
+
+###uriComponentEncode
+get string as parameter and return encoded uri component
+
+```html
+<a ng-href="http://domain.com/fetch/{{ 'Some&strange=chars' | uriComponentEncode }}">Link</a>
 ```
 
 ###slugify
@@ -869,7 +945,7 @@ result:
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
 -->
 ```
-###startswith
+###startsWith
 return whether string starts with the starts parameter.<br/>
 usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
 ```html
@@ -879,7 +955,7 @@ usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
   true
   false
 ```
-###endswith
+###endsWith
 return whether string ends with the ends parameter.<br/>
 usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
 ```html
@@ -889,7 +965,7 @@ usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
   true
   false
 ```
-###striptags
+###stripTags
 strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
 
@@ -938,7 +1014,7 @@ lorem ipsum...
 lorem ipsum d...
 lorem ipsum dolor sit amet
 ```
-###reverse string
+###reverse
 Reverses a string
 ```js
 $scope.text = 'lorem ipsum dolor sit amet';
@@ -986,7 +1062,7 @@ barfoo
 ```
 ###repeat
 Repeats a string n times<br/>
-usage: ```string | repeat: n: separator[optional]```
+**Usage:** ```string | repeat: n: separator[optional]```
 ```html
 <p>{{ 'foo' | repeat: 3: '-' }}</p>
 <!--repeat:
@@ -995,28 +1071,44 @@ foo-foo-foo
 #Math
 
 ###max
-
-max find and return the largest number in a given array
-
+max find and return the largest number in a given array.  
+if an `expression` is provided, will return max value by expression.  
+**Usage:** ```array | max: expression[optional]```
+```js
+$scope.users = [
+  { user: { score: 988790 } },
+  { user: { score: 123414 } },
+  { user: { rank : 988999 } },
+  { user: { score: 987621 } }
+];
+```
 ```html
 <p> {{ [1,2,3,4,7,8,9] | max }}</p>
-
+<p> {{ users | max: 'user.score || user.rank' }}</p>
 <!--
 result:
-9
--->
+* 9
+* { user: { rank : 988999 } }
 ```
 
 ###min
-
-min find and return the lowest number in a given array
-
+min find and return the lowest number in a given array.  
+if an `expression` is provided, will return min value by expression.  
+**Usage:** ```array | min: expression[optional]```
+```js
+$scope.users = [
+  { user: { score: 988790 } },
+  { user: { score: 123414 } },
+  { user: { score: 987621 } }
+];
+```
 ```html
 <p> {{ [1,2,3,4,7,8,9] | min }}</p>
-
+<p> {{ users | min: 'user.score' }}</p>
 <!--
 result:
-1
+* 1
+* { user: { score: 123414 } }
 ```
 ###percent
 Percentage between two numbers<br/>
@@ -1068,7 +1160,7 @@ Converts degrees into radians<br/>
 0.79
 3.14159
 ```
-###shortfmt
+###shortFmt
 Converts numbers into formatted display<br/>
 **Usage:** ```number | shortFmt: round-to-decimal```,
 ```html
@@ -1078,7 +1170,7 @@ Converts numbers into formatted display<br/>
 45 k
 18.2 m
 ```
-###bytefmt
+###byteFmt
 Converts bytes into formatted display<br/>
 **Usage:** ```number | byteFmt: round-to-decimal```,
 ```html
@@ -1088,7 +1180,7 @@ Converts bytes into formatted display<br/>
 1.95 KB
 1.24726 GB
 ```
-###kbfmt
+###kbFmt
 Converts kilobytes into formatted display<br/>
 **Usage:** ```number | kbFmt: round-to-decimal```,
 ```html
@@ -1180,14 +1272,35 @@ just now
 <!--or: -->
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
+#Changelog
+###0.5.1
+* `min` and `max` can get a property as an argument.
+* improve `slugify` filter.
+* refactor `filterWatcher`(memoize), now it works like a charm.
+* refactor `groupBy` now it can get be chain with other filters
+
+###0.4.9
+* fix issue #38 with [reverseFilter](#reverse)
+
+###0.4.8
+* add [defaultsFilter](#defaults)
+* improve docs, tests
+
+###0.4.7
+* add [condition filters](#Boolean) set.
+<br/>
+<br/>
 
 #TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
-#Development
+#Contributing
+* If you planning add some feature please **create issue before**.
+* Don't forget about tests.
+
 Clone the project: <br/>
 ```bash
-$ git clone 
+$ git clone
 $ npm install
 $ bower install
 ```
@@ -1202,3 +1315,11 @@ $ grunt build
 $ git tag v0.*.*
 $ git push origin master --tags
 ```
+[npm-image]: https://img.shields.io/npm/v/angular-filter.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/angular-filter
+[travis-image]: https://img.shields.io/travis/a8m/angular-filter.svg?style=flat-square
+[travis-url]: https://travis-ci.org/a8m/angular-filter
+[coveralls-image]: https://img.shields.io/coveralls/a8m/angular-filter.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/a8m/angular-filter
+[license-image]: http://img.shields.io/npm/l/angular-filter.svg?style=flat-square
+[license-url]: LICENSE

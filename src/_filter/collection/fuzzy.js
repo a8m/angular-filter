@@ -6,7 +6,6 @@
  * @description
  * fuzzy string searching for array of strings, objects
  */
-
 angular.module('a8m.fuzzy', [])
   .filter('fuzzy', function () {
     return function (collection, search, csensitive) {

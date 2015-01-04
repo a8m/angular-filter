@@ -6,7 +6,6 @@
  * @description
  * fuzzy string searching by key
  */
-
 angular.module('a8m.fuzzy-by', [])
   .filter('fuzzyBy', ['$parse', function ( $parse ) {
     return function (collection, property, search, csensitive) {

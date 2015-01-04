@@ -15,8 +15,9 @@ angular.module('a8m.remove-with', [])
       if(isUndefined(object)) {
         return collection;
       }
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = isObject(collection)
+        ? toArray(collection)
+        : collection;
 
       return collection.filter(function (elm) {
         return !objectContains(object, elm);

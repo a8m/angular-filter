@@ -12,14 +12,12 @@
 angular.module('a8m.after', [])
     .filter('after', function() {
       return function (collection, count) {
+        collection = (isObject(collection))
+          ? toArray(collection)
+          : collection;
 
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
-
-        return (isArray(collection)) ?
-            collection.slice(count) :
-            collection;
-
+        return (isArray(collection))
+          ? collection.slice(count)
+          : collection;
       }
     });
