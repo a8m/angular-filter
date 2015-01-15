@@ -89,7 +89,7 @@
 
 #Get Started
 **(1)** You can install angular-filter using 4 different methods:
-  - clone & [build](#developing) this repository
+  - clone & [build](#Contributing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your terminal
   - via **[npm](https://www.npmjs.org/)**: by running `$ npm install angular-filter` from your terminal
   - via cdnjs http://www.cdnjs.com/libraries/angular-filter
