@@ -14,10 +14,13 @@ describe('shortFmtFilter', function () {
     expect(filter(0,2)).toEqual(0);
     expect(filter(5,2)).toEqual(5);
     expect(filter(1024,0)).toEqual("1 K");
+    expect(filter(-1024,0)).toEqual("-1 K");
     expect(filter(1993,2)).toEqual("1.99 K");
-    expect(filter(1049901,5)).toEqual("1.0499 M"); 
+    expect(filter(-1993,2)).toEqual("-1.99 K");
+    expect(filter(1049901,5)).toEqual("1.0499 M");
+    expect(filter(-1049901,5)).toEqual("-1.0499 M");
     expect(filter(1909234901,2)).toEqual("1.91 B"); 
-    
+    expect(filter(-1909234901,2)).toEqual("-1.91 B");
   });
   
   it('should return NaN if bytes is not a number', function(){
