@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.2 - 2014-12-10 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.2 - 2015-01-17 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -317,14 +317,13 @@ angular.module('a8m.is-null', [])
  * in the collection after the first that found with the given properties.
  *
  */
-
 angular.module('a8m.after-where', [])
     .filter('afterWhere', function() {
       return function (collection, object) {
 
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
+        collection = (isObject(collection))
+          ? toArray(collection)
+          : collection;
 
         if(!isArray(collection) || isUndefined(object))
           return collection;
@@ -351,15 +350,13 @@ angular.module('a8m.after-where', [])
 angular.module('a8m.after', [])
     .filter('after', function() {
       return function (collection, count) {
+        collection = (isObject(collection))
+          ? toArray(collection)
+          : collection;
 
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
-
-        return (isArray(collection)) ?
-            collection.slice(count) :
-            collection;
-
+        return (isArray(collection))
+          ? collection.slice(count)
+          : collection;
       }
     });
 
@@ -373,14 +370,13 @@ angular.module('a8m.after', [])
  * in the collection before the first that found with the given properties.
  *
  */
-
 angular.module('a8m.before-where', [])
   .filter('beforeWhere', function() {
     return function (collection, object) {
 
-      collection = (isObject(collection)) ?
-        toArray(collection) :
-        collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection) || isUndefined(object))
         return collection;
@@ -401,21 +397,17 @@ angular.module('a8m.before-where', [])
  * @description
  * get a collection and specified count, and returns all of the items
  * in the collection before the specified count.
- *
  */
-
 angular.module('a8m.before', [])
     .filter('before', function() {
       return function (collection, count) {
+        collection = (isObject(collection))
+          ? toArray(collection)
+          : collection;
 
-        collection = (isObject(collection)) ?
-            toArray(collection) :
-            collection;
-
-        return (isArray(collection)) ?
-            collection.slice(0, (!count) ? count : --count) :
-            collection;
-
+        return (isArray(collection))
+          ? collection.slice(0, (!count) ? count : --count)
+          : collection;
       }
     });
 
@@ -430,7 +422,7 @@ angular.module('a8m.before', [])
  */
 
 angular.module('a8m.concat', [])
-  //TODO:unique option ? or use unique filter to filter result
+  //TODO(Ariel):unique option ? or use unique filter to filter result
   .filter('concat', [function () {
     return function (collection, joined) {
 
@@ -438,16 +430,16 @@ angular.module('a8m.concat', [])
         return collection;
       }
       if (isArray(collection)) {
-        return (isObject(joined)) ?
-            collection.concat(toArray(joined)) :
-            collection.concat(joined);
+        return (isObject(joined))
+          ? collection.concat(toArray(joined))
+          : collection.concat(joined);
       }
 
       if (isObject(collection)) {
         var array = toArray(collection);
-        return (isObject(joined)) ?
-            array.concat(toArray(joined)) :
-            array.concat(joined);
+        return (isObject(joined))
+          ? array.concat(toArray(joined))
+          : array.concat(joined);
       }
       return collection;
     };
@@ -475,15 +467,13 @@ function containsFilter( $parse ) {
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
-        return true;
+        return false;
       }
 
-      return collection.some( function(elm) {
-
-        return (isObject(elm) || isFunction(expression)) ?
-          $parse(expression)(elm) :
-          elm === expression;
-
+      return collection.some(function(elm) {
+        return (isObject(elm) || isFunction(expression))
+          ? $parse(expression)(elm)
+          : elm === expression;
       });
 
     }
@@ -573,11 +563,9 @@ angular.module('a8m.defaults', [])
  * Checks if given expression is present in all members in the collection
  *
  */
-
 angular.module('a8m.every', [])
   .filter('every', ['$parse', function($parse) {
     return function (collection, expression) {
-
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
@@ -585,12 +573,10 @@ angular.module('a8m.every', [])
       }
 
       return collection.every( function(elm) {
-
-        return (isObject(elm) || isFunction(expression)) ?
-          $parse(expression)(elm) :
-          elm === expression;
+        return (isObject(elm) || isFunction(expression))
+          ? $parse(expression)(elm)
+          : elm === expression;
       });
-
     }
   }]);
 
@@ -603,7 +589,6 @@ angular.module('a8m.every', [])
  * filter by specific properties, avoid the rest
  */
 angular.module('a8m.filter-by', [])
-
   .filter('filterBy', ['$parse', function( $parse ) {
     return function(collection, properties, search) {
 
@@ -619,7 +604,6 @@ angular.module('a8m.filter-by', [])
       }
 
       return collection.filter(function(elm) {
-
         return properties.some(function(prop) {
 
           /**
@@ -638,13 +622,11 @@ angular.module('a8m.filter-by', [])
             });
           }
 
-          return (isString(comparator) || isNumber(comparator)) ?
-            String(comparator).toLowerCase().contains(search) :
-            false;
-        })
-
+          return (isString(comparator) || isNumber(comparator))
+            ? String(comparator).toLowerCase().contains(search)
+            : false;
+        });
       });
-
     }
   }]);
 
@@ -658,7 +640,6 @@ angular.module('a8m.filter-by', [])
  * if callback is provided, is returns as long the callback return truthy
  */
 angular.module('a8m.first', [])
-
   .filter('first', ['$parse', function( $parse ) {
     return function(collection) {
 
@@ -666,8 +647,9 @@ angular.module('a8m.first', [])
         getter,
         args;
 
-      collection = (isObject(collection)) ? toArray(collection) :
-        collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection)) {
         return collection;
@@ -691,21 +673,22 @@ angular.module('a8m.first', [])
  * Flattens a nested array (the nesting can be to any depth).
  * If you pass shallow, the array will only be flattened a single level
  */
-
 angular.module('a8m.flatten', [])
   .filter('flatten', function () {
     return function(collection, shallow) {
 
       shallow = shallow || false;
-      collection = (isObject(collection)) ? toArray(collection)
+      collection = (isObject(collection))
+        ? toArray(collection)
         : collection;
 
       if(!isArray(collection)) {
         return collection;
       }
 
-      return (!shallow) ? flatten(collection, 0) :
-        [].concat.apply([], collection);
+      return !shallow
+        ? flatten(collection, 0)
+        : [].concat.apply([], collection);
     }
   });
 
@@ -737,7 +720,6 @@ function flatten(array, i) {
  * @description
  * fuzzy string searching by key
  */
-
 angular.module('a8m.fuzzy-by', [])
   .filter('fuzzyBy', ['$parse', function ( $parse ) {
     return function (collection, property, search, csensitive) {
@@ -777,7 +759,6 @@ angular.module('a8m.fuzzy-by', [])
  * @description
  * fuzzy string searching for array of strings, objects
  */
-
 angular.module('a8m.fuzzy', [])
   .filter('fuzzy', function () {
     return function (collection, search, csensitive) {
@@ -901,6 +882,29 @@ angular.module('a8m.is-empty', [])
 
 /**
  * @ngdoc filter
+ * @name join
+ * @kind function
+ *
+ * @description
+ * join a collection by a provided delimiter (space by default)
+ */
+angular.module('a8m.join', [])
+  .filter('join', function () {
+    return function (input, delimiter) {
+      if (isUndefined(input) || !isArray(input)) {
+        return input;
+      }
+      if (isUndefined(delimiter)) {
+        delimiter = ' ';
+      }
+
+      return input.join(delimiter);
+    };
+  })
+;
+
+/**
+ * @ngdoc filter
  * @name last
  * @kind function
  *
@@ -909,19 +913,19 @@ angular.module('a8m.is-empty', [])
  * if callback is provided, is returns as long the callback return truthy
  */
 angular.module('a8m.last', [])
-
   .filter('last', ['$parse', function( $parse ) {
     return function(collection) {
 
-      var n,
-        getter,
-        args,
-      //cuz reverse change our src collection
-      //and we don't want side effects
-        reversed = copy(collection);
+      var n
+        , getter
+        , args
+        //cuz reverse change our src collection
+        //and we don't want side effects
+        , reversed = copy(collection);
 
-      reversed = (isObject(reversed)) ? toArray(reversed) :
-        reversed;
+      reversed = (isObject(reversed))
+        ? toArray(reversed)
+        : reversed;
 
       if(!isArray(reversed)) {
         return reversed;
@@ -947,21 +951,19 @@ angular.module('a8m.last', [])
  * @description
  * Returns a new collection of the results of each expression execution.
  */
-
 angular.module('a8m.map', [])
-
   .filter('map', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
         return collection;
       }
 
       return collection.map(function (elm) {
-
         return $parse(expression)(elm);
       });
     }
@@ -981,15 +983,15 @@ angular.module('a8m.omit', [])
   .filter('omit', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
         return collection;
       }
 
       return collection.filter(function (elm) {
-
         return !($parse(expression)(elm));
       });
     }
@@ -1009,15 +1011,15 @@ angular.module('a8m.pick', [])
   .filter('pick', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
         return collection;
       }
 
       return collection.filter(function (elm) {
-
         return $parse(expression)(elm);
       });
     }
@@ -1040,8 +1042,9 @@ angular.module('a8m.remove-with', [])
       if(isUndefined(object)) {
         return collection;
       }
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = isObject(collection)
+        ? toArray(collection)
+        : collection;
 
       return collection.filter(function (elm) {
         return !objectContains(object, elm);
@@ -1105,7 +1108,6 @@ angular.module('a8m.reverse', [])
       }
     }]);
 
-
 /**
  * @ngdoc filter
  * @name searchField
@@ -1115,9 +1117,7 @@ angular.module('a8m.reverse', [])
  * for each member, join several strings field and add them to
  * new field called 'searchField' (use for search filtering)
  */
-
 angular.module('a8m.search-field', [])
-
   .filter('searchField', ['$parse', function ($parse) {
     return function (collection) {
 
@@ -1202,13 +1202,13 @@ function uniqFilter($parse) {
       var uniqueItems = [],
           get = $parse(property);
 
-      return (isUndefined(property)) ?
+      return (isUndefined(property))
         //if it's kind of primitive array
-        collection.filter(function (elm, pos, self) {
+        ? collection.filter(function (elm, pos, self) {
           return self.indexOf(elm) === pos;
-        }) :
+        })
         //else compare with equals
-        collection.filter(function (elm) {
+        : collection.filter(function (elm) {
           var prop = get(elm);
           if(some(uniqueItems, prop)) {
             return false;
@@ -1226,7 +1226,6 @@ function uniqFilter($parse) {
           return equals(el, member);
         });
       }
-
     }
 }
 
@@ -1240,7 +1239,6 @@ function uniqFilter($parse) {
  * returning an array of all elements that have equivalent property values.
  *
  */
-
 angular.module('a8m.where', [])
   .filter('where', function() {
     return function (collection, object) {
@@ -1248,8 +1246,9 @@ angular.module('a8m.where', [])
       if(isUndefined(object)) {
         return collection;
       }
-      collection = (isObject(collection)) ?
-        toArray(collection) : collection;
+      collection = (isObject(collection))
+        ? toArray(collection)
+        : collection;
 
       return collection.filter(function (elm) {
         return objectContains(object, elm);
@@ -1286,10 +1285,10 @@ angular.module('a8m.xor', [])
       function some(el, col) {
         var getter = $parse(expression);
         return col.some(function(dElm) {
-          return expression ?
-            equals(getter(dElm), getter(el)) :
-            equals(dElm, el);
-        })
+          return expression
+            ? equals(getter(dElm), getter(el))
+            : equals(dElm, el);
+        });
       }
     }
   }]);
@@ -1878,17 +1877,16 @@ angular.module('a8m.truncate', [])
  * ucfirst
  *
  */
-
 angular.module('a8m.ucfirst', [])
-
   .filter('ucfirst', [function() {
     return function(input) {
-      return angular.isString(input) ? input.split(' ')
-        .map(function (char) {
-          return char.charAt(0).toUpperCase() + char.substring(1);
-        }).join(' ') : input;
+      if(!isString(input)) {
+        return input;
+      }
+      return input.split(' ').map(function (ch) {
+          return ch.charAt(0).toUpperCase() + ch.substring(1);
+        }).join(' ');
     }
-
   }]);
 
 /**
@@ -2093,25 +2091,7 @@ angular.module('a8m.filter-watcher', [])
 
     }];
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 /**
  * @ngdoc module
@@ -2165,6 +2145,7 @@ angular.module('angular.filter', [
   'a8m.first',
   'a8m.last',
   'a8m.flatten',
+  'a8m.join',
 
   'a8m.math',
   'a8m.math.max',
