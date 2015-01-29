@@ -68,6 +68,7 @@
   - [shortFmt](#shortfmt)
   - [byteFmt](#bytefmt)
   - [kbFmt](#kbfmt)
+  - [mean](#mean)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1190,6 +1191,14 @@ Converts kilobytes into formatted display<br/>
 1 MB
 1.00126 GB
 
+```
+###mean
+Calculates the mean value from all values within an array<br/>
+**Usage:** ```array | mean```
+```html
+{{ [12,7,5] | mean }}
+<!--result
+8
 ```
 #Boolean
 >Used for boolean expression in chaining filters
