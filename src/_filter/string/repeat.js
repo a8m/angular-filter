@@ -6,9 +6,7 @@
  * @description
  * Repeats a string n times
  */
-
 angular.module('a8m.repeat', [])
-
   .filter('repeat',[ function () {
     return function (input, n, separator) {
 
@@ -18,7 +16,9 @@ angular.module('a8m.repeat', [])
         return input;
       }
 
-      return (!times) ? input : strRepeat(input, --n, separator || '');
+      return !times
+        ? input
+        : strRepeat(input, --n, separator || '');
     }
   }]);
 

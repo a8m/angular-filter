@@ -5,11 +5,8 @@
  *
  * @description
  * Convert angle from degrees to radians
- *
  */
-
 angular.module('a8m.math.radians', ['a8m.math'])
-
   .filter('radians', ['$math', function ($math) {
     return function (degrees, decimal) {
 	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
@@ -18,9 +15,8 @@ angular.module('a8m.math.radians', ['a8m.math'])
           isNumber(degrees) && isFinite(degrees)) {
           var radians = (degrees * 3.14159265359) / 180;
           return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
-		} else {
-		    return "NaN";
 		}
+		return "NaN";
 	}
 }]);
 

@@ -5,9 +5,7 @@
  *
  * @description
  * get (array/object, object/array) and return merged collection
- *
  */
-
 angular.module('a8m.concat', [])
   //TODO(Ariel):unique option ? or use unique filter to filter result
   .filter('concat', [function () {

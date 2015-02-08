@@ -6,7 +6,6 @@
  * @description
  * defaultsFilter allows to specify a default fallback value for properties that resolve to undefined.
  */
-
 angular.module('a8m.defaults', [])
   .filter('defaults', ['$parse', function( $parse ) {
     return function(collection, defaults) {

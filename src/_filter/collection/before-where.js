@@ -6,7 +6,6 @@
  * @description
  * get a collection and properties object, and returns all of the items
  * in the collection before the first that found with the given properties.
- *
  */
 angular.module('a8m.before-where', [])
   .filter('beforeWhere', function() {

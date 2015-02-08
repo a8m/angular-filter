@@ -6,7 +6,6 @@
  * @description
  * checks whether string ends with the ends parameter.
  */
-
 angular.module('a8m.ends-with', [])
 
   .filter('endsWith', function () {

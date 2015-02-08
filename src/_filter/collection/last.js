@@ -10,7 +10,6 @@
 angular.module('a8m.last', [])
   .filter('last', ['$parse', function( $parse ) {
     return function(collection) {
-
       var n
         , getter
         , args
@@ -30,10 +29,10 @@ angular.module('a8m.last', [])
       n = (isNumber(args[0])) ? args[0] : 1;
       getter = (!isNumber(args[0]))  ? args[0] : (!isNumber(args[1])) ? args[1] : undefined;
 
-      return (args.length) ?
+      return (args.length)
         //send reversed collection as arguments, and reverse it back as result
-        getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse() :
+        ? getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse()
         //get the last element
-        reversed[reversed.length-1];
+        : reversed[reversed.length-1];
     }
   }]);

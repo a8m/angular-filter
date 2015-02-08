@@ -8,9 +8,7 @@
  * i.e: K for one thousand, M for Million, B for billion
  * e.g: number of users:235,221, decimal:1 => 235.2 K
  */
-
 angular.module('a8m.math.shortFmt', ['a8m.math'])
-
   .filter('shortFmt', ['$math', function ($math) {
     return function (number, decimal) {
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
@@ -26,8 +24,7 @@ angular.module('a8m.math.shortFmt', ['a8m.math'])
             return convertToDecimal((number / 1e9), decimal, $math) + ' B';
           }
 
-	  }else{
-        return "NaN";
 	  }
+    return "NaN";
 	}
 }]);

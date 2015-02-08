@@ -7,9 +7,7 @@
  * Convert bytes into appropriate display 
  * 1024 bytes => 1 KB
  */
-
 angular.module('a8m.math.byteFmt', ['a8m.math'])
-
   .filter('byteFmt', ['$math', function ($math) {
     return function (bytes, decimal) {
 
@@ -26,8 +24,7 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
             return convertToDecimal((bytes / 1073741824), decimal, $math) + ' GB';
         }
 
-	  } else {
-		return "NaN";
-	  }
+	    }
+      return "NaN";
     }
   }]);

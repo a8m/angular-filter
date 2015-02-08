@@ -7,9 +7,7 @@
  * Math.max will get an array and return the max value. if an expression
  * is provided, will return max value by expression.
  */
-
 angular.module('a8m.math.max', ['a8m.math'])
-
   .filter('max', ['$math', '$parse', function ($math, $parse) {
     return function (input, expression) {
 
@@ -33,5 +31,4 @@ angular.module('a8m.math.max', ['a8m.math'])
       });
       return mappedArray.indexOf($math.max.apply($math, mappedArray));
     }
-
   }]);
