@@ -1270,6 +1270,9 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 #Changelog
+###0.5.3
+* add `latinize` filter
+
 ###0.5.1
 * `min` and `max` can get a property as an argument.
 * improve `slugify` filter.
