@@ -50,6 +50,7 @@
   - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
+  - [test](#test)
   - [trim](#trim)
   - [ltrim](#ltrim)
   - [rtrim](#rtrim)
