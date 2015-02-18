@@ -1080,6 +1080,14 @@ Repeats a string n times<br/>
 <!--repeat:
 foo-foo-foo
 ```
+###test
+Test if a string match a pattern<br/>
+**Usage:** ```string | test: pattern: flag[optional]```
+```html
+<p>{{ '15/12/2003' | test: '^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}$': 'i' }}</p>
+<!--result:
+true
+```
 #Math
 
 ###max
