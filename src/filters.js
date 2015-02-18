@@ -22,6 +22,7 @@ angular.module('angular.filter', [
   'a8m.ltrim',
   'a8m.rtrim',
   'a8m.repeat',
+  'a8m.test',
 
   'a8m.to-array',
   'a8m.concat',
