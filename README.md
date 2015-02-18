@@ -1,4 +1,6 @@
 #Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
+
+[![Join the chat at https://gitter.im/a8m/angular-filter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/a8m/angular-filter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 >Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.3**
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
