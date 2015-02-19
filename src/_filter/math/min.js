@@ -7,9 +7,7 @@
  * Math.min will get an array and return the min value. if an expression
  * is provided, will return min value by expression.
  */
-
 angular.module('a8m.math.min', ['a8m.math'])
-
   .filter('min', ['$math', '$parse', function ($math, $parse) {
     return function (input, expression) {
 
@@ -33,5 +31,4 @@ angular.module('a8m.math.min', ['a8m.math'])
       });
       return mappedArray.indexOf($math.min.apply($math, mappedArray));
     }
-
   }]);

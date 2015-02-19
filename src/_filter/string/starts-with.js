@@ -6,9 +6,7 @@
  * @description
  * checks whether string starts with the starts parameter.
  */
-
 angular.module('a8m.starts-with', [])
-
   .filter('startsWith', function () {
     return function (input, start, csensitive) {
 

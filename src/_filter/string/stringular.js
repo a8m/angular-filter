@@ -6,7 +6,6 @@
  * @description
  * get string with {n} and replace match with enumeration values
  */
-
 angular.module('a8m.stringular', [])
   .filter('stringular', function () {
     return function(input) {
@@ -16,6 +15,5 @@ angular.module('a8m.stringular', [])
       return input.replace(/{(\d+)}/g, function (match, number) {
         return isUndefined(args[number]) ? match : args[number];
       });
-
     }
   });

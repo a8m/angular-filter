@@ -9,9 +9,7 @@
  * $key to the value containing the original key that was used in
  * the object we are iterating over to reference the property
  */
-
 angular.module('a8m.to-array', [])
-
   .filter('toArray', function() {
     return function (collection, addKey) {
 
@@ -19,10 +17,10 @@ angular.module('a8m.to-array', [])
         return collection;
       }
 
-      return (!addKey) ? toArray(collection) :
-
-        Object.keys(collection).map(function (key) {
-          return extend(collection[key], { $key: key });
-        });
+      return !addKey
+        ? toArray(collection)
+        : Object.keys(collection).map(function (key) {
+            return extend(collection[key], { $key: key });
+          });
     }
   });

@@ -11,9 +11,9 @@ angular.module('a8m.first', [])
   .filter('first', ['$parse', function( $parse ) {
     return function(collection) {
 
-      var n,
-        getter,
-        args;
+      var n
+        , getter
+        , args;
 
       collection = (isObject(collection))
         ? toArray(collection)

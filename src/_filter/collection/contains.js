@@ -6,7 +6,6 @@
  * @description
  * Checks if given expression is present in one or more object in the collection
  */
-
 angular.module('a8m.contains', [])
   .filter({
     contains: ['$parse', containsFilter],

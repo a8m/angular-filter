@@ -7,9 +7,7 @@
  * Convert bytes into appropriate display 
  * 1024 kilobytes => 1 MB
  */
-
 angular.module('a8m.math.kbFmt', ['a8m.math'])
-
   .filter('kbFmt', ['$math', function ($math) {
     return function (bytes, decimal) {
 
@@ -23,9 +21,7 @@ angular.module('a8m.math.kbFmt', ['a8m.math'])
         } else {
             return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
         }
-
-		} else {
+		  }
 			return "NaN";
-		}
     }
 }]);

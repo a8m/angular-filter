@@ -6,7 +6,6 @@
  * @description
  * truncates a string given a specified length, providing a custom string to denote an omission.
  */
-
 angular.module('a8m.truncate', [])
   .filter('truncate', function () {
     return function(input, length, suffix, preserve) {
@@ -17,9 +16,8 @@ angular.module('a8m.truncate', [])
 
       if(!isString(input) || (input.length <= length)) return input;
 
-      return input.substring(0, (preserve) ?
-          ((input.indexOf(' ', length) === -1) ? input.length : input.indexOf(' ', length)) :
-          length) + suffix;
-
+      return input.substring(0, (preserve)
+        ? ((input.indexOf(' ', length) === -1) ? input.length : input.indexOf(' ', length))
+        : length) + suffix;
     };
   });

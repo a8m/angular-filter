@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
->Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.2**
+>Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.3**
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
@@ -46,9 +46,11 @@
   - [repeat](#repeat)
   - [reverse](#reverse-1)
   - [slugify](#slugify)
+  - [latinize](#latinize)
   - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
+  - [test](#test)
   - [trim](#trim)
   - [ltrim](#ltrim)
   - [rtrim](#rtrim)
@@ -104,7 +106,7 @@ When you're done, your setup should look similar to the following:
 <!doctype html>
 <html ng-app="myApp">
 <head>
-   
+
 </head>
 <body>
     ...
@@ -223,7 +225,7 @@ Return users whose first name or last name is 'John' (uses nested properties).
 -->
 
 ```
-Return users whose full name is 
+Return users whose full name is
 ```html
 <!--search by full name -->
 <th ng-repeat="user in users | filterBy: ['user.first_name + user.last_name']: 'Rob Joh'">
@@ -335,7 +337,7 @@ If you pass shallow, the array will only be flattened a single level<br/>
 $scope.weirdArray = [[], 1, 2, 3, [4, 5, 6, [7, 8, 9, [10, 11, [12, [[[[[13], [[[[14, 15]]]]]]]]]]]]];
 ```
 ```html
-<th ng-repeat="elm in wierdArray | flatten"> 
+<th ng-repeat="elm in wierdArray | flatten">
  {{ elm }},
 </th>
 <!--result:
@@ -480,7 +482,7 @@ $scope.fallback = {
 ```html
 <li ng-repeat="order in orders | defaults: fallback">
     <b>id:</b> {{ order.id }},
-    <b>name:</b> {{ order.name }}, 
+    <b>name:</b> {{ order.name }},
     <b>shipping address:</b> {{ order.destination.zip }}
 </li>
 <!--Results:
@@ -849,16 +851,16 @@ $scope.users2 = [
 <th ng-repeat="user in users1 | xor: users2">
   {{ user.id }}
 </th>
-<!--result: 
+<!--result:
 1 2 3 4 5
 -->
 <th ng-repeat="user in users1 | xor: users2: 'details.last_name'">
   {{ user.id }}, {{ user.details.first_name }} {{ user.details.last_name }}
 </th>
-<!--result: 
+<!--result:
 2, foo bag
 ```
-###toArray 
+###toArray
 Convert objects into stable arrays. <br/>
 **Usage:** ```object | toArray: addKey[optional]```<br/>
 if addKey set to true, the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
@@ -880,7 +882,7 @@ $scope.divide = function(elm) {
 <th ng-repeat="i in [1, 2, 3, 4, 5] | map: divide">
   {{ i }}
 </th>
-<!--result: 
+<!--result:
 0.5, 1, 1.5, 2, 2.5
 ```
 ###pluck
@@ -943,6 +945,17 @@ result:
 <a ng-href="http://domain.com/fetch/some-string-with-spaces">Link</a>
 
 <a ng-href="http://domain.com/fetch/some=string=with=spaces">Link</a>
+-->
+```
+
+###latinize
+Remove accents/diacritics from a string
+
+```html
+ {{ 'Sòme strÏng with Âccénts' | latinize }}
+<!--
+result:
+  Some strIng with Accents
 -->
 ```
 ###startsWith
@@ -1068,11 +1081,19 @@ Repeats a string n times<br/>
 <!--repeat:
 foo-foo-foo
 ```
+###test
+Test if a string match a pattern<br/>
+**Usage:** ```string | test: pattern: flag[optional]```
+```html
+<p>{{ '15/12/2003' | test: '^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}$': 'i' }}</p>
+<!--result:
+true
+```
 #Math
 
 ###max
-max find and return the largest number in a given array.  
-if an `expression` is provided, will return max value by expression.  
+max find and return the largest number in a given array.
+if an `expression` is provided, will return max value by expression.
 **Usage:** ```array | max: expression[optional]```
 ```js
 $scope.users = [
@@ -1092,8 +1113,8 @@ result:
 ```
 
 ###min
-min find and return the lowest number in a given array.  
-if an `expression` is provided, will return min value by expression.  
+min find and return the lowest number in a given array.
+if an `expression` is provided, will return min value by expression.
 **Usage:** ```array | min: expression[optional]```
 ```js
 $scope.users = [
@@ -1258,6 +1279,9 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 #Changelog
+###0.5.3
+* add `latinize` filter
+
 ###0.5.1
 * `min` and `max` can get a property as an argument.
 * improve `slugify` filter.
