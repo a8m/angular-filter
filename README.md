@@ -51,6 +51,7 @@
   - [stripTags](#striptags)
   - [stringular](#stringular)
   - [test](#test)
+  - [match](#match)
   - [trim](#trim)
   - [ltrim](#ltrim)
   - [rtrim](#rtrim)
@@ -1086,8 +1087,18 @@ Test if a string match a pattern<br/>
 **Usage:** ```string | test: pattern: flag[optional]```
 ```html
 <p>{{ '15/12/2003' | test: '^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}$': 'i' }}</p>
+<p>{{ '0123456' | test: '\\D': 'i' }}</p>
 <!--result:
 true
+true
+```
+###match
+Return an array of matched element in a string<br/>
+**Usage:** ```string | match: pattern: flag[optional]```
+```html
+<p>{{ '15/12/2003' | match: '\\d+': 'g' }}</p>
+<!--result:
+['15', '12', '2003']
 ```
 #Math
 
