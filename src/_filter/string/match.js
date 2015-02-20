@@ -7,7 +7,6 @@
  * Return the matched pattern in a string.
  */
 angular.module('a8m.match', [])
-
   .filter('match', function () {
     return function (input, pattern, flag) {
 
