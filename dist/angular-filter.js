@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.3 - 2015-02-18 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.3 - 2015-02-19 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1731,6 +1731,27 @@ angular.module('a8m.ltrim', [])
 
 /**
  * @ngdoc filter
+ * @name match
+ * @kind function
+ *
+ * @description
+ * Return the matched pattern in a string.
+ */
+angular.module('a8m.match', [])
+
+  .filter('match', function () {
+    return function (input, pattern, flag) {
+
+      var reg = new RegExp(pattern, flag);
+
+      return isString(input)
+        ? input.match(reg)
+        : null;
+    }
+  });
+
+/**
+ * @ngdoc filter
  * @name repeat
  * @kind function
  *
@@ -2167,6 +2188,7 @@ angular.module('angular.filter', [
   'a8m.rtrim',
   'a8m.repeat',
   'a8m.test',
+  'a8m.match',
 
   'a8m.to-array',
   'a8m.concat',

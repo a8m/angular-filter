@@ -16,7 +16,8 @@ describe('testFilter', function () {
     expect(filter('foobarbaz', '^[a-z]{3,}$')).toEqual(true);
     expect(filter('FOOBARBAZ', '^[a-z]{3,}$', 'i')).toEqual(true);
     expect(filter('FOOBARBAZ', '^[a-z]{3,}$')).toEqual(false);
-    expect(filter('foobarbaz', '\W')).toEqual(false);
+    expect(filter('foobarbaz', '\\W')).toEqual(false);
+    expect(filter('foobarbaz', '\\w')).toEqual(true);
     expect(filter('1a/bb/2003', '^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}$', 'i')).toEqual(false);
 
   });
