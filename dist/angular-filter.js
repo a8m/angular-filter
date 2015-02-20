@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.3 - 2015-02-19 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.4 - 2015-02-20 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1738,7 +1738,6 @@ angular.module('a8m.ltrim', [])
  * Return the matched pattern in a string.
  */
 angular.module('a8m.match', [])
-
   .filter('match', function () {
     return function (input, pattern, flag) {
 
@@ -1897,7 +1896,6 @@ angular.module('a8m.strip-tags', [])
  * test if a string match a pattern.
  */
 angular.module('a8m.test', [])
-
   .filter('test', function () {
     return function (input, pattern, flag) {
 
