@@ -4,6 +4,7 @@
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
 ##Table of contents:
+- [![Gitter][gitter-image]][gitter-url]
 - [Get Started](#get-started)
 - [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
 - [Changelog](#changelog)
@@ -1346,3 +1347,5 @@ $ git push origin master --tags
 [coveralls-url]: https://coveralls.io/r/a8m/angular-filter
 [license-image]: http://img.shields.io/npm/l/angular-filter.svg?style=flat-square
 [license-url]: LICENSE
+[gitter-image]: https://badges.gitter.im/Join%20Chat.svg
+[gitter-url]: https://gitter.im/a8m/angular-filter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
