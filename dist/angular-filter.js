@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.4 - 2015-02-20 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.4 - 2015-02-27 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -28,8 +28,9 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return isArray(object) ? object :
-    Object.keys(object).map(function(key) {
+  return isArray(object)
+    ? object
+    : Object.keys(object).map(function(key) {
       return object[key];
     });
 }
@@ -74,7 +75,7 @@ function hasApproxPattern(word, pattern) {
   if(index === -1)
     return false;
 
-  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+  return hasApproxPattern(word.substr(index+1), pattern.substr(1));
 }
 
 /**
@@ -138,10 +139,10 @@ function deepKeys(obj, stack, parent) {
     } else {
       //create and save the key
       var key = parent ? parent + '.' + el : el;
-      stack.push(key)
+      stack.push(key);
     }
   });
-  return stack
+  return stack;
 }
 
 /**
@@ -168,42 +169,42 @@ angular.module('a8m.angular', [])
     .filter('isUndefined', function () {
       return function (input) {
         return angular.isUndefined(input);
-      }
+      };
     })
     .filter('isDefined', function() {
       return function (input) {
         return angular.isDefined(input);
-      }
+      };
     })
     .filter('isFunction', function() {
       return function (input) {
         return angular.isFunction(input);
-      }
+      };
     })
     .filter('isString', function() {
       return function (input) {
-        return angular.isString(input)
-      }
+        return angular.isString(input);
+      };
     })
     .filter('isNumber', function() {
       return function (input) {
         return angular.isNumber(input);
-      }
+      };
     })
     .filter('isArray', function() {
       return function (input) {
         return angular.isArray(input);
-      }
+      };
     })
     .filter('isObject', function() {
       return function (input) {
         return angular.isObject(input);
-      }
+      };
     })
     .filter('isEqual', function() {
       return function (o1, o2) {
         return angular.equals(o1, o2);
-      }
+      };
     });
 
 /**
@@ -302,7 +303,7 @@ angular.module('a8m.is-null', [])
     .filter('isNull', function () {
       return function(input) {
         return isNull(input);
-      }
+      };
     });
 
 /**
@@ -331,7 +332,7 @@ angular.module('a8m.after-where', [])
         }).indexOf( true );
 
         return collection.slice((index === -1) ? 0 : index);
-      }
+      };
     });
 
 /**
@@ -355,7 +356,7 @@ angular.module('a8m.after', [])
         return (isArray(collection))
           ? collection.slice(count)
           : collection;
-      }
+      };
     });
 
 /**
@@ -383,7 +384,7 @@ angular.module('a8m.before-where', [])
       }).indexOf( true );
 
       return collection.slice(0, (index === -1) ? collection.length : ++index);
-    }
+    };
   });
 
 /**
@@ -405,7 +406,7 @@ angular.module('a8m.before', [])
         return (isArray(collection))
           ? collection.slice(0, (!count) ? count : --count)
           : collection;
-      }
+      };
     });
 
 /**
@@ -470,7 +471,7 @@ function containsFilter( $parse ) {
           : elm === expression;
       });
 
-    }
+    };
  }
 
 /**
@@ -508,7 +509,7 @@ angular.module('a8m.count-by', [])
       });
 
       return result;
-    }
+    };
   }]);
 
 /**
@@ -539,14 +540,15 @@ angular.module('a8m.defaults', [])
           //if it's not exist
           if(isUndefined(getter(elm))) {
             //get from defaults, and set to the returned object
-            setter(elm, getter(defaults))
+            setter(elm, getter(defaults));
           }
         });
       });
 
       return collection;
-    }
+    };
   }]);
+
 /**
  * @ngdoc filter
  * @name every
@@ -570,7 +572,7 @@ angular.module('a8m.every', [])
           ? $parse(expression)(elm)
           : elm === expression;
       });
-    }
+    };
   }]);
 
 /**
@@ -606,7 +608,7 @@ angular.module('a8m.filter-by', [])
            * filterBy: ['first + last'] => search by full name(i.e 'foo bar')
            */
           if(!~prop.indexOf('+')) {
-            comparator = $parse(prop)(elm)
+            comparator = $parse(prop)(elm);
           } else {
             var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
             comparator = propList.reduce(function(prev, cur, index) {
@@ -620,7 +622,7 @@ angular.module('a8m.filter-by', [])
             : false;
         });
       });
-    }
+    };
   }]);
 
 /**
@@ -654,7 +656,7 @@ angular.module('a8m.first', [])
 
       return (args.length) ? getFirstMatches(collection, n,(getter) ? $parse(getter) : getter) :
         collection[0];
-    }
+    };
   }]);
 
 /**
@@ -682,7 +684,7 @@ angular.module('a8m.flatten', [])
       return !shallow
         ? flatten(collection, 0)
         : [].concat.apply([], collection);
-    }
+    };
   });
 
 /**
@@ -739,11 +741,12 @@ angular.module('a8m.fuzzy-by', [])
         prop = (sensitive) ? prop : prop.toLowerCase();
         search = (sensitive) ? search : search.toLowerCase();
 
-        return hasApproxPattern(prop, search) !== false
-      })
-    }
+        return hasApproxPattern(prop, search) !== false;
+      });
+    };
 
  }]);
+
 /**
  * @ngdoc filter
  * @name fuzzy
@@ -770,7 +773,7 @@ angular.module('a8m.fuzzy', [])
 
         if(isString(elm)) {
           elm = (sensitive) ? elm : elm.toLowerCase();
-          return hasApproxPattern(elm, search) !== false
+          return hasApproxPattern(elm, search) !== false;
         }
 
         return (isObject(elm)) ? _hasApproximateKey(elm, search) : false;
@@ -804,7 +807,7 @@ angular.module('a8m.fuzzy', [])
         }).length;
       }
 
-    }
+    };
   });
 
 /**
@@ -852,7 +855,7 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         });
         return result;
       }
-    }
+    };
  }]);
 
 /**
@@ -869,7 +872,7 @@ angular.module('a8m.is-empty', [])
       return (isObject(collection))
         ? !toArray(collection).length
         : !collection.length;
-    }
+    };
   });
 
 /**
@@ -931,7 +934,7 @@ angular.module('a8m.last', [])
         ? getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse()
         //get the last element
         : reversed[reversed.length-1];
-    }
+    };
   }]);
 
 /**
@@ -957,7 +960,7 @@ angular.module('a8m.map', [])
       return collection.map(function (elm) {
         return $parse(expression)(elm);
       });
-    }
+    };
   }]);
 
 /**
@@ -985,7 +988,7 @@ angular.module('a8m.omit', [])
       return collection.filter(function (elm) {
         return !($parse(expression)(elm));
       });
-    }
+    };
   }]);
 
 /**
@@ -1013,7 +1016,7 @@ angular.module('a8m.pick', [])
       return collection.filter(function (elm) {
         return $parse(expression)(elm);
       });
-    }
+    };
   }]);
 
 /**
@@ -1040,9 +1043,8 @@ angular.module('a8m.remove-with', [])
       return collection.filter(function (elm) {
         return !objectContains(object, elm);
       });
-    }
+    };
   });
-
 
 /**
  * @ngdoc filter
@@ -1069,10 +1071,10 @@ angular.module('a8m.remove', [])
       return collection.filter( function( member ) {
         return !args.some(function(nest) {
           return equals(nest, member);
-        })
+        });
       });
 
-    }
+    };
   });
 
 /**
@@ -1095,7 +1097,7 @@ angular.module('a8m.reverse', [])
         return isArray(input)
           ? input.slice().reverse()
           : input;
-      }
+      };
     }]);
 
 /**
@@ -1130,7 +1132,7 @@ angular.module('a8m.search-field', [])
 
         return extend(member, { searchField: field });
       });
-    }
+    };
   }]);
 
 /**
@@ -1157,7 +1159,7 @@ angular.module('a8m.to-array', [])
         : Object.keys(collection).map(function (key) {
             return extend(collection[key], { $key: key });
           });
-    }
+    };
   });
 
 /**
@@ -1214,7 +1216,7 @@ function uniqFilter($parse) {
           return equals(el, member);
         });
       }
-    }
+    };
 }
 
 /**
@@ -1241,7 +1243,7 @@ angular.module('a8m.where', [])
       return collection.filter(function (elm) {
         return objectContains(object, elm);
       });
-    }
+    };
   });
 
 /**
@@ -1278,7 +1280,7 @@ angular.module('a8m.xor', [])
             : equals(dElm, el);
         });
       }
-    }
+    };
   }]);
 
 /**
@@ -1287,7 +1289,7 @@ angular.module('a8m.xor', [])
  * @kind function
  *
  * @description
- * Convert bytes into appropriate display 
+ * Convert bytes into appropriate display
  * 1024 bytes => 1 KB
  */
 angular.module('a8m.math.byteFmt', ['a8m.math'])
@@ -1307,10 +1309,11 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
             return convertToDecimal((bytes / 1073741824), decimal, $math) + ' GB';
         }
 
-	    }
+      }
       return "NaN";
-    }
+    };
   }]);
+
 /**
  * @ngdoc filter
  * @name degrees
@@ -1322,27 +1325,25 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
 angular.module('a8m.math.degrees', ['a8m.math'])
   .filter('degrees', ['$math', function ($math) {
     return function (radians, decimal) {
-	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
-		// if degrees is not a real number, we cannot do also. quit with error "NaN"
-		if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
-          isNumber(radians) && isFinite(radians)) {
-		    var degrees = (radians * 180) / $math.PI;
-		    return $math.round(degrees * $math.pow(10,decimal)) / ($math.pow(10,decimal));
-	    } else {
-          return "NaN";
-		}
-	}
+      // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+      // if degrees is not a real number, we cannot do also. quit with error "NaN"
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+            isNumber(radians) && isFinite(radians)) {
+          var degrees = (radians * 180) / $math.PI;
+          return $math.round(degrees * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+        } else {
+            return "NaN";
+      }
+    };
 }]);
 
- 
- 
 /**
  * @ngdoc filter
  * @name formatBytes
  * @kind function
  *
  * @description
- * Convert bytes into appropriate display 
+ * Convert bytes into appropriate display
  * 1024 kilobytes => 1 MB
  */
 angular.module('a8m.math.kbFmt', ['a8m.math'])
@@ -1359,10 +1360,11 @@ angular.module('a8m.math.kbFmt', ['a8m.math'])
         } else {
             return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
         }
-		  }
-			return "NaN";
-    }
+      }
+      return "NaN";
+    };
 }]);
+
 /**
  * @ngdoc module
  * @name math
@@ -1463,7 +1465,7 @@ angular.module('a8m.math.percent', ['a8m.math'])
       return round
         ? $math.round((divider / divided) * 100)
         : (divider / divided) * 100;
-    }
+    };
   }]);
 
 /**
@@ -1477,19 +1479,17 @@ angular.module('a8m.math.percent', ['a8m.math'])
 angular.module('a8m.math.radians', ['a8m.math'])
   .filter('radians', ['$math', function ($math) {
     return function (degrees, decimal) {
-	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
-	  // if degrees is not a real number, we cannot do also. quit with error "NaN"
-        if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
-          isNumber(degrees) && isFinite(degrees)) {
-          var radians = (degrees * 3.14159265359) / 180;
-          return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
-		}
-		return "NaN";
-	}
+      // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+      // if degrees is not a real number, we cannot do also. quit with error "NaN"
+          if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+            isNumber(degrees) && isFinite(degrees)) {
+            var radians = (degrees * 3.14159265359) / 180;
+            return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+      }
+      return "NaN";
+    };
 }]);
 
- 
- 
 /**
  * @ngdoc filter
  * @name Radix
@@ -1508,7 +1508,7 @@ angular.module('a8m.math.radix', [])
       }
 
       return input.toString(radix).toUpperCase();
-    }
+    };
   });
 
 /**
@@ -1525,22 +1525,23 @@ angular.module('a8m.math.shortFmt', ['a8m.math'])
   .filter('shortFmt', ['$math', function ($math) {
     return function (number, decimal) {
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
-        isNumber(number) && isFinite(number)){
-                    
+        isNumber(number) && isFinite(number)) {
+
           if(number < 1e3) {
               return number;
           } else if(number < 1e6) {
               return convertToDecimal((number / 1e3), decimal, $math) + ' K';
-          } else if(number < 1e9){
+          } else if(number < 1e9) {
               return convertToDecimal((number / 1e6), decimal, $math) + ' M';
           } else {
             return convertToDecimal((number / 1e9), decimal, $math) + ' B';
           }
 
-	  }
-    return "NaN";
-	}
+      }
+      return "NaN";
+    };
 }]);
+
 /**
  * @ngdoc filter
  * @name sum
@@ -1557,7 +1558,7 @@ angular.module('a8m.math.sum', [])
         : input.reduce(function(prev, curr) {
           return prev + curr;
         }, initial || 0);
-    }
+    };
   });
 
 /**
@@ -1584,7 +1585,7 @@ angular.module('a8m.ends-with', [])
       position = input.length - ends.length;
 
       return input.indexOf((sensitive) ? ends : ends.toLowerCase(), position) !== -1;
-    }
+    };
   });
 
 /**
@@ -1706,7 +1707,7 @@ angular.module('a8m.latinize', [])
       return isString(input)
         ? removeDiacritics(input)
         : input;
-    }
+    };
   }]);
 
 /**
@@ -1726,7 +1727,7 @@ angular.module('a8m.ltrim', [])
       return isString(input)
         ? input.replace(new RegExp('^' + trim + '+'), '')
         : input;
-    }
+    };
   });
 
 /**
@@ -1770,7 +1771,7 @@ angular.module('a8m.repeat', [])
       return !times
         ? input
         : strRepeat(input, --n, separator || '');
-    }
+    };
   }]);
 
 /**
@@ -1786,6 +1787,7 @@ function strRepeat(str, n, sep) {
   }
   return str + sep + strRepeat(str, --n, sep);
 }
+
 /**
 * @ngdoc filter
 * @name rtrim
@@ -1803,7 +1805,7 @@ angular.module('a8m.rtrim', [])
       return isString(input)
         ? input.replace(new RegExp(trim + '+$'), '')
         : input;
-    }
+    };
   });
 
 /**
@@ -1823,7 +1825,7 @@ angular.module('a8m.slugify', [])
       return isString(input)
         ? input.toLowerCase().replace(/\s+/g, replace)
         : input;
-    }
+    };
   }]);
 
 /**
@@ -1847,7 +1849,7 @@ angular.module('a8m.starts-with', [])
       input = (sensitive) ? input : input.toLowerCase();
 
       return !input.indexOf((sensitive) ? start : start.toLowerCase());
-    }
+    };
   });
 
 /**
@@ -1867,7 +1869,7 @@ angular.module('a8m.stringular', [])
       return input.replace(/{(\d+)}/g, function (match, number) {
         return isUndefined(args[number]) ? match : args[number];
       });
-    }
+    };
   });
 
 /**
@@ -1884,7 +1886,7 @@ angular.module('a8m.strip-tags', [])
       return isString(input)
         ? input.replace(/<\S[^><]*>/g, '')
         : input;
-    }
+    };
   });
 
 /**
@@ -1904,7 +1906,7 @@ angular.module('a8m.test', [])
       return isString(input)
         ? reg.test(input)
         : input;
-    }
+    };
   });
 
 /**
@@ -1924,7 +1926,7 @@ angular.module('a8m.trim', [])
       return isString(input)
         ? input.replace(new RegExp('^' + trim + '+|' + trim + '+$', 'g'), '')
         : input;
-    }
+    };
   });
 
 /**
@@ -1970,7 +1972,7 @@ angular.module('a8m.ucfirst', [])
             })
             .join(' ')
         : input;
-    }
+    };
   }]);
 
 /**
@@ -1987,8 +1989,8 @@ angular.module('a8m.uri-component-encode', [])
         return isString(input)
           ? $window.encodeURIComponent(input)
           : input;
-      }
-    }]);
+      };
+  }]);
 
 /**
  * @ngdoc filter
@@ -2004,8 +2006,8 @@ angular.module('a8m.uri-encode', [])
         return isString(input)
           ? $window.encodeURI(input)
           : input;
-      }
-    }]);
+      };
+  }]);
 
 /**
  * @ngdoc filter
@@ -2021,7 +2023,7 @@ angular.module('a8m.wrap', [])
       return isString(input) && isDefined(wrap)
         ? [wrap, input, ends || wrap].join('')
         : input;
-    }
+    };
   });
 
 /**
@@ -2155,11 +2157,10 @@ angular.module('a8m.filter-watcher', [])
       return {
         isMemoized: $$isMemoized,
         memoize: $$memoize
-      }
+      };
 
     }];
   });
-  
 
 /**
  * @ngdoc module
