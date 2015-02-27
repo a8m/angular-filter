@@ -12,5 +12,5 @@ angular.module('a8m.strip-tags', [])
       return isString(input)
         ? input.replace(/<\S[^><]*>/g, '')
         : input;
-    }
+    };
   });

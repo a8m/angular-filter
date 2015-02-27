@@ -22,5 +22,5 @@ angular.module('a8m.ends-with', [])
       position = input.length - ends.length;
 
       return input.indexOf((sensitive) ? ends : ends.toLowerCase(), position) !== -1;
-    }
+    };
   });

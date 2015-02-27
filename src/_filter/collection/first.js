@@ -29,5 +29,5 @@ angular.module('a8m.first', [])
 
       return (args.length) ? getFirstMatches(collection, n,(getter) ? $parse(getter) : getter) :
         collection[0];
-    }
+    };
   }]);

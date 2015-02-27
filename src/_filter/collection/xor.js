@@ -32,5 +32,5 @@ angular.module('a8m.xor', [])
             : equals(dElm, el);
         });
       }
-    }
+    };
   }]);

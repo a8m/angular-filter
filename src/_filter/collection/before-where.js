@@ -23,5 +23,5 @@ angular.module('a8m.before-where', [])
       }).indexOf( true );
 
       return collection.slice(0, (index === -1) ? collection.length : ++index);
-    }
+    };
   });

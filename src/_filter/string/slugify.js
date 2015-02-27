@@ -15,5 +15,5 @@ angular.module('a8m.slugify', [])
       return isString(input)
         ? input.toLowerCase().replace(/\s+/g, replace)
         : input;
-    }
+    };
   }]);

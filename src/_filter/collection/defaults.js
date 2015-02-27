@@ -26,11 +26,11 @@ angular.module('a8m.defaults', [])
           //if it's not exist
           if(isUndefined(getter(elm))) {
             //get from defaults, and set to the returned object
-            setter(elm, getter(defaults))
+            setter(elm, getter(defaults));
           }
         });
       });
 
       return collection;
-    }
+    };
   }]);

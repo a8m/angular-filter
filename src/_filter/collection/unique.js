@@ -52,5 +52,5 @@ function uniqFilter($parse) {
           return equals(el, member);
         });
       }
-    }
+    };
 }

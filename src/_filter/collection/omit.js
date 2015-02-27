@@ -23,5 +23,5 @@ angular.module('a8m.omit', [])
       return collection.filter(function (elm) {
         return !($parse(expression)(elm));
       });
-    }
+    };
   }]);

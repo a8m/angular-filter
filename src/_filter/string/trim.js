@@ -15,5 +15,5 @@ angular.module('a8m.trim', [])
       return isString(input)
         ? input.replace(new RegExp('^' + trim + '+|' + trim + '+$', 'g'), '')
         : input;
-    }
+    };
   });

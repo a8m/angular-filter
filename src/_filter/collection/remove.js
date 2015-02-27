@@ -1,4 +1,3 @@
-
 /**
  * @ngdoc filter
  * @name remove
@@ -24,8 +23,8 @@ angular.module('a8m.remove', [])
       return collection.filter( function( member ) {
         return !args.some(function(nest) {
           return equals(nest, member);
-        })
+        });
       });
 
-    }
+    };
   });

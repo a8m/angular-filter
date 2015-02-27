@@ -117,5 +117,5 @@ angular.module('a8m.latinize', [])
       return isString(input)
         ? removeDiacritics(input)
         : input;
-    }
+    };
   }]);

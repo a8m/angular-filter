@@ -21,8 +21,8 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return isArray(object) 
-    ? object 
+  return isArray(object)
+    ? object
     : Object.keys(object).map(function(key) {
       return object[key];
     });
@@ -68,7 +68,7 @@ function hasApproxPattern(word, pattern) {
   if(index === -1)
     return false;
 
-  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+  return hasApproxPattern(word.substr(index+1), pattern.substr(1));
 }
 
 /**
@@ -132,10 +132,10 @@ function deepKeys(obj, stack, parent) {
     } else {
       //create and save the key
       var key = parent ? parent + '.' + el : el;
-      stack.push(key)
+      stack.push(key);
     }
   });
-  return stack
+  return stack;
 }
 
 /**

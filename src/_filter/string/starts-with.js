@@ -19,5 +19,5 @@ angular.module('a8m.starts-with', [])
       input = (sensitive) ? input : input.toLowerCase();
 
       return !input.indexOf((sensitive) ? start : start.toLowerCase());
-    }
+    };
   });

@@ -22,5 +22,5 @@ angular.module('a8m.to-array', [])
         : Object.keys(collection).map(function (key) {
             return extend(collection[key], { $key: key });
           });
-    }
+    };
   });
