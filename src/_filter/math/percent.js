@@ -10,7 +10,7 @@ angular.module('a8m.math.percent', ['a8m.math'])
   .filter('percent', ['$math', '$window', function ($math, $window) {
     return function (input, divided, round) {
 
-      var divider = (isString(input)) ? $window.Number(input) : input;
+      var divider = isString(input) ? $window.Number(input) : input;
       divided = divided || 100;
       round = round || false;
 
