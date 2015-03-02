@@ -64,7 +64,7 @@ angular.module('a8m.filter-watcher', [])
       /**
        * @description
        * for angular version that greater than v.1.3.0
-       * if clear cache when the digest cycle end.
+       * it clear cache when the digest cycle is end.
        */
       function cleanStateless() {
         $$timeout(function() {
