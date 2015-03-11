@@ -72,6 +72,7 @@
   - [shortFmt](#shortfmt)
   - [byteFmt](#bytefmt)
   - [kbFmt](#kbfmt)
+  - [median](#median)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1222,6 +1223,17 @@ Converts kilobytes into formatted display<br/>
 <!--result
 1 MB
 1.00126 GB
+
+```
+###median
+Calculates the median value of all values within an array<br/>
+**Usage:** ```array | median```,
+```html
+<p>{{ [1,2,3,4,5] | median }}</p>
+<p>{{ [2,8,2,12,2,1,5] | median }}</p>
+<!--result
+3
+2
 
 ```
 #Boolean
