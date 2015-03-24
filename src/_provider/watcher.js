@@ -37,11 +37,11 @@ angular.module('a8m.filter-watcher', [])
        * @description
        * get `HashKey` string based on the given arguments.
        * @param fName
-       * @param args
+       * @param args Browser argument object
        * @returns {string}
        */
       function getHashKey(fName, args) {
-        return [fName, angular.toJson(args)]
+        return [fName, angular.toJson(Array.prototype.slice.call(args))]
           .join('#')
           .replace(/"/g,'');
       }
