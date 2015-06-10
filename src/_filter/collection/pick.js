@@ -1,6 +1,6 @@
 /**
  * @ngdoc filter
- * @name omit
+ * @name pick
  * @kind function
  *
  * @description
