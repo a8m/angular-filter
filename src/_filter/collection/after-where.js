@@ -24,5 +24,5 @@ angular.module('a8m.after-where', [])
         }).indexOf( true );
 
         return collection.slice((index === -1) ? 0 : index);
-      }
+      };
     });

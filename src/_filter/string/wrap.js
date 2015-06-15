@@ -12,5 +12,5 @@ angular.module('a8m.wrap', [])
       return isString(input) && isDefined(wrap)
         ? [wrap, input, ends || wrap].join('')
         : input;
-    }
+    };
   });

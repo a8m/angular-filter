@@ -24,7 +24,7 @@ angular.module('a8m.fuzzy', [])
 
         if(isString(elm)) {
           elm = (sensitive) ? elm : elm.toLowerCase();
-          return hasApproxPattern(elm, search) !== false
+          return hasApproxPattern(elm, search) !== false;
         }
 
         return (isObject(elm)) ? _hasApproximateKey(elm, search) : false;
@@ -58,5 +58,5 @@ angular.module('a8m.fuzzy', [])
         }).length;
       }
 
-    }
+    };
   });

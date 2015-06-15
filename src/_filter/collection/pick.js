@@ -23,5 +23,5 @@ angular.module('a8m.pick', [])
       return collection.filter(function (elm) {
         return $parse(expression)(elm);
       });
-    }
+    };
   }]);

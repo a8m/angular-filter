@@ -12,5 +12,5 @@ angular.module('a8m.uri-encode', [])
         return isString(input)
           ? $window.encodeURI(input)
           : input;
-      }
-    }]);
+      };
+  }]);

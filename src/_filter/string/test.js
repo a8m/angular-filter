@@ -15,5 +15,5 @@ angular.module('a8m.test', [])
       return isString(input)
         ? reg.test(input)
         : input;
-    }
+    };
   });

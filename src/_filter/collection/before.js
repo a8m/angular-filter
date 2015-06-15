@@ -17,5 +17,5 @@ angular.module('a8m.before', [])
         return (isArray(collection))
           ? collection.slice(0, (!count) ? count : --count)
           : collection;
-      }
+      };
     });

@@ -27,5 +27,5 @@ function containsFilter( $parse ) {
           : elm === expression;
       });
 
-    }
+    };
  }

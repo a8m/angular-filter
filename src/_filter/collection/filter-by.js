@@ -31,7 +31,7 @@ angular.module('a8m.filter-by', [])
            * filterBy: ['first + last'] => search by full name(i.e 'foo bar')
            */
           if(!~prop.indexOf('+')) {
-            comparator = $parse(prop)(elm)
+            comparator = $parse(prop)(elm);
           } else {
             var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
             comparator = propList.reduce(function(prev, cur, index) {
@@ -45,5 +45,5 @@ angular.module('a8m.filter-by', [])
             : false;
         });
       });
-    }
+    };
   }]);

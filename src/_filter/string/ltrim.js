@@ -15,5 +15,5 @@ angular.module('a8m.ltrim', [])
       return isString(input)
         ? input.replace(new RegExp('^' + trim + '+'), '')
         : input;
-    }
+    };
   });

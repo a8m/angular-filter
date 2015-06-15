@@ -22,5 +22,5 @@ angular.module('a8m.where', [])
       return collection.filter(function (elm) {
         return objectContains(object, elm);
       });
-    }
+    };
   });

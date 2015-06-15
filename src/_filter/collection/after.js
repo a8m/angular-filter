@@ -19,5 +19,5 @@ angular.module('a8m.after', [])
         return (isArray(collection))
           ? collection.slice(count)
           : collection;
-      }
+      };
     });

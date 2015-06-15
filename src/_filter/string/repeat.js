@@ -19,7 +19,7 @@ angular.module('a8m.repeat', [])
       return !times
         ? input
         : strRepeat(input, --n, separator || '');
-    }
+    };
   }]);
 
 /**

@@ -14,5 +14,5 @@ angular.module('a8m.math.sum', [])
         : input.reduce(function(prev, curr) {
           return prev + curr;
         }, initial || 0);
-    }
+    };
   });

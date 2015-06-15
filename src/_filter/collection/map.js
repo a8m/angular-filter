@@ -21,5 +21,5 @@ angular.module('a8m.map', [])
       return collection.map(function (elm) {
         return $parse(expression)(elm);
       });
-    }
+    };
   }]);

@@ -34,5 +34,5 @@ angular.module('a8m.last', [])
         ? getFirstMatches(reversed.reverse(), n,(getter) ? $parse(getter) : getter).reverse()
         //get the last element
         : reversed[reversed.length-1];
-    }
+    };
   }]);

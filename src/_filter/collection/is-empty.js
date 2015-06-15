@@ -12,5 +12,5 @@ angular.module('a8m.is-empty', [])
       return (isObject(collection))
         ? !toArray(collection).length
         : !collection.length;
-    }
+    };
   });

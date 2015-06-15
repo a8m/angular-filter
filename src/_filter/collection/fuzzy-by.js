@@ -32,8 +32,8 @@ angular.module('a8m.fuzzy-by', [])
         prop = (sensitive) ? prop : prop.toLowerCase();
         search = (sensitive) ? search : search.toLowerCase();
 
-        return hasApproxPattern(prop, search) !== false
-      })
-    }
+        return hasApproxPattern(prop, search) !== false;
+      });
+    };
 
  }]);

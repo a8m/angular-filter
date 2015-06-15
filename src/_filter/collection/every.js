@@ -21,5 +21,5 @@ angular.module('a8m.every', [])
           ? $parse(expression)(elm)
           : elm === expression;
       });
-    }
+    };
   }]);

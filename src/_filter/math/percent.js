@@ -19,5 +19,5 @@ angular.module('a8m.math.percent', ['a8m.math'])
       return round
         ? $math.round((divider / divided) * 100)
         : (divider / divided) * 100;
-    }
+    };
   }]);

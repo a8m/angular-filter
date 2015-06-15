@@ -33,5 +33,5 @@ angular.module('a8m.count-by', [])
       });
 
       return result;
-    }
+    };
   }]);

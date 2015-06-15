@@ -11,5 +11,5 @@ angular.module('a8m.is-null', [])
     .filter('isNull', function () {
       return function(input) {
         return isNull(input);
-      }
+      };
     });

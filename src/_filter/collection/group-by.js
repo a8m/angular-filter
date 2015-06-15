@@ -43,5 +43,5 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         });
         return result;
       }
-    }
+    };
  }]);

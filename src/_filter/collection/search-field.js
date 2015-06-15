@@ -30,5 +30,5 @@ angular.module('a8m.search-field', [])
 
         return extend(member, { searchField: field });
       });
-    }
+    };
   }]);

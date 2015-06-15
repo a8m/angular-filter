@@ -16,5 +16,5 @@ angular.module('a8m.math.radix', [])
       }
 
       return input.toString(radix).toUpperCase();
-    }
+    };
   });

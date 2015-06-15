@@ -17,5 +17,5 @@ angular.module('a8m.ucfirst', [])
             })
             .join(' ')
         : input;
-    }
+    };
   }]);

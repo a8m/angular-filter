@@ -129,8 +129,7 @@ angular.module('a8m.filter-watcher', [])
       return {
         isMemoized: $$isMemoized,
         memoize: $$memoize
-      }
+      };
 
     }];
   });
-  

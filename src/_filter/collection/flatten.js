@@ -23,7 +23,7 @@ angular.module('a8m.flatten', [])
       return !shallow
         ? flatten(collection, 0)
         : [].concat.apply([], collection);
-    }
+    };
   });
 
 /**

@@ -18,5 +18,5 @@ angular.module('a8m.reverse', [])
         return isArray(input)
           ? input.slice().reverse()
           : input;
-      }
+      };
     }]);
