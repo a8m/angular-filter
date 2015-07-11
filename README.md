@@ -27,12 +27,13 @@
   - [fuzzyBy](#fuzzyby)
   - [groupBy](#groupby)
   - [isEmpty](#isempty)
-  - [join] (#join)
+  - [join](#join)
   - [last](#last)
   - [map](#map)
   - [omit](#omit)
   - [pick](#pick)
   - [pluck](#pluck)
+  - [range](#range)
   - [reverse](#reverse)
   - [remove](#remove)
   - [removeWith](#removewith)
@@ -904,6 +905,18 @@ $scope.users = [
 Foo
 Bar
 Baz
+```
+###range
+Return a new collection from a given length<br/>
+**Usage:** ```collection | range: length```<br/>
+```html
+<th ng-repeat="i in [] | range: 3">
+  {{ i }}
+</th>
+<!--result:
+0
+1
+2
 ```
 
 #String
