@@ -21,18 +21,17 @@ describe('degreesFilter', function () {
   });
   
   it('should return NaN if radians is not a number', function(){
-	expect(filter("0",2)).toEqual("NaN");
-	expect(filter([0],2)).toEqual("NaN");
-	expect(filter({number:0},0)).toEqual("NaN");
+	expect(filter('0',2)).toEqual('NaN');
+	expect(filter([0],2)).toEqual('NaN');
+	expect(filter({number:0},0)).toEqual('NaN');
   });
   
   it('should return NaN if decimal point is less than zero or not a number', function(){
-	expect(filter(0.45,-1)).toEqual("NaN");
-	expect(filter(-0.25,-101)).toEqual("NaN");
-	expect(filter(0.45,1.3)).toEqual("NaN");
-	expect(filter(0.45,"0")).toEqual("NaN");
-	expect(filter(0.45,[3])).toEqual("NaN");
-	expect(filter(0.45,{num : 4})).toEqual("NaN");	
+	expect(filter(0.45,-1)).toEqual('NaN');
+	expect(filter(-0.25,-101)).toEqual('NaN');
+	expect(filter(0.45,1.3)).toEqual('NaN');
+	expect(filter(0.45,'0')).toEqual('NaN');
+	expect(filter(0.45,[3])).toEqual('NaN');
+	expect(filter(0.45,{num : 4})).toEqual('NaN');	
   });
-  
 });

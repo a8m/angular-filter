@@ -12,7 +12,6 @@ angular.module('a8m.range', [])
       for (var i = 0; i < parseInt(total); i++) {
         input.push(i);
       }
-		
       return input;
-	};
+	  };
   });

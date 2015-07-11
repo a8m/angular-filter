@@ -9,9 +9,7 @@
 angular.module('a8m.fuzzy', [])
   .filter('fuzzy', function () {
     return function (collection, search, csensitive) {
-
       var sensitive = csensitive || false;
-
       collection = (isObject(collection)) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(search)) {
@@ -21,14 +19,11 @@ angular.module('a8m.fuzzy', [])
       search = (sensitive) ? search : search.toLowerCase();
 
       return collection.filter(function(elm) {
-
         if(isString(elm)) {
           elm = (sensitive) ? elm : elm.toLowerCase();
           return hasApproxPattern(elm, search) !== false
         }
-
         return (isObject(elm)) ? _hasApproximateKey(elm, search) : false;
-
       });
 
       /**
@@ -57,6 +52,5 @@ angular.module('a8m.fuzzy', [])
 
         }).length;
       }
-
     }
   });
