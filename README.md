@@ -62,7 +62,7 @@
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
-  - [dotName](#dotName)
+  - [dotName](#dotname)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
