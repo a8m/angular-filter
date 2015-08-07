@@ -11,11 +11,8 @@
 angular.module('a8m.where', [])
   .filter('where', function() {
     return function (collection, object) {
-
-      if(isUndefined(object)) {
-        return collection;
-      }
-      collection = (isObject(collection))
+      if(isUndefined(object)) return collection;
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 

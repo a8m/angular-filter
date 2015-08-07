@@ -13,15 +13,14 @@ angular.module('a8m.math.kbFmt', ['a8m.math'])
 
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(bytes) && isFinite(bytes)) {
-
         if(bytes < 1024) { // within 1 MB so KB
-            return convertToDecimal(bytes, decimal, $math) + ' KB';
+          return convertToDecimal(bytes, decimal, $math) + ' KB';
         } else if(bytes < 1048576) { // within 1 GB so MB
-            return convertToDecimal((bytes / 1024), decimal, $math) + ' MB';
+          return convertToDecimal((bytes / 1024), decimal, $math) + ' MB';
         } else {
-            return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
+          return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
         }
-		  }
-			return "NaN";
+      }
+      return "NaN";
     }
-}]);
+  }]);

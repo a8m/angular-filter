@@ -9,7 +9,7 @@
 angular.module('a8m.is-empty', [])
   .filter('isEmpty', function () {
     return function(collection) {
-      return (isObject(collection))
+      return isObject(collection)
         ? !toArray(collection).length
         : !collection.length;
     }

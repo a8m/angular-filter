@@ -12,9 +12,7 @@ angular.module('a8m.join', [])
       if (isUndefined(input) || !isArray(input)) {
         return input;
       }
-      if (isUndefined(delimiter)) {
-        delimiter = ' ';
-      }
+      if (isUndefined(delimiter)) delimiter = ' ';
 
       return input.join(delimiter);
     };

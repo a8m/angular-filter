@@ -12,7 +12,7 @@ angular.module('a8m.flatten', [])
     return function(collection, shallow) {
 
       shallow = shallow || false;
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 

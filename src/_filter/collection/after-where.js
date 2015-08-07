@@ -12,12 +12,11 @@ angular.module('a8m.after-where', [])
     .filter('afterWhere', function() {
       return function (collection, object) {
 
-        collection = (isObject(collection))
+        collection = isObject(collection)
           ? toArray(collection)
           : collection;
 
-        if(!isArray(collection) || isUndefined(object))
-          return collection;
+        if(!isArray(collection) || isUndefined(object)) return collection;
 
         var index = collection.map( function( elm ) {
           return objectContains(object, elm);
