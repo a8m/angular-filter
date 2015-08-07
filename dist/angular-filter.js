@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.4 - 2015-02-20 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.5 - 2015-08-07 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -28,8 +28,9 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return isArray(object) ? object :
-    Object.keys(object).map(function(key) {
+  return isArray(object) 
+    ? object 
+    : Object.keys(object).map(function(key) {
       return object[key];
     });
 }
@@ -319,12 +320,11 @@ angular.module('a8m.after-where', [])
     .filter('afterWhere', function() {
       return function (collection, object) {
 
-        collection = (isObject(collection))
+        collection = isObject(collection)
           ? toArray(collection)
           : collection;
 
-        if(!isArray(collection) || isUndefined(object))
-          return collection;
+        if(!isArray(collection) || isUndefined(object)) return collection;
 
         var index = collection.map( function( elm ) {
           return objectContains(object, elm);
@@ -348,7 +348,7 @@ angular.module('a8m.after-where', [])
 angular.module('a8m.after', [])
     .filter('after', function() {
       return function (collection, count) {
-        collection = (isObject(collection))
+        collection = isObject(collection)
           ? toArray(collection)
           : collection;
 
@@ -371,12 +371,11 @@ angular.module('a8m.before-where', [])
   .filter('beforeWhere', function() {
     return function (collection, object) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
-      if(!isArray(collection) || isUndefined(object))
-        return collection;
+      if(!isArray(collection) || isUndefined(object)) return collection;
 
       var index = collection.map( function( elm ) {
         return objectContains(object, elm);
@@ -398,7 +397,7 @@ angular.module('a8m.before-where', [])
 angular.module('a8m.before', [])
     .filter('before', function() {
       return function (collection, count) {
-        collection = (isObject(collection))
+        collection = isObject(collection)
           ? toArray(collection)
           : collection;
 
@@ -410,6 +409,42 @@ angular.module('a8m.before', [])
 
 /**
  * @ngdoc filter
+ * @name chunkBy
+ * @kind function
+ *
+ * @description
+ * Collect data into fixed-length chunks or blocks
+ */
+
+angular.module('a8m.chunk-by', [])
+  .filter('chunkBy', [function () {
+    /**
+     * @description
+     * Get array with size `n` in `val` inside it.
+     * @param n
+     * @param val
+     * @returns {Array}
+     */
+    function fill(n, val) {
+      var ret = [];
+      while(n--) ret[n] = val;
+      return ret;
+    }
+
+    return function (array, n, fillVal) {
+      if (!isArray(array)) return array;
+      return array.map(function(el, i, self) {
+        i = i * n;
+        el = self.slice(i, i + n);
+        return !isUndefined(fillVal) && el.length < n
+          ? el.concat(fill(n - el.length, fillVal))
+          : el;
+      }).slice(0, Math.ceil(array.length / n));
+    }
+  }]);
+
+/**
+ * @ngdoc filter
  * @name concat
  * @kind function
  *
@@ -417,15 +452,13 @@ angular.module('a8m.before', [])
  * get (array/object, object/array) and return merged collection
  */
 angular.module('a8m.concat', [])
-  //TODO(Ariel):unique option ? or use unique filter to filter result
   .filter('concat', [function () {
     return function (collection, joined) {
 
-      if (isUndefined(joined)) {
-        return collection;
-      }
+      if (isUndefined(joined)) return collection;
+
       if (isArray(collection)) {
-        return (isObject(joined))
+        return isObject(joined)
           ? collection.concat(toArray(joined))
           : collection.concat(joined);
       }
@@ -455,10 +488,10 @@ angular.module('a8m.contains', [])
     some: ['$parse', containsFilter]
   });
 
-function containsFilter( $parse ) {
+function containsFilter($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
         return false;
@@ -523,7 +556,7 @@ angular.module('a8m.defaults', [])
   .filter('defaults', ['$parse', function( $parse ) {
     return function(collection, defaults) {
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || !isObject(defaults)) {
         return collection;
@@ -559,7 +592,7 @@ angular.module('a8m.defaults', [])
 angular.module('a8m.every', [])
   .filter('every', ['$parse', function($parse) {
     return function (collection, expression) {
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(expression)) {
         return true;
@@ -584,13 +617,12 @@ angular.module('a8m.every', [])
 angular.module('a8m.filter-by', [])
   .filter('filterBy', ['$parse', function( $parse ) {
     return function(collection, properties, search) {
-
       var comparator;
 
       search = (isString(search) || isNumber(search)) ?
         String(search).toLowerCase() : undefined;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(search)) {
         return collection;
@@ -635,12 +667,11 @@ angular.module('a8m.filter-by', [])
 angular.module('a8m.first', [])
   .filter('first', ['$parse', function( $parse ) {
     return function(collection) {
-
       var n
         , getter
         , args;
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -671,7 +702,7 @@ angular.module('a8m.flatten', [])
     return function(collection, shallow) {
 
       shallow = shallow || false;
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -720,7 +751,7 @@ angular.module('a8m.fuzzy-by', [])
       var sensitive = csensitive || false,
         prop, getter;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(property)
         || isUndefined(search)) {
@@ -755,10 +786,8 @@ angular.module('a8m.fuzzy-by', [])
 angular.module('a8m.fuzzy', [])
   .filter('fuzzy', function () {
     return function (collection, search, csensitive) {
-
       var sensitive = csensitive || false;
-
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(search)) {
         return collection;
@@ -767,14 +796,11 @@ angular.module('a8m.fuzzy', [])
       search = (sensitive) ? search : search.toLowerCase();
 
       return collection.filter(function(elm) {
-
         if(isString(elm)) {
           elm = (sensitive) ? elm : elm.toLowerCase();
           return hasApproxPattern(elm, search) !== false
         }
-
         return (isObject(elm)) ? _hasApproximateKey(elm, search) : false;
-
       });
 
       /**
@@ -803,7 +829,6 @@ angular.module('a8m.fuzzy', [])
 
         }).length;
       }
-
     }
   });
 
@@ -818,7 +843,6 @@ angular.module('a8m.fuzzy', [])
  */
 
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
-
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
@@ -866,7 +890,7 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
 angular.module('a8m.is-empty', [])
   .filter('isEmpty', function () {
     return function(collection) {
-      return (isObject(collection))
+      return isObject(collection)
         ? !toArray(collection).length
         : !collection.length;
     }
@@ -886,9 +910,7 @@ angular.module('a8m.join', [])
       if (isUndefined(input) || !isArray(input)) {
         return input;
       }
-      if (isUndefined(delimiter)) {
-        delimiter = ' ';
-      }
+      if (isUndefined(delimiter)) delimiter = ' ';
 
       return input.join(delimiter);
     };
@@ -914,7 +936,7 @@ angular.module('a8m.last', [])
         //and we don't want side effects
         , reversed = copy(collection);
 
-      reversed = (isObject(reversed))
+      reversed = isObject(reversed)
         ? toArray(reversed)
         : reversed;
 
@@ -946,7 +968,7 @@ angular.module('a8m.map', [])
   .filter('map', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -974,7 +996,7 @@ angular.module('a8m.omit', [])
   .filter('omit', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -990,7 +1012,7 @@ angular.module('a8m.omit', [])
 
 /**
  * @ngdoc filter
- * @name omit
+ * @name pick
  * @kind function
  *
  * @description
@@ -1002,7 +1024,7 @@ angular.module('a8m.pick', [])
   .filter('pick', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -1016,6 +1038,23 @@ angular.module('a8m.pick', [])
     }
   }]);
 
+/**
+ * @ngdoc filter
+ * @name range
+ * @kind function
+ *
+ * @description
+ * rangeFilter provides some support for a for loop using numbers
+ */
+angular.module('a8m.range', [])
+  .filter('range', function () {
+    return function (input, total) {
+      for (var i = 0; i < parseInt(total); i++) {
+        input.push(i);
+      }
+      return input;
+	  };
+  });
 /**
  * @ngdoc filter
  * @name removeWith
@@ -1057,9 +1096,7 @@ angular.module('a8m.remove', [])
 
   .filter('remove', function () {
     return function (collection) {
-
-      collection = (isObject(collection)) ? toArray(collection) : collection;
-
+      collection = isObject(collection) ? toArray(collection) : collection;
       var args = Array.prototype.slice.call(arguments, 1);
 
       if(!isArray(collection)) {
@@ -1071,7 +1108,6 @@ angular.module('a8m.remove', [])
           return equals(nest, member);
         })
       });
-
     }
   });
 
@@ -1086,7 +1122,7 @@ angular.module('a8m.remove', [])
 angular.module('a8m.reverse', [])
     .filter('reverse',[ function () {
       return function (input) {
-        input = (isObject(input)) ? toArray(input) : input;
+        input = isObject(input) ? toArray(input) : input;
 
         if(isString(input)) {
           return input.split('').reverse().join('');
@@ -1113,7 +1149,7 @@ angular.module('a8m.search-field', [])
 
       var get, field;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       var args = Array.prototype.slice.call(arguments, 1);
 
@@ -1180,7 +1216,7 @@ angular.module('a8m.unique', [])
 function uniqFilter($parse) {
     return function (collection, property) {
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if (!isArray(collection)) {
         return collection;
@@ -1230,11 +1266,8 @@ function uniqFilter($parse) {
 angular.module('a8m.where', [])
   .filter('where', function() {
     return function (collection, object) {
-
-      if(isUndefined(object)) {
-        return collection;
-      }
-      collection = (isObject(collection))
+      if(isUndefined(object)) return collection;
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
@@ -1260,8 +1293,8 @@ angular.module('a8m.xor', [])
 
       expression = expression || false;
 
-      col1 = (isObject(col1)) ? toArray(col1) : col1;
-      col2 = (isObject(col2)) ? toArray(col2) : col2;
+      col1 = isObject(col1) ? toArray(col1) : col1;
+      col2 = isObject(col2) ? toArray(col2) : col2;
 
       if(!isArray(col1) || !isArray(col2)) return col1;
 
@@ -1296,18 +1329,17 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
 
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(bytes) && isFinite(bytes)) {
-
         if(bytes < 1024) { // within 1 KB so B
-            return convertToDecimal(bytes, decimal, $math) + ' B';
+          return convertToDecimal(bytes, decimal, $math) + ' B';
         } else if(bytes < 1048576) { // within 1 MB so KB
-            return convertToDecimal((bytes / 1024), decimal, $math) + ' KB';
+          return convertToDecimal((bytes / 1024), decimal, $math) + ' KB';
         } else if(bytes < 1073741824){ // within 1 GB so MB
-            return convertToDecimal((bytes / 1048576), decimal, $math) + ' MB';
+          return convertToDecimal((bytes / 1048576), decimal, $math) + ' MB';
         } else { // GB or more
-            return convertToDecimal((bytes / 1073741824), decimal, $math) + ' GB';
+          return convertToDecimal((bytes / 1073741824), decimal, $math) + ' GB';
         }
 
-	    }
+      }
       return "NaN";
     }
   }]);
@@ -1322,17 +1354,17 @@ angular.module('a8m.math.byteFmt', ['a8m.math'])
 angular.module('a8m.math.degrees', ['a8m.math'])
   .filter('degrees', ['$math', function ($math) {
     return function (radians, decimal) {
-	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
-		// if degrees is not a real number, we cannot do also. quit with error "NaN"
-		if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
-          isNumber(radians) && isFinite(radians)) {
-		    var degrees = (radians * 180) / $math.PI;
-		    return $math.round(degrees * $math.pow(10,decimal)) / ($math.pow(10,decimal));
-	    } else {
-          return "NaN";
-		}
-	}
-}]);
+      // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+      // if degrees is not a real number, we cannot do also. quit with error "NaN"
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+        isNumber(radians) && isFinite(radians)) {
+        var degrees = (radians * 180) / $math.PI;
+        return $math.round(degrees * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+      } else {
+        return "NaN";
+      }
+    }
+  }]);
 
  
  
@@ -1351,18 +1383,17 @@ angular.module('a8m.math.kbFmt', ['a8m.math'])
 
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(bytes) && isFinite(bytes)) {
-
         if(bytes < 1024) { // within 1 MB so KB
-            return convertToDecimal(bytes, decimal, $math) + ' KB';
+          return convertToDecimal(bytes, decimal, $math) + ' KB';
         } else if(bytes < 1048576) { // within 1 GB so MB
-            return convertToDecimal((bytes / 1024), decimal, $math) + ' MB';
+          return convertToDecimal((bytes / 1024), decimal, $math) + ' MB';
         } else {
-            return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
+          return convertToDecimal((bytes / 1048576), decimal, $math) + ' GB';
         }
-		  }
-			return "NaN";
+      }
+      return "NaN";
     }
-}]);
+  }]);
 /**
  * @ngdoc module
  * @name math
@@ -1454,7 +1485,7 @@ angular.module('a8m.math.percent', ['a8m.math'])
   .filter('percent', ['$math', '$window', function ($math, $window) {
     return function (input, divided, round) {
 
-      var divider = (isString(input)) ? $window.Number(input) : input;
+      var divider = isString(input) ? $window.Number(input) : input;
       divided = divided || 100;
       round = round || false;
 
@@ -1477,16 +1508,16 @@ angular.module('a8m.math.percent', ['a8m.math'])
 angular.module('a8m.math.radians', ['a8m.math'])
   .filter('radians', ['$math', function ($math) {
     return function (degrees, decimal) {
-	  // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
-	  // if degrees is not a real number, we cannot do also. quit with error "NaN"
-        if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
-          isNumber(degrees) && isFinite(degrees)) {
-          var radians = (degrees * 3.14159265359) / 180;
-          return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
-		}
-		return "NaN";
-	}
-}]);
+      // if decimal is not an integer greater than -1, we cannot do. quit with error "NaN"
+      // if degrees is not a real number, we cannot do also. quit with error "NaN"
+      if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
+        isNumber(degrees) && isFinite(degrees)) {
+        var radians = (degrees * 3.14159265359) / 180;
+        return $math.round(radians * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+      }
+      return "NaN";
+    }
+  }]);
 
  
  
@@ -1526,21 +1557,20 @@ angular.module('a8m.math.shortFmt', ['a8m.math'])
     return function (number, decimal) {
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(number) && isFinite(number)){
-                    
-          if(number < 1e3) {
-              return number;
-          } else if(number < 1e6) {
-              return convertToDecimal((number / 1e3), decimal, $math) + ' K';
-          } else if(number < 1e9){
-              return convertToDecimal((number / 1e6), decimal, $math) + ' M';
-          } else {
-            return convertToDecimal((number / 1e9), decimal, $math) + ' B';
-          }
+        if(number < 1e3) {
+          return number;
+        } else if(number < 1e6) {
+          return convertToDecimal((number / 1e3), decimal, $math) + ' K';
+        } else if(number < 1e9){
+          return convertToDecimal((number / 1e6), decimal, $math) + ' M';
+        } else {
+          return convertToDecimal((number / 1e9), decimal, $math) + ' B';
+        }
 
-	  }
-    return "NaN";
-	}
-}]);
+      }
+      return "NaN";
+    }
+  }]);
 /**
  * @ngdoc filter
  * @name sum
@@ -2090,7 +2120,7 @@ angular.module('a8m.filter-watcher', [])
       /**
        * @description
        * for angular version that greater than v.1.3.0
-       * if clear cache when the digest cycle end.
+       * it clear cache when the digest cycle is end.
        */
       function cleanStateless() {
         $$timeout(function() {
@@ -2204,6 +2234,7 @@ angular.module('angular.filter', [
   'a8m.remove-with',
   'a8m.group-by',
   'a8m.count-by',
+  'a8m.chunk-by',
   'a8m.search-field',
   'a8m.fuzzy-by',
   'a8m.fuzzy',
@@ -2217,7 +2248,8 @@ angular.module('angular.filter', [
   'a8m.last',
   'a8m.flatten',
   'a8m.join',
-
+  'a8m.range',
+  
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
