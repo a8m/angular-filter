@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
->Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.4**
+>Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.5**
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
@@ -18,6 +18,7 @@
   - [concat](#concat)
   - [contains](#contains)
   - [countBy](#countby)
+  - [chunkBy](#chunkby)
   - [defaults](#defaults)
   - [every](#every)
   - [filterBy](#filterby)
@@ -391,7 +392,7 @@ $scope.books = [
 ```
 ###fuzzyBy
 fuzzy string searching(approximate string matching) by property(nested to). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
-usage: ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
+**Usage:** ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
 ```js
 $scope.books = [
   { title: 'The DaVinci Code' },
@@ -414,7 +415,7 @@ $scope.books = [
 ###groupBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.<br/>
-**usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
+**Usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
 ```js
 $scope.players = [
   {name: 'Gene', team: 'alpha'},
@@ -448,7 +449,7 @@ $scope.players = [
 ###countBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is the count of objects in each group<br/>
-**usage:** ```(key, value) in collection | countBy: 'property'``` or ```... | countBy: 'nested.property'```
+**Usage:** ```(key, value) in collection | countBy: 'property'``` or ```... | countBy: 'nested.property'```
 ```js
 $scope.players = [
   {name: 'Gene', team: 'alpha'},
@@ -467,6 +468,30 @@ $scope.players = [
   Group name: beta, length: 2
   Group name: gamma, length: 2
 ```
+###chunkBy
+Collect data into fixed-length chunks or blocks  
+**Usage:** ```(key, value) in collection | chunkBy: 'n': fill-value(optional)```
+```js
+$scope.array = [1, 2, 3, 4, 5, 6];
+```
+```html
+<li ng-repeat="block in array | chunkBy: 2" >
+  Block: {{ block }}
+</li>
+<!-- result:
+  Block: [1, 2]
+  Block: [3, 4]
+  Block: [5, 6]
+-->
+<-- Example with fill value -->
+<li ng-repeat="block in array | chunkBy: 4: 0" >
+  Block: {{ block }}
+</li>
+<!-- result:
+  Block: [1, 2, 3, 4]
+  Block: [5, 6, 0, 0]
+```
+
 ###defaults
 `defaultsFilter` allows to specify a default fallback value for properties that resolve to undefined.<br/>
 **Usage:** `col in collection | defaults: fallback`
