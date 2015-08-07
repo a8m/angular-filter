@@ -9,7 +9,6 @@
  */
 
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
-
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
 
