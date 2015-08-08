@@ -11,12 +11,11 @@ angular.module('a8m.before-where', [])
   .filter('beforeWhere', function() {
     return function (collection, object) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 
-      if(!isArray(collection) || isUndefined(object))
-        return collection;
+      if(!isArray(collection) || isUndefined(object)) return collection;
 
       var index = collection.map( function( elm ) {
         return objectContains(object, elm);

@@ -17,7 +17,7 @@ angular.module('a8m.last', [])
         //and we don't want side effects
         , reversed = copy(collection);
 
-      reversed = (isObject(reversed))
+      reversed = isObject(reversed)
         ? toArray(reversed)
         : reversed;
 

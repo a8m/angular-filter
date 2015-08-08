@@ -9,13 +9,12 @@
 angular.module('a8m.filter-by', [])
   .filter('filterBy', ['$parse', function( $parse ) {
     return function(collection, properties, search) {
-
       var comparator;
 
       search = (isString(search) || isNumber(search)) ?
         String(search).toLowerCase() : undefined;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(search)) {
         return collection;

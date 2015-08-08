@@ -12,7 +12,7 @@ angular.module('a8m.remove', [])
 
   .filter('remove', function () {
     return function (collection) {
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
       var args = Array.prototype.slice.call(arguments, 1);
 
       if(!isArray(collection)) {

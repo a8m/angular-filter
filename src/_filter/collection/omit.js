@@ -12,7 +12,7 @@ angular.module('a8m.omit', [])
   .filter('omit', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 

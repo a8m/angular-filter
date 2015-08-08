@@ -18,7 +18,7 @@ angular.module('a8m.unique', [])
 function uniqFilter($parse) {
     return function (collection, property) {
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if (!isArray(collection)) {
         return collection;

@@ -13,7 +13,7 @@ angular.module('a8m.fuzzy-by', [])
       var sensitive = csensitive || false,
         prop, getter;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(property)
         || isUndefined(search)) {

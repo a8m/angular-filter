@@ -7,15 +7,13 @@
  * get (array/object, object/array) and return merged collection
  */
 angular.module('a8m.concat', [])
-  //TODO(Ariel):unique option ? or use unique filter to filter result
   .filter('concat', [function () {
     return function (collection, joined) {
 
-      if (isUndefined(joined)) {
-        return collection;
-      }
+      if (isUndefined(joined)) return collection;
+
       if (isArray(collection)) {
-        return (isObject(joined))
+        return isObject(joined)
           ? collection.concat(toArray(joined))
           : collection.concat(joined);
       }

@@ -10,7 +10,7 @@ angular.module('a8m.defaults', [])
   .filter('defaults', ['$parse', function( $parse ) {
     return function(collection, defaults) {
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || !isObject(defaults)) {
         return collection;

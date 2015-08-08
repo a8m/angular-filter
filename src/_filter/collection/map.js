@@ -10,7 +10,7 @@ angular.module('a8m.map', [])
   .filter('map', ['$parse', function($parse) {
     return function (collection, expression) {
 
-      collection = (isObject(collection))
+      collection = isObject(collection)
         ? toArray(collection)
         : collection;
 

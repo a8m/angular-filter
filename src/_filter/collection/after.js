@@ -12,7 +12,7 @@
 angular.module('a8m.after', [])
     .filter('after', function() {
       return function (collection, count) {
-        collection = (isObject(collection))
+        collection = isObject(collection)
           ? toArray(collection)
           : collection;
 

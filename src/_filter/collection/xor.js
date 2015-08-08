@@ -14,8 +14,8 @@ angular.module('a8m.xor', [])
 
       expression = expression || false;
 
-      col1 = (isObject(col1)) ? toArray(col1) : col1;
-      col2 = (isObject(col2)) ? toArray(col2) : col2;
+      col1 = isObject(col1) ? toArray(col1) : col1;
+      col2 = isObject(col2) ? toArray(col2) : col2;
 
       if(!isArray(col1) || !isArray(col2)) return col1;
 

@@ -13,7 +13,7 @@ angular.module('a8m.search-field', [])
 
       var get, field;
 
-      collection = (isObject(collection)) ? toArray(collection) : collection;
+      collection = isObject(collection) ? toArray(collection) : collection;
 
       var args = Array.prototype.slice.call(arguments, 1);
 
