@@ -30,6 +30,19 @@ describe('dotNameFilter', function () {
 
   });
 
+  it('should handle comma', function() {
+
+    expect(filter('Lewin, Gale')).toEqual('Lewin, G.');
+    expect(filter('Hopson, Sonny Teresa')).toEqual('Hopson, S. T.');
+
+  });
+
+  it('should remove title', function() {
+
+    expect(filter('Mr. Gale Lewin')).toEqual('G. Lewin');
+
+  });
+
   it('should ignore single string', function() {
 
     expect(filter('Ford')).toEqual('Ford');

@@ -15,15 +15,20 @@ angular.module('a8m.dot-name', [])
         return input;
       }
 
-      var parts = input.split(' '),
-          len = parts.length;
+      var parts = input.split(' ')
+                    .filter(function (part) {
+                      return part.charAt(part.length - 1) !== '.';
+                    }),
+          len = parts.length,
+          hasComma = input.indexOf(',') > -1,          
+          larstNameIdx = hasComma ? 0 : len - 1;
 
       if (parts.length < 2) {
         return input;
       }
 
       return parts.map(function(part, idx){
-        if (idx === len - 1) {
+        if (idx === larstNameIdx) {
           return part;
         }
 
