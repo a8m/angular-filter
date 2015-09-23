@@ -70,7 +70,7 @@ angular.module('a8m.filter-watcher', [])
         $$timeout(function() {
           if(!$rootScope.$$phase)
             $$cache = {};
-        });
+        }, 2000);
       }
 
       /**
