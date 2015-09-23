@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.5 - 2015-08-07 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.6 - 2015-09-23 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -416,32 +416,38 @@ angular.module('a8m.before', [])
  * Collect data into fixed-length chunks or blocks
  */
 
-angular.module('a8m.chunk-by', [])
-  .filter('chunkBy', [function () {
-    /**
-     * @description
-     * Get array with size `n` in `val` inside it.
-     * @param n
-     * @param val
-     * @returns {Array}
-     */
-    function fill(n, val) {
-      var ret = [];
-      while(n--) ret[n] = val;
-      return ret;
-    }
+angular.module('a8m.chunk-by', ['a8m.filter-watcher'])
+    .filter('chunkBy', ['filterWatcher', function (filterWatcher) {
+      return function (array, n, fillVal) {
 
-    return function (array, n, fillVal) {
-      if (!isArray(array)) return array;
-      return array.map(function(el, i, self) {
-        i = i * n;
-        el = self.slice(i, i + n);
-        return !isUndefined(fillVal) && el.length < n
-          ? el.concat(fill(n - el.length, fillVal))
-          : el;
-      }).slice(0, Math.ceil(array.length / n));
-    }
-  }]);
+        return filterWatcher.isMemoized('chunkBy', arguments) ||
+            filterWatcher.memoize('chunkBy', arguments, this,
+                _chunkBy(array, n, fillVal));
+        /**
+         * @description
+         * Get array with size `n` in `val` inside it.
+         * @param n
+         * @param val
+         * @returns {Array}
+         */
+        function fill(n, val) {
+          var ret = [];
+          while (n--) ret[n] = val;
+          return ret;
+        }
+
+        function _chunkBy(array, n, fillVal) {
+          if (!isArray(array)) return array;
+          return array.map(function (el, i, self) {
+            i = i * n;
+            el = self.slice(i, i + n);
+            return !isUndefined(fillVal) && el.length < n
+                ? el.concat(fill(n - el.length, fillVal))
+                : el;
+          }).slice(0, Math.ceil(array.length / n));
+        }
+      }
+    }]);
 
 /**
  * @ngdoc filter
@@ -850,11 +856,9 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         return collection;
       }
 
-      var getterFn = $parse(property);
-
       return filterWatcher.isMemoized('groupBy', arguments) ||
         filterWatcher.memoize('groupBy', arguments, this,
-          _groupBy(collection, getterFn));
+          _groupBy(collection, $parse(property)));
 
       /**
        * groupBy function
@@ -2126,7 +2130,7 @@ angular.module('a8m.filter-watcher', [])
         $$timeout(function() {
           if(!$rootScope.$$phase)
             $$cache = {};
-        });
+        }, 2000);
       }
 
       /**
