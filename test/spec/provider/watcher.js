@@ -1,7 +1,6 @@
 'use strict';
 
 describe('filterWatcherProvider', function() {
-
   //helpers
   function n(n) { return n; }
   var stub = { fn: function(x) { return n(x) } };
@@ -56,4 +55,14 @@ describe('filterWatcherProvider', function() {
       });
       expect(spy.callCount).toEqual(10);
     }));
+
+  it('should clear cache manually', function() {
+    window.setTimeout = function(cb) { cb(); };
+    inject(function(filterWatcher) {
+      var src = [1,2]
+        , result = [3,4];
+      filterWatcher.memoize('fName', src, null, result);
+      expect(filterWatcher.isMemoized('fName', src)).toBeFalsy();
+    });
+  });
 });
