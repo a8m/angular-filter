@@ -90,5 +90,4 @@ describe('groupByFilter', function() {
         expect(temp.children().length).toEqual(2);
       }));
   });
-
 });

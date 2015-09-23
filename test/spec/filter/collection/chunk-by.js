@@ -35,4 +35,30 @@ describe('chunkByFilter', function() {
   it('should get a !collection and return it as-is', function() {
     expect(filter(undefined)).toEqual(undefined);
   });
+
+  describe('inside the DOM', function() {
+    it('should not throw and not trigger the infinite digest exception',
+      inject(function($rootScope, $compile) {
+        var scope = $rootScope.$new();
+        scope.list = [
+          { name: 'foo', team: 'a' },
+          { name: 'lol', team: 'b' },
+          { name: 'bar', team: 'b' },
+          { name: 'baz', team: 'a' },
+          { name: 'bag', team: 'a' }
+        ];
+        scope.search = '';
+        var elm = angular.element(
+            '<ul>' +
+            '<li ng-repeat="players in list | filter: search | chunkBy: 3">' +
+            '<p ng-repeat="player in players"> {{ player }}</p>' +
+            '</li>' +
+            '</ul>'
+        );
+        var temp = $compile(elm)(scope);
+        expect(function() { scope.$digest() }).not.toThrow();
+        expect(angular.element(temp.children()[0]).children().length).toEqual(3);
+        expect(angular.element(temp.children()[1]).children().length).toEqual(2);
+      }));
+  });
 });
