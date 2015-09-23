@@ -16,11 +16,9 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         return collection;
       }
 
-      var getterFn = $parse(property);
-
       return filterWatcher.isMemoized('groupBy', arguments) ||
         filterWatcher.memoize('groupBy', arguments, this,
-          _groupBy(collection, getterFn));
+          _groupBy(collection, $parse(property)));
 
       /**
        * groupBy function
