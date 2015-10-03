@@ -63,6 +63,7 @@
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
+  - [sentenceCase](#sentencecase)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -1086,6 +1087,14 @@ usage: ```string | wrap: string: string[optional]```
 <!--result:
 /foo/
 {{foo}}
+```
+###sentenceCase
+Replaces lowercase characters with the uppercase character for the first word of each sentence<br />
+usage: ```string | sentence-case```
+```html
+<p>{{'foo bar. foo' | sentence-case}}</p>
+<!--result:
+Foo bar. Foo
 ```
 ###trim
 Strip whitespace (or other characters) from the beginning and end of a string<br/>
