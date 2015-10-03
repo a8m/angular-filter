@@ -1090,9 +1090,9 @@ usage: ```string | wrap: string: string[optional]```
 ```
 ###sentenceCase
 Replaces lowercase characters with the uppercase character for the first word of each sentence<br />
-usage: ```string | sentence-case```
+usage: ```string | sentenceCase```
 ```html
-<p>{{'foo bar. foo' | sentence-case}}</p>
+<p>{{'foo bar. foo' | sentenceCase}}</p>
 <!--result:
 Foo bar. Foo
 ```
