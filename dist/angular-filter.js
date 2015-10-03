@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.6 - 2015-09-23 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.6 - 2015-10-04 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1837,6 +1837,30 @@ angular.module('a8m.rtrim', [])
       return isString(input)
         ? input.replace(new RegExp(trim + '+$'), '')
         : input;
+    }
+  });
+
+/**
+ * @ngdoc filter
+ * @name sentence-case
+ * @kind function
+ *
+ * @description
+ * sentence-case
+ */
+angular.module('a8m.sentence-case', [])
+  .filter('sentenceCase', function() {
+    return function(input) {
+      return isString(input)
+        ? input.split('.')
+          .map(function(input){
+            var found = /^[!\s]*[a-z]/.exec(input);
+            return found.toString().toUpperCase()
+            + input.substr(found.toString().length);
+          })
+          .join('.')
+        : input;
+      return output;
     }
   });
 
