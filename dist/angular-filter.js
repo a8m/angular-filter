@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.6 - 2015-09-23 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.7 - 2015-10-04 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -2101,7 +2101,20 @@ angular.module('a8m.filter-watcher', [])
        * @returns {string}
        */
       function getHashKey(fName, args) {
-        return [fName, angular.toJson(args)]
+        function replacerFactory() {
+          var cache = [];
+          return function(key, val) {
+            if(isObject(val) && !isNull(val)) {
+              if (~cache.indexOf(val)) return '[Circular]';
+              cache.push(val)
+            }
+            if($window == val) return '$WINDOW';
+            if($window.document == val) return '$DOCUMENT';
+            if(isScope(val)) return '$SCOPE';
+            return val;
+          }
+        }
+        return [fName, JSON.stringify(args, replacerFactory())]
           .join('#')
           .replace(/"/g,'');
       }
@@ -2190,7 +2203,6 @@ angular.module('a8m.filter-watcher', [])
         isMemoized: $$isMemoized,
         memoize: $$memoize
       }
-
     }];
   });
   
