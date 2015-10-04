@@ -22,6 +22,21 @@ describe('filterWatcherProvider', function() {
       expect(spy.callCount).toEqual(1);
   }));
 
+  it('should not crash in circular structure situations',
+    inject(function(filterWatcher, $document, $window, $rootScope) {
+      var o1 = { a: 1, b: 2 };
+      var o2 = { a: 1, b: 2 };
+      o1.own = o1;
+      o1.window = $window;
+      o1.document = $document;
+      o1.scope = $rootScope;
+      o1.trait = o2;
+      o2.own = o2;
+      (function memoizedOnly(n) {
+        return filterWatcher.isMemoized('fName',n) || stub.fn(n);
+      })(o1);
+    }));
+
   it('should get the result from cache if it\'s memoize',
     inject(function(filterWatcher, $rootScope) {
       var scope = $rootScope.$new();
