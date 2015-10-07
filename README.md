@@ -1329,6 +1329,9 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 #Changelog
+###0.5.7
+* fix issue #119
+
 ###0.5.6
 * fix issue #145
 
