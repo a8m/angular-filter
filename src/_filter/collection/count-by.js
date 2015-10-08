@@ -25,7 +25,7 @@ angular.module('a8m.count-by', [])
       collection.forEach( function( elm ) {
         prop = get(elm);
 
-        if(!result[prop]) {
+        if(!isArray(result[prop])) {
           result[prop] = 0;
         }
 
