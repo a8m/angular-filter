@@ -2,17 +2,16 @@
 
 describe('filterWatcherProvider', function() {
   //helpers
-  function n(n) { return n; }
-  var stub = { fn: function(x) { return n(x) } };
+  var stub = { fn: function(x) { return x; } };
 
   beforeEach(module('a8m.filter-watcher'));
 
-  it('should have 2 main functions `isMemoized` and `memozie`', inject(function(filterWatcher) {
+  it('should have 2 main functions `isMemoized` and `memoize`', inject(function(filterWatcher) {
     expect(filterWatcher.isMemoized).toEqual(jasmine.any(Function));
     expect(filterWatcher.memoize).toEqual(jasmine.any(Function));
   }));
 
-  it('should called the function if it\'s not cached',
+  it('should call the function if it\'s not cached',
     inject(function(filterWatcher) {
       var spy = spyOn(stub, 'fn');
       (function memoizedOnly(n) {
@@ -37,12 +36,10 @@ describe('filterWatcherProvider', function() {
       })(o1);
     }));
 
-  it('should get the result from cache if it\'s memoize',
+  it('should get the result from cache if it\'s memoized',
     inject(function(filterWatcher, $rootScope) {
       var scope = $rootScope.$new();
-      var spy = spyOn(stub, 'fn').andCallFake(function() {
-        return 1;
-      });
+      var spy = spyOn(stub, 'fn').andCallThrough();
       function memoize(n) {
         return filterWatcher.isMemoized('fName', n) ||
           filterWatcher.memoize('fName', n, scope, stub.fn(n));
@@ -57,9 +54,7 @@ describe('filterWatcherProvider', function() {
   it('should clear cache from scope listeners on `$destroy`',
     inject(function(filterWatcher, $rootScope) {
       var scope;
-      var spy = spyOn(stub, 'fn').andCallFake(function() {
-        return 1;
-      });
+      var spy = spyOn(stub, 'fn').andCallThrough();
       function memoize(n) {
         return filterWatcher.isMemoized('fName', n) ||
           filterWatcher.memoize('fName', n, scope = $rootScope.$new(), stub.fn(n));
