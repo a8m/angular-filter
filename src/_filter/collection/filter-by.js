@@ -8,7 +8,7 @@
  */
 angular.module('a8m.filter-by', [])
   .filter('filterBy', ['$parse', function( $parse ) {
-    return function(collection, properties, search) {
+    return function(collection, properties, search, strict) {
       var comparator;
 
       search = (isString(search) || isNumber(search)) ?
@@ -32,16 +32,19 @@ angular.module('a8m.filter-by', [])
           if(!~prop.indexOf('+')) {
             comparator = $parse(prop)(elm)
           } else {
-            var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
-            comparator = propList.reduce(function(prev, cur, index) {
-              return (index === 1) ? $parse(prev)(elm) + ' ' + $parse(cur)(elm) :
-                prev + ' ' + $parse(cur)(elm);
-            });
+            var propList = prop.replace(/\s+/g, '').split('+');
+            comparator = propList
+              .map(function(prop) { return $parse(prop)(elm); })
+              .join(' ');
           }
 
-          return (isString(comparator) || isNumber(comparator))
-            ? String(comparator).toLowerCase().contains(search)
-            : false;
+          if (!isString(comparator) && !isNumber(comparator)) {
+            return false;
+          }
+
+          comparator = String(comparator).toLowerCase();
+
+          return strict ? comparator === search : comparator.contains(search);
         });
       });
     }
