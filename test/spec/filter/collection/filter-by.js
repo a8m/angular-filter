@@ -92,4 +92,41 @@ describe('filterByFilter', function() {
 
   });
 
+  it('should not coerce non-string/number properties', function() {
+    var users = [
+      { id: [1, 2], user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } }
+    ];
+
+    expect(filter(users, ['id'], 1)).toEqual([]);
+  });
+
+  describe('strict mode', function() {
+
+    var users = [
+      { id: 1, user: { first_name: 'foo', last_name: 'bar',  mobile: 4444 } }
+    ];
+
+    it('should only return exact matches', function() {
+
+      expect(filter(users, ['user.first_name'], 'fo', true)).toEqual([]);
+      expect(filter(users, ['user.first_name'], 'foo', true)).toEqual(users);
+
+    });
+
+    it('should handle multiple properties', function() {
+
+      expect(filter(users, ['user.first_name', 'user.last_name'], 'ba', true)).toEqual([]);
+      expect(filter(users, ['user.first_name', 'user.last_name'], 'bar', true)).toEqual(users);
+
+    });
+
+    it('should handle concatenation', function() {
+
+      expect(filter(users, ['user.first_name + user.last_name'], 'foo ba', true)).toEqual([]);
+      expect(filter(users, ['user.first_name + user.last_name'], 'foo bar', true)).toEqual(users);
+
+    });
+
+  });
+
 });
