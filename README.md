@@ -195,7 +195,7 @@ Clive 30
 ```
 ###filterBy
 Filter a collection by a specific property.<br/>
-**Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search```<br/>
+**Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search: strict[optional]```<br/>
 **Note:** You can even use compound properties (e.g: ```|filterBy: [property + property]: model```)<br/>
 
 ```js
