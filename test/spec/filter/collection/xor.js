@@ -56,7 +56,7 @@ describe('xorFilter', function() {
   });
 
   it('should filter by expression', function() {
-    expect(filter([ { id: 2 }, { id: 3 }], [ { id: 4 } ], 'id % 2')).toEqual([{ id: 3 }])
+    expect(filter([ { id: 2 }, { id: 3 }], [ { id: 4 } ], 'id % 2')).toEqual([{ id: 3 }]);
   });
 
 

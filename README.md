@@ -852,7 +852,7 @@ $scope.collection = [
 ```
 
 ###xor
-Exclusive or between two collection<br/>
+Exclusive or between two collections<br/>
 **Usage:** ```collection1 | xor: collection2: expression[optional]```<br/>
 
 Example1:
