@@ -50,8 +50,6 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
             prop.push(p); 
           })
 
-          console.log(prop);
-
           if(!result[prop]) {
             result[prop] = [];
           }
