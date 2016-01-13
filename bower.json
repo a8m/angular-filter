@@ -12,9 +12,6 @@
   "devDependencies": {
     "angular-mocks": "*"
   },
-  "main":[
-    "./dist/angular-filter.min.js"
-  ],
   "ignore": [
     "node_modules",
     "bower_components",
