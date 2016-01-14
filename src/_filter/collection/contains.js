@@ -22,7 +22,7 @@ function containsFilter($parse) {
       }
 
       return collection.some(function(elm) {
-        return (isObject(elm) || isFunction(expression))
+        return ((isString(expression) && isObject(elm)) || isFunction(expression))
           ? $parse(expression)(elm)
           : elm === expression;
       });

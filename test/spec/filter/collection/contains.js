@@ -8,6 +8,13 @@ describe('containsFilter', function() {
   beforeEach(inject(function ($filter) {
     filter = $filter('contains');
   }));
+  
+  it('should find elements which are objects', function() {
+    var needle = {};
+    var haystack = [needle];
+    
+    expect(filter(haystack, needle)).toBeTruthy();
+  });
 
   it('should get collection of primitives and use strict comparison(===)', function() {
     expect(filter(['foo', 'bar'], 'bar')).toBeTruthy();
