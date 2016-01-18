@@ -66,6 +66,26 @@ describe('groupByFilter', function() {
     expect(filter(null)).toBeNull();
   });
 
+  it('should allow groupBy multiple key', function() {
+    var arrays = [
+      { key1: 1, key2: 1, data: {} },
+      { key1: 1, key2: 1, data: {} },
+      { key1: 1, key2: 2, data: {} },
+      { key1: 1, key2: 2, data: {} },
+      { key1: 2, key2: 3, data: {} },
+      { key1: 2, key2: 3, data: {} },
+      { key1: 2, key2: 4, data: {} },
+      { key1: 2, key2: 4, data: {} }
+    ];
+
+    expect(filter(arrays, ['key1', 'key2'])).toEqual({
+      '1,1': [arrays[0], arrays[1]],
+      '1,2': [arrays[2], arrays[3]],
+      '2,3': [arrays[4], arrays[5]],
+      '2,4': [arrays[6], arrays[7]]
+    });
+  });
+
   describe('inside the DOM', function() {
     it('should not throw and not trigger the infinite digest exception',
       inject(function($rootScope, $compile) {

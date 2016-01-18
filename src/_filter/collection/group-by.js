@@ -8,6 +8,7 @@
  * each key is an array of the elements.
  */
 
+
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
@@ -16,22 +17,38 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         return collection;
       }
 
-      return filterWatcher.isMemoized('groupBy', arguments) ||
-        filterWatcher.memoize('groupBy', arguments, this,
-          _groupBy(collection, $parse(property)));
+      if (filterWatcher.isMemoized('groupBy', arguments))
+        return filterWatcher.isMemoized('groupBy', arguments);
+
+      var getters = [];
+      if (angular.isArray(property)) {
+        forEach(property, function(prop) {
+          getters.push($parse(prop));
+        })
+      } else {
+        getters.push($parse(property));
+      }
+      return filterWatcher.memoize('groupBy', arguments, this,
+        _groupBy(collection, getters));
 
       /**
        * groupBy function
        * @param collection
-       * @param getter
+       * @param getters
        * @returns {{}}
        */
-      function _groupBy(collection, getter) {
+      function _groupBy(collection, getters) {
         var result = {};
-        var prop;
 
         forEach( collection, function( elm ) {
-          prop = getter(elm);
+          var prop = [];
+
+          forEach(getters, function(getter) {
+            var p = getter(elm);
+            if (angular.isUndefined(p))
+              p = 'undefined';
+            prop.push(p); 
+          })
 
           if(!result[prop]) {
             result[prop] = [];

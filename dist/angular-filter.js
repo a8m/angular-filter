@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.7 - 2015-10-04 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.8 - 2015-12-21 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -622,7 +622,7 @@ angular.module('a8m.every', [])
  */
 angular.module('a8m.filter-by', [])
   .filter('filterBy', ['$parse', function( $parse ) {
-    return function(collection, properties, search) {
+    return function(collection, properties, search, strict) {
       var comparator;
 
       search = (isString(search) || isNumber(search)) ?
@@ -646,16 +646,19 @@ angular.module('a8m.filter-by', [])
           if(!~prop.indexOf('+')) {
             comparator = $parse(prop)(elm)
           } else {
-            var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
-            comparator = propList.reduce(function(prev, cur, index) {
-              return (index === 1) ? $parse(prev)(elm) + ' ' + $parse(cur)(elm) :
-                prev + ' ' + $parse(cur)(elm);
-            });
+            var propList = prop.replace(/\s+/g, '').split('+');
+            comparator = propList
+              .map(function(prop) { return $parse(prop)(elm); })
+              .join(' ');
           }
 
-          return (isString(comparator) || isNumber(comparator))
-            ? String(comparator).toLowerCase().contains(search)
-            : false;
+          if (!isString(comparator) && !isNumber(comparator)) {
+            return false;
+          }
+
+          comparator = String(comparator).toLowerCase();
+
+          return strict ? comparator === search : comparator.contains(search);
         });
       });
     }
@@ -848,6 +851,7 @@ angular.module('a8m.fuzzy', [])
  * each key is an array of the elements.
  */
 
+
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
     return function (collection, property) {
@@ -856,22 +860,38 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         return collection;
       }
 
-      return filterWatcher.isMemoized('groupBy', arguments) ||
-        filterWatcher.memoize('groupBy', arguments, this,
-          _groupBy(collection, $parse(property)));
+      if (filterWatcher.isMemoized('groupBy', arguments))
+        return filterWatcher.isMemoized('groupBy', arguments);
+
+      var getters = [];
+      if (angular.isArray(property)) {
+        forEach(property, function(prop) {
+          getters.push($parse(prop));
+        })
+      } else {
+        getters.push($parse(property));
+      }
+      return filterWatcher.memoize('groupBy', arguments, this,
+        _groupBy(collection, getters));
 
       /**
        * groupBy function
        * @param collection
-       * @param getter
+       * @param getters
        * @returns {{}}
        */
-      function _groupBy(collection, getter) {
+      function _groupBy(collection, getters) {
         var result = {};
-        var prop;
 
         forEach( collection, function( elm ) {
-          prop = getter(elm);
+          var prop = [];
+
+          forEach(getters, function(getter) {
+            var p = getter(elm);
+            if (angular.isUndefined(p))
+              p = 'undefined';
+            prop.push(p); 
+          })
 
           if(!result[prop]) {
             result[prop] = [];
