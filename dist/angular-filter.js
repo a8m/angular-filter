@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.7 - 2015-10-04 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.8 - 2015-12-21 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -622,7 +622,7 @@ angular.module('a8m.every', [])
  */
 angular.module('a8m.filter-by', [])
   .filter('filterBy', ['$parse', function( $parse ) {
-    return function(collection, properties, search) {
+    return function(collection, properties, search, strict) {
       var comparator;
 
       search = (isString(search) || isNumber(search)) ?
@@ -646,16 +646,19 @@ angular.module('a8m.filter-by', [])
           if(!~prop.indexOf('+')) {
             comparator = $parse(prop)(elm)
           } else {
-            var propList = prop.replace(new RegExp('\\s', 'g'), '').split('+');
-            comparator = propList.reduce(function(prev, cur, index) {
-              return (index === 1) ? $parse(prev)(elm) + ' ' + $parse(cur)(elm) :
-                prev + ' ' + $parse(cur)(elm);
-            });
+            var propList = prop.replace(/\s+/g, '').split('+');
+            comparator = propList
+              .map(function(prop) { return $parse(prop)(elm); })
+              .join(' ');
           }
 
-          return (isString(comparator) || isNumber(comparator))
-            ? String(comparator).toLowerCase().contains(search)
-            : false;
+          if (!isString(comparator) && !isNumber(comparator)) {
+            return false;
+          }
+
+          comparator = String(comparator).toLowerCase();
+
+          return strict ? comparator === search : comparator.contains(search);
         });
       });
     }
@@ -1041,6 +1044,25 @@ angular.module('a8m.pick', [])
       });
     }
   }]);
+
+/**
+ * @ngdoc filter
+ * @name random
+ * @kind function
+ *
+ * @description
+ * Return a random value from collection
+ */
+angular.module('a8m.random', [])
+    .filter('random',[ function () {
+      return function (input) {
+        input = isObject(input) ? toArray(input) : input;
+
+        return isArray(input)
+          ? input[Math.floor(Math.random() * input.length)]
+          : input;
+      }
+    }]);
 
 /**
  * @ngdoc filter
