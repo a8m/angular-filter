@@ -7,7 +7,8 @@ describe('fuzzyFilter', function() {
       { title: 'The Great Gatsby', author: 'Dan Browns' },
       { title: 'Angels & Demons',  author: 'Dan Louis' },
       { title: 'The Lost Symbol',  author: 'David Maine' },
-      { title: 'Old Man\'s War',   author: 'Rob Grant' }
+      { title: 'Old Man\'s War',   author: 'Rob Grant' },
+      { title: 'La Cafetière',     author: 'Théophile Gautier' }
     ];
 
   beforeEach(module('a8m.fuzzy'));
@@ -19,7 +20,7 @@ describe('fuzzyFilter', function() {
   it('should get array as collection, search, and filter by fuzzy searching', function() {
 
     //search by title
-    expect(filter(collection, 'tha')).toEqual([collection[0], collection[1]]);
+    expect(filter(collection, 'tha')).toEqual([collection[0], collection[1], collection[5]]);
     expect(filter(collection, 'thesy')).toEqual([collection[1], collection[3]]);
     expect(filter(collection, 'omwar')).toEqual([collection[4]]);
 
@@ -39,6 +40,16 @@ describe('fuzzyFilter', function() {
     expect(filter(collection,'TDC', true)).toEqual([collection[0]]);
     expect(filter(collection,'ThLSy', true)).toEqual([collection[3]]);
     expect(filter(collection,'OldWar', true)).toEqual([collection[4]]);
+
+  });
+
+  it('should be diacritics insensitive if set to true', function() {
+
+    expect(filter(collection, 'theop', false, false)).toEqual([]);
+    expect(filter(collection, 'cafetiere', false, false)).toEqual([]);
+
+    expect(filter(collection, 'theop', false, true)).toEqual([collection[5]]);
+    expect(filter(collection, 'cafetiere', false, true)).toEqual([collection[5]]);
 
   });
 

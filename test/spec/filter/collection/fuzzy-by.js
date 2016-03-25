@@ -7,7 +7,8 @@ describe('fuzzyByFilter', function() {
       { title: 'The Great Gatsby' },
       { title: 'Angels & Demons'  },
       { title: 'The Lost Symbol'  },
-      { title: 'Old Man\'s War'   }
+      { title: 'Old Man\'s War'   },
+      { title: 'La Cafetière'     }
     ];
 
   beforeEach(module('a8m.fuzzy-by'));
@@ -34,6 +35,14 @@ describe('fuzzyByFilter', function() {
     expect(filter(collection, 'title', 'TDC', true)).toEqual([collection[0]]);
     expect(filter(collection, 'title', 'ThLSy', true)).toEqual([collection[3]]);
     expect(filter(collection, 'title', 'OldWar', true)).toEqual([collection[4]]);
+
+  });
+
+  it('should be diacritics insensitive if set to true', function() {
+
+    expect(filter(collection, 'title', 'cafetiere', false, false)).toEqual([]);
+
+    expect(filter(collection, 'title', 'cafetière', false, true)).toEqual([collection[5]]);
 
   });
 
