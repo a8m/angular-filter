@@ -370,7 +370,7 @@ $scope.names = ['John', 'Sebastian', 'Will', 'James'];
 ###fuzzy
 fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
-**Usage:** ```collection | fuzzy: search: caseSensitive[optional]```
+**Usage:** ```collection | fuzzy: search: caseSensitive[optional] : accentInsensitive[optional]```
 ```js
 $scope.books = [
   { title: 'The DaVinci Code', author: 'F. Scott Fitzgerald' },
@@ -392,7 +392,7 @@ $scope.books = [
 ```
 ###fuzzyBy
 fuzzy string searching(approximate string matching) by property(nested to). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
-**Usage:** ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
+**Usage:** ```collection | fuzzyBy: 'property': search: caseSensitive[optional] : accentInsensitive[optional]```
 ```js
 $scope.books = [
   { title: 'The DaVinci Code' },
@@ -469,7 +469,7 @@ $scope.players = [
   Group name: gamma, length: 2
 ```
 ###chunkBy
-Collect data into fixed-length chunks or blocks  
+Collect data into fixed-length chunks or blocks
 **Usage:** ```(key, value) in collection | chunkBy: 'n': fill-value(optional)```
 ```js
 $scope.array = [1, 2, 3, 4, 5, 6];

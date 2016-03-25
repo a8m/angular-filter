@@ -8,8 +8,9 @@
  */
 angular.module('a8m.fuzzy', [])
   .filter('fuzzy', function () {
-    return function (collection, search, csensitive) {
+    return function (collection, search, csensitive, unaccent) {
       var sensitive = csensitive || false;
+      var nodiacritics = unaccent || false;
       collection = isObject(collection) ? toArray(collection) : collection;
 
       if(!isArray(collection) || isUndefined(search)) {
@@ -17,10 +18,12 @@ angular.module('a8m.fuzzy', [])
       }
 
       search = (sensitive) ? search : search.toLowerCase();
+      search = (nodiacritics) ? replaceDiacritics(search) : search;
 
       return collection.filter(function(elm) {
         if(isString(elm)) {
           elm = (sensitive) ? elm : elm.toLowerCase();
+          elm = (nodiacritics) ? replaceDiacritics(elm) : elm;
           return hasApproxPattern(elm, search) !== false
         }
         return (isObject(elm)) ? _hasApproximateKey(elm, search) : false;
@@ -45,6 +48,7 @@ angular.module('a8m.fuzzy', [])
 
           if (isString(prop)) {
             prop = (sensitive) ? prop : prop.toLowerCase();
+            prop = (nodiacritics) ? replaceDiacritics(prop) : prop;
             return flag = (hasApproxPattern(prop, search) !== false);
           }
 

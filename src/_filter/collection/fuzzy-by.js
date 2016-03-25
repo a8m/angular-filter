@@ -8,10 +8,10 @@
  */
 angular.module('a8m.fuzzy-by', [])
   .filter('fuzzyBy', ['$parse', function ( $parse ) {
-    return function (collection, property, search, csensitive) {
-
-      var sensitive = csensitive || false,
-        prop, getter;
+    return function (collection, property, search, csensitive, unaccent) {
+      var prop, getter;
+      var sensitive = csensitive || false;
+      var nodiacritics = unaccent || false;
 
       collection = isObject(collection) ? toArray(collection) : collection;
 
@@ -30,7 +30,9 @@ angular.module('a8m.fuzzy-by', [])
         }
 
         prop = (sensitive) ? prop : prop.toLowerCase();
+        prop = (nodiacritics) ? replaceDiacritics(prop) : prop;
         search = (sensitive) ? search : search.toLowerCase();
+        search = (nodiacritics) ? replaceDiacritics(search) : search;
 
         return hasApproxPattern(prop, search) !== false
       })
