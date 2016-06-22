@@ -14,7 +14,7 @@ angular.module('a8m.math.shortFmt', ['a8m.math'])
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
         isNumber(number) && isFinite(number)){
         if(number < 1e3) {
-          return number;
+          return '' + number;  // Coerce to string
         } else if(number < 1e6) {
           return convertToDecimal((number / 1e3), decimal, $math) + ' K';
         } else if(number < 1e9){
