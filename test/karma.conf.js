@@ -19,18 +19,19 @@ module.exports = function(config) {
     reporters: ['coverage'],
     //files to coverage
     preprocessors: {
-      "src/**/*js": "coverage"
+      "src/**/*js": 'coverage'
     },
 
     coverageReporter: {
-      type: "lcov",
-      dir: "test/coverage/"
+      type: 'lcov',
+      dir: 'test/coverage/'
     },
 
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'src/*.js',
       'src/**/*.js',
       'src/**/**/*.js',
       'test/spec/**/*.js',
@@ -41,7 +42,11 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9876,
+
+
+    // cli runner port
+    runnerPort: 9100,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -72,11 +77,12 @@ module.exports = function(config) {
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-    // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
-    // URL root prevent conflicts with the site root
-    // urlRoot: '_karma_'
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout: 60000,
+
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
+    }
   });
 };
