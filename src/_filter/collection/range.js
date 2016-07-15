@@ -8,10 +8,13 @@
  */
 angular.module('a8m.range', [])
   .filter('range', function () {
-    return function (input, total) {
+    return function (input, total, start, increment, cb) {
+      start = start || 0;
+      increment = increment || 1;
       for (var i = 0; i < parseInt(total); i++) {
-        input.push(i);
+        var j = start + i * increment;
+        input.push((cb && typeof cb === "function") ? cb(j) : j);
       }
       return input;
-	  };
+	};
   });

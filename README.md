@@ -469,7 +469,7 @@ $scope.players = [
   Group name: gamma, length: 2
 ```
 ###chunkBy
-Collect data into fixed-length chunks or blocks  
+Collect data into fixed-length chunks or blocks
 **Usage:** ```(key, value) in collection | chunkBy: 'n': fill-value(optional)```
 ```js
 $scope.array = [1, 2, 3, 4, 5, 6];
@@ -932,16 +932,43 @@ Bar
 Baz
 ```
 ###range
-Return a new collection from a given length<br/>
-**Usage:** ```collection | range: length```<br/>
+Return a new collection from a given length, start, increment, and callback<br/>
+By default start is 0, increment is 1, and callback is null.
+**Usage:** ```collection | range: length:start:increment:callback```<br/>
 ```html
-<th ng-repeat="i in [] | range: 3">
-  {{ i }}
-</th>
+[<span ng-repeat="i in [] | range: 3">{{i}},</span>]
 <!--result:
-0
-1
-2
+[0,1,2,]
+-->
+```
+```html
+[<span ng-repeat="i in [] | range: 10:10">{{i}},</span>]
+<!--result:
+[10,11,12,13,14,15,16,17,18,19,]
+-->
+```
+```html
+[<span ng-repeat="i in [] | range: 10:5:2">{{ i }},</span>]
+<!--result:
+[10,12,14,16,18,]
+-->
+```
+```html
+[<span ng-repeat="i in [] | range: 11:4:2">{{ i }},</span>]
+<!--result:
+[11,13,15,17,]
+-->
+```
+```js
+$scope.double = function(i) {
+  return i * 2;
+}
+```
+```html
+[<span ng-repeat="i in [] | range: 11:4:2:double">{{ i }},</span>]
+<!--result:
+[22,26,30,34,]
+-->
 ```
 
 #String
