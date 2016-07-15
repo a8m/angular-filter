@@ -1,5 +1,5 @@
 #Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
->Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.8**
+>Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.9**
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
