@@ -10,7 +10,7 @@
     "angular": "*"
   },
   "devDependencies": {
-    "angular-mocks": "*"
+    "angular-mocks": "1.4.3"
   },
   "ignore": [
     "node_modules",
