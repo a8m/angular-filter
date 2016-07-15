@@ -13,8 +13,8 @@ angular.module('a8m.range', [])
       increment = increment || 1;
       for (var i = 0; i < parseInt(total); i++) {
         var j = start + i * increment;
-        input.push((cb && typeof cb === "function") ? cb(j) : j);
+        input.push(isFunction(cb) ? cb(j) : j);
       }
       return input;
-	};
+    };
   });
