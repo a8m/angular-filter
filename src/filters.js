@@ -68,6 +68,7 @@ angular.module('angular.filter', [
   'a8m.math.byteFmt',
   'a8m.math.kbFmt',
   'a8m.math.shortFmt',
+  'a8m.math.median',
 
   'a8m.angular',
   'a8m.conditions',
