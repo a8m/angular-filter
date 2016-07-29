@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.9 - 2016-07-15 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.9 - 2016-07-29 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1076,15 +1076,19 @@ angular.module('a8m.range', [])
  */
 
 angular.module('a8m.remove-with', [])
-  .filter('removeWith', function() {
+  .filter('removeWith', function () {
     return function (collection, object) {
 
-      if(isUndefined(object)) {
+      if (isUndefined(object)) {
         return collection;
       }
       collection = isObject(collection)
         ? toArray(collection)
         : collection;
+
+      if (!isArray(collection)) {
+        return collection;
+      }
 
       return collection.filter(function (elm) {
         return !objectContains(object, elm);
