@@ -92,6 +92,8 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [isNotEqualTo](#isnotequalto) `!=`
   - [isIdenticalTo](#isidenticalto) `===`
   - [isNotIdenticalTo](#isnotidenticalto) `!==`
+- [Array](#array)
+  - [inArray](#inarray)
 
 ## Get Started
 **(1)** You can install angular-filter using 4 different methods:
@@ -1356,7 +1358,33 @@ Converts kilobytes into formatted display<br/>
 <!--or: -->
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
-## Changelog
+
+#Array
+Filters for arrays
+
+###inArray
+
+Filters the objects in an array by the values in another array
+```js
+function MainController ($scope) {
+  $scope.array = [ {a: 1}, {a: 2}, {a:1}, {a:3} ];
+  $scope.filterarray = [1, 3];
+  $scope.filterproperty = 'a';
+}
+```
+
+```html
+<li ng-repeat="elm in array | inArray:filterarry:filterproperty">
+  {{ elm.a }}
+</li>
+
+<!--
+result:
+1 1 3 
+-->
+```
+
+#Changelog
 ###0.5.7
 * fix issue #119
 

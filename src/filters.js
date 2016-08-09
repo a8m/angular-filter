@@ -73,5 +73,7 @@ angular.module('angular.filter', [
   'a8m.conditions',
   'a8m.is-null',
 
-  'a8m.filter-watcher'
+  'a8m.filter-watcher',
+
+  'a8m.in-array'
 ]);
