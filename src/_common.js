@@ -74,7 +74,7 @@ function hasApproxPattern(word, pattern) {
   for (var i = 0; i <= pattern.length; i++) {
     var index = indexOf(word, p, pattern.charAt(i));
     if (index == -1) return false;
-    p += index;
+    p += index + 1;
   }
   return true
 }
