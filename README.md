@@ -74,6 +74,7 @@
   - [shortFmt](#shortfmt)
   - [byteFmt](#bytefmt)
   - [kbFmt](#kbfmt)
+  - [mode] (#mode)
 - [Boolean](#boolean)
   - [isNull](#isnull)
   - [isDefined](#isdefined)
@@ -1288,6 +1289,14 @@ Converts kilobytes into formatted display<br/>
 1 MB
 1.00126 GB
 
+```
+###mode
+Calculates the mode value from all values within an array<br/>
+**Usage:** ```array | mode```
+```html
+{{ [12,7,5,7] | mode }}
+<!--result
+7
 ```
 #Boolean
 >Used for boolean expression in chaining filters
