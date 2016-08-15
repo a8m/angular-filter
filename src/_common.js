@@ -60,15 +60,23 @@ function objectContains(partial, object) {
  * @returns {*}
  */
 function hasApproxPattern(word, pattern) {
-  if(pattern === '')
-    return word;
-
-  var index = word.indexOf(pattern.charAt(0));
-
-  if(index === -1)
-    return false;
-
-  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+  // cheaper version of indexOf; instead of creating each
+  // iteration new str.
+  function indexOf(word, p, c) {
+    var j = 0;
+    while ((p + j) <= word.length) {
+      if (word.charAt(p + j) == c) return j;
+      j++;
+    }
+    return -1;
+  }
+  var p = 0;
+  for (var i = 0; i <= pattern.length; i++) {
+    var index = indexOf(word, p, pattern.charAt(i));
+    if (index == -1) return false;
+    p += index + 1;
+  }
+  return true
 }
 
 /**
