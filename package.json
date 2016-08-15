@@ -3,7 +3,7 @@
   "description": "Bunch of useful filters for angularJS(with no external dependencies!)",
   "version": "0.5.9",
   "filename": "angular-filter.min.js",
-  "main": "dist/angular-filter.min.js",
+  "main": "index.js",
   "homepage": "https://github.com/a8m/angular-filter",
   "author": "Ariel Mashraki <ariel@mashraki.co.il>",
   "repository": {
