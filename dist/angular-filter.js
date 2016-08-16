@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.9 - 2016-07-15 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.11 - 2016-08-16 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -67,15 +67,23 @@ function objectContains(partial, object) {
  * @returns {*}
  */
 function hasApproxPattern(word, pattern) {
-  if(pattern === '')
-    return word;
-
-  var index = word.indexOf(pattern.charAt(0));
-
-  if(index === -1)
-    return false;
-
-  return hasApproxPattern(word.substr(index+1), pattern.substr(1))
+  // cheaper version of indexOf; instead of creating each
+  // iteration new str.
+  function indexOf(word, p, c) {
+    var j = 0;
+    while ((p + j) <= word.length) {
+      if (word.charAt(p + j) == c) return j;
+      j++;
+    }
+    return -1;
+  }
+  var p = 0;
+  for (var i = 0; i <= pattern.length; i++) {
+    var index = indexOf(word, p, pattern.charAt(i));
+    if (index == -1) return false;
+    p += index + 1;
+  }
+  return true
 }
 
 /**
