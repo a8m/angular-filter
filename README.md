@@ -1,9 +1,9 @@
-#Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
->Bunch of useful filters for AngularJS (with no external dependencies!), **v0.5.11**
+# Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
+Bunch of useful filters for AngularJS *(with no external dependencies!)*
 
 **Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
 
-##Table of contents:
+## Table of contents:
 - [![Gitter][gitter-image]][gitter-url]
 - [Get Started](#get-started)
 - [Common Questions](https://github.com/a8m/angular-filter/wiki/Common-Questions)
@@ -93,7 +93,7 @@
   - [isIdenticalTo](#isidenticalto) `===`
   - [isNotIdenticalTo](#isnotidenticalto) `!==`
 
-#Get Started
+## Get Started
 **(1)** You can install angular-filter using 4 different methods:
   - clone & [build](#Contributing) this repository
   - via **[Bower](http://bower.io/)**: by running `$ bower install angular-filter` from your terminal
@@ -126,7 +126,7 @@ When you're done, your setup should look similar to the following:
 </html>
 ```
 
-#Collection
+## Collection
 
 ###concat
 
@@ -971,7 +971,7 @@ $scope.double = function(i) {
 -->
 ```
 
-#String
+## String
 
 ###ucfirst
 
@@ -1166,7 +1166,8 @@ Return an array of matched element in a string<br/>
 <!--result:
 ['15', '12', '2003']
 ```
-#Math
+
+## Math
 
 ###max
 max find and return the largest number in a given array.
@@ -1289,7 +1290,7 @@ Converts kilobytes into formatted display<br/>
 1.00126 GB
 
 ```
-#Boolean
+## Boolean
 >Used for boolean expression in chaining filters
 
 ###isGreaterThan
@@ -1355,7 +1356,7 @@ Converts kilobytes into formatted display<br/>
 <!--or: -->
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
-#Changelog
+## Changelog
 ###0.5.7
 * fix issue #119
 
@@ -1390,10 +1391,10 @@ Converts kilobytes into formatted display<br/>
 <br/>
 <br/>
 
-#TODO
+## TODO
 - Add project website on branch gh-pages, see **[Github-help](https://help.github.com/articles/creating-project-pages-manually)**
 
-#Contributing
+## Contributing
 * If you planning add some feature please **create issue before**.
 * Don't forget about tests.
 
