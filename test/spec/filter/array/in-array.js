@@ -15,7 +15,8 @@ describe('inArrayFilter', function() {
     var result = [ {a: 1}, {a: 1}, {a: 3} ];
 
     expect(filter(srcarray, filterarray, filterproperty)).toEqual(result);
-    expect(filter(users, [5, 6], filterproperty)).length == 0);
+    expect(filter(srcarray, [5, 6], filterproperty).length).toEqual(0);
+    expect(filter(srcarray, undefined, undefined)).toEqual(srcarray);
   });
 
 });
