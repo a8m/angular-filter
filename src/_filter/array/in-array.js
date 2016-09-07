@@ -7,7 +7,7 @@
  * filter an array by a property in another array based on example http://jsbin.com/owIXEPE/2/edit?html,js,output
  */
 angular.module('a8m.in-array', [])
-  .filter('inArray', function($filter) {
+  .filter('inArray', ['$filter', function($filter) {
     return function(list, arrayFilter, element){
       if (arrayFilter) {
         return $filter("filter")(list, function(listItem) {
@@ -17,5 +17,5 @@ angular.module('a8m.in-array', [])
         return list;
       }
     }
-  });
+  }]);
 
