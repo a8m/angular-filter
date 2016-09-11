@@ -881,7 +881,12 @@ angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
         var result = {};
         var prop;
 
-        forEach( collection, function( elm ) {
+        forEach( collection, function( elm, key ) {
+          if ( isUndefined(elm[property]) || elm[property] == null ) {
+            result['_$' + key] = [elm];
+            return;
+          }
+
           prop = getter(elm);
 
           if(!result[prop]) {
