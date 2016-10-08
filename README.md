@@ -950,13 +950,13 @@ By default start is 0, increment is 1, and callback is null.
 ```html
 [<span ng-repeat="i in [] | range: 10:5:2">{{ i }},</span>]
 <!--result:
-[10,12,14,16,18,]
+[5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
 -->
 ```
 ```html
 [<span ng-repeat="i in [] | range: 11:4:2">{{ i }},</span>]
 <!--result:
-[11,13,15,17,]
+[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]
 -->
 ```
 ```js
@@ -967,7 +967,7 @@ $scope.double = function(i) {
 ```html
 [<span ng-repeat="i in [] | range: 11:4:2:double">{{ i }},</span>]
 <!--result:
-[22,26,30,34,]
+[8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
 -->
 ```
 
