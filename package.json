@@ -4,6 +4,10 @@
   "version": "0.5.11",
   "filename": "angular-filter.min.js",
   "main": "index.js",
+  "files": [
+    "dist/*.js",
+    "src"
+  ],
   "homepage": "https://github.com/a8m/angular-filter",
   "author": "Ariel Mashraki <ariel@mashraki.co.il>",
   "repository": {
