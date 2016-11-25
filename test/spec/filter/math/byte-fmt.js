@@ -18,8 +18,12 @@ describe('byteFmtFilter', function () {
     expect(filter(1049901,5)).toEqual("1.00126 MB"); 
     expect(filter(909234901,1)).toEqual("867.1 MB"); 
     expect(filter(1339234901,5)).toEqual("1.24726 GB"); 
-    expect(filter(23423234234,2)).toEqual("21.81 GB"); 
-
+    expect(filter(23423234234,2)).toEqual("21.81 GB");
+    expect(filter(23985391855616,2)).toEqual("21.81 TB");
+    expect(filter(95340189555097611,1)).toEqual("84.7 PB");
+    expect(filter(2249548013871562752,3)).toEqual("1.951 EB");
+    expect(filter(5180591620717411303425,2)).toEqual("4.39 ZB");
+    expect(filter(5123980591620717411303425,2)).toEqual("4.24 YB");
   });
 
   it('should return NaN if bytes is not a number', function(){
