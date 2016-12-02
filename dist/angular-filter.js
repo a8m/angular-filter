@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.11 - 2016-08-16 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.12 - 2016-12-02 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -28,8 +28,8 @@ var isDefined = angular.isDefined,
  * @returns {Array}
  */
 function toArray(object) {
-  return isArray(object) 
-    ? object 
+  return isArray(object)
+    ? object
     : Object.keys(object).map(function(key) {
       return object[key];
     });
@@ -1334,11 +1334,26 @@ angular.module('a8m.xor', [])
 
 /**
  * @ngdoc filter
+ * @name abs
+ * @kind function
+ *
+ * @description
+ * Will return the absolute value of a number
+ */
+angular.module('a8m.math.abs', [])
+  .filter('abs', function () {
+    return function (input) {
+      return Math.abs(input);
+    }
+  });
+
+/**
+ * @ngdoc filter
  * @name formatBytes
  * @kind function
  *
  * @description
- * Convert bytes into appropriate display 
+ * Convert bytes into appropriate display
  * 1024 bytes => 1 KB
  */
 angular.module('a8m.math.byteFmt', ['a8m.math'])
@@ -1384,15 +1399,15 @@ angular.module('a8m.math.degrees', ['a8m.math'])
     }
   }]);
 
- 
- 
+
+
 /**
  * @ngdoc filter
  * @name formatBytes
  * @kind function
  *
  * @description
- * Convert bytes into appropriate display 
+ * Convert bytes into appropriate display
  * 1024 kilobytes => 1 MB
  */
 angular.module('a8m.math.kbFmt', ['a8m.math'])
@@ -1537,8 +1552,8 @@ angular.module('a8m.math.radians', ['a8m.math'])
     }
   }]);
 
- 
- 
+
+
 /**
  * @ngdoc filter
  * @name Radix
@@ -2219,7 +2234,7 @@ angular.module('a8m.filter-watcher', [])
       }
     }];
   });
-  
+
 
 /**
  * @ngdoc module
@@ -2279,10 +2294,11 @@ angular.module('angular.filter', [
   'a8m.flatten',
   'a8m.join',
   'a8m.range',
-  
+
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
+  'a8m.math.abs',
   'a8m.math.percent',
   'a8m.math.radix',
   'a8m.math.sum',

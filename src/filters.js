@@ -56,10 +56,11 @@ angular.module('angular.filter', [
   'a8m.flatten',
   'a8m.join',
   'a8m.range',
-  
+
   'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
+  'a8m.math.abs',
   'a8m.math.percent',
   'a8m.math.radix',
   'a8m.math.sum',

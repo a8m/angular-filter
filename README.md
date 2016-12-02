@@ -66,6 +66,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
 - [Math](#math)
   - [min](#min)
   - [max](#max)
+  - [abs](#abs)
   - [percent](#percent)
   - [radix](#radix)
   - [sum](#sum)
@@ -1208,6 +1209,18 @@ $scope.users = [
 result:
 * 1
 * { user: { score: 123414 } }
+```
+###abs
+Returns the absolute value of a number
+**Usage:** ```number | string```
+```html
+<div ng-repeat="val in [-2.2, 1.3, '-3.4', '4.5']">The absolute value of {{val}} is {{val | abs}}</div>
+<!--
+result:
+* The absolute value of -1.2 is 1.2
+* The absolute value of 2.3 is 2.3
+* The absolute value of -3.4 is 3.4
+* The absolute value of '4.5' is 4.5
 ```
 ###percent
 Percentage between two numbers<br/>
