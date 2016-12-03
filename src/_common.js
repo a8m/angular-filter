@@ -110,11 +110,10 @@ if (!String.prototype.contains) {
 /**
  * @param num {Number}
  * @param decimal {Number}
- * @param $math
  * @returns {Number}
  */
-function convertToDecimal(num, decimal, $math){
-  return $math.round(num * $math.pow(10,decimal)) / ($math.pow(10,decimal));
+function convertToDecimal(num, decimal){
+  return Math.round(num * Math.pow(10,decimal)) / (Math.pow(10, decimal));
 }
 
 /**
