@@ -1421,13 +1421,7 @@ Run the tests:
 ```bash
 $ grunt test
 ```
-**Deploy:**<br/>
-Run the build task, update version before(bower,package)
-```bash
-$ grunt build
-$ git tag v0.*.*
-$ git push origin master --tags
-```
+
 [npm-image]: https://img.shields.io/npm/v/angular-filter.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/angular-filter
 [travis-image]: https://img.shields.io/travis/a8m/angular-filter.svg?style=flat-square
