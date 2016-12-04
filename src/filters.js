@@ -57,7 +57,6 @@ angular.module('angular.filter', [
   'a8m.join',
   'a8m.range',
 
-  'a8m.math',
   'a8m.math.max',
   'a8m.math.min',
   'a8m.math.abs',
