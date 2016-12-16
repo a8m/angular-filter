@@ -1,7 +1,7 @@
 # Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
 Bunch of useful filters for AngularJS *(with no external dependencies!)*
 
-**Notice:** if you want to use `angular-filter` out of AngularJS(e.g: Node, etc..), check [Agile.js repo](https://github.com/a8m/agile)
+### Angular 2 version is now available: [ng-pipes](https://github.com/a8m/ng-pipes)
 
 ## Table of contents:
 - [![Gitter][gitter-image]][gitter-url]
