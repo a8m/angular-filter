@@ -1,6 +1,6 @@
 /**
  * @ngdoc filter
- * @name title-case
+ * @name titleize
  * @kind function
  *
  * @description
