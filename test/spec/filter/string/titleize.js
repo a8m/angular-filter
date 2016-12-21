@@ -1,13 +1,13 @@
 'use strict';
 
-describe('titleCaseFilter', function () {
+describe('titleizeFilter', function () {
 
   var filter;
 
-  beforeEach(module('a8m.title-case'));
+  beforeEach(module('a8m.titleize'));
 
   beforeEach(inject(function ($filter) {
-    filter = $filter('titleCase');
+    filter = $filter('titleize');
   }));
 
   it('should return a title-cased string', function () {
