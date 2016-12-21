@@ -4,10 +4,10 @@
  * @kind function
  *
  * @description
- * get string with {n} and replace match with enumeration values
+ * title-case a string
  */
-angular.module('a8m.title-case', [])
-  .filter('titleCase', function () {
+angular.module('a8m.titleize', [])
+  .filter('titleize', function () {
     return function titleCase(str) {
       if(!str) return undefined
       return str
