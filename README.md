@@ -1,7 +1,11 @@
 # Angular-filter &nbsp; [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url] [![License][license-image]][license-url]
 Bunch of useful filters for AngularJS *(with no external dependencies!)*
 
-### Angular 2 version is now available: [ng-pipes](https://github.com/a8m/ng-pipes)
+<h3 align="center">
+<img src="https://angular.io/resources/images/logos/angular2/angular.svg"
+ width="50" alt="angular pipes"><br/>
+ <a href="https://github.com/a8m/ng-pipes" target="_blank">Angular 2 version is now available - ng-pipes</a>
+ </h3>
 
 ## Table of contents:
 - [![Gitter][gitter-image]][gitter-url]
