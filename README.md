@@ -67,6 +67,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
+  - [dotName](#dotname)
 - [Math](#math)
   - [min](#min)
   - [max](#max)
@@ -1118,6 +1119,16 @@ usage: ```string | wrap: string: string[optional]```
 <!--result:
 /foo/
 {{foo}}
+```
+###dotName
+Replace firstname and all middle names with a dot notation<br/>
+usage: ```string | dotName```
+```html
+<p>{{ 'Gale Lewin' | dotName }}</p>
+<p>{{ 'Sonny Teresa Hopson' | dotName }}</p>
+<!--result:
+G. Lewin
+S. T. Hopson
 ```
 ###trim
 Strip whitespace (or other characters) from the beginning and end of a string<br/>
