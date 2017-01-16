@@ -63,6 +63,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [ltrim](#ltrim)
   - [rtrim](#rtrim)
   - [truncate](#truncate)
+  - [split](#split)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
@@ -1098,6 +1099,22 @@ $scope.text = 'lorem ipsum dolor sit amet';
 lorem ipsum...
 lorem ipsum d...
 lorem ipsum dolor sit amet
+```
+###split
+truncates a string given a specified length, providing a custom string to denote an omission.<br/>
+usage: ``` | split: [delimiter]: [skip-optional]```<br/>
+```js
+$scope.text = 'lorem ipsum dolor sit amet';
+```
+```html
+
+<p>{{ text | split: ' ' }}</p>
+
+<p>{{ text | split: ' ': 2}}</p>
+
+<!--result:
+['lorem', 'ipsum', 'dolor', 'sit', 'amet']
+['lorem ipsum dolor', 'sit', 'amet']
 ```
 ###reverse
 Reverses a string
