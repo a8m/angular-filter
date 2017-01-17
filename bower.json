@@ -2,7 +2,7 @@
   "name": "angular-filter",
   "main": "dist/angular-filter.js",
   "description": "Bunch of useful filters for angularJS(with no external dependencies!)",
-  "version": "0.5.14",
+  "version": "0.5.15",
   "license": "MIT",
   "repository": {
     "type": "git",
