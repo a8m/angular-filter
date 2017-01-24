@@ -853,7 +853,7 @@ $scope.collection = [
 ];
 ```
 ```html
-<th ng-show="{{ collection | every: !(user.id % 2) }}">...</th>
+<th ng-show="{{ collection | every: '!(user.id % 2)' }}">...</th>
 <!--result: true
 ```
 
