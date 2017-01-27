@@ -50,20 +50,21 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [xor](#xor)
 - [String](#string)
   - [endsWith](#endswith)
+  - [latinize](#latinize)
   - [repeat](#repeat)
   - [reverse](#reverse-1)
   - [slugify](#slugify)
-  - [latinize](#latinize)
+  - [split](#split)
   - [startsWith](#startswith)
   - [stripTags](#striptags)
   - [stringular](#stringular)
-  - [test](#test)
   - [match](#match)
+  - [phoneUS](#phoneus)
+  - [test](#test)
   - [trim](#trim)
   - [ltrim](#ltrim)
   - [rtrim](#rtrim)
   - [truncate](#truncate)
-  - [split](#split)
   - [ucfirst](#ucfirst)
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
@@ -1080,6 +1081,16 @@ get string with {n} and replace match with enumeration values
 <!--result:
 <p>lorem {0} dolor sit amet</p>
 ```
+
+### phoneUS
+Format a string or a number into a us-style phone number  
+```html
+<p>{{ 1234567890 | phoneUS }}</p>
+
+<!--result:
+<p>(123) 456-7890</p>
+```
+
 ###truncate
 truncates a string given a specified length, providing a custom string to denote an omission.<br/>
 usage: ``` | truncate: [length]: [suffix-optional]: [preserve-optinal]```<br/>
