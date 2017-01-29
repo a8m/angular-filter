@@ -1203,7 +1203,7 @@ Return an array of matched element in a string<br/>
 
 ###underscore
 
-underscoreFilter get string as parameter and return it capitalized
+Converts a string to snake_case (underscore)
 
 ```html
 <p>{{ 'fooBarBaz' | underscore }}</p>
@@ -1213,6 +1213,23 @@ underscoreFilter get string as parameter and return it capitalized
 result:
 foo_bar_baz
 a_n_u_p_p_e_r_c_a_s_e_d_w_o_r_d
+-->
+```
+
+###camelize
+
+Converts a string to camelCase<br/>
+usage: ```string | camelize: [upperFirst:boolean|optional]```<br/>
+
+```html
+<p>{{ 'a_simple_word' | camelize }}</p>
+<p>{{ 'ANUPPERCASEDWORD' | camelize }}</p>
+<p>{{ 'angular-js' | camelize: true }}</p>
+
+<!--
+result:
+aSimpleWord
+AngularJs
 -->
 ```
 
