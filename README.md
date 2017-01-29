@@ -66,6 +66,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [rtrim](#rtrim)
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
+  - [underscore](#underscore)
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
@@ -1083,7 +1084,7 @@ get string with {n} and replace match with enumeration values
 ```
 
 ### phoneUS
-Format a string or a number into a us-style phone number  
+Format a string or a number into a us-style phone number
 ```html
 <p>{{ 1234567890 | phoneUS }}</p>
 
@@ -1198,6 +1199,21 @@ Return an array of matched element in a string<br/>
 <p>{{ '15/12/2003' | match: '\\d+': 'g' }}</p>
 <!--result:
 ['15', '12', '2003']
+```
+
+###underscore
+
+underscoreFilter get string as parameter and return it capitalized
+
+```html
+<p>{{ 'fooBarBaz' | underscore }}</p>
+<p>{{ 'ANUPPERCASEDWORD' | underscore }}</p>
+
+<!--
+result:
+foo_bar_baz
+a_n_u_p_p_e_r_c_a_s_e_d_w_o_r_d
+-->
 ```
 
 ## Math
