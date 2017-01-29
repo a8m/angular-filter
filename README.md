@@ -49,6 +49,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [where](#where)
   - [xor](#xor)
 - [String](#string)
+  - [camelize](#camelize)
   - [endsWith](#endswith)
   - [latinize](#latinize)
   - [repeat](#repeat)
@@ -1203,7 +1204,7 @@ Return an array of matched element in a string<br/>
 
 ###underscore
 
-Converts a string to snake_case (underscore)
+Converts a string to underscore(snake_case)
 
 ```html
 <p>{{ 'fooBarBaz' | underscore }}</p>
@@ -1219,7 +1220,7 @@ a_n_u_p_p_e_r_c_a_s_e_d_w_o_r_d
 ###camelize
 
 Converts a string to camelCase<br/>
-usage: ```string | camelize: [upperFirst:boolean|optional]```<br/>
+**Usage:** ```string | camelize: [upperFirst:boolean|optional]```<br/>
 
 ```html
 <p>{{ 'a_simple_word' | camelize }}</p>
