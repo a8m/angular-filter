@@ -1220,17 +1220,21 @@ a_n_u_p_p_e_r_c_a_s_e_d_w_o_r_d
 ###camelize
 
 Converts a string to camelCase<br/>
-**Usage:** ```string | camelize: [upperFirst:boolean|optional]```<br/>
+**Usage:** ```string | camelize```<br/>
+**aliases:** camelCase
 
 ```html
 <p>{{ 'a_simple_word' | camelize }}</p>
 <p>{{ 'ANUPPERCASEDWORD' | camelize }}</p>
-<p>{{ 'angular-js' | camelize: true }}</p>
+<p>{{ 'angular-js' | camelize }}</p>
+<p>{{ 'a sentence' | camelize }}</p>
 
 <!--
 result:
 aSimpleWord
-AngularJs
+angularJs
+anuppercasedword
+aSentence
 -->
 ```
 
