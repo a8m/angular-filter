@@ -1205,6 +1205,8 @@ Return an array of matched element in a string<br/>
 ###underscore
 
 Converts a string to underscore(snake_case)
+**Usage:** ```string | underscore```<br/>
+**aliases:** snakeCase
 
 ```html
 <p>{{ 'fooBarBaz' | underscore }}</p>
