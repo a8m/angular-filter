@@ -13,7 +13,9 @@ describe('ucfirstFilter', function () {
   it('should get a string and return it uppercase each first letter', function() {
     expect(filter('a')).toEqual('A');
     expect(filter('foo bar baz')).toEqual('Foo Bar Baz');
+    expect(filter('foO baR bAz')).toEqual('Foo Bar Baz');
     expect(filter('lorem ipsum is simply dummy.... industry.')).toEqual('Lorem Ipsum Is Simply Dummy.... Industry.');
+    expect(filter('a medium senTence.', true)).toEqual('AMediumSentence');
   });
 
   it('should get a !string and not touch it', function() {

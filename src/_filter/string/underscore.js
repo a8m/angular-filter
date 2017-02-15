@@ -8,11 +8,11 @@
  */
 angular.module('a8m.underscore', [])
   .filter({
-    underscore: ['$parse', underscoreFilter],
-    snakeCase: ['$parse', underscoreFilter]
+    underscore: underscoreFilter,
+    snakeCase: underscoreFilter
   });
 
-function underscoreFilter($parse) {
+function underscoreFilter() {
   return function(input) {
     if (!isString(input)) return input;
 

@@ -8,11 +8,11 @@
  */
 angular.module('a8m.camelize', [])
   .filter({
-    camelize: ['$parse', camelizeFilter],
-    camelCase: ['$parse', camelizeFilter]
+    camelize: camelizeFilter,
+    camelCase: camelizeFilter
   });
 
-function camelizeFilter($parse) {
+function camelizeFilter() {
   return function(input) {
     if (!isString(input)) return input;
 

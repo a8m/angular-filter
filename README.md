@@ -985,13 +985,18 @@ $scope.double = function(i) {
 ###ucfirst
 
 ucfirstFilter get string as parameter and return it capitalized
+usage: ```string | ucfirst: [lettersOnly:boolean|optional]```<br/>
+**aliases:** titleize
+
 
 ```html
 <p> {{ 'foo bar baz' | ucfirst }}</p>
+<p> {{ 'foo bar baz' | ucfirst: true }}</p>
 
 <!--
 result:
 Foo Bar Baz
+FooBarBaz
 -->
 ```
 
