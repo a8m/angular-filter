@@ -135,7 +135,7 @@ When you're done, your setup should look similar to the following:
 
 ## Collection
 
-###concat
+### concat
 
 Concatenates an array/object into another one.
 
@@ -170,7 +170,7 @@ result:
 -->
 ```
 
-###unique
+### unique
 Remove duplicates from an array/object.<br/>
 If a string is provided, it will filter out duplicates using the provided expression.<br/>
 **Usage:** ```collection | unique: 'property' ```<br/>
@@ -200,7 +200,7 @@ William 20
 Clive 30
 
 ```
-###filterBy
+### filterBy
 Filter a collection by a specific property.<br/>
 **Usage:** ```collection | filterBy: [prop, nested.prop, etc..]: search: strict[optional]```<br/>
 **Note:** You can even use compound properties (e.g: ```|filterBy: [property + property]: model```)<br/>
@@ -247,7 +247,7 @@ Return users whose full name is
   3: Rob Johannson
 -->
 ```
-###first
+### first
 Gets the first element(s) of a collection.<br/>
 If an expression is provided, it will only return elements whose expression is truthy.<br/>
 ***Usage:*** See below <br/>
@@ -299,7 +299,7 @@ Return the first two users with even id
 Mike
 Rob
 ```
-###last
+### last
 Gets the last element or last n elements of a collection,<br/>
 if expression is provided, is returns as long the expression return truthy<br/>
 ***Usage:*** See below <br/>
@@ -340,7 +340,7 @@ lol
 baz
 lol
 ```
-###flatten
+### flatten
 Flattens a nested array (the nesting can be to any depth).<br/>
 If you pass shallow, the array will only be flattened a single level<br/>
 **Usage:** ```collection | flatten: shallow[optional]```
@@ -374,7 +374,7 @@ $scope.names = ['John', 'Sebastian', 'Will', 'James'];
 ```
 
 
-###fuzzy
+### fuzzy
 fuzzy string searching(approximate string matching). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **note:** use fuzzyBy to filter by one property to improve performance<br/>
 **Usage:** ```collection | fuzzy: search: caseSensitive[optional]```
@@ -397,7 +397,7 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###fuzzyBy
+### fuzzyBy
 fuzzy string searching(approximate string matching) by property(nested to). [Read more](http://en.wikipedia.org/wiki/Approximate_string_matching)<br/>
 **Usage:** ```collection | fuzzyBy: 'property': search: caseSensitive[optional]```
 ```js
@@ -419,7 +419,7 @@ $scope.books = [
   {{ book.title }}
 </li>
 ```
-###groupBy
+### groupBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.<br/>
 **Usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
@@ -453,7 +453,7 @@ $scope.players = [
     * player: Steve
     * player: Scruath
 ```
-###countBy
+### countBy
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is the count of objects in each group<br/>
 **Usage:** ```(key, value) in collection | countBy: 'property'``` or ```... | countBy: 'nested.property'```
@@ -475,7 +475,7 @@ $scope.players = [
   Group name: beta, length: 2
   Group name: gamma, length: 2
 ```
-###chunkBy
+### chunkBy
 Collect data into fixed-length chunks or blocks
 **Usage:** ```(key, value) in collection | chunkBy: 'n': fill-value(optional)```
 ```js
@@ -499,7 +499,7 @@ $scope.array = [1, 2, 3, 4, 5, 6];
   Block: [5, 6, 0, 0]
 ```
 
-###defaults
+### defaults
 `defaultsFilter` allows to specify a default fallback value for properties that resolve to undefined.<br/>
 **Usage:** `col in collection | defaults: fallback`
 ```js
@@ -539,7 +539,7 @@ $scope.ordersWithFallback = angular.copy($scope.orders);
     <!-- ..... -->
 </li>
 ```
-###where
+### where
 comparison for each element in a collection to the given properties object,<br/>
 returning an array of all elements that have equivalent property values.
 ```js
