@@ -49,6 +49,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [where](#where)
   - [xor](#xor)
 - [String](#string)
+  - [camelize](#camelize)
   - [endsWith](#endswith)
   - [latinize](#latinize)
   - [repeat](#repeat)
@@ -66,6 +67,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [rtrim](#rtrim)
   - [truncate](#truncate)
   - [ucfirst](#ucfirst)
+  - [underscore](#underscore)
   - [uriEncode](#uriencode)
   - [uriComponentEncode](#uricomponentencode)
   - [wrap](#wrap)
@@ -983,13 +985,18 @@ $scope.double = function(i) {
 ###ucfirst
 
 ucfirstFilter get string as parameter and return it capitalized
+usage: ```string | ucfirst: [lettersOnly:boolean|optional]```<br/>
+**aliases:** titleize
+
 
 ```html
 <p> {{ 'foo bar baz' | ucfirst }}</p>
+<p> {{ 'foo bar baz' | ucfirst: true }}</p>
 
 <!--
 result:
 Foo Bar Baz
+FooBarBaz
 -->
 ```
 
@@ -1083,7 +1090,7 @@ get string with {n} and replace match with enumeration values
 ```
 
 ### phoneUS
-Format a string or a number into a us-style phone number  
+Format a string or a number into a us-style phone number
 ```html
 <p>{{ 1234567890 | phoneUS }}</p>
 
@@ -1198,6 +1205,44 @@ Return an array of matched element in a string<br/>
 <p>{{ '15/12/2003' | match: '\\d+': 'g' }}</p>
 <!--result:
 ['15', '12', '2003']
+```
+
+###underscore
+
+Converts a string to underscore(snake_case)
+**Usage:** ```string | underscore```<br/>
+**aliases:** snakeCase
+
+```html
+<p>{{ 'fooBarBaz' | underscore }}</p>
+<p>{{ 'ANUPPERCASEDWORD' | underscore }}</p>
+
+<!--
+result:
+foo_bar_baz
+a_n_u_p_p_e_r_c_a_s_e_d_w_o_r_d
+-->
+```
+
+###camelize
+
+Converts a string to camelCase<br/>
+**Usage:** ```string | camelize```<br/>
+**aliases:** camelCase
+
+```html
+<p>{{ 'a_simple_word' | camelize }}</p>
+<p>{{ 'ANUPPERCASEDWORD' | camelize }}</p>
+<p>{{ 'angular-js' | camelize }}</p>
+<p>{{ 'a sentence' | camelize }}</p>
+
+<!--
+result:
+aSimpleWord
+angularJs
+anuppercasedword
+aSentence
+-->
 ```
 
 ## Math

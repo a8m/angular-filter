@@ -25,6 +25,8 @@ angular.module('angular.filter', [
   'a8m.test',
   'a8m.match',
   'a8m.split',
+  'a8m.underscore',
+  'a8m.camelize',
 
   'a8m.to-array',
   'a8m.concat',
