@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.15 - 2017-01-17 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.16 - 2017-04-07 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -2312,6 +2312,7 @@ angular.module('angular.filter', [
   'a8m.test',
   'a8m.match',
   'a8m.split',
+  'a8m.phoneUS',
 
   'a8m.to-array',
   'a8m.concat',
