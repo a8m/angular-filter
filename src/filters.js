@@ -52,6 +52,7 @@ angular.module('angular.filter', [
   'a8m.every',
   'a8m.filter-by',
   'a8m.xor',
+  'a8m.and',
   'a8m.map',
   'a8m.first',
   'a8m.last',

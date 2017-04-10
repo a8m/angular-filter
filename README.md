@@ -48,6 +48,7 @@ Bunch of useful filters for AngularJS *(with no external dependencies!)*
   - [unique](#unique)
   - [where](#where)
   - [xor](#xor)
+  - [and](#and)
 - [String](#string)
   - [endsWith](#endswith)
   - [latinize](#latinize)
@@ -893,6 +894,44 @@ $scope.users2 = [
   {{ user.id }}, {{ user.details.first_name }} {{ user.details.last_name }}
 </th>
 <!--result:
+2, foo bag
+```
+###and
+And between two collections<br/>
+**Usage:** ```collection1 | and: collection2: expression[optional]```<br/>
+
+Example1:
+```html
+<p ng-repeat="elm in [1,2,3,4] | and: [2,3,5]">
+{{ elm }}
+</p>
+<!--result:
+2 3
+```
+Example2:
+```js
+$scope.users1 = [
+  { id: 0, details: { first_name: 'foo', last_name: 'bar' } },
+  { id: 1, details: { first_name: 'foo', last_name: 'baz' } },
+  { id: 2, details: { first_name: 'foo', last_name: 'bag' } }
+];
+$scope.users2 = [
+  { id: 2, details: { first_name: 'foo', last_name: 'bag' } }
+  { id: 3, details: { first_name: 'foo', last_name: 'baz' } }
+];
+```
+```html
+<th ng-repeat="user in users1 | and: users2">
+  {{ user.id }}
+</th>
+<!--result:
+2
+-->
+<th ng-repeat="user in users1 | and: users2: 'details.last_name'">
+  {{ user.id }}, {{ user.details.first_name }} {{ user.details.last_name }}
+</th>
+<!--result:
+1, foo baz
 2, foo bag
 ```
 ###toArray
