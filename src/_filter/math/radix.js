@@ -8,11 +8,15 @@
  */
 angular.module('a8m.math.radix', [])
   .filter('radix', function () {
-    return function (input, radix) {
+    return function (input, radix, lowerCase) {
       var RANGE = /^[2-9]$|^[1-2]\d$|^3[0-6]$/;
 
       if(!isNumber(input) || !RANGE.test(radix)) {
         return input;
+      }
+
+      if(lowerCase) {
+        return input.toString(radix);
       }
 
       return input.toString(radix).toUpperCase();
