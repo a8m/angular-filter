@@ -565,7 +565,7 @@ returning an array of all elements that have equivalent property values.
   foo
   -->
 ```
-###omit
+### omit
 return collection without the omitted objects(by expression).<br/>
 usage: ```collection | omit: expression```<br/>
 **example 1:**
@@ -596,7 +596,7 @@ $scope.collection = [
 <!--result:
 id: 1, name: foo
 ```
-###pick
+### pick
 return collection composed of the picked objects(by expression).<br/>
 usage: ```collection | pick: expression```<br/>
 **example 1:**
@@ -629,7 +629,7 @@ id: 2, name: bar
 id:3, name: baz
 ```
 
-###remove
+### remove
 Returns a new collection of removed elements.
 ```js
 $scope.foo = { name: 'foo' };
@@ -646,7 +646,7 @@ $scope.collection = [
 <!-- result:
   { "name": "bar" }
 ```
-###removeWith
+### removeWith
 comparison for each element in a collection to the given properties object,<br/>
 returning an array without all elements that have equivalent property values.
 ```js
@@ -671,7 +671,7 @@ returning an array without all elements that have equivalent property values.
   bar
   baz
 ```
-###searchField
+### searchField
 if you want to use the filter in angular and want to filter for multiple values<br/>
 so searchField filter return new collection with property called searchField<br/>
 **support nested properties with dot notation i.e:** ``` collection | searchField: 'prop': 'nested.prop' ```
@@ -689,7 +689,7 @@ $scope.users = [
 </th>
 <!-- so now you can search by full name -->
 ```
-###after
+### after
 get a collection(array or object) and specified count, and returns all of the items
 in the collection after the specified count.
 ```js
@@ -710,7 +710,7 @@ $scope.collection = [
 -->
 
 ```
-###afterWhere
+### afterWhere
 get a collection and properties object, and returns all of the items,
 in the collection after the first that found with the given properties, including it.
 ```js
@@ -733,7 +733,7 @@ $scope.orders = [
 -->
 ```
 
-###before
+### before
 get a collection(array or object) and specified count, and returns all of the items
 in the collection before the specified count.
 ```js
@@ -755,7 +755,7 @@ $scope.collection = [
 
 ```
 
-###beforeWhere
+### beforeWhere
 get a collection and properties object, and returns all of the items,
 in the collection before the first that found with the given properties, including it.
 ```js
@@ -778,7 +778,7 @@ $scope.orders = [
 -->
 ```
 
-###reverse
+### reverse
 Reverse the order of the elements in a collection
 
 ```js
@@ -799,7 +799,7 @@ $scope.users = [
 -->
 ```
 
-###isEmpty
+### isEmpty
 get collection or string and return if it empty[Boolean]
 
 ```html
@@ -811,7 +811,7 @@ get collection or string and return if it empty[Boolean]
   no content to show
 </tr>
 ```
-###contains
+### contains
 Checks if given expression(or value) is present in one or more object in the collection<br/>
 **Usage:** ```collection | contains: 'expression'```<br/>
 **Aliases:** some<br/>
@@ -834,7 +834,7 @@ $scope.collection = [
 <th ng-show="{{ collection | some: '!(user.id % 2) && user.name.indexOf(\'b\') === 0' }}">...</th>
 <!--result: true
 ```
-###every
+### every
 Checks if given expression(or value) return truthy value for all members of a collection<br/>
 **Usage:** ```collection | every: 'expression'```<br/>
 example 1:
@@ -858,7 +858,7 @@ $scope.collection = [
 <!--result: true
 ```
 
-###xor
+### xor
 Exclusive or between two collections<br/>
 **Usage:** ```collection1 | xor: collection2: expression[optional]```<br/>
 
@@ -895,7 +895,7 @@ $scope.users2 = [
 <!--result:
 2, foo bag
 ```
-###toArray
+### toArray
 Convert objects into stable arrays. <br/>
 **Usage:** ```object | toArray: addKey[optional]```<br/>
 if addKey set to true, the filter also attaches a new property $key to the value containing the original key that was used in the object we are iterating over to reference the property
@@ -904,7 +904,7 @@ if addKey set to true, the filter also attaches a new property $key to the value
   {{ elm.name }}
 </th>
 ```
-###map
+### map
 Returns a new collection of the results of each expression execution. <br/>
 **Usage:** ```collection | map: expression``` <br/>
 Example1:
@@ -920,7 +920,7 @@ $scope.divide = function(elm) {
 <!--result:
 0.5, 1, 1.5, 2, 2.5
 ```
-###pluck
+### pluck
 Used map
 ```js
 $scope.users = [
@@ -938,7 +938,7 @@ Foo
 Bar
 Baz
 ```
-###range
+### range
 Return a new collection from a given length, start, increment, and callback<br/>
 By default start is 0, increment is 1, and callback is null.
 **Usage:** ```collection | range: length:start:increment:callback```<br/>
@@ -980,7 +980,7 @@ $scope.double = function(i) {
 
 ## String
 
-###ucfirst
+### ucfirst
 
 ucfirstFilter get string as parameter and return it capitalized
 
@@ -993,21 +993,21 @@ Foo Bar Baz
 -->
 ```
 
-###uriEncode
+### uriEncode
 get string as parameter and return encoded uri
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ data.name | uriEncode }}">Link</a>
 ```
 
-###uriComponentEncode
+### uriComponentEncode
 get string as parameter and return encoded uri component
 
 ```html
 <a ng-href="http://domain.com/fetch/{{ 'Some&strange=chars' | uriComponentEncode }}">Link</a>
 ```
 
-###slugify
+### slugify
 Transform text into a URL slug. Replaces whitespaces, with dash("-"), or given argument
 
 ```html
@@ -1022,7 +1022,7 @@ result:
 -->
 ```
 
-###latinize
+### latinize
 Remove accents/diacritics from a string
 
 ```html
@@ -1032,7 +1032,7 @@ result:
   Some strIng with Accents
 -->
 ```
-###startsWith
+### startsWith
 return whether string starts with the starts parameter.<br/>
 usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
 ```html
@@ -1042,7 +1042,7 @@ usage: ```string | startsWith: 'start': case-sensitive[optional]```<br/>
   true
   false
 ```
-###endsWith
+### endsWith
 return whether string ends with the ends parameter.<br/>
 usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
 ```html
@@ -1052,7 +1052,7 @@ usage: ```string | endsWith: 'ends': case-sensitive[optional]```<br/>
   true
   false
 ```
-###stripTags
+### stripTags
 strip out html tags from string<br/>
 **Important: this filter jobs it's not to replace ng-bind-html directive, it's only for tiny plain text
 
@@ -1065,7 +1065,7 @@ $scope.text = '<p class="paragraph">Lorem Ipsum is simply dummy text of the prin
 Lorem Ipsum is simply dummy text of the printing...
 -->
 ```
-###stringular
+### stringular
 get string with {n} and replace match with enumeration values
 
 ```html
@@ -1091,7 +1091,7 @@ Format a string or a number into a us-style phone number
 <p>(123) 456-7890</p>
 ```
 
-###truncate
+### truncate
 truncates a string given a specified length, providing a custom string to denote an omission.<br/>
 usage: ``` | truncate: [length]: [suffix-optional]: [preserve-optinal]```<br/>
 ```js
@@ -1111,7 +1111,7 @@ lorem ipsum...
 lorem ipsum d...
 lorem ipsum dolor sit amet
 ```
-###split
+### split
 truncates a string given a specified length, providing a custom string to denote an omission.<br/>
 usage: ``` | split: [delimiter]: [skip-optional]```<br/>
 ```js
@@ -1127,7 +1127,7 @@ $scope.text = 'lorem ipsum dolor sit amet';
 ['lorem', 'ipsum', 'dolor', 'sit', 'amet']
 ['lorem ipsum dolor', 'sit', 'amet']
 ```
-###reverse
+### reverse
 Reverses a string
 ```js
 $scope.text = 'lorem ipsum dolor sit amet';
@@ -1137,7 +1137,7 @@ $scope.text = 'lorem ipsum dolor sit amet';
 <!--result:
 tema tis rolod muspi merol
 ```
-###wrap
+### wrap
 Wrap a string with another string<br/>
 usage: ```string | wrap: string: string[optional]```
 ```html
@@ -1147,7 +1147,7 @@ usage: ```string | wrap: string: string[optional]```
 /foo/
 {{foo}}
 ```
-###trim
+### trim
 Strip whitespace (or other characters) from the beginning and end of a string<br/>
 usage: ```string | trim: chars[optional]```
 ```html
@@ -1157,7 +1157,7 @@ usage: ```string | trim: chars[optional]```
 foo
 bar
 ```
-###ltrim
+### ltrim
 Strip whitespace (or other characters) from the beginning of a string<br/>
 usage: ```string | ltrim: chars[optional]```
 ```html
@@ -1165,7 +1165,7 @@ usage: ```string | ltrim: chars[optional]```
 <!--result:
 foobar
 ```
-###rtrim
+### rtrim
 Strip whitespace (or other characters) from the end of a string<br/>
 usage: ```string | rtrim: chars[optional]```
 ```html
@@ -1173,7 +1173,7 @@ usage: ```string | rtrim: chars[optional]```
 <!--result:
 barfoo
 ```
-###repeat
+### repeat
 Repeats a string n times<br/>
 **Usage:** ```string | repeat: n: separator[optional]```
 ```html
@@ -1181,7 +1181,7 @@ Repeats a string n times<br/>
 <!--repeat:
 foo-foo-foo
 ```
-###test
+### test
 Test if a string match a pattern<br/>
 **Usage:** ```string | test: pattern: flag[optional]```
 ```html
@@ -1191,7 +1191,7 @@ Test if a string match a pattern<br/>
 true
 true
 ```
-###match
+### match
 Return an array of matched element in a string<br/>
 **Usage:** ```string | match: pattern: flag[optional]```
 ```html
@@ -1202,7 +1202,7 @@ Return an array of matched element in a string<br/>
 
 ## Math
 
-###max
+### max
 max find and return the largest number in a given array.
 if an `expression` is provided, will return max value by expression.
 **Usage:** ```array | max: expression[optional]```
@@ -1223,7 +1223,7 @@ result:
 * { user: { rank : 988999 } }
 ```
 
-###min
+### min
 min find and return the lowest number in a given array.
 if an `expression` is provided, will return min value by expression.
 **Usage:** ```array | min: expression[optional]```
@@ -1242,7 +1242,7 @@ result:
 * 1
 * { user: { score: 123414 } }
 ```
-###abs
+### abs
 Returns the absolute value of a number
 **Usage:** ```number | string```
 ```html
@@ -1254,7 +1254,7 @@ result:
 * The absolute value of -3.4 is 3.4
 * The absolute value of '4.5' is 4.5
 ```
-###percent
+### percent
 Percentage between two numbers<br/>
 **Usage:** ``` number | percent: total: round[optional]```, round by default false.
 ```html
@@ -1264,7 +1264,7 @@ Percentage between two numbers<br/>
 4.6
 4
 ```
-###radix
+### radix
 Converting decimal numbers to different bases(radix)<br/>
 **Usage:** ```number | radix: base```
 ```html
@@ -1274,7 +1274,7 @@ Converting decimal numbers to different bases(radix)<br/>
 1000
 7F4A
 ```
-###sum
+### sum
 Sum up all values within an array<br/>
 **Usage:** ```array | sum: initial-value[optional]```
 ```html
@@ -1284,7 +1284,7 @@ Sum up all values within an array<br/>
 10
 20
 ```
-###degrees
+### degrees
 Converts radians into degrees<br/>
 **Usage:** ```radians | degrees: round-to-decimal```,
 ```html
@@ -1294,7 +1294,7 @@ Converts radians into degrees<br/>
 45
 -89.954
 ```
-###radians
+### radians
 Converts degrees into radians<br/>
 **Usage:** ```degrees | radians: round-to-decimal```,
 ```html
@@ -1304,7 +1304,7 @@ Converts degrees into radians<br/>
 0.79
 3.14159
 ```
-###shortFmt
+### shortFmt
 Converts numbers into formatted display<br/>
 **Usage:** ```number | shortFmt: round-to-decimal```,
 ```html
@@ -1314,7 +1314,7 @@ Converts numbers into formatted display<br/>
 45 k
 18.2 m
 ```
-###byteFmt
+### byteFmt
 Converts bytes into formatted display<br/>
 **Usage:** ```number | byteFmt: round-to-decimal```,
 ```html
@@ -1324,7 +1324,7 @@ Converts bytes into formatted display<br/>
 1.95 KB
 1.24726 GB
 ```
-###kbFmt
+### kbFmt
 Converts kilobytes into formatted display<br/>
 **Usage:** ```number | kbFmt: round-to-decimal```,
 ```html
@@ -1338,7 +1338,7 @@ Converts kilobytes into formatted display<br/>
 ## Boolean
 >Used for boolean expression in chaining filters
 
-###isGreaterThan
+### isGreaterThan
 **aliases:** `>`
 ```html
 <div ng-show="{{ array | map | sum | isGreaterThan: num }}"></div>
@@ -1346,7 +1346,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | >: num }}"></div>
 ```
 
-###isGreaterThanOrEqualTo
+### isGreaterThanOrEqualTo
 **aliases:** `>=`
 ```html
 <div ng-show="{{ array | map | sum | isGreaterThanOrEqualTo: num }}"></div>
@@ -1354,7 +1354,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | >=: num }}"></div>
 ```
 
-###isLessThan
+### isLessThan
 **aliases:** `<`
 ```html
 <div ng-show="{{ array | map | sum | isLessThan: num }}"></div>
@@ -1362,7 +1362,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | <: num }}"></div>
 ```
 
-###isLessThanOrEqualTo
+### isLessThanOrEqualTo
 **aliases:** `<=`
 ```html
 <div ng-show="{{ array | map | sum | isLessThanOrEqualTo: num }}"></div>
@@ -1370,7 +1370,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | <=: num }}"></div>
 ```
 
-###isEqualTo
+### isEqualTo
 **aliases:** `==`
 ```html
 <div ng-show="{{ array | map | sum | isEqualTo: num }}"></div>
@@ -1378,7 +1378,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | ==: num }}"></div>
 ```
 
-###isNotEqualTo
+### isNotEqualTo
 **aliases:** `!=`
 ```html
 <div ng-show="{{ array | map | sum | isNotEqualTo: num }}"></div>
@@ -1386,7 +1386,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !=: num }}"></div>
 ```
 
-###isIdenticalTo
+### isIdenticalTo
 **aliases:** `===`
 ```html
 <div ng-show="{{ array | map | sum | isIdenticalTo: num }}"></div>
@@ -1394,7 +1394,7 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | ===: num }}"></div>
 ```
 
-###isNotIdenticalTo
+### isNotIdenticalTo
 **aliases:** `!==`
 ```html
 <div ng-show="{{ array | map | sum | isNotIdenticalTo: num }}"></div>
@@ -1402,36 +1402,36 @@ Converts kilobytes into formatted display<br/>
 <div ng-show="{{ array | map | sum | !==: num }}"></div>
 ```
 ## Changelog
-###0.5.7
+### 0.5.7
 * fix issue #119
 
-###0.5.6
+### 0.5.6
 * fix issue #145
 
-###0.5.5
+### 0.5.5
 * add `range` and `chunk-by` filters
 * fix issue #139
 
-###0.5.4
+### 0.5.4
 * add `match` and `test` filters
 
-###0.5.3
+### 0.5.3
 * add `latinize` filter
 
-###0.5.1
+### 0.5.1
 * `min` and `max` can get a property as an argument.
 * improve `slugify` filter.
 * refactor `filterWatcher`(memoize), now it works like a charm.
 * refactor `groupBy` now it can get be chain with other filters
 
-###0.4.9
+### 0.4.9
 * fix issue #38 with [reverseFilter](#reverse)
 
-###0.4.8
+### 0.4.8
 * add [defaultsFilter](#defaults)
 * improve docs, tests
 
-###0.4.7
+### 0.4.7
 * add [condition filters](#Boolean) set.
 <br/>
 <br/>
