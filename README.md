@@ -2,8 +2,7 @@
 Bunch of useful filters for AngularJS *(with no external dependencies!)*
 
 <h3 align="center">
-<img src="https://angular.io/resources/images/logos/angular2/angular.svg"
- width="50" alt="angular pipes"><br/>
+<img src="https://angular.io/resources/images/logos/angular/angular.svg" width="50" alt="angular pipes"><br/>
  Angular 2 version is now available: <a href="https://github.com/a8m/ng-pipes">ng-pipes</a>
  </h3>
 
