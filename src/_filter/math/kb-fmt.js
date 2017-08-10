@@ -5,13 +5,13 @@
  *
  * @description
  * Convert bytes into appropriate display 
- * 1024 kilobytes => 1 MB
+ * 1000 kilobytes => 1 MB
  */
 angular.module('a8m.math.kbFmt', [])
   .filter('kbFmt', function () {
-    var compared = [{str: 'KB', val: 1024}];
+    var compared = [{str: 'KB', val: 1000}];
     ['MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'].forEach(function(el, i) {
-      compared.push({str: el, val: compared[i].val * 1024 });
+      compared.push({str: el, val: compared[i].val * 1000 });
     });
     return function (bytes, decimal) {
       if(isNumber(decimal) && isFinite(decimal) && decimal%1===0 && decimal >= 0 &&
