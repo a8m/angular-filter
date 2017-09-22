@@ -6,8 +6,10 @@
   "main": "index.js",
   "files": [
     "dist/*.js",
+    "index.js",
     "src"
   ],
+  "browser": "index.js",
   "homepage": "https://github.com/a8m/angular-filter",
   "author": "Ariel Mashraki <ariel@mashraki.co.il>",
   "repository": {
