@@ -526,7 +526,7 @@ $scope.fallback = {
 * id: 4, name: Danno L, shipping address: 78612
 ```
 **Note:** `defaultsFilter` change the source object.<br/>
-**Why?** if we not change the source object, it's actually means we gonna return **new** object(copy operation)  **each digest cycle**.<br/>
+**Why?** if we don't change the source object, it actually means we're gonna return a **new** object (copy operation) on **each digest cycle**.<br/>
 And it will cause adverse memory and performance implications.<br/>
 **How to avoid it?** see below
 ```js
