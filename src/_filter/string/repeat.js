@@ -30,7 +30,7 @@ angular.module('a8m.repeat', [])
  * @returns {*}
  */
 function strRepeat(str, n, sep) {
-  if(!n) {
+  if(!isNumber(n) || !n) {
     return str;
   }
   return str + sep + strRepeat(str, --n, sep);
