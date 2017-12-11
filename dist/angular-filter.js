@@ -1,6 +1,6 @@
 /**
  * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.17 - 2017-09-22 * @link https://github.com/a8m/angular-filter
+ * @version v0.5.17 - 2017-12-11 * @link https://github.com/a8m/angular-filter
  * @author Ariel Mashraki <ariel@mashraki.co.il>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -860,15 +860,17 @@ angular.module('a8m.fuzzy', [])
 
 angular.module('a8m.group-by', [ 'a8m.filter-watcher' ])
   .filter('groupBy', [ '$parse', 'filterWatcher', function ( $parse, filterWatcher ) {
-    return function (collection, property) {
+    return function (collection, property_or_getter) {
 
-      if(!isObject(collection) || isUndefined(property)) {
+      if(!isObject(collection) || isUndefined(property_or_getter)) {
         return collection;
       }
 
+      var getter = angular.isFunction(property_or_getter) ? property_or_getter : $parse(property_or_getter);
+
       return filterWatcher.isMemoized('groupBy', arguments) ||
         filterWatcher.memoize('groupBy', arguments, this,
-          _groupBy(collection, $parse(property)));
+          _groupBy(collection, getter));
 
       /**
        * groupBy function

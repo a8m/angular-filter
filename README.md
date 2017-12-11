@@ -422,6 +422,7 @@ $scope.books = [
 Create an object composed of keys generated from the result of running each element of a collection,<br/>
 each key is an array of the elements.<br/>
 **Usage:** ```(key, value) in collection | groupBy: 'property'``` or ```... | groupBy: 'nested.property'```
+or ```... | groupBy: vm.groupKeyGetterFunction```
 ```js
 $scope.players = [
   {name: 'Gene', team: 'alpha'},
