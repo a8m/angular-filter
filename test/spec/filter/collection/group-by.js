@@ -66,6 +66,28 @@ describe('groupByFilter', function() {
     expect(filter(null)).toBeNull();
   });
 
+  it('should get array as collection, function as group key getter and ' +
+      'returns the composed aggregate object.', function() {
+
+      var players = [
+          {name: 'Gene', team: 'alpha'},
+          {name: 'George', team: 'beta'},
+          {name: 'Steve', team: 'gamma'},
+          {name: 'Paula', team: 'beta'},
+          {name: 'Scruath', team: 'gamma'}
+      ];
+
+      var groupKeyGetterFunction = function(element) {
+        return element.team;
+      }
+
+      expect(filter(players, groupKeyGetterFunction)).toEqual( {
+          alpha: [players[0]],
+          beta: [players[1], players[3]],
+          gamma: [players[2], players[4]]
+      });
+  });
+
   describe('inside the DOM', function() {
     it('should not throw and not trigger the infinite digest exception',
       inject(function($rootScope, $compile) {
